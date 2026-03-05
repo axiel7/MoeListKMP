@@ -25,6 +25,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.platform.LocalUriHandler
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import coil3.compose.AsyncImage
@@ -40,7 +41,7 @@ fun FullPosterView(
     pictures: List<String>,
     navActionManager: NavActionManager,
 ) {
-    //val context = LocalContext.current
+    val uriHandler = LocalUriHandler.current
     val scope = rememberCoroutineScope()
     val pagerState = rememberPagerState { pictures.size }
 
@@ -55,7 +56,7 @@ fun FullPosterView(
                     ViewInBrowserButton(
                         onClick = {
                             pictures.getOrNull(pagerState.currentPage)?.let { url ->
-                                //TODO context.openLink(url)
+                                uriHandler.openUri(url)
                             }
                         }
                     )

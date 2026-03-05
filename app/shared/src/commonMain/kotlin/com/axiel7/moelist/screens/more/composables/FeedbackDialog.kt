@@ -7,6 +7,9 @@ import androidx.compose.material3.ExperimentalMaterial3ExpressiveApi
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.platform.LocalUriHandler
+import com.axiel7.moelist.data.utils.DISCORD_SERVER_URL
+import com.axiel7.moelist.data.utils.GITHUB_ISSUES_URL
 import com.axiel7.moelist.ui.generated.resources.UiRes
 import com.axiel7.moelist.ui.generated.resources.cancel
 import com.axiel7.moelist.ui.generated.resources.discord
@@ -20,7 +23,7 @@ import org.jetbrains.compose.resources.stringResource
 fun FeedbackDialog(
     onDismiss: () -> Unit
 ) {
-    //val context = LocalContext.current
+    val uriHandler = LocalUriHandler.current
     AlertDialog(
         onDismissRequest = onDismiss,
         confirmButton = {
@@ -36,16 +39,12 @@ fun FeedbackDialog(
                 MoreItem(
                     title = stringResource(UiRes.string.github),
                     icon = UiRes.drawable.ic_github,
-                    onClick = {
-                        //TODO context.openAction(GITHUB_ISSUES_URL)
-                    }
+                    onClick = { uriHandler.openUri(GITHUB_ISSUES_URL) }
                 )
                 MoreItem(
                     title = stringResource(UiRes.string.discord),
                     icon = UiRes.drawable.ic_discord,
-                    onClick = {
-                        //TODO context.openAction(DISCORD_SERVER_URL)
-                    }
+                    onClick = { uriHandler.openUri(DISCORD_SERVER_URL) }
                 )
             }
         }

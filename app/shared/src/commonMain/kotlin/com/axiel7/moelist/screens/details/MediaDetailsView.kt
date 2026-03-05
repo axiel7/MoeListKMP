@@ -51,6 +51,7 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.input.nestedscroll.nestedScroll
+import androidx.compose.ui.platform.LocalUriHandler
 import androidx.compose.ui.text.AnnotatedString
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.intl.Locale
@@ -64,6 +65,7 @@ import com.axiel7.moelist.data.model.anime.AnimeDetails
 import com.axiel7.moelist.data.model.manga.MangaDetails
 import com.axiel7.moelist.data.model.media.MediaStatus
 import com.axiel7.moelist.data.model.media.MediaType
+import com.axiel7.moelist.data.utils.CHARACTER_URL
 import com.axiel7.moelist.data.utils.DateUtils.parseDateAndLocalize
 import com.axiel7.moelist.data.utils.NumExtensions.format
 import com.axiel7.moelist.data.utils.StringExtensions.toStringOrNull
@@ -172,7 +174,7 @@ private fun MediaDetailsContent(
     isLoggedIn: Boolean,
     navActionManager: NavActionManager
 ) {
-    //val context = LocalContext.current
+    val uriHandler = LocalUriHandler.current
 
     val scrollState = rememberScrollState()
     val topAppBarScrollBehavior =
@@ -576,9 +578,7 @@ private fun MediaDetailsContent(
                                     )
                                 },
                                 minLines = 2,
-                                onClick = {
-                                    //TODO context.openLink(CHARACTER_URL + item.node.id)
-                                }
+                                onClick = { uriHandler.openUri(CHARACTER_URL + item.node.id) }
                             )
                         }
                         if (uiState.isLoadingCharacters) {

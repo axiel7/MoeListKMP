@@ -9,6 +9,7 @@ import androidx.compose.material3.TopAppBar
 import androidx.compose.material3.TopAppBarScrollBehavior
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.platform.LocalInspectionMode
+import androidx.compose.ui.platform.LocalUriHandler
 import com.axiel7.moelist.data.model.anime.AnimeDetails
 import com.axiel7.moelist.data.model.media.MediaStatus
 import com.axiel7.moelist.data.utils.DateUtils.parseDate
@@ -33,7 +34,7 @@ fun MediaDetailsTopAppBar(
     scrollBehavior: TopAppBarScrollBehavior,
     navigateBack: () -> Unit
 ) {
-    //val context = LocalContext.current
+    val uriHandler = LocalUriHandler.current
     val isPreview = LocalInspectionMode.current
     val savedForNotification = when (uiState.mediaDetails?.status) {
         MediaStatus.AIRING -> uiState.notification
@@ -122,7 +123,7 @@ fun MediaDetailsTopAppBar(
                 }
             }
             ViewInBrowserButton(onClick = {
-                //TODO context.openLink(uiState.mediaDetails?.malUrl.orEmpty())
+                uiState.mediaDetails?.malUrl?.let { uriHandler.openUri(it) }
             })
 
             ShareButton(url = uiState.mediaDetails?.malUrl.orEmpty())

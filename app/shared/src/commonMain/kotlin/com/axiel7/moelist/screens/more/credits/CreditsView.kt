@@ -9,8 +9,13 @@ import androidx.compose.material3.Surface
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalUriHandler
 import androidx.compose.ui.text.intl.Locale
 import androidx.compose.ui.tooling.preview.Preview
+import com.axiel7.moelist.data.utils.GENERAL_HELP_CREDIT_URL
+import com.axiel7.moelist.data.utils.LOGO_CREDIT_URL
+import com.axiel7.moelist.data.utils.LOGO_NEW_CREDIT_URL
+import com.axiel7.moelist.data.utils.WEBSITE_CREDIT_URL
 import com.axiel7.moelist.screens.more.composables.MoreItem
 import com.axiel7.moelist.ui.base.navigation.NavActionManager
 import com.axiel7.moelist.ui.composables.DefaultScaffoldWithTopAppBar
@@ -58,7 +63,7 @@ val translationsCredits = mapOf(
 fun CreditsView(
     navActionManager: NavActionManager
 ) {
-    //val context = LocalContext.current
+    val uriHandler = LocalUriHandler.current
     val scrollState = rememberScrollState()
 
     DefaultScaffoldWithTopAppBar(
@@ -75,30 +80,22 @@ fun CreditsView(
             MoreItem(
                 title = stringResource(UiRes.string.logo_design),
                 subtitle = "@danielvd_art",
-                onClick = {
-                    //TODO context.openLink(LOGO_CREDIT_URL)
-                }
+                onClick = { uriHandler.openUri(LOGO_CREDIT_URL) }
             )
             MoreItem(
                 title = stringResource(UiRes.string.new_logo_design),
                 subtitle = "@WSTxda",
-                onClick = {
-                    //TODO context.openLink("https://www.instagram.com/wstxda/")
-                }
+                onClick = { uriHandler.openUri(LOGO_NEW_CREDIT_URL) }
             )
             MoreItem(
                 title = stringResource(UiRes.string.website),
                 subtitle = "@MaximilianGT500",
-                onClick = {
-                    //TODO context.openLink("https://github.com/MaximilianGT500")
-                }
+                onClick = { uriHandler.openUri(WEBSITE_CREDIT_URL) }
             )
             MoreItem(
                 title = stringResource(UiRes.string.general_help),
                 subtitle = "@Jeluchu",
-                onClick = {
-                    //TODO context.openLink(GENERAL_HELP_CREDIT_URL)
-                }
+                onClick = { uriHandler.openUri(GENERAL_HELP_CREDIT_URL) }
             )
             MoreItem(
                 title = stringResource(UiRes.string.api_help),
@@ -110,9 +107,7 @@ fun CreditsView(
             contributorsCredits.forEach { (username, link) ->
                 MoreItem(
                     title = username,
-                    onClick = {
-                        //TODO context.openLink(link)
-                    }
+                    onClick = { uriHandler.openUri(link) }
                 )
             }
             HorizontalDivider()

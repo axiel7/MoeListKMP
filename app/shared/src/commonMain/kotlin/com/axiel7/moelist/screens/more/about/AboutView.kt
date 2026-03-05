@@ -9,8 +9,11 @@ import androidx.compose.runtime.mutableIntStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalUriHandler
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.lifecycle.compose.dropUnlessResumed
+import com.axiel7.moelist.data.utils.DISCORD_SERVER_URL
+import com.axiel7.moelist.data.utils.GITHUB_REPO_URL
 import com.axiel7.moelist.screens.more.composables.MoreItem
 import com.axiel7.moelist.ui.base.navigation.NavActionManager
 import com.axiel7.moelist.ui.composables.DefaultScaffoldWithTopAppBar
@@ -35,7 +38,7 @@ import org.jetbrains.compose.resources.stringResource
 fun AboutView(
     navActionManager: NavActionManager
 ) {
-    //val context = LocalContext.current
+    val uriHandler = LocalUriHandler.current
     var versionClicks by remember { mutableIntStateOf(0) }
 
     DefaultScaffoldWithTopAppBar(
@@ -60,17 +63,13 @@ fun AboutView(
                 title = stringResource(UiRes.string.discord),
                 subtitle = stringResource(UiRes.string.discord_summary),
                 icon = UiRes.drawable.ic_discord,
-                onClick = {
-                    //TODO context.openAction(DISCORD_SERVER_URL)
-                }
+                onClick = { uriHandler.openUri(DISCORD_SERVER_URL) }
             )
             MoreItem(
                 title = stringResource(UiRes.string.github),
                 subtitle = stringResource(UiRes.string.github_summary),
                 icon = UiRes.drawable.ic_github,
-                onClick = {
-                    //TODO context.openAction(GITHUB_REPO_URL)
-                }
+                onClick = { uriHandler.openUri(GITHUB_REPO_URL) }
             )
             MoreItem(
                 title = stringResource(UiRes.string.credits),

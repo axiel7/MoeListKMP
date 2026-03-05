@@ -23,6 +23,7 @@ import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.platform.LocalUriHandler
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
@@ -32,6 +33,7 @@ import androidx.lifecycle.compose.dropUnlessResumed
 import coil3.compose.AsyncImage
 import com.axiel7.moelist.data.model.media.MediaType
 import com.axiel7.moelist.data.utils.DateUtils.parseDateAndLocalize
+import com.axiel7.moelist.data.utils.MAL_PROFILE_URL
 import com.axiel7.moelist.ui.base.navigation.NavActionManager
 import com.axiel7.moelist.ui.composables.DefaultScaffoldWithTopAppBar
 import com.axiel7.moelist.ui.composables.TextIconHorizontal
@@ -70,7 +72,7 @@ private fun ProfileViewContent(
     event: ProfileEvent?,
     navActionManager: NavActionManager
 ) {
-    //val context = LocalContext.current
+    val uriHandler = LocalUriHandler.current
     val scrollState = rememberScrollState()
 
     LaunchedEffect(uiState.message) {
@@ -180,9 +182,7 @@ private fun ProfileViewContent(
             HorizontalDivider(modifier = Modifier.padding(vertical = 16.dp))
 
             TextButton(
-                onClick = {
-                    //TODO context.openLink(MAL_PROFILE_URL + uiState.user?.name)
-                },
+                onClick = { uriHandler.openUri(MAL_PROFILE_URL + uiState.user?.name) },
                 modifier = Modifier.padding(bottom = 16.dp),
                 shapes = ButtonDefaults.shapes(),
             ) {

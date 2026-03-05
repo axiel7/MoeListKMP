@@ -18,9 +18,12 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalUriHandler
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.compose.dropUnlessResumed
+import com.axiel7.moelist.data.utils.MAL_ANNOUNCEMENTS_URL
+import com.axiel7.moelist.data.utils.MAL_NEWS_URL
 import com.axiel7.moelist.ui.base.navigation.NavActionManager
 import com.axiel7.moelist.ui.composables.collapsable
 import com.axiel7.moelist.ui.generated.resources.UiRes
@@ -86,7 +89,7 @@ private fun MoreViewContent(
     topBarSnapTo: suspend (Float) -> Unit = {},
     padding: PaddingValues = PaddingValues(),
 ) {
-    //val context = LocalContext.current
+    val uriHandler = LocalUriHandler.current
     val scrollState = rememberScrollState()
 
     var openFeedbackDialog by remember { mutableStateOf(false) }
@@ -137,6 +140,7 @@ private fun MoreViewContent(
             icon = UiRes.drawable.ic_new_releases,
             onClick = {
                 //TODO context.openCustomTab(MAL_NEWS_URL)
+                uriHandler.openUri(MAL_NEWS_URL)
             }
         )
 
@@ -146,6 +150,7 @@ private fun MoreViewContent(
             icon = UiRes.drawable.ic_campaign,
             onClick = {
                 //TODO context.openCustomTab(MAL_ANNOUNCEMENTS_URL)
+                uriHandler.openUri(MAL_ANNOUNCEMENTS_URL)
             }
         )
 
