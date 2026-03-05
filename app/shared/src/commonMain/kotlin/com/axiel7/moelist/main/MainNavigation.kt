@@ -109,6 +109,7 @@ fun MainNavigation(
             ) {
                 HomeView(
                     isLoggedIn = isLoggedIn,
+                    isCompactScreen = isCompactScreen,
                     navActionManager = navActionManager,
                     padding = padding,
                     topBarHeightPx = topBarHeightPx,

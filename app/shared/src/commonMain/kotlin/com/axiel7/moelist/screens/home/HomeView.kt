@@ -6,6 +6,7 @@ import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.RowScope
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
@@ -37,6 +38,9 @@ import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.lifecycle.compose.dropUnlessResumed
 import com.axiel7.moelist.data.model.media.MediaType
 import com.axiel7.moelist.data.utils.SeasonCalendar
+import com.axiel7.moelist.screens.home.composables.AiringAnimeHorizontalItem
+import com.axiel7.moelist.screens.home.composables.HomeCard
+import com.axiel7.moelist.ui.base.model.ListStatus.Companion.toBo
 import com.axiel7.moelist.ui.base.navigation.NavActionManager
 import com.axiel7.moelist.ui.composables.HeaderHorizontalList
 import com.axiel7.moelist.ui.composables.collapsable
@@ -46,9 +50,6 @@ import com.axiel7.moelist.ui.composables.media.MediaItemDetailedPlaceholder
 import com.axiel7.moelist.ui.composables.media.MediaItemVertical
 import com.axiel7.moelist.ui.composables.media.MediaItemVerticalPlaceholder
 import com.axiel7.moelist.ui.composables.score.SmallScoreIndicator
-import com.axiel7.moelist.screens.home.composables.AiringAnimeHorizontalItem
-import com.axiel7.moelist.screens.home.composables.HomeCard
-import com.axiel7.moelist.ui.base.model.ListStatus.Companion.toBo
 import com.axiel7.moelist.ui.generated.resources.UiRes
 import com.axiel7.moelist.ui.generated.resources.anime_ranking
 import com.axiel7.moelist.ui.generated.resources.calendar
@@ -75,6 +76,7 @@ import kotlin.random.Random
 @Composable
 fun HomeView(
     isLoggedIn: Boolean,
+    isCompactScreen: Boolean,
     navActionManager: NavActionManager,
     topBarHeightPx: Float,
     topBarOffsetY: Float,
@@ -89,6 +91,7 @@ fun HomeView(
         uiState = uiState,
         event = viewModel,
         isLoggedIn = isLoggedIn,
+        isCompactScreen = isCompactScreen,
         navActionManager = navActionManager,
         topBarHeightPx = topBarHeightPx,
         topBarOffsetY = topBarOffsetY,
@@ -104,6 +107,7 @@ private fun HomeViewContent(
     uiState: HomeUiState,
     event: HomeEvent?,
     isLoggedIn: Boolean,
+    isCompactScreen: Boolean,
     navActionManager: NavActionManager,
     topBarHeightPx: Float = 0f,
     topBarOffsetY: Float = 0f,
@@ -128,6 +132,48 @@ private fun HomeViewContent(
         event?.initRequestChain(isLoggedIn)
     }
 
+    @Composable
+    fun RowScope.ChipRow1() {
+        HomeCard(
+            text = stringResource(UiRes.string.anime_ranking),
+            icon = UiRes.drawable.ic_round_movie_24,
+            modifier = Modifier.weight(1f),
+            onClick = dropUnlessResumed {
+                navActionManager.toMediaRanking(MediaType.ANIME)
+            },
+        )
+
+        HomeCard(
+            text = stringResource(UiRes.string.manga_ranking),
+            icon = UiRes.drawable.ic_round_menu_book_24,
+            modifier = Modifier.weight(1f),
+            onClick = dropUnlessResumed {
+                navActionManager.toMediaRanking(MediaType.MANGA)
+            },
+        )
+    }
+
+    @Composable
+    fun RowScope.ChipRow2() {
+        HomeCard(
+            text = stringResource(UiRes.string.seasonal_chart),
+            icon = SeasonCalendar.currentSeason.icon,
+            modifier = Modifier.weight(1f),
+            onClick = dropUnlessResumed {
+                navActionManager.toSeasonChart()
+            },
+        )
+
+        HomeCard(
+            text = stringResource(UiRes.string.calendar),
+            icon = UiRes.drawable.ic_round_event_24,
+            modifier = Modifier.weight(1f),
+            onClick = dropUnlessResumed {
+                navActionManager.toCalendar()
+            },
+        )
+    }
+
     Column(
         modifier = Modifier
             .collapsable(
@@ -141,48 +187,25 @@ private fun HomeViewContent(
             .padding(padding)
     ) {
         // Chips
-        Row(
-            modifier = Modifier.padding(top = 10.dp, start = 8.dp, end = 16.dp)
-        ) {
-            HomeCard(
-                text = stringResource(UiRes.string.anime_ranking),
-                icon = UiRes.drawable.ic_round_movie_24,
-                modifier = Modifier.weight(1f),
-                onClick = dropUnlessResumed {
-                    navActionManager.toMediaRanking(MediaType.ANIME)
-                },
-            )
+        if (isCompactScreen) {
+            Row(
+                modifier = Modifier.padding(top = 10.dp, start = 8.dp, end = 16.dp)
+            ) {
+                ChipRow1()
+            }
 
-            HomeCard(
-                text = stringResource(UiRes.string.manga_ranking),
-                icon = UiRes.drawable.ic_round_menu_book_24,
-                modifier = Modifier.weight(1f),
-                onClick = dropUnlessResumed {
-                    navActionManager.toMediaRanking(MediaType.MANGA)
-                },
-            )
-        }
-
-        Row(
-            modifier = Modifier.padding(top = 10.dp, start = 8.dp, end = 16.dp)
-        ) {
-            HomeCard(
-                text = stringResource(UiRes.string.seasonal_chart),
-                icon = SeasonCalendar.currentSeason.icon,
-                modifier = Modifier.weight(1f),
-                onClick = dropUnlessResumed {
-                    navActionManager.toSeasonChart()
-                },
-            )
-
-            HomeCard(
-                text = stringResource(UiRes.string.calendar),
-                icon = UiRes.drawable.ic_round_event_24,
-                modifier = Modifier.weight(1f),
-                onClick = dropUnlessResumed {
-                    navActionManager.toCalendar()
-                },
-            )
+            Row(
+                modifier = Modifier.padding(top = 10.dp, start = 8.dp, end = 16.dp)
+            ) {
+                ChipRow2()
+            }
+        } else {
+            Row(
+                modifier = Modifier.padding(top = 10.dp, start = 8.dp, end = 16.dp)
+            ) {
+                ChipRow1()
+                ChipRow2()
+            }
         }
 
         // Airing
@@ -402,6 +425,7 @@ fun HomePreview() {
                 uiState = HomeUiState(),
                 event = null,
                 isLoggedIn = false,
+                isCompactScreen = false,
                 navActionManager = NavActionManager.rememberNavActionManager()
             )
         }
