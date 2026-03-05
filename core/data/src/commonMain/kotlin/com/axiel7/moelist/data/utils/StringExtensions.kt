@@ -15,8 +15,8 @@ object StringExtensions {
      */
     fun Any?.toStringOrEmpty() = this.toString().let { if (it == "null") "" else it }
 
-    // TODO: test
-    fun String.urlEncode(): String? = URLBuilder(this).buildString()
+    fun String.urlEncode(): String = URLBuilder(this).buildString()
+        .replace("http://localhost/", "")
 
     /**
      * Format the opening/ending text from MAL to use it on YouTube search
