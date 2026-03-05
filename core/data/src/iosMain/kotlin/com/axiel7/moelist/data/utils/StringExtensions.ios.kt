@@ -1,11 +1,7 @@
 package com.axiel7.moelist.data.utils
 
-import kotlinx.cinterop.BetaInteropApi
-import kotlinx.cinterop.ExperimentalForeignApi
-import kotlinx.cinterop.addressOf
-import kotlinx.cinterop.usePinned
-import platform.Foundation.*
-import platform.UIKit.*
+import platform.Foundation.NSString
+import platform.Foundation.stringWithFormat
 
 actual fun String.format(format: String, vararg args: Any?): String {
     val iosFormat = this.replace("%s", "%@")
@@ -23,21 +19,44 @@ actual fun String.format(format: String, vararg args: Any?): String {
     }
 }
 
-@OptIn(ExperimentalForeignApi::class, BetaInteropApi::class)
-actual fun String.unescapeHtml(): String? {
-    val bytes = this.encodeToByteArray()
+private val characterEntities = mapOf(
+    "&lt;" to "<",
+    "&gt;" to ">",
+    "&amp;" to "&",
+    "&quot;" to "\"",
+    "&apos;" to "'",
+    "&nbsp;" to " ",
+    "&copy;" to "©",
+    "&reg;" to "®"
+)
 
-    // Create NSData from ByteArray manually
-    val data = bytes.usePinned { pinned ->
-        NSData.dataWithBytes(
-            bytes = pinned.addressOf(0),
-            length = bytes.size.toULong()
-        )
+private val htmlEntityEncodingRegex = Regex("&[A-Za-z0-9]{2,};")
+
+actual fun String.unescapeHtml(): String? {
+    if (this.isEmpty()) return this
+
+    val cleanText = StringBuilder()
+    var lastIndex = 0
+    
+    val matches = htmlEntityEncodingRegex.findAll(this)
+    for (match in matches) {
+        if (match.range.first > lastIndex) {
+            cleanText.append(this.substring(lastIndex, match.range.first))
+        }
+        
+        val doomedText = match.value
+        val newCharacter = characterEntities[doomedText]
+        if (newCharacter != null) {
+            cleanText.append(newCharacter)
+            lastIndex = match.range.last + 1
+        } else {
+            lastIndex = match.range.first
+        }
     }
-    return NSAttributedString.create(
-        data = data,
-        options = mapOf(NSDocumentTypeDocumentAttribute to NSHTMLTextDocumentType),
-        documentAttributes = null,
-        error = null
-    )?.string
+    
+    if (lastIndex < this.length) {
+        cleanText.append(this.substring(lastIndex))
+    }
+    
+    return cleanText.toString()
 }
