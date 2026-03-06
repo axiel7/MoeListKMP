@@ -227,7 +227,6 @@ private fun HomeViewContent(
             }
         } else LazyRow(
             modifier = Modifier
-                .padding(top = 8.dp)
                 .sizeIn(minHeight = MEDIA_POSTER_SMALL_HEIGHT.dp),
             state = airingListState,
             contentPadding = PaddingValues(horizontal = 8.dp),
@@ -272,7 +271,6 @@ private fun HomeViewContent(
             }
         } else LazyRow(
             modifier = Modifier
-                .padding(top = 8.dp)
                 .sizeIn(minHeight = MEDIA_ITEM_VERTICAL_HEIGHT.dp),
             state = seasonListState,
             contentPadding = PaddingValues(horizontal = 8.dp),
@@ -348,7 +346,6 @@ private fun HomeViewContent(
             }
         } else LazyRow(
             modifier = Modifier
-                .padding(vertical = 8.dp)
                 .sizeIn(minHeight = MEDIA_ITEM_VERTICAL_HEIGHT.dp),
             state = recommendListState,
             contentPadding = PaddingValues(horizontal = 8.dp),
