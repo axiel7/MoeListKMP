@@ -25,17 +25,17 @@
     <string name="apply">Zastosuj</string>
     <string name="episodes">Odcinków</string>
     <plurals name="num_episodes">
-        <item quantity="one">%d odcinek</item>
-        <item quantity="few">%d odcinki</item>
-        <item quantity="many">%d odcinków</item>
-        <item quantity="other">%d odcinków</item>
+        <item quantity="one">%1$d odcinek</item>
+        <item quantity="few">%1$d odcinki</item>
+        <item quantity="many">%1$d odcinków</item>
+        <item quantity="other">%1$d odcinków</item>
     </plurals>
     <string name="chapters">Rozdziałów</string>
     <plurals name="num_chapters">
-        <item quantity="one">%d rozdział</item>
-        <item quantity="few">%d rozdziały</item>
-        <item quantity="many">%d rozdziałów</item>
-        <item quantity="other">%d rozdziałów</item>
+        <item quantity="one">%1$d rozdział</item>
+        <item quantity="few">%1$d rozdziały</item>
+        <item quantity="many">%1$d rozdziałów</item>
+        <item quantity="other">%1$d rozdziałów</item>
     </plurals>
     <string name="delete">Usuń</string>
     <string name="watching">Oglądane</string>
@@ -54,12 +54,12 @@
     <string name="nothing_today">Dzisiaj nic nie ma\n( ≧Д≦)</string>
     <string name="this_season">Ten sezon</string>
     <string name="recommendations">Polecane</string>
-    <string name="total_entries">Łącznie: %s</string>
+    <string name="total_entries">Łącznie: %1$s</string>
     <string name="mean_score">Średni wynik</string>
     <string name="rewatched">Obejrzane ponownie</string>
     <string name="view_profile_mal">Zobacz profil na MAL</string>
-    <string name="airing_in">Odcinek za %s</string>
-    <string name="score_value">Wynik: %s</string>
+    <string name="airing_in">Odcinek za %1$s</string>
+    <string name="score_value">Wynik: %1$s</string>
     <string name="add">Dodaj</string>
     <string name="unknown">Nieznana</string>
     <string name="top_ranked">Najwyższa pozycja w rankingu</string>
@@ -205,7 +205,7 @@
     <string name="minutes_abbreviation">min</string>
     <string name="full_story">Cała historia</string>
     <string name="theme_black">Czarny</string>
-    <string name="aired_ago">Wyemitowano %s temu</string>
+    <string name="aired_ago">Wyemitowano %1$s temu</string>
     <string name="anime_stats">Statystyki anime</string>
     <string name="delete_confirmation">Czy na pewno chcesz usunąć tę pozycję?</string>
     <string name="loading">Ładowanie</string>
@@ -232,28 +232,28 @@
     <string name="list_mode_minimal">Minimalny</string>
     <string name="list_style">Styl listy</string>
     <plurals name="num_years">
-        <item quantity="one">%d rok</item>
-        <item quantity="few">%d lata</item>
-        <item quantity="many">%d lat</item>
-        <item quantity="other">%d lat</item>
+        <item quantity="one">%1$d rok</item>
+        <item quantity="few">%1$d lata</item>
+        <item quantity="many">%1$d lat</item>
+        <item quantity="other">%1$d lat</item>
     </plurals>
     <plurals name="num_months">
-        <item quantity="one">%d miesiąc</item>
-        <item quantity="few">%d miesiące</item>
-        <item quantity="many">%d miesięcy</item>
-        <item quantity="other">%d miesięcy</item>
+        <item quantity="one">%1$d miesiąc</item>
+        <item quantity="few">%1$d miesiące</item>
+        <item quantity="many">%1$d miesięcy</item>
+        <item quantity="other">%1$d miesięcy</item>
     </plurals>
     <plurals name="num_weeks">
-        <item quantity="one">%d tydzień</item>
-        <item quantity="few">%d tygodnie</item>
-        <item quantity="many">%d tygodni</item>
-        <item quantity="other">%d tygodni</item>
+        <item quantity="one">%1$d tydzień</item>
+        <item quantity="few">%1$d tygodnie</item>
+        <item quantity="many">%1$d tygodni</item>
+        <item quantity="other">%1$d tygodni</item>
     </plurals>
     <plurals name="num_days">
-        <item quantity="one">%d dzień</item>
-        <item quantity="few">%d dni</item>
-        <item quantity="many">%d dni</item>
-        <item quantity="other">%d dni</item>
+        <item quantity="one">%1$d dzień</item>
+        <item quantity="few">%1$d dni</item>
+        <item quantity="many">%1$d dni</item>
+        <item quantity="other">%1$d dni</item>
     </plurals>
     <string name="open_mal_links_in_the_app">Otwórz linki MAL w aplikacji</string>
     <string name="notifications">Powiadomienia</string>
@@ -283,13 +283,13 @@
     <string name="high_value">Wysoki</string>
     <string name="very_high_value">Bardzo Wysoki</string>
     <string name="tags">Tagi</string>
-    <string name="priority_value">Priorytet: %s</string>
-    <string name="rewatch_value">Prawdopodobieństwo ponownego obejrzenia: %s</string>
-    <string name="reread_value">Prawdopodobieństwo ponownego przeczytania: %s</string>
+    <string name="priority_value">Priorytet: %1$s</string>
+    <string name="rewatch_value">Prawdopodobieństwo ponownego obejrzenia: %1$s</string>
+    <string name="reread_value">Prawdopodobieństwo ponownego przeczytania: %1$s</string>
     <string name="notes">Notatki</string>
     <string name="rewatching">Ponowne oglądanie</string>
     <string name="rereading">Ponowne czytanie</string>
-    <string name="ago">%s temu</string>
+    <string name="ago">%1$s temu</string>
     <string name="set_as_completed">Ustawić jako ukończone?</string>
     <string name="relation_character">Postać</string>
     <string name="web_novel">Powieść internetowa</string>

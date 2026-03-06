@@ -29,8 +29,4 @@ object StringExtensions {
         .urlEncode()
 }
 
-expect fun String.format(format: String, vararg args: Any?): String
-
-fun String.formatString(vararg args: Any?): String = format("%s", *args)
-
 expect fun String.unescapeHtml(): String?

@@ -41,12 +41,12 @@
     <string name="nothing_today">Nichts heute\n( ≧Д≦)</string>
     <string name="this_season">Diese Saison</string>
     <string name="recommendations">Empfehlungen</string>
-    <string name="total_entries">Gesamt: %s</string>
+    <string name="total_entries">Gesamt: %1$s</string>
     <string name="mean_score">Durchschnitt</string>
     <string name="rewatched">Wiederholt</string>
     <string name="view_profile_mal">Profil auf MAL ansehen</string>
-    <string name="airing_in">Ausstrahlung in %s</string>
-    <string name="score_value">Bewertung: %s</string>
+    <string name="airing_in">Ausstrahlung in %1$s</string>
+    <string name="score_value">Bewertung: %1$s</string>
     <string name="plus_one">+1</string>
     <string name="minus_one">-1</string>
     <string name="add">Hinzufügen</string>
@@ -194,7 +194,7 @@
     <string name="minutes_abbreviation">Min.</string>
     <string name="full_story">Vollständige Geschichte</string>
     <string name="theme_black">Schwarz</string>
-    <string name="aired_ago">Ausgestrahlt vor %s</string>
+    <string name="aired_ago">Ausgestrahlt vor %1$s</string>
     <string name="anime_stats">Anime-Statistiken</string>
     <string name="delete_confirmation">Bist Du sicher, dass Du diesen Eintrag löschen möchtest?</string>
     <string name="loading">Lädt</string>
@@ -221,20 +221,20 @@
     <string name="list_mode_minimal">Minimal</string>
     <string name="list_style">Listen-Stil</string>
     <plurals name="num_years">
-        <item quantity="one">%d Jahr</item>
-        <item quantity="other">%d Jahre</item>
+        <item quantity="one">%1$d Jahr</item>
+        <item quantity="other">%1$d Jahre</item>
     </plurals>
     <plurals name="num_months">
-        <item quantity="one">%d Monat</item>
-        <item quantity="other">%d Monate</item>
+        <item quantity="one">%1$d Monat</item>
+        <item quantity="other">%1$d Monate</item>
     </plurals>
     <plurals name="num_weeks">
-        <item quantity="one">%d Woche</item>
-        <item quantity="other">%d Wochen</item>
+        <item quantity="one">%1$d Woche</item>
+        <item quantity="other">%1$d Wochen</item>
     </plurals>
     <plurals name="num_days">
-        <item quantity="one">%d Tag</item>
-        <item quantity="other">%d Tage</item>
+        <item quantity="one">%1$d Tag</item>
+        <item quantity="other">%1$d Tage</item>
     </plurals>
     <string name="open_mal_links_in_the_app">MAL-Links in der App öffnen</string>
     <string name="notifications">Benachrichtigungen</string>
@@ -264,13 +264,13 @@
     <string name="high_value">Hoch</string>
     <string name="very_high_value">Sehr Hoch</string>
     <string name="tags">Tags</string>
-    <string name="priority_value">Priorität: %s</string>
-    <string name="rewatch_value">Wahrscheinlichkeit des erneuten Anschauens: %s</string>
-    <string name="reread_value">Wahrscheinlichkeit des erneuten Lesens: %s</string>
+    <string name="priority_value">Priorität: %1$s</string>
+    <string name="rewatch_value">Wahrscheinlichkeit des erneuten Anschauens: %1$s</string>
+    <string name="reread_value">Wahrscheinlichkeit des erneuten Lesens: %1$s</string>
     <string name="notes">Notizen</string>
     <string name="rewatching">Erneut Anschauen</string>
     <string name="rereading">Erneut Lesen</string>
-    <string name="ago">Vor %s</string>
+    <string name="ago">Vor %1$s</string>
     <string name="set_as_completed">Als abgeschlossen markieren?</string>
     <string name="relation_character">Charakter</string>
     <string name="web_novel">Web-Roman</string>

@@ -25,17 +25,17 @@
     <string name="apply">Застосувати</string>
     <string name="episodes">епізод(-ів)</string>
     <plurals name="num_episodes">
-        <item quantity="one">%d епізод</item>
-        <item quantity="few">%d епізоди</item>
-        <item quantity="many">%d епізодів</item>
-        <item quantity="other">%d епізодів</item>
+        <item quantity="one">%1$d епізод</item>
+        <item quantity="few">%1$d епізоди</item>
+        <item quantity="many">%1$d епізодів</item>
+        <item quantity="other">%1$d епізодів</item>
     </plurals>
     <string name="chapters">Розділи</string>
     <plurals name="num_chapters">
-        <item quantity="one">%d розділ</item>
-        <item quantity="few">%d розділи</item>
-        <item quantity="many">%d розділів</item>
-        <item quantity="other">%d розділів</item>
+        <item quantity="one">%1$d розділ</item>
+        <item quantity="few">%1$d розділи</item>
+        <item quantity="many">%1$d розділів</item>
+        <item quantity="other">%1$d розділів</item>
     </plurals>
     <string name="delete">Видалити</string>
     <string name="watching">Дивлюся</string>
@@ -54,12 +54,12 @@
     <string name="nothing_today">Сьогодні нічого немає\n( ≧Д≦)</string>
     <string name="this_season">Цей сезон</string>
     <string name="recommendations">Рекомендації</string>
-    <string name="total_entries">Усього: %s</string>
+    <string name="total_entries">Усього: %1$s</string>
     <string name="mean_score">Середній бал</string>
     <string name="rewatched">Пере-переглядів</string>
     <string name="view_profile_mal">Переглянути профіль на MAL</string>
-    <string name="airing_in">Трансляція через %s</string>
-    <string name="score_value">Оцінка: %s</string>
+    <string name="airing_in">Трансляція через %1$s</string>
+    <string name="score_value">Оцінка: %1$s</string>
     <string name="plus_one">+1</string>
     <string name="minus_one">-1</string>
     <string name="add">Додати</string>
@@ -207,7 +207,7 @@
     <string name="minutes_abbreviation">хв</string>
     <string name="full_story">Повна історія</string>
     <string name="theme_black">Чорна</string>
-    <string name="aired_ago">Транслювалося %s тому</string>
+    <string name="aired_ago">Транслювалося %1$s тому</string>
     <string name="anime_stats">Аніме Статистика</string>
     <string name="delete_confirmation">Ви дійсно бажаєте видалити цей запис?</string>
     <string name="loading">Завантаження</string>
@@ -234,28 +234,28 @@
     <string name="list_mode_minimal">Мінімальний</string>
     <string name="list_style">Стиль списку</string>
     <plurals name="num_years">
-        <item quantity="one">%d рік</item>
-        <item quantity="few">%d роки</item>
-        <item quantity="many">%d років</item>
-        <item quantity="other">%d років</item>
+        <item quantity="one">%1$d рік</item>
+        <item quantity="few">%1$d роки</item>
+        <item quantity="many">%1$d років</item>
+        <item quantity="other">%1$d років</item>
     </plurals>
     <plurals name="num_months">
-        <item quantity="one">%d місяць</item>
-        <item quantity="few">%d місяці</item>
-        <item quantity="many">%d місяців</item>
-        <item quantity="other">%d місяців</item>
+        <item quantity="one">%1$d місяць</item>
+        <item quantity="few">%1$d місяці</item>
+        <item quantity="many">%1$d місяців</item>
+        <item quantity="other">%1$d місяців</item>
     </plurals>
     <plurals name="num_weeks">
-        <item quantity="one">%d тиждень</item>
-        <item quantity="few">%d тижні</item>
-        <item quantity="many">%d тижнів</item>
-        <item quantity="other">%d тижнів</item>
+        <item quantity="one">%1$d тиждень</item>
+        <item quantity="few">%1$d тижні</item>
+        <item quantity="many">%1$d тижнів</item>
+        <item quantity="other">%1$d тижнів</item>
     </plurals>
     <plurals name="num_days">
-        <item quantity="one">%d день</item>
-        <item quantity="few">%d дні</item>
-        <item quantity="many">%d днів</item>
-        <item quantity="other">%d днів</item>
+        <item quantity="one">%1$d день</item>
+        <item quantity="few">%1$d дні</item>
+        <item quantity="many">%1$d днів</item>
+        <item quantity="other">%1$d днів</item>
     </plurals>
     <string name="open_mal_links_in_the_app">Відкрити MAL посилання у додатку</string>
     <string name="notifications">Сповіщення</string>
@@ -285,13 +285,13 @@
     <string name="high_value">Високе</string>
     <string name="very_high_value">Дуже високе</string>
     <string name="tags">Мітки</string>
-    <string name="priority_value">Пріоритет: %s</string>
-    <string name="rewatch_value">Значення пере-переглядів: %s</string>
-    <string name="reread_value">Значення перечитувань: %s</string>
+    <string name="priority_value">Пріоритет: %1$s</string>
+    <string name="rewatch_value">Значення пере-переглядів: %1$s</string>
+    <string name="reread_value">Значення перечитувань: %1$s</string>
     <string name="notes">Примітки</string>
     <string name="rewatching">Пере-передивляюсь</string>
     <string name="rereading">Перечитую</string>
-    <string name="ago">%s тому</string>
+    <string name="ago">%1$s тому</string>
     <string name="set_as_completed">Позначити завершеним?</string>
     <string name="relation_character">Персонаж</string>
     <string name="web_novel">Веб-роман</string>

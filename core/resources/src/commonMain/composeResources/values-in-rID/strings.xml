@@ -25,11 +25,11 @@
     <string name="apply">Terapkan</string>
     <string name="episodes">Episode</string>
     <plurals name="num_episodes">
-        <item quantity="other">%d episode</item>
+        <item quantity="other">%1$d episode</item>
     </plurals>
     <string name="chapters">Chapter</string>
     <plurals name="num_chapters">
-        <item quantity="other">%d chapter</item>
+        <item quantity="other">%1$d chapter</item>
     </plurals>
     <string name="delete">Hapus</string>
     <string name="watching">Menonton</string>
@@ -48,12 +48,12 @@
     <string name="nothing_today">Hari ini tidak ada\n( ≧Д≦)</string>
     <string name="this_season">Musim Ini</string>
     <string name="recommendations">Rekomendasi</string>
-    <string name="total_entries">Total: %s</string>
+    <string name="total_entries">Total: %1$s</string>
     <string name="mean_score">Skor Rata-rata</string>
     <string name="rewatched">Menonton Ulang</string>
     <string name="view_profile_mal">Lihat profil di MAL</string>
-    <string name="airing_in">Ditayangkan pada %s</string>
-    <string name="score_value">Skor: %s</string>
+    <string name="airing_in">Ditayangkan pada %1$s</string>
+    <string name="score_value">Skor: %1$s</string>
     <string name="plus_one">+1</string>
     <string name="minus_one">-1</string>
     <string name="add">Tambah</string>
@@ -201,7 +201,7 @@
     <string name="minutes_abbreviation">mnt</string>
     <string name="full_story">Cerita lengkap</string>
     <string name="theme_black">Hitam</string>
-    <string name="aired_ago">Tayang %s lalu</string>
+    <string name="aired_ago">Tayang %1$s lalu</string>
     <string name="anime_stats">Statistik Anime</string>
     <string name="delete_confirmation">Apakah anda yakin ingin menghapus entri ini?</string>
     <string name="loading">Memuat</string>
@@ -228,16 +228,16 @@
     <string name="list_mode_minimal">Minimalis</string>
     <string name="list_style">Tampilan daftar</string>
     <plurals name="num_years">
-        <item quantity="other">%d tahun</item>
+        <item quantity="other">%1$d tahun</item>
     </plurals>
     <plurals name="num_months">
-        <item quantity="other">%d bulan</item>
+        <item quantity="other">%1$d bulan</item>
     </plurals>
     <plurals name="num_weeks">
-        <item quantity="other">%d minggu</item>
+        <item quantity="other">%1$d minggu</item>
     </plurals>
     <plurals name="num_days">
-        <item quantity="other">%d hari</item>
+        <item quantity="other">%1$d hari</item>
     </plurals>
     <string name="open_mal_links_in_the_app">Buka tautan MAL di app</string>
     <string name="notifications">Notifikasi</string>
@@ -267,13 +267,13 @@
     <string name="high_value">Tinggi</string>
     <string name="very_high_value">Sangat Tinggi</string>
     <string name="tags">Tanda</string>
-    <string name="priority_value">Prioritas: %s</string>
-    <string name="rewatch_value">Jumlah Ditonton Ulang: %s</string>
-    <string name="reread_value">Jumlah Dibaca Ulang: %s</string>
+    <string name="priority_value">Prioritas: %1$s</string>
+    <string name="rewatch_value">Jumlah Ditonton Ulang: %1$s</string>
+    <string name="reread_value">Jumlah Dibaca Ulang: %1$s</string>
     <string name="notes">Catatan</string>
     <string name="rewatching">Ditonton Ulang</string>
     <string name="rereading">Dibaca Ulang</string>
-    <string name="ago">%s yang lalu</string>
+    <string name="ago">%1$s yang lalu</string>
     <string name="set_as_completed">Ditandai sebagai selesai?</string>
     <string name="relation_character">Karakter</string>
     <string name="web_novel">Web Novel</string>

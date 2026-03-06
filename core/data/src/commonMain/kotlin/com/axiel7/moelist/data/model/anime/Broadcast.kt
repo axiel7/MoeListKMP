@@ -6,7 +6,6 @@ import com.axiel7.moelist.data.utils.DateUtils
 import com.axiel7.moelist.data.utils.DateUtils.getNextDayOfWeek
 import com.axiel7.moelist.data.utils.DateUtils.secondsToLegibleText
 import com.axiel7.moelist.data.utils.SeasonCalendar
-import com.axiel7.moelist.data.utils.formatString
 import com.axiel7.moelist.ui.generated.resources.UiRes
 import com.axiel7.moelist.ui.generated.resources.ago
 import com.axiel7.moelist.ui.generated.resources.aired_ago
@@ -25,7 +24,6 @@ import kotlinx.datetime.toLocalDateTime
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 import org.jetbrains.compose.resources.stringResource
-import kotlin.compareTo
 import kotlin.math.absoluteValue
 import kotlin.time.Clock
 
@@ -88,15 +86,15 @@ data class Broadcast(
     fun airingInString() = if (startTime != null && dayOfTheWeek != null) {
         val remaining = remaining()
         if (remaining > 0) {
-            stringResource(UiRes.string.airing_in).formatString(remaining.secondsToLegibleText())
-        } else stringResource(UiRes.string.aired_ago).formatString(remaining.absoluteValue.secondsToLegibleText())
+            stringResource(UiRes.string.airing_in, remaining.secondsToLegibleText())
+        } else stringResource(UiRes.string.aired_ago, remaining.absoluteValue.secondsToLegibleText())
     } else ""
 
     @Composable
     fun airingInShortString() = if (startTime != null && dayOfTheWeek != null) {
         val remaining = remaining()
         if (remaining > 0) remaining.secondsToLegibleText()
-        else stringResource(UiRes.string.ago).formatString(remaining.absoluteValue.secondsToLegibleText())
+        else stringResource(UiRes.string.ago, remaining.absoluteValue.secondsToLegibleText())
     } else ""
 
     // Note: If you need specialized patterns like "EE, d MMM HH:mm" across KMP,

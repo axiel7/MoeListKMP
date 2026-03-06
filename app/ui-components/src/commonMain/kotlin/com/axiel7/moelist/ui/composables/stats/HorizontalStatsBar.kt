@@ -18,7 +18,6 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.axiel7.moelist.data.model.base.LocalizableAndColorable
 import com.axiel7.moelist.data.utils.NumExtensions.format
-import com.axiel7.moelist.data.utils.formatString
 import com.axiel7.moelist.ui.base.model.Stat
 import com.axiel7.moelist.ui.composables.Rectangle
 import com.axiel7.moelist.ui.generated.resources.UiRes
@@ -66,8 +65,10 @@ fun <T : LocalizableAndColorable> HorizontalStatsBar(
             }
 
             Text(
-                text = stringResource(UiRes.string.total_entries)
-                    .formatString(totalValue.format() ?: totalValue.toString()),
+                text = stringResource(
+                    UiRes.string.total_entries,
+                    totalValue.format() ?: totalValue.toString()
+                ),
                 modifier = Modifier.padding(16.dp)
             )
         }

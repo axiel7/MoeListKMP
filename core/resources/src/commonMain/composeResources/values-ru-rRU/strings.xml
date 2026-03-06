@@ -25,17 +25,17 @@
     <string name="apply">Применить</string>
     <string name="episodes">Эпизоды</string>
     <plurals name="num_episodes">
-        <item quantity="one">%d эпизод</item>
-        <item quantity="few">%d эпизода</item>
-        <item quantity="many">%d эпизодов</item>
-        <item quantity="other">%d эпизодов</item>
+        <item quantity="one">%1$d эпизод</item>
+        <item quantity="few">%1$d эпизода</item>
+        <item quantity="many">%1$d эпизодов</item>
+        <item quantity="other">%1$d эпизодов</item>
     </plurals>
     <string name="chapters">Главы</string>
     <plurals name="num_chapters">
-        <item quantity="one">%d глава</item>
-        <item quantity="few">%d главы</item>
-        <item quantity="many">%d глав</item>
-        <item quantity="other">%d глав</item>
+        <item quantity="one">%1$d глава</item>
+        <item quantity="few">%1$d главы</item>
+        <item quantity="many">%1$d глав</item>
+        <item quantity="other">%1$d глав</item>
     </plurals>
     <string name="delete">Удалить</string>
     <string name="watching">Смотрю</string>
@@ -54,12 +54,12 @@
     <string name="nothing_today">Сегодня ничего нет\n( ≧Д≦)</string>
     <string name="this_season">Текущий сезон</string>
     <string name="recommendations">Рекомендации</string>
-    <string name="total_entries">Всего: %s</string>
+    <string name="total_entries">Всего: %1$s</string>
     <string name="mean_score">Средний балл</string>
     <string name="rewatched">Пересмотрено</string>
     <string name="view_profile_mal">Посмотреть профиль на MAL</string>
-    <string name="airing_in">Выйдет через %s</string>
-    <string name="score_value">Оценка: %s</string>
+    <string name="airing_in">Выйдет через %1$s</string>
+    <string name="score_value">Оценка: %1$s</string>
     <string name="plus_one">+1</string>
     <string name="minus_one">-1</string>
     <string name="add">Добавить</string>
@@ -207,7 +207,7 @@
     <string name="minutes_abbreviation">мин</string>
     <string name="full_story">Полная история</string>
     <string name="theme_black">Чёрная</string>
-    <string name="aired_ago">Вышло %s назад</string>
+    <string name="aired_ago">Вышло %1$s назад</string>
     <string name="anime_stats">Аниме Статистика</string>
     <string name="delete_confirmation">Вы уверены, что хотите удалить эту запись?</string>
     <string name="loading">Загрузка</string>
@@ -234,28 +234,28 @@
     <string name="list_mode_minimal">Минимализм</string>
     <string name="list_style">Стиль списка</string>
     <plurals name="num_years">
-        <item quantity="one">%d год</item>
-        <item quantity="few">%d года</item>
-        <item quantity="many">%d лет</item>
-        <item quantity="other">%d лет</item>
+        <item quantity="one">%1$d год</item>
+        <item quantity="few">%1$d года</item>
+        <item quantity="many">%1$d лет</item>
+        <item quantity="other">%1$d лет</item>
     </plurals>
     <plurals name="num_months">
-        <item quantity="one">%d месяц</item>
-        <item quantity="few">%d месяца</item>
-        <item quantity="many">%d месяцев</item>
-        <item quantity="other">%d месяцев</item>
+        <item quantity="one">%1$d месяц</item>
+        <item quantity="few">%1$d месяца</item>
+        <item quantity="many">%1$d месяцев</item>
+        <item quantity="other">%1$d месяцев</item>
     </plurals>
     <plurals name="num_weeks">
-        <item quantity="one">%d неделя</item>
-        <item quantity="few">%d недели</item>
-        <item quantity="many">%d недель</item>
-        <item quantity="other">%d недель</item>
+        <item quantity="one">%1$d неделя</item>
+        <item quantity="few">%1$d недели</item>
+        <item quantity="many">%1$d недель</item>
+        <item quantity="other">%1$d недель</item>
     </plurals>
     <plurals name="num_days">
-        <item quantity="one">%d день</item>
-        <item quantity="few">%d дня</item>
-        <item quantity="many">%d дней</item>
-        <item quantity="other">%d дней</item>
+        <item quantity="one">%1$d день</item>
+        <item quantity="few">%1$d дня</item>
+        <item quantity="many">%1$d дней</item>
+        <item quantity="other">%1$d дней</item>
     </plurals>
     <string name="open_mal_links_in_the_app">Открыть ссылки MAL в приложении</string>
     <string name="notifications">Уведомления</string>
@@ -285,13 +285,13 @@
     <string name="high_value">Высокая</string>
     <string name="very_high_value">Очень высокий</string>
     <string name="tags">Теги</string>
-    <string name="priority_value">Приоритет: %s</string>
-    <string name="rewatch_value">Вероятность повторного просмотра: %s</string>
-    <string name="reread_value">Вероятность повторного чтения: %s</string>
+    <string name="priority_value">Приоритет: %1$s</string>
+    <string name="rewatch_value">Вероятность повторного просмотра: %1$s</string>
+    <string name="reread_value">Вероятность повторного чтения: %1$s</string>
     <string name="notes">Примечания</string>
     <string name="rewatching">Снова учение</string>
     <string name="rereading">Повторное чтение</string>
-    <string name="ago">%s назад</string>
+    <string name="ago">%1$s назад</string>
     <string name="set_as_completed">Отметить как завершенную?</string>
     <string name="relation_character">Персонаж</string>
     <string name="web_novel">Веб-роман</string>

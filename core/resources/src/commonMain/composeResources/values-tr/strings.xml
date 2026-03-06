@@ -25,13 +25,13 @@
     <string name="apply">Uygula</string>
     <string name="episodes">Bölüm</string>
     <plurals name="num_episodes">
-        <item quantity="one">%d bölüm</item>
-        <item quantity="other">%d bölüm</item>
+        <item quantity="one">%1$d bölüm</item>
+        <item quantity="other">%1$d bölüm</item>
     </plurals>
     <string name="chapters">Bölümler</string>
     <plurals name="num_chapters">
-        <item quantity="one">%d bölüm</item>
-        <item quantity="other">%d bölüm</item>
+        <item quantity="one">%1$d bölüm</item>
+        <item quantity="other">%1$d bölüm</item>
     </plurals>
     <string name="delete">Sil</string>
     <string name="watching">İzleniyor</string>
@@ -50,12 +50,12 @@
     <string name="nothing_today">Bugün bir şey yok\n( ≧Д≦)</string>
     <string name="this_season">Bu Sezon</string>
     <string name="recommendations">Tavsiyeler</string>
-    <string name="total_entries">Toplam: %s</string>
+    <string name="total_entries">Toplam: %1$s</string>
     <string name="mean_score">Ortalama Puan</string>
     <string name="rewatched">Tekrar İzleme</string>
     <string name="view_profile_mal">Profili Mal \'de görüntüle</string>
-    <string name="airing_in">%s sonra yayınlanacak</string>
-    <string name="score_value">Puan: %s</string>
+    <string name="airing_in">%1$s sonra yayınlanacak</string>
+    <string name="score_value">Puan: %1$s</string>
     <string name="plus_one">+1</string>
     <string name="minus_one">-1</string>
     <string name="add">Ekle</string>
@@ -203,7 +203,7 @@
     <string name="minutes_abbreviation">dakika</string>
     <string name="full_story">Tüm hikaye</string>
     <string name="theme_black">Siyah</string>
-    <string name="aired_ago">%s önce yayınlandı</string>
+    <string name="aired_ago">%1$s önce yayınlandı</string>
     <string name="anime_stats">Anime İstatistikleri</string>
     <string name="delete_confirmation">Bu girdiyi silmek istediğinize emin misiniz?</string>
     <string name="loading">Yükleniyor</string>
@@ -230,20 +230,20 @@
     <string name="list_mode_minimal">Basit</string>
     <string name="list_style">Liste stili</string>
     <plurals name="num_years">
-        <item quantity="one">%d yıl</item>
-        <item quantity="other">%d yıl</item>
+        <item quantity="one">%1$d yıl</item>
+        <item quantity="other">%1$d yıl</item>
     </plurals>
     <plurals name="num_months">
-        <item quantity="one">%d ay</item>
-        <item quantity="other">%d ay</item>
+        <item quantity="one">%1$d ay</item>
+        <item quantity="other">%1$d ay</item>
     </plurals>
     <plurals name="num_weeks">
-        <item quantity="one">%d hafta</item>
-        <item quantity="other">%d hafta</item>
+        <item quantity="one">%1$d hafta</item>
+        <item quantity="other">%1$d hafta</item>
     </plurals>
     <plurals name="num_days">
-        <item quantity="one">%d gün</item>
-        <item quantity="other">%d gün</item>
+        <item quantity="one">%1$d gün</item>
+        <item quantity="other">%1$d gün</item>
     </plurals>
     <string name="open_mal_links_in_the_app">MAL bağlantılarını uygulama içinde aç</string>
     <string name="notifications">Bildirimler</string>
@@ -273,13 +273,13 @@
     <string name="high_value">Yüksek</string>
     <string name="very_high_value">Çok Yüksek</string>
     <string name="tags">Etiketler</string>
-    <string name="priority_value">Öncelik: %s</string>
-    <string name="rewatch_value">Tekrar İzleme Değeri: %s</string>
-    <string name="reread_value">Tekrar Okuma Değeri: %s</string>
+    <string name="priority_value">Öncelik: %1$s</string>
+    <string name="rewatch_value">Tekrar İzleme Değeri: %1$s</string>
+    <string name="reread_value">Tekrar Okuma Değeri: %1$s</string>
     <string name="notes">Notlar</string>
     <string name="rewatching">Yeniden izleniyor</string>
     <string name="rereading">Yeniden okunuyor</string>
-    <string name="ago">%s önce</string>
+    <string name="ago">%1$s önce</string>
     <string name="set_as_completed">Tamamlandı olarak işaretleyin?</string>
     <string name="relation_character">Karakter</string>
     <string name="web_novel">Web Romanı</string>

@@ -24,11 +24,11 @@
     <string name="apply">确定</string>
     <string name="episodes">话</string>
     <plurals name="num_episodes">
-        <item quantity="other">%d 话</item>
+        <item quantity="other">%1$d 话</item>
     </plurals>
     <string name="chapters">章</string>
     <plurals name="num_chapters">
-        <item quantity="other">%d 章</item>
+        <item quantity="other">%1$d 章</item>
     </plurals>
     <string name="delete">删除</string>
     <string name="watching">正在观看</string>
@@ -47,12 +47,12 @@
     <string name="nothing_today">今天什么都没有捏\n( ≧Д≦)</string>
     <string name="this_season">当季</string>
     <string name="recommendations">推荐</string>
-    <string name="total_entries">总计：%s</string>
+    <string name="total_entries">总计：%1$s</string>
     <string name="mean_score">平均分</string>
     <string name="rewatched">重看</string>
     <string name="view_profile_mal">在 MAL 中查看个人档案</string>
-    <string name="airing_in">%s后播出</string>
-    <string name="score_value">分数： %s</string>
+    <string name="airing_in">%1$s后播出</string>
+    <string name="score_value">分数： %1$s</string>
     <string name="plus_one">+1</string>
     <string name="minus_one">-1</string>
     <string name="add">添加</string>
@@ -200,7 +200,7 @@
     <string name="minutes_abbreviation">分</string>
     <string name="full_story">完整故事</string>
     <string name="theme_black">黑色</string>
-    <string name="aired_ago">%s前</string>
+    <string name="aired_ago">%1$s前</string>
     <string name="anime_stats">动漫统计</string>
     <string name="delete_confirmation">您确定删除此条目吗？</string>
     <string name="loading">加载中</string>
@@ -227,16 +227,16 @@
     <string name="list_mode_minimal">极简</string>
     <string name="list_style">列表样式</string>
     <plurals name="num_years">
-        <item quantity="other">%d 年</item>
+        <item quantity="other">%1$d 年</item>
     </plurals>
     <plurals name="num_months">
-        <item quantity="other">%d 月</item>
+        <item quantity="other">%1$d 月</item>
     </plurals>
     <plurals name="num_weeks">
-        <item quantity="other">%d 周</item>
+        <item quantity="other">%1$d 周</item>
     </plurals>
     <plurals name="num_days">
-        <item quantity="other">%d 天</item>
+        <item quantity="other">%1$d 天</item>
     </plurals>
     <string name="open_mal_links_in_the_app">在应用中打开 MAL 链接</string>
     <string name="notifications">通知</string>
@@ -266,13 +266,13 @@
     <string name="high_value">高</string>
     <string name="very_high_value">非常高</string>
     <string name="tags">Tags</string>
-    <string name="priority_value">优先级：%s</string>
-    <string name="rewatch_value">重看度：%s</string>
-    <string name="reread_value">重看度：%s</string>
+    <string name="priority_value">优先级：%1$s</string>
+    <string name="rewatch_value">重看度：%1$s</string>
+    <string name="reread_value">重看度：%1$s</string>
     <string name="notes">备注</string>
     <string name="rewatching">重看</string>
     <string name="rereading">重看</string>
-    <string name="ago">%s前</string>
+    <string name="ago">%1$s前</string>
     <string name="set_as_completed">设为已完成？</string>
     <string name="relation_character">人物</string>
     <string name="refresh">更新</string>

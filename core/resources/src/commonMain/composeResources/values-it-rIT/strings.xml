@@ -25,13 +25,13 @@
     <string name="apply">Applica</string>
     <string name="episodes">Episodi</string>
     <plurals name="num_episodes">
-        <item quantity="one">%d episodio</item>
-        <item quantity="other">%d episodi</item>
+        <item quantity="one">%1$d episodio</item>
+        <item quantity="other">%1$d episodi</item>
     </plurals>
     <string name="chapters">Capitoli</string>
     <plurals name="num_chapters">
-        <item quantity="one">%d capitolo</item>
-        <item quantity="other">%d capitoli</item>
+        <item quantity="one">%1$d capitolo</item>
+        <item quantity="other">%1$d capitoli</item>
     </plurals>
     <string name="delete">Cancella</string>
     <string name="watching">Guardando</string>
@@ -50,12 +50,12 @@
     <string name="nothing_today">Niente per oggi\n( ≧Д≦)</string>
     <string name="this_season">Questa Stagione</string>
     <string name="recommendations">Raccomandazioni</string>
-    <string name="total_entries">Totale: %s</string>
+    <string name="total_entries">Totale: %1$s</string>
     <string name="mean_score">Punteggio Medio</string>
     <string name="rewatched">Riguardati</string>
     <string name="view_profile_mal">Vedi profilo su MAL</string>
-    <string name="airing_in">In onda fra %s</string>
-    <string name="score_value">Voto: %s</string>
+    <string name="airing_in">In onda fra %1$s</string>
+    <string name="score_value">Voto: %1$s</string>
     <string name="plus_one">+1</string>
     <string name="minus_one">-1</string>
     <string name="add">Aggiungi</string>
@@ -203,7 +203,7 @@
     <string name="minutes_abbreviation">min</string>
     <string name="full_story">Storia completa</string>
     <string name="theme_black">Nero</string>
-    <string name="aired_ago">Trasmesso %s fa</string>
+    <string name="aired_ago">Trasmesso %1$s fa</string>
     <string name="anime_stats">Statistiche Anime</string>
     <string name="delete_confirmation">Sei sicuro di voler eliminare questa voce?</string>
     <string name="loading">Caricamento</string>
@@ -230,20 +230,20 @@
     <string name="list_mode_minimal">Minimale</string>
     <string name="list_style">Stile dell\'elenco</string>
     <plurals name="num_years">
-        <item quantity="one">%d anno</item>
-        <item quantity="other">%d anni</item>
+        <item quantity="one">%1$d anno</item>
+        <item quantity="other">%1$d anni</item>
     </plurals>
     <plurals name="num_months">
-        <item quantity="one">%d mese</item>
-        <item quantity="other">%d mesi</item>
+        <item quantity="one">%1$d mese</item>
+        <item quantity="other">%1$d mesi</item>
     </plurals>
     <plurals name="num_weeks">
-        <item quantity="one">%d settimana</item>
-        <item quantity="other">%d settimane</item>
+        <item quantity="one">%1$d settimana</item>
+        <item quantity="other">%1$d settimane</item>
     </plurals>
     <plurals name="num_days">
-        <item quantity="one">%d giorno</item>
-        <item quantity="other">%d giorni</item>
+        <item quantity="one">%1$d giorno</item>
+        <item quantity="other">%1$d giorni</item>
     </plurals>
     <string name="open_mal_links_in_the_app">Apri i link di MAL nell\'app</string>
     <string name="notifications">Notifiche</string>
@@ -273,13 +273,13 @@
     <string name="high_value">Alta</string>
     <string name="very_high_value">Molto Alta</string>
     <string name="tags">Etichette</string>
-    <string name="priority_value">Priorità: %s</string>
-    <string name="rewatch_value">Probabilità di Riguardare: %s</string>
-    <string name="reread_value">Probabilità di Rilettura: %s</string>
+    <string name="priority_value">Priorità: %1$s</string>
+    <string name="rewatch_value">Probabilità di Riguardare: %1$s</string>
+    <string name="reread_value">Probabilità di Rilettura: %1$s</string>
     <string name="notes">Note</string>
     <string name="rewatching">Riguardando</string>
     <string name="rereading">Rileggendo</string>
-    <string name="ago">%s fa</string>
+    <string name="ago">%1$s fa</string>
     <string name="set_as_completed">Impostare come completato?</string>
     <string name="relation_character">Personaggio</string>
     <string name="web_novel">Web Novel</string>
