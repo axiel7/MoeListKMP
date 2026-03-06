@@ -116,7 +116,7 @@ fun SearchHostView(
                 .focusRequester(focusRequester),
             placeholder = { Text(text = stringResource(UiRes.string.search)) },
             leadingIcon = {
-                if (isCompactScreen) BackIconButton(onClick = navActionManager::goBack)
+                BackIconButton(onClick = navActionManager::goBack)
             },
             keyboardOptions = KeyboardOptions(imeAction = ImeAction.Search),
             keyboardActions = KeyboardActions(
