@@ -107,10 +107,10 @@ object DateUtils {
                 val months = (this / 2629746).toInt()
                 if (months > 12) {
                     val years = (this / 31556952).toInt()
-                    pluralStringResource(UiRes.plurals.num_years, years)
-                } else pluralStringResource(UiRes.plurals.num_months, months)
-            } else pluralStringResource(UiRes.plurals.num_weeks, weeks)
-        } else if (days >= 1) pluralStringResource(UiRes.plurals.num_days, days)
+                    pluralStringResource(UiRes.plurals.num_years, years, years)
+                } else pluralStringResource(UiRes.plurals.num_months, months, months)
+            } else pluralStringResource(UiRes.plurals.num_weeks, weeks, weeks)
+        } else if (days >= 1) pluralStringResource(UiRes.plurals.num_days, days, days)
         else {
             val hours = this / 3600
             if (hours >= 1) "$hours ${stringResource(UiRes.string.hour_abbreviation)}"

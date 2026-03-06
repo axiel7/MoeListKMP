@@ -54,13 +54,13 @@ abstract class BaseMediaNode {
         is AnimeNode, is NodeSeasonal -> {
             val totalDuration = this.totalDuration()
             if (totalDuration != null && totalDuration > 0) {
-                pluralStringResource(UiRes.plurals.num_episodes, totalDuration)
+                pluralStringResource(UiRes.plurals.num_episodes, totalDuration, totalDuration)
             } else UNKNOWN_CHAR
         }
 
         is MangaNode -> {
             if (numChapters != null && numChapters > 0) {
-                pluralStringResource(UiRes.plurals.num_chapters, numChapters)
+                pluralStringResource(UiRes.plurals.num_chapters, numChapters, numChapters)
             } else UNKNOWN_CHAR
         }
 

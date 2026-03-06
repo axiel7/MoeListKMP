@@ -77,13 +77,13 @@ abstract class BaseMediaDetails : BaseResponse {
     fun durationText() = when (this) {
         is AnimeDetails -> {
             if (numEpisodes != null && numEpisodes > 0) {
-                pluralStringResource(UiRes.plurals.num_episodes, numEpisodes)
+                pluralStringResource(UiRes.plurals.num_episodes, numEpisodes, numEpisodes)
             } else stringResource(UiRes.string.unknown)
         }
 
         is MangaDetails -> {
             if (numChapters != null && numChapters > 0) {
-                pluralStringResource(UiRes.plurals.num_chapters, numChapters)
+                pluralStringResource(UiRes.plurals.num_chapters, numChapters, numChapters)
             } else stringResource(UiRes.string.unknown)
         }
 
