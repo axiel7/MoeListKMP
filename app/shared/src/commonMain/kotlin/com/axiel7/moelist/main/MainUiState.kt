@@ -3,11 +3,13 @@ package com.axiel7.moelist.main
 import androidx.compose.runtime.Stable
 import com.axiel7.moelist.data.model.ui.TabletMode
 import com.axiel7.moelist.data.model.ui.ThemeStyle
+import com.axiel7.moelist.ui.base.navigation.DeepLink
 import com.axiel7.moelist.ui.base.state.UiState
 import com.materialkolor.PaletteStyle
 
 @Stable
 data class MainUiState(
+    val deepLink: DeepLink<*>? = null,
     val theme: ThemeStyle = ThemeStyle.FOLLOW_SYSTEM,
     val useBlackColors: Boolean = false,
     val paletteStyle: PaletteStyle = PaletteStyle.Expressive,

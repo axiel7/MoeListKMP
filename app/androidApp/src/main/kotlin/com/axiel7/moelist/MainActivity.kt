@@ -1,7 +1,6 @@
 package com.axiel7.moelist
 
 import android.content.Intent
-import android.net.Uri
 import android.os.Build
 import android.os.Bundle
 import androidx.activity.compose.setContent
@@ -11,20 +10,15 @@ import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.material3.dynamicDarkColorScheme
 import androidx.compose.material3.dynamicLightColorScheme
 import androidx.compose.material3.windowsizeclass.ExperimentalMaterial3WindowSizeClassApi
-import androidx.compose.material3.windowsizeclass.WindowHeightSizeClass
-import androidx.compose.material3.windowsizeclass.WindowSizeClass
-import androidx.compose.material3.windowsizeclass.WindowWidthSizeClass
 import androidx.compose.material3.windowsizeclass.calculateWindowSizeClass
-import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.axiel7.moelist.data.repository.LoginRepository
 import com.axiel7.moelist.data.utils.MOELIST_PAGELINK
-import com.axiel7.moelist.main.MainUiState
 import com.axiel7.moelist.main.MainViewModel
 import com.axiel7.moelist.ui.base.model.BottomDestination.Companion.toBottomDestinationIndex
+import com.axiel7.moelist.ui.base.navigation.DeepLink
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.runBlocking
 import org.koin.androidx.viewmodel.ext.android.viewModel
@@ -39,7 +33,7 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         installSplashScreen()
 
-        checkLoginIntent(intent)
+        viewModel.setDeepLink(findDeepLink(intent))
 
         runBlocking { viewModel.initGlobalVariables() }
 
@@ -57,30 +51,65 @@ class MainActivity : AppCompatActivity() {
                     ).primary
                 } else null,
                 uiState = uiState,
+                event = viewModel,
                 windowWidthSizeClass = windowSizeClass.widthSizeClass,
                 lastTabOpened = lastTabOpened,
-                saveLastTab = viewModel::saveLastTab,
             )
         }
     }
 
     override fun onNewIntent(intent: Intent) {
         super.onNewIntent(intent)
-        checkLoginIntent(intent)
+        viewModel.setDeepLink(findDeepLink(intent))
     }
 
-    private fun checkLoginIntent(intent: Intent?) {
-        if (intent?.data?.toString()?.startsWith(MOELIST_PAGELINK) == true) {
-            intent.data?.let { parseIntentData(it) }
-        }
+    private fun findDeepLink(intent: Intent): DeepLink<*>? {
+        return findLoginDeepLink(intent) ?: findMediaDeepLink(intent)
     }
 
-    private fun parseIntentData(uri: Uri) {
-        val code = uri.getQueryParameter("code")
-        val receivedState = uri.getQueryParameter("state")
-        if (code != null && receivedState == LoginRepository.STATE) {
-            viewModel.getAccessToken(code)
-        }
+    private fun findLoginDeepLink(intent: Intent): DeepLink<String>? {
+        return if (intent.data?.toString()?.startsWith(MOELIST_PAGELINK) == true) {
+            val code = intent.data!!.getQueryParameter("code")
+            val receivedState = intent.data!!.getQueryParameter("state")
+            if (code != null && receivedState == LoginRepository.STATE) {
+                DeepLink(
+                    type = DeepLink.Type.LOGIN,
+                    data = code,
+                )
+            } else null
+        } else null
+    }
+
+    private fun findMediaDeepLink(intent: Intent): DeepLink<*>? {
+        fun deepLink(mediaId: Int, mediaType: String) = DeepLink(
+            type = if (mediaType == "ANIME") DeepLink.Type.ANIME else DeepLink.Type.MANGA,
+            data = mediaId
+        )
+
+        return if (intent.action == "details") {
+            val mediaId = intent.getIntExtra("media_id", 0)
+            val mediaType = intent.getStringExtra("media_type")?.uppercase()
+            if (mediaId != 0 && mediaType != null) deepLink(mediaId, mediaType) else null
+        } else if (intent.data?.host == "myanimelist.net") {
+            // Only handle main details links
+            val isMainDetails = intent.data?.pathSegments?.any {
+                when (it) {
+                    "character", "episode", "video", "reviews", "stacks", "news", "forum",
+                    "clubs", "moreinfo" -> true
+
+                    else -> false
+                }
+            } == false
+            if (!isMainDetails) {
+                return intent.dataString?.let {
+                    DeepLink(type = DeepLink.Type.EXTERNAL, data = it)
+                }
+            }
+
+            val mediaType = intent.data?.pathSegments?.getOrNull(0)?.uppercase()
+            val mediaId = intent.data?.pathSegments?.getOrNull(1)?.toIntOrNull()
+            if (mediaType != null && mediaId != null) deepLink(mediaId, mediaType) else null
+        } else null
     }
 
     private fun findLastTabOpened(): Int {
@@ -95,15 +124,4 @@ class MainActivity : AppCompatActivity() {
         }
         return lastTabOpened
     }
-}
-
-@Preview
-@Composable
-private fun AppAndroidPreview() {
-    App(
-        uiState = MainUiState(),
-        windowWidthSizeClass = WindowWidthSizeClass.Compact,
-        lastTabOpened = 0,
-        saveLastTab = {},
-    )
 }

@@ -4,6 +4,7 @@ import androidx.lifecycle.viewModelScope
 import com.axiel7.moelist.data.GlobalVariables
 import com.axiel7.moelist.data.repository.DefaultPreferencesRepository
 import com.axiel7.moelist.data.repository.LoginRepository
+import com.axiel7.moelist.ui.base.navigation.DeepLink
 import com.axiel7.moelist.ui.base.viewmodel.BaseViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.firstOrNull
@@ -16,7 +17,7 @@ class MainViewModel(
     private val globalVariables: GlobalVariables,
     private val loginRepository: LoginRepository,
     private val defaultPreferencesRepository: DefaultPreferencesRepository
-) : BaseViewModel<MainUiState>() {
+) : BaseViewModel<MainUiState>(), MainEvent {
 
     override val mutableUiState = MutableStateFlow(MainUiState())
 
@@ -24,8 +25,16 @@ class MainViewModel(
 
     val lastTab = defaultPreferencesRepository.lastTab
 
-    fun saveLastTab(value: Int) = viewModelScope.launch {
-        defaultPreferencesRepository.setLastTab(value)
+    override fun saveLastTab(value: Int) {
+        viewModelScope.launch {
+            defaultPreferencesRepository.setLastTab(value)
+        }
+    }
+
+    override fun getAccessToken(code: String) {
+        viewModelScope.launch {
+            loginRepository.getAccessToken(code)
+        }
     }
 
     suspend fun initGlobalVariables() {
@@ -37,8 +46,8 @@ class MainViewModel(
         }
     }
 
-    fun getAccessToken(code: String) = viewModelScope.launch {
-        loginRepository.getAccessToken(code)
+    fun setDeepLink(deepLink: DeepLink<*>?) {
+        mutableUiState.update { it.copy(deepLink = deepLink) }
     }
 
     init {

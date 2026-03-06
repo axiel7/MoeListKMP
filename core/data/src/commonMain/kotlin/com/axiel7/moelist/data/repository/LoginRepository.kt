@@ -29,7 +29,7 @@ class LoginRepository(
                 codeVerifier = codeVerifier,
                 grantType = GRANT_TYPE
             )
-        } catch (e: Exception) {
+        } catch (_: Exception) {
             null
         }
 
