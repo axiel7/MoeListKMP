@@ -11,6 +11,7 @@ import com.axiel7.moelist.ui.generated.resources.num_years
 import kotlinx.datetime.DateTimeUnit
 import kotlinx.datetime.DayOfWeek
 import kotlinx.datetime.LocalDate
+import kotlinx.datetime.LocalDateTime
 import kotlinx.datetime.TimeZone
 import kotlinx.datetime.atStartOfDayIn
 import kotlinx.datetime.format
@@ -36,6 +37,19 @@ object DateUtils {
         char(',')
         char(' ')
         year()
+    }
+
+    private val mediumDateTimeFormat = LocalDateTime.Format {
+        monthName(MonthNames.ENGLISH_ABBREVIATED)
+        char(' ')
+        day(padding = Padding.NONE)
+        char(',')
+        char(' ')
+        year()
+        char(' ')
+        hour()
+        char(':')
+        minute()
     }
 
     /**
@@ -72,7 +86,11 @@ object DateUtils {
             0 -> this // Only year
             1 -> this // Year and month (e.g. 2007-11)
             else -> {
-                LocalDate.parse(input = this, format = format).format(mediumDateFormat)
+                if (this.contains('T'))
+                    Instant.parse(this)
+                        .toLocalDateTime(defaultTimeZone)
+                        .format(mediumDateTimeFormat)
+                else LocalDate.parse(input = this, format = format).format(mediumDateFormat)
             }
         }
     }.getOrNull()
