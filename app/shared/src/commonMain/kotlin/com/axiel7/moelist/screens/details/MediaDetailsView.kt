@@ -569,7 +569,7 @@ private fun MediaDetailsContent(
                             MediaItemVertical(
                                 imageUrl = item.node.mainPicture?.medium,
                                 title = item.fullName(),
-                                modifier = Modifier.padding(end = 8.dp),
+                                modifier = Modifier.padding(end = 16.dp),
                                 subtitle = {
                                     Text(
                                         text = item.role?.localized().orEmpty(),
@@ -655,7 +655,7 @@ private fun MediaDetailsContent(
                         MediaItemVertical(
                             imageUrl = item.node.mainPicture?.large,
                             title = item.node.userPreferredTitle(),
-                            modifier = Modifier.padding(end = 8.dp),
+                            modifier = Modifier.padding(end = 16.dp),
                             subtitle = {
                                 Text(
                                     text = item.relationType.localized(),
@@ -681,7 +681,7 @@ private fun MediaDetailsContent(
                         MediaItemVertical(
                             imageUrl = item.node.mainPicture?.large,
                             title = item.node.userPreferredTitle(),
-                            modifier = Modifier.padding(end = 8.dp),
+                            modifier = Modifier.padding(end = 16.dp),
                             subtitle = {
                                 Text(
                                     text = item.relationType.localized(),
@@ -709,7 +709,7 @@ private fun MediaDetailsContent(
                         MediaItemVertical(
                             imageUrl = item.node.mainPicture?.large,
                             title = item.node.userPreferredTitle(),
-                            modifier = Modifier.padding(end = 8.dp),
+                            modifier = Modifier.padding(end = 16.dp),
                             subtitle = {
                                 TextIconHorizontal(
                                     text = item.numRecommendations.format() ?: UNKNOWN_CHAR,
