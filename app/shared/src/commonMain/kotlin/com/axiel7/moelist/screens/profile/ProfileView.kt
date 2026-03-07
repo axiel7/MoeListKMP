@@ -30,7 +30,6 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.lifecycle.compose.dropUnlessResumed
-import coil3.compose.AsyncImage
 import com.axiel7.moelist.data.model.media.MediaType
 import com.axiel7.moelist.data.utils.DateUtils.parseDateAndLocalize
 import com.axiel7.moelist.data.utils.MAL_PROFILE_URL
@@ -46,6 +45,7 @@ import com.axiel7.moelist.ui.generated.resources.ic_round_location_on_24
 import com.axiel7.moelist.ui.generated.resources.title_profile
 import com.axiel7.moelist.ui.generated.resources.view_profile_mal
 import com.axiel7.moelist.screens.profile.composables.UserStatsView
+import com.axiel7.moelist.ui.composables.PlatformImage
 import com.axiel7.moelist.ui.theme.MoeListTheme
 import org.jetbrains.compose.resources.painterResource
 import org.jetbrains.compose.resources.stringResource
@@ -106,7 +106,7 @@ private fun ProfileViewContent(
                             .defaultPlaceholder(true)
                     )
                 } else {
-                    AsyncImage(
+                    PlatformImage(
                         model = uiState.profilePictureUrl,
                         contentDescription = stringResource(UiRes.string.title_profile),
                         placeholder = painterResource(UiRes.drawable.ic_round_account_circle_24),

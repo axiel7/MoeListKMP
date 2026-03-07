@@ -26,9 +26,9 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.compose.dropUnlessResumed
-import coil3.compose.AsyncImage
 import com.axiel7.moelist.data.model.media.MediaType
 import com.axiel7.moelist.ui.base.navigation.NavActionManager
+import com.axiel7.moelist.ui.composables.PlatformImage
 import com.axiel7.moelist.ui.generated.resources.UiRes
 import com.axiel7.moelist.ui.generated.resources.ic_round_account_circle_24
 import com.axiel7.moelist.ui.generated.resources.ic_round_search_24
@@ -80,7 +80,7 @@ fun MainTopAppBar(
                         modifier = Modifier.weight(1f),
                         color = MaterialTheme.colorScheme.onSurfaceVariant
                     )
-                    AsyncImage(
+                    PlatformImage(
                         model = profilePicture,
                         contentDescription = "profile",
                         placeholder = painterResource(UiRes.drawable.ic_round_account_circle_24),

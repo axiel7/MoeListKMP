@@ -12,7 +12,7 @@ import androidx.compose.ui.graphics.painter.ColorPainter
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import coil3.compose.AsyncImage
+import com.axiel7.moelist.ui.composables.PlatformImage
 import com.axiel7.moelist.ui.theme.MoeListTheme
 
 const val MEDIA_POSTER_COMPACT_HEIGHT = 100
@@ -34,7 +34,7 @@ fun MediaPoster(
     contentScale: ContentScale = ContentScale.Crop,
     modifier: Modifier
 ) {
-    AsyncImage(
+    PlatformImage(
         model = url,
         contentDescription = "poster",
         placeholder = ColorPainter(MaterialTheme.colorScheme.outline),
