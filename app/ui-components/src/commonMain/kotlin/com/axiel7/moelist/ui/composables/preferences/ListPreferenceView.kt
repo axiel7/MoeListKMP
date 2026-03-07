@@ -8,6 +8,7 @@ import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.sizeIn
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.material3.AlertDialog
@@ -25,6 +26,7 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalWindowInfo
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.axiel7.moelist.ui.generated.resources.UiRes
@@ -45,7 +47,7 @@ fun <T> ListPreferenceView(
     icon: DrawableResource? = null,
     onValueChange: (T) -> Unit
 ) {
-    //val configuration = LocalConfiguration.current
+    val windowInfo = LocalWindowInfo.current
     var openDialog by remember { mutableStateOf(false) }
     Row(
         modifier = modifier
@@ -91,11 +93,10 @@ fun <T> ListPreferenceView(
             title = { Text(text = title) },
             text = {
                 LazyColumn(
-                    /*modifier = Modifier.sizeIn(
-                        maxHeight = (configuration.screenHeightDp - 48).dp
-                    )*/
+                    modifier = Modifier.sizeIn(
+                        maxHeight = windowInfo.containerDpSize.height - 48.dp
+                    )
                 ) {
-                    //TODO: every value displayed is the same. WHY????
                     items(values) { entry ->
                         Row(
                             modifier = Modifier
@@ -138,8 +139,8 @@ fun <T> ListPreferenceView(
 ) {
     ListPreferenceView(
         title = title,
-        values = entriesValues.entries.map { it.key },
-        labelForValue = {
+        values =  remember(entriesValues) { entriesValues.entries.map { it.key } },
+        labelForValue = { value ->
             entriesValues[value]?.let { stringResource(it) }.orEmpty()
         },
         value = value,
