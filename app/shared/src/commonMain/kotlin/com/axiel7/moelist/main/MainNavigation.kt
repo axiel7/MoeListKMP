@@ -33,16 +33,16 @@ import com.axiel7.moelist.screens.more.notifications.NotificationsView
 import com.axiel7.moelist.screens.more.settings.SettingsView
 import com.axiel7.moelist.screens.more.settings.list.ListStyleSettingsView
 import com.axiel7.moelist.screens.profile.ProfileView
+import com.axiel7.moelist.screens.ranking.MediaRankingView
+import com.axiel7.moelist.screens.recommendations.RecommendationsView
+import com.axiel7.moelist.screens.search.SearchHostView
+import com.axiel7.moelist.screens.season.SeasonChartView
 import com.axiel7.moelist.screens.userlist.UserMediaListWithFabView
 import com.axiel7.moelist.screens.userlist.UserMediaListWithTabsView
 import com.axiel7.moelist.ui.base.navigation.NavActionManager
 import com.axiel7.moelist.ui.base.navigation.Route
 import com.axiel7.moelist.ui.base.navigation.TopLevelBackStack
 import com.axiel7.moelist.ui.composables.DefaultScaffoldWithTopAppBar
-import com.axiel7.moelist.screens.ranking.MediaRankingView
-import com.axiel7.moelist.screens.recommendations.RecommendationsView
-import com.axiel7.moelist.screens.search.SearchHostView
-import com.axiel7.moelist.screens.season.SeasonChartView
 import com.axiel7.moelist.ui.generated.resources.UiRes
 import com.axiel7.moelist.ui.generated.resources.title_profile
 import org.jetbrains.compose.resources.stringResource
@@ -266,7 +266,9 @@ fun MainNavigation(
                 )
             }
 
-            entry<Route.Profile> {
+            entry<Route.Profile>(
+                metadata = if (!isCompactScreen) topNavigationTransitionSpec else emptyMap()
+            ) {
                 if (!isLoggedIn) {
                     DefaultScaffoldWithTopAppBar(
                         title = stringResource(UiRes.string.title_profile),
@@ -276,6 +278,7 @@ fun MainNavigation(
                     }
                 } else {
                     ProfileView(
+                        isCompactScreen = isCompactScreen,
                         navActionManager = navActionManager
                     )
                 }

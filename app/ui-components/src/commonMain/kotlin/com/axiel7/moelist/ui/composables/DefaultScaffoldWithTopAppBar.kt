@@ -18,19 +18,23 @@ fun DefaultScaffoldWithTopAppBar(
     navigateBack: () -> Unit,
     floatingActionButton: @Composable (() -> Unit) = {},
     contentWindowInsets: WindowInsets = WindowInsets.systemBars,
+    isTopBarVisible: Boolean = true,
     content: @Composable (PaddingValues) -> Unit
 ) {
     val topAppBarScrollBehavior = TopAppBarDefaults.enterAlwaysScrollBehavior(
-        rememberTopAppBarState()
+        state = rememberTopAppBarState(),
+        canScroll = { isTopBarVisible }
     )
     Scaffold(
         modifier = Modifier.nestedScroll(topAppBarScrollBehavior.nestedScrollConnection),
         topBar = {
-            DefaultTopAppBar(
-                title = title,
-                scrollBehavior = topAppBarScrollBehavior,
-                navigateBack = navigateBack
-            )
+            if (isTopBarVisible) {
+                DefaultTopAppBar(
+                    title = title,
+                    scrollBehavior = topAppBarScrollBehavior,
+                    navigateBack = navigateBack
+                )
+            }
         },
         floatingActionButton = floatingActionButton,
         contentWindowInsets = contentWindowInsets,
