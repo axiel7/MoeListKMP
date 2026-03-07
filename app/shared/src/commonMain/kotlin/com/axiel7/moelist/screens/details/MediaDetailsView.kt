@@ -70,6 +70,13 @@ import com.axiel7.moelist.data.utils.DateUtils.parseDateAndLocalize
 import com.axiel7.moelist.data.utils.NumExtensions.format
 import com.axiel7.moelist.data.utils.StringExtensions.toStringOrNull
 import com.axiel7.moelist.data.utils.UNKNOWN_CHAR
+import com.axiel7.moelist.screens.details.composables.AnimeThemeItem
+import com.axiel7.moelist.screens.details.composables.MediaDetailsTopAppBar
+import com.axiel7.moelist.screens.details.composables.MediaInfoView
+import com.axiel7.moelist.screens.details.composables.MusicStreamingSheet
+import com.axiel7.moelist.screens.editmedia.EditMediaSheet
+import com.axiel7.moelist.ui.base.model.ListStatus.Companion.toBo
+import com.axiel7.moelist.ui.base.model.toStats
 import com.axiel7.moelist.ui.base.navigation.NavActionManager
 import com.axiel7.moelist.ui.base.navigation.Route
 import com.axiel7.moelist.ui.composables.InfoTitle
@@ -81,13 +88,6 @@ import com.axiel7.moelist.ui.composables.media.MEDIA_POSTER_BIG_WIDTH
 import com.axiel7.moelist.ui.composables.media.MediaItemVertical
 import com.axiel7.moelist.ui.composables.media.MediaPoster
 import com.axiel7.moelist.ui.composables.stats.HorizontalStatsBar
-import com.axiel7.moelist.screens.details.composables.AnimeThemeItem
-import com.axiel7.moelist.screens.details.composables.MediaDetailsTopAppBar
-import com.axiel7.moelist.screens.details.composables.MediaInfoView
-import com.axiel7.moelist.screens.details.composables.MusicStreamingSheet
-import com.axiel7.moelist.screens.editmedia.EditMediaSheet
-import com.axiel7.moelist.ui.base.model.ListStatus.Companion.toBo
-import com.axiel7.moelist.ui.base.model.toStats
 import com.axiel7.moelist.ui.generated.resources.UiRes
 import com.axiel7.moelist.ui.generated.resources.add
 import com.axiel7.moelist.ui.generated.resources.authors
@@ -284,7 +284,7 @@ private fun MediaDetailsContent(
                 Column {
                     // Title
                     Text(
-                        text = uiState.mediaDetails?.userPreferredTitle() ?: "Loading",
+                        text = uiState.mediaDetails?.title(uiState.preferredTitle) ?: "Loading",
                         modifier = Modifier
                             .padding(end = 8.dp, bottom = 8.dp)
                             .defaultPlaceholder(visible = uiState.isLoading)
@@ -654,7 +654,7 @@ private fun MediaDetailsContent(
                     items(uiState.relatedAnime) { item ->
                         MediaItemVertical(
                             imageUrl = item.node.mainPicture?.large,
-                            title = item.node.userPreferredTitle(),
+                            title = item.node.title(uiState.preferredTitle),
                             modifier = Modifier.padding(end = 16.dp),
                             subtitle = {
                                 Text(
@@ -680,7 +680,7 @@ private fun MediaDetailsContent(
                     items(uiState.relatedManga) { item ->
                         MediaItemVertical(
                             imageUrl = item.node.mainPicture?.large,
-                            title = item.node.userPreferredTitle(),
+                            title = item.node.title(uiState.preferredTitle),
                             modifier = Modifier.padding(end = 16.dp),
                             subtitle = {
                                 Text(
@@ -708,7 +708,7 @@ private fun MediaDetailsContent(
                     items(uiState.recommendations) { item ->
                         MediaItemVertical(
                             imageUrl = item.node.mainPicture?.large,
-                            title = item.node.userPreferredTitle(),
+                            title = item.node.title(uiState.preferredTitle),
                             modifier = Modifier.padding(end = 16.dp),
                             subtitle = {
                                 TextIconHorizontal(

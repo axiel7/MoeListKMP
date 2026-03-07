@@ -29,6 +29,9 @@ import com.axiel7.moelist.data.utils.NumExtensions.format
 import com.axiel7.moelist.data.utils.NumExtensions.toStringPositiveValueOrNull
 import com.axiel7.moelist.data.utils.NumExtensions.toStringPositiveValueOrUnknown
 import com.axiel7.moelist.data.utils.UNKNOWN_CHAR
+import com.axiel7.moelist.screens.ranking.MediaRankingEvent
+import com.axiel7.moelist.screens.ranking.MediaRankingUiState
+import com.axiel7.moelist.screens.ranking.MediaRankingViewModel
 import com.axiel7.moelist.ui.base.model.ListStatus.Companion.toBo
 import com.axiel7.moelist.ui.base.navigation.NavActionManager
 import com.axiel7.moelist.ui.base.navigation.Route
@@ -39,9 +42,6 @@ import com.axiel7.moelist.ui.composables.media.MediaItemDetailedPlaceholder
 import com.axiel7.moelist.ui.generated.resources.UiRes
 import com.axiel7.moelist.ui.generated.resources.ic_round_details_star_24
 import com.axiel7.moelist.ui.generated.resources.ic_round_group_24
-import com.axiel7.moelist.screens.ranking.MediaRankingEvent
-import com.axiel7.moelist.screens.ranking.MediaRankingUiState
-import com.axiel7.moelist.screens.ranking.MediaRankingViewModel
 import com.axiel7.moelist.ui.theme.MoeListTheme
 import org.jetbrains.compose.resources.painterResource
 import org.koin.compose.viewmodel.koinViewModel
@@ -88,7 +88,7 @@ private fun MediaRankingListViewContent(
     @Composable
     fun ItemView(item: BaseRanking) {
         MediaItemDetailed(
-            title = item.node.userPreferredTitle(),
+            title = item.node.title(uiState.preferredTitle),
             imageUrl = item.node.mainPicture?.large,
             topBadgeContent = {
                 Text(

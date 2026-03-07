@@ -31,6 +31,7 @@ import com.axiel7.moelist.data.model.manga.UserMangaList
 import com.axiel7.moelist.data.model.media.BaseMediaNode
 import com.axiel7.moelist.data.model.media.BaseUserMediaList
 import com.axiel7.moelist.data.model.media.MediaStatus
+import com.axiel7.moelist.data.model.media.TitleLanguage
 import com.axiel7.moelist.data.utils.NumExtensions.toStringPositiveValueOrUnknown
 import com.axiel7.moelist.data.utils.UNKNOWN_CHAR
 import com.axiel7.moelist.ui.base.model.ListStatus
@@ -54,6 +55,7 @@ import org.jetbrains.compose.resources.stringResource
 fun MinimalUserMediaListItem(
     item: BaseUserMediaList<out BaseMediaNode>,
     listStatus: ListStatus?,
+    preferredTitle: TitleLanguage,
     onClick: () -> Unit,
     onLongClick: () -> Unit,
     onClickPlus: () -> Unit,
@@ -79,7 +81,7 @@ fun MinimalUserMediaListItem(
                 verticalArrangement = Arrangement.SpaceBetween
             ) {
                 Text(
-                    text = item.node.userPreferredTitle(),
+                    text = item.node.title(preferredTitle),
                     color = MaterialTheme.colorScheme.onSurface,
                     fontSize = 16.sp,
                     lineHeight = 19.sp,
@@ -212,6 +214,7 @@ fun MinimalUserMediaListItemPreview() {
             MinimalUserMediaListItem(
                 item = exampleUserAnimeList,
                 listStatus = ListStatus.WATCHING,
+                preferredTitle = TitleLanguage.ROMAJI,
                 onClick = { },
                 onLongClick = { },
                 onClickPlus = { }

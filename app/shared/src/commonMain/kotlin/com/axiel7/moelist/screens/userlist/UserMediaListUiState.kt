@@ -10,6 +10,7 @@ import com.axiel7.moelist.data.model.media.BaseMyListStatus
 import com.axiel7.moelist.data.model.media.BaseUserMediaList
 import com.axiel7.moelist.data.model.media.MediaSort
 import com.axiel7.moelist.data.model.media.MediaType
+import com.axiel7.moelist.data.model.media.TitleLanguage
 import com.axiel7.moelist.data.model.ui.ItemsPerRow
 import com.axiel7.moelist.data.model.ui.ListStyle
 import com.axiel7.moelist.ui.base.model.ListStatus
@@ -29,6 +30,7 @@ data class UserMediaListUiState(
     val showRandomButton: Boolean = false,
     val randomId: Int? = null,
     val isLoadingRandom: Boolean = false,
+    val preferredTitle: TitleLanguage = TitleLanguage.ROMAJI,
     override val nextPage: String? = null,
     override val loadMore: Boolean = true,
     override val isLoading: Boolean = true,

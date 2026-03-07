@@ -86,6 +86,12 @@ class MediaRankingViewModel(
                 }
         }
 
+        defaultPreferencesRepository.titleLang
+            .onEach { value ->
+                mutableUiState.update { it.copy(preferredTitle = value) }
+            }
+            .launchIn(viewModelScope)
+
         if (rankingType != RankingType.SCORE) {
             defaultPreferencesRepository.hideScores
                 .onEach { value ->

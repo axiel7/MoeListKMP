@@ -26,9 +26,6 @@ abstract class BaseMediaNode {
     val mediaType
         get() = if (this is MangaNode) MediaType.MANGA else MediaType.ANIME
 
-    //TODO userPreferredTitle
-    fun userPreferredTitle() = title(TitleLanguage.ROMAJI)
-
     fun title(language: TitleLanguage) = when (language) {
         TitleLanguage.ROMAJI -> title
         TitleLanguage.ENGLISH ->

@@ -59,9 +59,6 @@ abstract class BaseMediaDetails : BaseResponse {
     val malUrl
         get() = if (this is MangaDetails) MANGA_URL + id else ANIME_URL + id
 
-    //TODO userPreferredTitle
-    fun userPreferredTitle() = title(TitleLanguage.ROMAJI)
-
     fun title(language: TitleLanguage) = when (language) {
         TitleLanguage.ROMAJI -> title
         TitleLanguage.ENGLISH ->

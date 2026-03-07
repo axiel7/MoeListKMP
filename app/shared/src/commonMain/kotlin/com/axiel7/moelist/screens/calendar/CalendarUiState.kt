@@ -2,6 +2,7 @@ package com.axiel7.moelist.screens.calendar
 
 import androidx.compose.runtime.Immutable
 import com.axiel7.moelist.data.model.anime.AnimeRanking
+import com.axiel7.moelist.data.model.media.TitleLanguage
 import com.axiel7.moelist.ui.base.state.UiState
 
 @Immutable
@@ -13,6 +14,7 @@ data class CalendarUiState(
     val fridayAnime: List<AnimeRanking> = emptyList(),
     val saturdayAnime: List<AnimeRanking> = emptyList(),
     val sundayAnime: List<AnimeRanking> = emptyList(),
+    val preferredTitle: TitleLanguage = TitleLanguage.ROMAJI,
     override val isLoading: Boolean = false,
     override val message: String? = null,
 ) : UiState() {

@@ -10,6 +10,7 @@ import com.axiel7.moelist.data.model.media.BaseMediaDetails
 import com.axiel7.moelist.data.model.media.BaseMediaNode
 import com.axiel7.moelist.data.model.media.BaseMyListStatus
 import com.axiel7.moelist.data.model.media.Character
+import com.axiel7.moelist.data.model.media.TitleLanguage
 import com.axiel7.moelist.ui.base.state.UiState
 
 @Immutable
@@ -24,6 +25,7 @@ data class MediaDetailsUiState(
     val isLoadingCharacters: Boolean = false,
     val notification: String? = null,
     val startNotification: String? = null,
+    val preferredTitle: TitleLanguage = TitleLanguage.ROMAJI,
     override val isLoading: Boolean = true,
     override val message: String? = null,
 ) : UiState() {

@@ -36,6 +36,7 @@ import com.axiel7.moelist.data.model.anime.exampleUserAnimeList
 import com.axiel7.moelist.data.model.manga.UserMangaList
 import com.axiel7.moelist.data.model.media.BaseMediaNode
 import com.axiel7.moelist.data.model.media.BaseUserMediaList
+import com.axiel7.moelist.data.model.media.TitleLanguage
 import com.axiel7.moelist.data.utils.NumExtensions.toStringPositiveValueOrUnknown
 import com.axiel7.moelist.data.utils.UNKNOWN_CHAR
 import com.axiel7.moelist.ui.composables.defaultPlaceholder
@@ -56,6 +57,7 @@ import org.jetbrains.compose.resources.stringResource
 @Composable
 fun GridUserMediaListItem(
     item: BaseUserMediaList<out BaseMediaNode>,
+    preferredTitle: TitleLanguage,
     onClick: () -> Unit,
     onLongClick: () -> Unit,
 ) {
@@ -138,7 +140,7 @@ fun GridUserMediaListItem(
             }//:Box
 
             Text(
-                text = item.node.userPreferredTitle(),
+                text = item.node.title(preferredTitle),
                 modifier = Modifier.padding(start = 8.dp, top = 4.dp, end = 8.dp),
                 fontSize = 16.sp,
                 textAlign = TextAlign.Center,
@@ -212,6 +214,7 @@ fun GridUserMediaListItemPreview() {
             items(3) {
                 GridUserMediaListItem(
                     item = exampleUserAnimeList,
+                    preferredTitle = TitleLanguage.ROMAJI,
                     onClick = { },
                     onLongClick = { }
                 )

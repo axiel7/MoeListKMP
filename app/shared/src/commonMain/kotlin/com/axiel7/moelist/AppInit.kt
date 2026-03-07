@@ -3,7 +3,6 @@ package com.axiel7.moelist
 import androidx.datastore.core.DataStore
 import androidx.datastore.preferences.core.Preferences
 import androidx.room.RoomDatabase
-import com.axiel7.moelist.data.GlobalVariables
 import com.axiel7.moelist.data.local.MoeListDatabase
 import com.axiel7.moelist.data.local.getRoomDatabase
 import com.axiel7.moelist.data.local.searchhistory.SearchHistoryDao
@@ -35,9 +34,6 @@ import com.axiel7.moelist.screens.recommendations.RecommendationsViewModel
 import com.axiel7.moelist.screens.search.SearchViewModel
 import com.axiel7.moelist.screens.season.SeasonChartViewModel
 import com.axiel7.moelist.screens.userlist.UserMediaListViewModel
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.SupervisorJob
 import org.koin.core.context.startKoin
 import org.koin.core.module.dsl.singleOf
 import org.koin.core.module.dsl.viewModel
@@ -55,13 +51,7 @@ fun initApp(
     databaseBuilder: RoomDatabase.Builder<MoeListDatabase>,
     createDataStore: (String) -> DataStore<Preferences>,
 ) {
-    val appScope = CoroutineScope(SupervisorJob() + Dispatchers.Default)
     startKoin {
-        val appModule = module {
-            single { GlobalVariables() }
-            single { appScope }
-        }
-
         val databaseModule = module {
             single<MoeListDatabase> { getRoomDatabase(databaseBuilder) }
             single<SearchHistoryDao> { get<MoeListDatabase>().searchHistoryDao() }
@@ -83,7 +73,7 @@ fun initApp(
         }
 
         val repositoryModule = module {
-            single { DefaultPreferencesRepository(get(), get(named(DEFAULT_DATA_STORE))) }
+            single { DefaultPreferencesRepository(get(named(DEFAULT_DATA_STORE))) }
             singleOf(::AnimeRepository)
             singleOf(::MangaRepository)
             singleOf(::LoginRepository)
@@ -123,6 +113,6 @@ fun initApp(
 
         // Note that the order of modules here is significant, later
         // modules can override dependencies from earlier modules
-        modules(appModule, databaseModule, dataStoreModule, networkModule, repositoryModule, viewModelModule)
+        modules(databaseModule, dataStoreModule, networkModule, repositoryModule, viewModelModule)
     }
 }

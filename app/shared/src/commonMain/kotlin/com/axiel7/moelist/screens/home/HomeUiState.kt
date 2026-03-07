@@ -4,6 +4,7 @@ import androidx.compose.runtime.Immutable
 import com.axiel7.moelist.data.model.anime.AnimeList
 import com.axiel7.moelist.data.model.anime.AnimeRanking
 import com.axiel7.moelist.data.model.anime.AnimeSeasonal
+import com.axiel7.moelist.data.model.media.TitleLanguage
 import com.axiel7.moelist.ui.base.state.UiState
 
 @Immutable
@@ -12,6 +13,7 @@ data class HomeUiState(
     val seasonAnimes: List<AnimeSeasonal> = emptyList(),
     val recommendedAnimes: List<AnimeList> = emptyList(),
     val hideScore: Boolean = false,
+    val preferredTitle: TitleLanguage = TitleLanguage.ROMAJI,
     override val isLoading: Boolean = true,
     override val message: String? = null
 ) : UiState() {

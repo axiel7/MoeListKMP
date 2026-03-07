@@ -163,6 +163,12 @@ class MediaDetailsViewModel(
             }
         }
 
+        defaultPreferencesRepository.titleLang
+            .onEach { value ->
+                mutableUiState.update { it.copy(preferredTitle = value) }
+            }
+            .launchIn(viewModelScope)
+
         defaultPreferencesRepository.hideScores
             .onEach { value ->
                 mutableUiState.update { it.copy(hideScore = value) }

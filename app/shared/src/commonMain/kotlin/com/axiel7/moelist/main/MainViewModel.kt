@@ -1,13 +1,11 @@
 package com.axiel7.moelist.main
 
 import androidx.lifecycle.viewModelScope
-import com.axiel7.moelist.data.GlobalVariables
 import com.axiel7.moelist.data.network.OAuthService
 import com.axiel7.moelist.data.repository.DefaultPreferencesRepository
 import com.axiel7.moelist.ui.base.navigation.DeepLink
 import com.axiel7.moelist.ui.base.viewmodel.BaseViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
-import kotlinx.coroutines.flow.firstOrNull
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
 import kotlinx.coroutines.flow.update
@@ -17,7 +15,6 @@ import org.publicvalue.multiplatform.oidc.ExperimentalOpenIdConnect
 @OptIn(ExperimentalOpenIdConnect::class)
 class MainViewModel(
     private val oAuthService: OAuthService,
-    private val globalVariables: GlobalVariables,
     private val defaultPreferencesRepository: DefaultPreferencesRepository
 ) : BaseViewModel<MainUiState>(), MainEvent {
 
@@ -30,12 +27,6 @@ class MainViewModel(
     override fun saveLastTab(value: Int) {
         viewModelScope.launch {
             defaultPreferencesRepository.setLastTab(value)
-        }
-    }
-
-    suspend fun initGlobalVariables() {
-        defaultPreferencesRepository.titleLang.firstOrNull()?.let {
-            globalVariables.titleLanguage = it
         }
     }
 

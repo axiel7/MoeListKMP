@@ -113,7 +113,7 @@ private fun CalendarContent(
                     ) {
                         MediaItemVertical(
                             imageUrl = item.node.mainPicture?.large,
-                            title = item.node.userPreferredTitle(),
+                            title = item.node.title(uiState.preferredTitle),
                             badgeContent = item.node.myListStatus?.status?.toBo()?.let { status ->
                                 {
                                     Icon(

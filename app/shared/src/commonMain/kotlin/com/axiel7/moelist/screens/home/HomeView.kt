@@ -239,6 +239,7 @@ private fun HomeViewContent(
             ) {
                 AiringAnimeHorizontalItem(
                     item = it,
+                    preferredTitle = uiState.preferredTitle,
                     hideScore = uiState.hideScore,
                     onClick = dropUnlessResumed {
                         navActionManager.toMediaDetails(MediaType.ANIME, it.node.id)
@@ -283,7 +284,7 @@ private fun HomeViewContent(
             ) {
                 MediaItemVertical(
                     imageUrl = it.node.mainPicture?.large,
-                    title = it.node.userPreferredTitle(),
+                    title = it.node.title(uiState.preferredTitle),
                     modifier = Modifier.padding(horizontal = 8.dp),
                     badgeContent = it.node.myListStatus?.status?.toBo()?.let { status ->
                         {
@@ -358,7 +359,7 @@ private fun HomeViewContent(
             ) {
                 MediaItemVertical(
                     imageUrl = it.node.mainPicture?.large,
-                    title = it.node.userPreferredTitle(),
+                    title = it.node.title(uiState.preferredTitle),
                     modifier = Modifier.padding(horizontal = 8.dp),
                     subtitle = if (!uiState.hideScore) {
                         {

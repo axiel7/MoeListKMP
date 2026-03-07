@@ -6,6 +6,7 @@ import androidx.compose.runtime.snapshots.SnapshotStateList
 import com.axiel7.moelist.data.model.SearchHistory
 import com.axiel7.moelist.data.model.media.BaseMediaList
 import com.axiel7.moelist.data.model.media.MediaType
+import com.axiel7.moelist.data.model.media.TitleLanguage
 import com.axiel7.moelist.ui.base.state.PagedUiState
 
 @Stable
@@ -14,6 +15,7 @@ data class SearchUiState(
     val mediaType: MediaType = MediaType.ANIME,
     val mediaList: SnapshotStateList<BaseMediaList> = mutableStateListOf(),
     val hideScore: Boolean = false,
+    val preferredTitle: TitleLanguage = TitleLanguage.ROMAJI,
     val searchHistoryList: List<SearchHistory> = emptyList(),
     val performSearch: Boolean = false,
     val noResults: Boolean = false,

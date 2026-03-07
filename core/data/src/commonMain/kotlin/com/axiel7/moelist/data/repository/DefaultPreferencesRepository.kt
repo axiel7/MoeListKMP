@@ -6,7 +6,6 @@ import androidx.datastore.preferences.core.booleanPreferencesKey
 import androidx.datastore.preferences.core.edit
 import androidx.datastore.preferences.core.intPreferencesKey
 import androidx.datastore.preferences.core.stringPreferencesKey
-import com.axiel7.moelist.data.GlobalVariables
 import com.axiel7.moelist.data.model.media.ListStatusDto
 import com.axiel7.moelist.data.model.media.MediaSort
 import com.axiel7.moelist.data.model.media.TitleLanguage
@@ -23,7 +22,6 @@ import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.flow.map
 
 class DefaultPreferencesRepository(
-    private val globalVariables: GlobalVariables,
     private val dataStore: DataStore<Preferences>
 ) {
     suspend fun removeTokens() {
@@ -129,7 +127,6 @@ class DefaultPreferencesRepository(
 
     suspend fun setTitleLang(value: TitleLanguage) {
         dataStore.setValue(TITLE_LANG_KEY, value.name)
-        globalVariables.titleLanguage = value
     }
 
     val useListTabs = dataStore.getValue(USE_LIST_TABS_KEY, false)

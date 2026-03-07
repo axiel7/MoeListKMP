@@ -327,6 +327,12 @@ class UserMediaListViewModel(
             }
         }.launchIn(viewModelScope)
 
+        defaultPreferencesRepository.titleLang
+            .onEach { value ->
+                mutableUiState.update { it.copy(preferredTitle = value) }
+            }
+            .launchIn(viewModelScope)
+
         defaultPreferencesRepository.gridItemsPerRow
             .onEach { value ->
                 mutableUiState.update { it.copy(itemsPerRow = value) }

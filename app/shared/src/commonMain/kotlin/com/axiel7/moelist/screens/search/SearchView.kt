@@ -200,7 +200,7 @@ private fun SearchViewContent(
     @Composable
     fun ItemView(item: BaseMediaList) {
         MediaItemDetailed(
-            title = item.node.userPreferredTitle(),
+            title = item.node.title(uiState.preferredTitle),
             imageUrl = item.node.mainPicture?.large,
             badgeContent = item.node.myListStatus?.status?.toBo()?.let { status ->
                 {

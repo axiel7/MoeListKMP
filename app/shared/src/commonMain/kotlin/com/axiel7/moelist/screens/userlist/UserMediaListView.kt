@@ -37,10 +37,6 @@ import androidx.lifecycle.compose.dropUnlessResumed
 import com.axiel7.moelist.data.model.media.BaseMediaNode
 import com.axiel7.moelist.data.model.media.BaseUserMediaList
 import com.axiel7.moelist.data.model.ui.ListStyle
-import com.axiel7.moelist.ui.base.navigation.NavActionManager
-import com.axiel7.moelist.ui.composables.OnBottomReached
-import com.axiel7.moelist.ui.composables.collapsable
-import com.axiel7.moelist.ui.composables.media.MEDIA_POSTER_MEDIUM_WIDTH
 import com.axiel7.moelist.screens.userlist.composables.CompactUserMediaListItem
 import com.axiel7.moelist.screens.userlist.composables.CompactUserMediaListItemPlaceholder
 import com.axiel7.moelist.screens.userlist.composables.GridUserMediaListItem
@@ -51,6 +47,10 @@ import com.axiel7.moelist.screens.userlist.composables.RandomChip
 import com.axiel7.moelist.screens.userlist.composables.SortChip
 import com.axiel7.moelist.screens.userlist.composables.StandardUserMediaListItem
 import com.axiel7.moelist.screens.userlist.composables.StandardUserMediaListItemPlaceholder
+import com.axiel7.moelist.ui.base.navigation.NavActionManager
+import com.axiel7.moelist.ui.composables.OnBottomReached
+import com.axiel7.moelist.ui.composables.collapsable
+import com.axiel7.moelist.ui.composables.media.MEDIA_POSTER_MEDIUM_WIDTH
 
 @OptIn(ExperimentalMaterial3Api::class, ExperimentalMaterial3ExpressiveApi::class)
 @Composable
@@ -77,6 +77,7 @@ fun UserMediaListView(
         StandardUserMediaListItem(
             item = item,
             listStatus = uiState.listStatus,
+            preferredTitle = uiState.preferredTitle,
             onClick = dropUnlessResumed {
                 navActionManager.toMediaDetails(uiState.mediaType, item.node.id)
             },
@@ -95,6 +96,7 @@ fun UserMediaListView(
         CompactUserMediaListItem(
             item = item,
             listStatus = uiState.listStatus,
+            preferredTitle = uiState.preferredTitle,
             onClick = dropUnlessResumed {
                 navActionManager.toMediaDetails(uiState.mediaType, item.node.id)
             },
@@ -113,6 +115,7 @@ fun UserMediaListView(
         MinimalUserMediaListItem(
             item = item,
             listStatus = uiState.listStatus,
+            preferredTitle = uiState.preferredTitle,
             onClick = dropUnlessResumed {
                 navActionManager.toMediaDetails(uiState.mediaType, item.node.id)
             },
@@ -130,6 +133,7 @@ fun UserMediaListView(
     fun GridItemView(item: BaseUserMediaList<out BaseMediaNode>) {
         GridUserMediaListItem(
             item = item,
+            preferredTitle = uiState.preferredTitle,
             onClick = dropUnlessResumed {
                 navActionManager.toMediaDetails(uiState.mediaType, item.node.id)
             },

@@ -40,6 +40,7 @@ import com.axiel7.moelist.data.model.anime.exampleUserAnimeList
 import com.axiel7.moelist.data.model.manga.UserMangaList
 import com.axiel7.moelist.data.model.media.BaseMediaNode
 import com.axiel7.moelist.data.model.media.BaseUserMediaList
+import com.axiel7.moelist.data.model.media.TitleLanguage
 import com.axiel7.moelist.data.utils.NumExtensions.toStringPositiveValueOrUnknown
 import com.axiel7.moelist.data.utils.UNKNOWN_CHAR
 import com.axiel7.moelist.ui.base.model.ListStatus
@@ -66,6 +67,7 @@ import org.jetbrains.compose.resources.stringResource
 fun StandardUserMediaListItem(
     item: BaseUserMediaList<out BaseMediaNode>,
     listStatus: ListStatus?,
+    preferredTitle: TitleLanguage,
     onClick: () -> Unit,
     onLongClick: () -> Unit,
     onClickPlus: () -> Unit,
@@ -130,7 +132,7 @@ fun StandardUserMediaListItem(
             ) {
                 Column {
                     Text(
-                        text = item.node.userPreferredTitle(),
+                        text = item.node.title(preferredTitle),
                         modifier = Modifier
                             .padding(horizontal = 16.dp, vertical = 8.dp),
                         color = MaterialTheme.colorScheme.onSurface,
@@ -276,6 +278,7 @@ fun StandardUserMediaListItemPreview() {
             StandardUserMediaListItem(
                 item = exampleUserAnimeList,
                 listStatus = ListStatus.WATCHING,
+                preferredTitle = TitleLanguage.ROMAJI,
                 onClick = { },
                 onLongClick = { },
                 onClickPlus = { }

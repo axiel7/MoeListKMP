@@ -97,7 +97,7 @@ private fun RecommendationsViewContent(
                 ) {
                     MediaItemVertical(
                         imageUrl = item.node.mainPicture?.large,
-                        title = item.node.userPreferredTitle(),
+                        title = item.node.title(uiState.preferredTitle),
                         subtitle = if (!uiState.hideScore) {
                             {
                                 SmallScoreIndicator(

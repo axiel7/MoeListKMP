@@ -37,6 +37,8 @@ import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.lifecycle.compose.dropUnlessResumed
 import com.axiel7.moelist.data.model.media.MediaType
 import com.axiel7.moelist.data.utils.NumExtensions.format
+import com.axiel7.moelist.screens.season.composables.SeasonChartFilterSheet
+import com.axiel7.moelist.ui.base.model.ListStatus.Companion.toBo
 import com.axiel7.moelist.ui.base.navigation.NavActionManager
 import com.axiel7.moelist.ui.composables.DefaultScaffoldWithTopAppBar
 import com.axiel7.moelist.ui.composables.TextIconHorizontal
@@ -44,8 +46,6 @@ import com.axiel7.moelist.ui.composables.media.MEDIA_POSTER_SMALL_WIDTH
 import com.axiel7.moelist.ui.composables.media.MediaItemDetailedPlaceholder
 import com.axiel7.moelist.ui.composables.media.MediaItemVertical
 import com.axiel7.moelist.ui.composables.score.SmallScoreIndicator
-import com.axiel7.moelist.screens.season.composables.SeasonChartFilterSheet
-import com.axiel7.moelist.ui.base.model.ListStatus.Companion.toBo
 import com.axiel7.moelist.ui.generated.resources.UiRes
 import com.axiel7.moelist.ui.generated.resources.filters
 import com.axiel7.moelist.ui.generated.resources.ic_round_filter_list_24
@@ -151,7 +151,7 @@ private fun SeasonChartViewContent(
                 ) {
                     MediaItemVertical(
                         imageUrl = item.node.mainPicture?.large,
-                        title = item.node.userPreferredTitle(),
+                        title = item.node.title(uiState.preferredTitle),
                         badgeContent = item.node.myListStatus?.status?.toBo()?.let { status ->
                             {
                                 Icon(

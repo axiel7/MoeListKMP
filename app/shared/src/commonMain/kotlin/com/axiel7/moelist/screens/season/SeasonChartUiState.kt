@@ -7,6 +7,7 @@ import com.axiel7.moelist.data.model.anime.AnimeSeasonal
 import com.axiel7.moelist.data.model.anime.SeasonType
 import com.axiel7.moelist.data.model.anime.StartSeason
 import com.axiel7.moelist.data.model.media.MediaSort
+import com.axiel7.moelist.data.model.media.TitleLanguage
 import com.axiel7.moelist.data.utils.SeasonCalendar
 import com.axiel7.moelist.ui.base.state.PagedUiState
 
@@ -18,6 +19,7 @@ data class SeasonChartUiState(
     val seasonType: SeasonType? = SeasonType.CURRENT,
     val animes: SnapshotStateList<AnimeSeasonal> = mutableStateListOf(),
     val hideScore: Boolean = false,
+    val preferredTitle: TitleLanguage = TitleLanguage.ROMAJI,
     override val nextPage: String? = null,
     override val loadMore: Boolean = true,
     override val isLoading: Boolean = true,

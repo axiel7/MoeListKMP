@@ -54,8 +54,6 @@ class MainActivity : AppCompatActivity() {
 
         viewModel.setDeepLink(findDeepLink(intent))
 
-        runBlocking { viewModel.initGlobalVariables() }
-
         val lastTabOpened = findLastTabOpened()
 
         setContent {
