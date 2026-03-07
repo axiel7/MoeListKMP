@@ -20,6 +20,7 @@ import coil3.compose.setSingletonImageLoaderFactory
 import coil3.memory.MemoryCache
 import coil3.request.crossfade
 import com.axiel7.moelist.data.model.media.MediaType
+import com.axiel7.moelist.data.model.ui.AppLanguage
 import com.axiel7.moelist.data.model.ui.TabletMode
 import com.axiel7.moelist.data.model.ui.ThemeStyle
 import com.axiel7.moelist.main.MainEvent
@@ -42,6 +43,7 @@ fun App(
     windowWidthSizeClass: WindowWidthSizeClass,
     lastTabOpened: Int,
     dynamicColorSeed: Color? = null,
+    onLocaleChange: ((AppLanguage) -> Unit),
 ) {
     val uriHandler = LocalUriHandler.current
     val startKey = remember(lastTabOpened) {
@@ -89,6 +91,8 @@ fun App(
             }
         }
     }
+
+    LaunchedEffect(uiState.language) { onLocaleChange(uiState.language) }
 
     MoeListTheme(
         darkTheme = isDarkTheme,

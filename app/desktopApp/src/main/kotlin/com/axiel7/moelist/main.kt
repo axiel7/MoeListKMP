@@ -20,6 +20,7 @@ import org.jetbrains.compose.resources.painterResource
 import org.jetbrains.compose.resources.stringResource
 import org.koin.compose.viewmodel.koinViewModel
 import org.publicvalue.multiplatform.oidc.ExperimentalOpenIdConnect
+import java.util.Locale
 
 @OptIn(ExperimentalMaterial3WindowSizeClassApi::class, ExperimentalOpenIdConnect::class)
 fun main() {
@@ -58,6 +59,7 @@ fun main() {
                 event = viewModel,
                 lastTabOpened = lastTabOpened,
                 windowWidthSizeClass = windowSizeClass.widthSizeClass,
+                onLocaleChange = { Locale.setDefault(Locale.forLanguageTag(it.value)) }
             )
         }
     }

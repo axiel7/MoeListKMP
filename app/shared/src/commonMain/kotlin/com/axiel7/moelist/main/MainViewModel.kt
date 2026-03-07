@@ -58,6 +58,12 @@ class MainViewModel(
             }
             .launchIn(viewModelScope)
 
+        defaultPreferencesRepository.lang
+            .onEach { value ->
+                mutableUiState.update { it.copy(language = value) }
+            }
+            .launchIn(viewModelScope)
+
         defaultPreferencesRepository.theme
             .onEach { value ->
                 mutableUiState.update { it.copy(theme = value) }

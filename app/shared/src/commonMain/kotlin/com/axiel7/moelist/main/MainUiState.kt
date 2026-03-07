@@ -1,6 +1,7 @@
 package com.axiel7.moelist.main
 
 import androidx.compose.runtime.Stable
+import com.axiel7.moelist.data.model.ui.AppLanguage
 import com.axiel7.moelist.data.model.ui.TabletMode
 import com.axiel7.moelist.data.model.ui.ThemeStyle
 import com.axiel7.moelist.ui.base.navigation.DeepLink
@@ -18,6 +19,7 @@ data class MainUiState(
     val profilePicture: String? = null,
     val pinnedNavBar: Boolean = true,
     val tabletMode: TabletMode = TabletMode.AUTO,
+    val language: AppLanguage = AppLanguage.FOLLOW_SYSTEM,
     override val isLoading: Boolean = false,
     override val message: String? = null,
 ): UiState() {

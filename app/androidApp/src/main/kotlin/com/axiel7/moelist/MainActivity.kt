@@ -7,6 +7,7 @@ import androidx.activity.SystemBarStyle
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.app.AppCompatDelegate
 import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.material3.dynamicDarkColorScheme
 import androidx.compose.material3.dynamicLightColorScheme
@@ -14,10 +15,12 @@ import androidx.compose.material3.windowsizeclass.ExperimentalMaterial3WindowSiz
 import androidx.compose.material3.windowsizeclass.calculateWindowSizeClass
 import androidx.compose.runtime.DisposableEffect
 import androidx.compose.runtime.getValue
+import androidx.core.os.LocaleListCompat
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.withCreated
+import com.axiel7.moelist.data.model.ui.AppLanguage
 import com.axiel7.moelist.data.model.ui.ThemeStyle
 import com.axiel7.moelist.main.MainViewModel
 import com.axiel7.moelist.ui.base.model.BottomDestination.Companion.toBottomDestinationIndex
@@ -63,14 +66,14 @@ class MainActivity : AppCompatActivity() {
 
             App(
                 dynamicColorSeed = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
-                    if (isDarkTheme) dynamicDarkColorScheme(this).primary else dynamicLightColorScheme(
-                        this
-                    ).primary
+                    if (isDarkTheme) dynamicDarkColorScheme(this).primary
+                    else dynamicLightColorScheme(this).primary
                 } else null,
                 uiState = uiState,
                 event = viewModel,
                 windowWidthSizeClass = windowSizeClass.widthSizeClass,
                 lastTabOpened = lastTabOpened,
+                onLocaleChange = ::changeLocale,
             )
 
             DisposableEffect(isDarkTheme) {
@@ -140,5 +143,11 @@ class MainActivity : AppCompatActivity() {
             viewModel.saveLastTab(lastTabOpened)
         }
         return lastTabOpened
+    }
+
+    private fun changeLocale(language: AppLanguage) {
+        val appLocale = if (language == AppLanguage.FOLLOW_SYSTEM) LocaleListCompat.getEmptyLocaleList()
+        else LocaleListCompat.forLanguageTags(language.value)
+        AppCompatDelegate.setApplicationLocales(appLocale)
     }
 }

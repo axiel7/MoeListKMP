@@ -16,6 +16,7 @@ import org.koin.compose.viewmodel.koinViewModel
 import org.publicvalue.multiplatform.oidc.ExperimentalOpenIdConnect
 import org.publicvalue.multiplatform.oidc.appsupport.IosCodeAuthFlowFactory
 import org.publicvalue.multiplatform.oidc.tokenstore.IosKeychainTokenStore
+import platform.Foundation.NSUserDefaults
 
 @OptIn(ExperimentalOpenIdConnect::class)
 @Suppress("unused") // Called from Swift
@@ -52,5 +53,8 @@ fun MainViewController() = ComposeUIViewController {
         event = viewModel,
         windowWidthSizeClass = windowSizeClass.widthSizeClass,
         lastTabOpened = lastTabOpened,
+        onLocaleChange = {
+            NSUserDefaults.standardUserDefaults.setObject(arrayListOf(it.value), "AppleLanguages")
+        }
     )
 }
