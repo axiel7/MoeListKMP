@@ -8,6 +8,7 @@ import androidx.compose.ui.window.ComposeUIViewController
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.axiel7.moelist.data.createDataStore
 import com.axiel7.moelist.data.local.getDatabaseBuilder
+import com.axiel7.moelist.data.model.ui.AppLanguage
 import com.axiel7.moelist.main.MainViewModel
 import com.axiel7.moelist.ui.base.model.BottomDestination.Companion.toBottomDestinationIndex
 import kotlinx.coroutines.flow.first
@@ -54,7 +55,14 @@ fun MainViewController() = ComposeUIViewController {
         windowWidthSizeClass = windowSizeClass.widthSizeClass,
         lastTabOpened = lastTabOpened,
         onLocaleChange = {
-            NSUserDefaults.standardUserDefaults.setObject(arrayListOf(it.value), "AppleLanguages")
+            if (it == AppLanguage.FOLLOW_SYSTEM) {
+                NSUserDefaults.standardUserDefaults.removeObjectForKey("AppleLanguages")
+            } else {
+                NSUserDefaults.standardUserDefaults.setObject(
+                    arrayListOf(it.value),
+                    "AppleLanguages"
+                )
+            }
         }
     )
 }
