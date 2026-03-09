@@ -1,15 +1,15 @@
-package com.axiel7.moelist.ui.composables
+package com.axiel7.moelist.ui.composables.button
 
 import androidx.compose.material3.ExperimentalMaterial3ExpressiveApi
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.IconButtonDefaults
+import androidx.compose.material3.IconButtonShapes
 import androidx.compose.runtime.Composable
 import androidx.lifecycle.compose.dropUnlessResumed
 import com.axiel7.moelist.ui.generated.resources.UiRes
 import com.axiel7.moelist.ui.generated.resources.ic_arrow_back
 import com.axiel7.moelist.ui.generated.resources.ic_open_in_browser
-import com.axiel7.moelist.ui.generated.resources.round_share_24
 import com.axiel7.moelist.ui.generated.resources.share
 import com.axiel7.moelist.ui.generated.resources.view_on_mal
 import org.jetbrains.compose.resources.painterResource
@@ -46,18 +46,11 @@ fun ViewInBrowserButton(
 
 @OptIn(ExperimentalMaterial3ExpressiveApi::class)
 @Composable
-fun ShareButton(
-    url: String
-) {
-    //TODO
-    //val context = LocalContext.current
-    IconButton(
-        onClick = {  },
-        shapes = IconButtonDefaults.shapes()
-    ) {
-        Icon(
-            painter = painterResource(UiRes.drawable.round_share_24),
-            contentDescription = stringResource(UiRes.string.share)
-        )
-    }
-}
+expect fun ShareButton(
+    url: String,
+    shapes: IconButtonShapes = IconButtonDefaults.shapes(),
+    contentDescription: String = stringResource(UiRes.string.share)
+)
+
+@Composable
+expect fun OpenByDefaultSettingsButton()

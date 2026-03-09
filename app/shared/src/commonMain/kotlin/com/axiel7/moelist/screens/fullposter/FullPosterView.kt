@@ -29,9 +29,9 @@ import androidx.compose.ui.platform.LocalUriHandler
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.axiel7.moelist.ui.base.navigation.NavActionManager
-import com.axiel7.moelist.ui.composables.BackIconButton
+import com.axiel7.moelist.ui.composables.button.BackIconButton
 import com.axiel7.moelist.ui.composables.PlatformImage
-import com.axiel7.moelist.ui.composables.ViewInBrowserButton
+import com.axiel7.moelist.ui.composables.button.ViewInBrowserButton
 import com.axiel7.moelist.ui.theme.MoeListTheme
 import kotlinx.coroutines.launch
 

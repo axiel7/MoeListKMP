@@ -3,7 +3,6 @@ package com.axiel7.moelist.screens.details
 import androidx.compose.animation.animateContentSize
 import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.clickable
-import androidx.compose.foundation.combinedClickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
@@ -51,6 +50,7 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.input.nestedscroll.nestedScroll
+import androidx.compose.ui.platform.LocalClipboard
 import androidx.compose.ui.platform.LocalUriHandler
 import androidx.compose.ui.text.AnnotatedString
 import androidx.compose.ui.text.font.FontWeight
@@ -82,6 +82,7 @@ import com.axiel7.moelist.ui.base.navigation.Route
 import com.axiel7.moelist.ui.composables.InfoTitle
 import com.axiel7.moelist.ui.composables.TextIconHorizontal
 import com.axiel7.moelist.ui.composables.TextIconVertical
+import com.axiel7.moelist.ui.composables.button.CopyButton
 import com.axiel7.moelist.ui.composables.defaultPlaceholder
 import com.axiel7.moelist.ui.composables.media.MEDIA_POSTER_BIG_HEIGHT
 import com.axiel7.moelist.ui.composables.media.MEDIA_POSTER_BIG_WIDTH
@@ -93,7 +94,6 @@ import com.axiel7.moelist.ui.generated.resources.add
 import com.axiel7.moelist.ui.generated.resources.authors
 import com.axiel7.moelist.ui.generated.resources.broadcast
 import com.axiel7.moelist.ui.generated.resources.characters
-import com.axiel7.moelist.ui.generated.resources.copied
 import com.axiel7.moelist.ui.generated.resources.duration
 import com.axiel7.moelist.ui.generated.resources.edit
 import com.axiel7.moelist.ui.generated.resources.end_date
@@ -126,7 +126,6 @@ import com.axiel7.moelist.ui.generated.resources.related_anime
 import com.axiel7.moelist.ui.generated.resources.related_manga
 import com.axiel7.moelist.ui.generated.resources.romaji
 import com.axiel7.moelist.ui.generated.resources.round_bookmark_24
-import com.axiel7.moelist.ui.generated.resources.round_content_copy_24
 import com.axiel7.moelist.ui.generated.resources.round_drive_file_rename_outline_24
 import com.axiel7.moelist.ui.generated.resources.season
 import com.axiel7.moelist.ui.generated.resources.serialization
@@ -175,6 +174,7 @@ private fun MediaDetailsContent(
     navActionManager: NavActionManager
 ) {
     val uriHandler = LocalUriHandler.current
+    val clipboard = LocalClipboard.current
 
     val scrollState = rememberScrollState()
     val topAppBarScrollBehavior =
@@ -238,8 +238,6 @@ private fun MediaDetailsContent(
                     onClick = {
                         if (uiState.mediaDetails != null) {
                             showSheet = true
-                        } else {
-                            //TODO context.showToast(context.getString(UiRes.string.please_login_to_use_this_feature))
                         }
                     }
                 ) {
@@ -283,20 +281,16 @@ private fun MediaDetailsContent(
                 )
                 Column {
                     // Title
-                    Text(
-                        text = uiState.mediaDetails?.title(uiState.preferredTitle) ?: "Loading",
-                        modifier = Modifier
-                            .padding(end = 8.dp, bottom = 8.dp)
-                            .defaultPlaceholder(visible = uiState.isLoading)
-                            .combinedClickable(
-                                onLongClick = {
-                                    //TODO uiState.mediaDetails?.title?.let { context.copyToClipBoard(it) }
-                                },
-                                onClick = { }
-                            ),
-                        fontSize = 22.sp,
-                        fontWeight = FontWeight.SemiBold
-                    )
+                    SelectionContainer {
+                        Text(
+                            text = uiState.mediaDetails?.title(uiState.preferredTitle) ?: "Loading",
+                            modifier = Modifier
+                                .padding(end = 8.dp, bottom = 8.dp)
+                                .defaultPlaceholder(visible = uiState.isLoading),
+                            fontSize = 22.sp,
+                            fontWeight = FontWeight.SemiBold
+                        )
+                    }
                     TextIconHorizontal(
                         text = uiState.mediaDetails?.mediaFormatWithYear() ?: "Loading",
                         icon = if (uiState.isAnime) UiRes.drawable.ic_round_local_movies_24
@@ -401,17 +395,9 @@ private fun MediaDetailsContent(
                         Icon(painter = painterResource(iconExpand), contentDescription = "expand")
                     }
 
-                    IconButton(
-                        onClick = {
-                            //TODO uiState.mediaDetails?.synopsis?.let { context.copyToClipBoard(it) }
-                        },
-                        shapes = IconButtonDefaults.shapes()
-                    ) {
-                        Icon(
-                            painter = painterResource(UiRes.drawable.round_content_copy_24),
-                            contentDescription = stringResource(UiRes.string.copied)
-                        )
-                    }
+                    CopyButton(
+                        valueForCopy = uiState.mediaDetails?.synopsis.orEmpty()
+                    )
                 }
             }
 

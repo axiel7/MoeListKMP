@@ -25,6 +25,7 @@ import com.axiel7.moelist.data.model.ui.TabletMode
 import com.axiel7.moelist.data.model.ui.ThemeStyle
 import com.axiel7.moelist.ui.base.navigation.NavActionManager
 import com.axiel7.moelist.ui.composables.DefaultScaffoldWithTopAppBar
+import com.axiel7.moelist.ui.composables.button.OpenByDefaultSettingsButton
 import com.axiel7.moelist.ui.composables.preferences.ListPreferenceView
 import com.axiel7.moelist.ui.composables.preferences.PlainPreferenceView
 import com.axiel7.moelist.ui.composables.preferences.SwitchPreferenceView
@@ -209,16 +210,7 @@ private fun SettingsViewContent(
                 onValueChange = { event?.setHideScores(it) }
             )
 
-            // TODO
-            /*if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
-                PlainPreferenceView(
-                    title = stringResource(UiRes.string.open_mal_links_in_the_app),
-                    icon = UiRes.drawable.ic_open_in_browser,
-                    onClick = {
-                        context.openByDefaultSettings()
-                    }
-                )
-            }*/
+            OpenByDefaultSettingsButton()
 
             SettingsTitle(text = stringResource(UiRes.string.experimental))
 

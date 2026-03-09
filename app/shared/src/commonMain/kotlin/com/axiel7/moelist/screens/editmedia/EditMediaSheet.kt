@@ -65,7 +65,7 @@ import com.axiel7.moelist.screens.editmedia.composables.EditMediaDatePicker
 import com.axiel7.moelist.screens.editmedia.composables.EditMediaProgressRow
 import com.axiel7.moelist.screens.editmedia.composables.EditMediaValueRow
 import com.axiel7.moelist.ui.base.model.ListStatus.Companion.listStatusValues
-import com.axiel7.moelist.ui.composables.SelectableIconToggleButton
+import com.axiel7.moelist.ui.composables.button.SelectableIconToggleButton
 import com.axiel7.moelist.ui.composables.preferences.PlainPreferenceView
 import com.axiel7.moelist.ui.composables.preferences.SwitchPreferenceView
 import com.axiel7.moelist.ui.generated.resources.UiRes

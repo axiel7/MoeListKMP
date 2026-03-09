@@ -37,7 +37,7 @@ import com.axiel7.moelist.data.model.anime.Season
 import com.axiel7.moelist.data.model.anime.SeasonType
 import com.axiel7.moelist.data.model.media.MediaSort
 import com.axiel7.moelist.ui.composables.ChipWithMenu
-import com.axiel7.moelist.ui.composables.SelectableIconToggleButton
+import com.axiel7.moelist.ui.composables.button.SelectableIconToggleButton
 import com.axiel7.moelist.ui.generated.resources.UiRes
 import com.axiel7.moelist.ui.generated.resources.apply
 import com.axiel7.moelist.ui.generated.resources.cancel

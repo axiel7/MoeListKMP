@@ -6,6 +6,7 @@ import androidx.compose.material3.TopAppBar
 import androidx.compose.material3.TopAppBarScrollBehavior
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.tooling.preview.Preview
+import com.axiel7.moelist.ui.composables.button.BackIconButton
 import com.axiel7.moelist.ui.theme.MoeListTheme
 
 @OptIn(ExperimentalMaterial3Api::class)

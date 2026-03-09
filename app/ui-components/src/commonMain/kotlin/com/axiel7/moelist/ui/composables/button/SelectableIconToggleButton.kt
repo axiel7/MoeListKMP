@@ -1,4 +1,4 @@
-package com.axiel7.moelist.ui.composables
+package com.axiel7.moelist.ui.composables.button
 
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.ExperimentalMaterial3ExpressiveApi

@@ -13,9 +13,9 @@ import androidx.compose.ui.platform.LocalUriHandler
 import com.axiel7.moelist.data.model.anime.AnimeDetails
 import com.axiel7.moelist.data.model.media.MediaStatus
 import com.axiel7.moelist.data.utils.DateUtils.parseDate
-import com.axiel7.moelist.ui.composables.BackIconButton
-import com.axiel7.moelist.ui.composables.ShareButton
-import com.axiel7.moelist.ui.composables.ViewInBrowserButton
+import com.axiel7.moelist.ui.composables.button.BackIconButton
+import com.axiel7.moelist.ui.composables.button.ShareButton
+import com.axiel7.moelist.ui.composables.button.ViewInBrowserButton
 import com.axiel7.moelist.screens.details.MediaDetailsEvent
 import com.axiel7.moelist.screens.details.MediaDetailsUiState
 import com.axiel7.moelist.ui.generated.resources.UiRes
