@@ -20,7 +20,7 @@ compose.desktop {
         mainClass = "com.axiel7.moelist.MainKt"
 
         nativeDistributions {
-            targetFormats(TargetFormat.Dmg, TargetFormat.Msi, TargetFormat.Deb)
+            targetFormats(TargetFormat.Dmg, TargetFormat.Msi, TargetFormat.AppImage)
             packageName = "MoeList"
             packageVersion = "1.0.0"
             description = "A Multiplatform MyAnimeList client"
