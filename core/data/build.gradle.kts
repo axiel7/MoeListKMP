@@ -2,6 +2,7 @@
 
 import org.jetbrains.kotlin.gradle.ExperimentalKotlinGradlePluginApi
 import org.jetbrains.kotlin.gradle.dsl.JvmTarget
+import java.util.Properties
 
 plugins {
     alias(libs.plugins.androidLibrary)
@@ -10,6 +11,11 @@ plugins {
     alias(libs.plugins.kotlinSerialization)
     alias(libs.plugins.ksp)
     alias(libs.plugins.androidx.room)
+    alias(libs.plugins.buildConfig)
+}
+
+val privateProps = Properties().also {
+    it.load(project.rootProject.file("private.properties").reader())
 }
 
 kotlin {
@@ -85,4 +91,18 @@ dependencies {
 
 room {
     schemaDirectory("$projectDir/schemas")
+}
+
+buildConfig {
+    buildConfigField("CLIENT_SECRET", expect<String>())
+
+    sourceSets.named("androidMain") {
+        buildConfigField("CLIENT_SECRET", "")
+    }
+    sourceSets.named("iosMain") {
+        buildConfigField("CLIENT_SECRET", "")
+    }
+    sourceSets.named("jvmMain") {
+        buildConfigField("CLIENT_SECRET", privateProps.getProperty("CLIENT_SECRET"))
+    }
 }

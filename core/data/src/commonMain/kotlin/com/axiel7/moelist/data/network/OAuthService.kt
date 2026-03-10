@@ -1,5 +1,6 @@
 package com.axiel7.moelist.data.network
 
+import MoeList.core.data.BuildConfig
 import com.axiel7.moelist.data.network.Api.Companion.MAL_OAUTH2_URL
 import com.axiel7.moelist.data.utils.AUTH_REDIRECT_URI
 import com.axiel7.moelist.data.utils.CLIENT_ID
@@ -23,7 +24,7 @@ class OAuthService(
         }
 
         clientId = CLIENT_ID
-        clientSecret = null
+        clientSecret = BuildConfig.CLIENT_SECRET
         codeChallengeMethod = CodeChallengeMethod.plain
         redirectUri = AUTH_REDIRECT_URI
         disableNonce = true

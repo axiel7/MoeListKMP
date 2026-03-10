@@ -31,6 +31,7 @@ windowSizeClass = "1.9.0"
 placeholder-material3 = "1.0.12"
 oidc = "0.16.5"
 java-keyring = "1.0.4"
+buildConfig = "6.0.9"
 
 [libraries]
 kotlin-test = { module = "org.jetbrains.kotlin:kotlin-test", version.ref = "kotlin" }
@@ -95,3 +96,4 @@ kotlinJvm = { id = "org.jetbrains.kotlin.jvm", version.ref = "kotlin" }
 kotlinSerialization = { id = "org.jetbrains.kotlin.plugin.serialization", version.ref = "kotlin" }
 ksp = { id = "com.google.devtools.ksp", version.ref = "ksp" }
 androidx-room = { id = "androidx.room", version.ref = "room" }
+buildConfig = { id = "com.github.gmazzo.buildconfig", version.ref = "buildConfig" }
