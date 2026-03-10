@@ -1,5 +1,6 @@
 package com.axiel7.moelist.data.network
 
+import com.axiel7.moelist.data.utils.CLIENT_ID
 import io.ktor.client.HttpClient
 import io.ktor.client.plugins.DefaultRequest
 import io.ktor.client.plugins.auth.Auth
@@ -17,10 +18,6 @@ class KtorClient(
     oAuthService: OAuthService,
     isDebug: Boolean,
 ) {
-    companion object {
-        const val CLIENT_ID = "9d64c3963e0f5de53083571d45016565"
-    }
-
     @OptIn(ExperimentalOpenIdConnect::class)
     val ktorHttpClient = HttpClient {
 

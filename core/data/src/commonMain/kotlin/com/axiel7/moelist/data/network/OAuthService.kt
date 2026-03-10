@@ -1,8 +1,8 @@
 package com.axiel7.moelist.data.network
 
 import com.axiel7.moelist.data.network.Api.Companion.MAL_OAUTH2_URL
-import com.axiel7.moelist.data.network.KtorClient.Companion.CLIENT_ID
 import com.axiel7.moelist.data.utils.AUTH_REDIRECT_URI
+import com.axiel7.moelist.data.utils.CLIENT_ID
 import org.publicvalue.multiplatform.oidc.ExperimentalOpenIdConnect
 import org.publicvalue.multiplatform.oidc.OpenIdConnectClient
 import org.publicvalue.multiplatform.oidc.flows.CodeAuthFlowFactory

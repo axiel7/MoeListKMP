@@ -4,6 +4,7 @@ const val DEFAULT_DATA_STORE = "default.preferences_pb"
 const val NOTIFICATIONS_DATA_STORE = "notifications.preferences_pb"
 
 //Urls
+expect val CLIENT_ID: String
 expect val AUTH_REDIRECT_URI: String
 const val ANIME_URL = "https://myanimelist.net/anime/"
 const val MANGA_URL = "https://myanimelist.net/manga/"
