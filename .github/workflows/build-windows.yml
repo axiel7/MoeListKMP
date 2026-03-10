@@ -1,0 +1,46 @@
+# This workflow uses actions that are not certified by GitHub.
+# They are provided by a third-party and are governed by
+# separate terms of service, privacy policy, and support
+# documentation.
+# This workflow will build a Java project with Gradle and cache/restore any dependencies to improve the workflow execution time
+# For more information see: https://docs.github.com/en/actions/automating-builds-and-tests/building-and-testing-java-with-gradle
+
+name: Build Windows msi
+
+on:
+  workflow_dispatch:
+
+jobs:
+  build:
+
+    runs-on: windows-latest
+    permissions:
+      contents: write
+
+    steps:
+    - uses: actions/checkout@v6
+    - name: Set up JDK 21
+      uses: actions/setup-java@v5
+      with:
+        java-version: '21'
+        distribution: 'oracle'
+
+    - name: Create private.properties
+      run: |
+        echo "CLIENT_SECRET=$CLIENT_SECRET_ENV_VAR" > private.properties
+      env:
+        CLIENT_SECRET_ENV_VAR: ${{ secrets.CLIENT_SECRET }}
+
+    # Configure Gradle for optimal use in GitHub Actions, including caching of downloaded dependencies.
+    # See: https://github.com/gradle/actions/blob/main/setup-gradle/README.md
+    - name: Setup Gradle
+      uses: gradle/actions/setup-gradle@af1da67850ed9a4cedd57bfd976089dd991e2582 # v4.0.0
+
+    - name: Build with Gradle Wrapper
+      run: ./gradlew.bat build :app:desktopApp:packageReleaseDistributionForCurrentOS
+      
+    - name: Upload build artifacts
+      uses: actions/upload-artifact@v6
+      with:
+        name: assets
+        path: ${{github.workspace}}\app\desktopApp\build\compose\binaries\main-release\msi\*.msi
