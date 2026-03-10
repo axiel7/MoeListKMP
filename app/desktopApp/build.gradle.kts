@@ -38,6 +38,8 @@ compose.desktop {
                 iconFile.set(project.file("icons/icon.png"))
             }
 
+            modules("jdk.unsupported")
+
             buildTypes.release.proguard {
                 configurationFiles.from(project.file("proguard-rules.pro"))
                 optimize.set(false)

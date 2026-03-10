@@ -155,3 +155,18 @@ static ** Companion;
 -keep class coil3.util.ServiceLoaderComponentRegistry { *; }
 -keep class * implements coil3.util.DecoderServiceLoaderTarget { *; }
 -keep class * implements coil3.util.FetcherServiceLoaderTarget { *; }
+
+# Prevent ProGuard from stripping out the Unsafe functionality
+-keep class sun.misc.Unsafe { *; }
+-dontwarn sun.misc.Unsafe
+
+# Common rules for Kotlin Coroutines which often trigger this error
+-keepclassmembernames class kotlinx.coroutines.android.HandlerContext {
+    private static volatile java.lang.Object _relauncher;
+}
+
+# If you use Coroutines Swing (which you have in your dependencies)
+-keep class kotlinx.coroutines.swing.** { *; }
+
+# General Compose Desktop requirements
+-keepattributes Signature,Annotation,SourceFile,LineNumberTable
