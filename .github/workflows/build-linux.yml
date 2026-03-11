@@ -36,8 +36,11 @@ jobs:
     - name: Setup Gradle
       uses: gradle/actions/setup-gradle@v5
 
+    - name: Gradle run permission
+      run: chmod +x ./gradlew
+
     - name: Build with Gradle Wrapper
-      run: ./gradlew.bat :app:desktopApp:packageReleaseDistributionForCurrentOS
+      run: ./gradlew :app:desktopApp:packageReleaseDistributionForCurrentOS
       
     - name: Upload build artifacts
       uses: actions/upload-artifact@v6
