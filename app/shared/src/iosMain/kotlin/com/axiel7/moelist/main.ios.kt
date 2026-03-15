@@ -6,7 +6,7 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.remember
 import androidx.compose.ui.window.ComposeUIViewController
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
-import com.axiel7.moelist.data.createDataStore
+import com.axiel7.moelist.data.local.createDataStore
 import com.axiel7.moelist.data.local.getDatabaseBuilder
 import com.axiel7.moelist.data.model.ui.AppLanguage
 import com.axiel7.moelist.main.MainViewModel

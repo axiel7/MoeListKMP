@@ -1,8 +1,7 @@
-package com.axiel7.moelist.data
+package com.axiel7.moelist.data.local
 
 import androidx.datastore.core.DataStore
 import androidx.datastore.preferences.core.Preferences
-import com.axiel7.moelist.data.local.createDataStore
 import kotlinx.cinterop.ExperimentalForeignApi
 import platform.Foundation.NSDocumentDirectory
 import platform.Foundation.NSFileManager
