@@ -19,6 +19,7 @@ import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.FloatingActionButton
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.SnackbarHostState
 import androidx.compose.material3.Surface
 import androidx.compose.material3.rememberModalBottomSheetState
 import androidx.compose.runtime.Composable
@@ -77,7 +78,7 @@ private fun SeasonChartViewContent(
     event: SeasonChartEvent?,
     navActionManager: NavActionManager
 ) {
-    //val context = LocalContext.current
+    val snackbarHostState = remember { SnackbarHostState() }
     val scope = rememberCoroutineScope()
 
     val sheetState = rememberModalBottomSheetState()
@@ -104,7 +105,7 @@ private fun SeasonChartViewContent(
 
     LaunchedEffect(uiState.message) {
         if (uiState.message != null) {
-            //TODO context.showToast(uiState.message)
+            snackbarHostState.showSnackbar(uiState.message)
             event?.onMessageDisplayed()
         }
     }
@@ -123,6 +124,7 @@ private fun SeasonChartViewContent(
                 )
             }
         },
+        snackbarHostState = snackbarHostState,
         contentWindowInsets = WindowInsets.systemBars
             .only(WindowInsetsSides.Horizontal)
     ) { padding ->

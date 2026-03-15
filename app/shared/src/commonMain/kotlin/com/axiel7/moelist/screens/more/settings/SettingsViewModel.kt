@@ -27,7 +27,6 @@ class SettingsViewModel(
     override fun setLanguage(value: AppLanguage) {
         viewModelScope.launch {
             defaultPreferencesRepository.setLang(value)
-            //TODO changeLocale(value.value)
             if (value == AppLanguage.JAPANESE) {
                 setTitleLanguage(TitleLanguage.JAPANESE)
             }

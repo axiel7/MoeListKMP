@@ -12,6 +12,8 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.systemBars
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Scaffold
+import androidx.compose.material3.SnackbarHost
+import androidx.compose.material3.SnackbarHostState
 import androidx.compose.material3.Surface
 import androidx.compose.material3.rememberModalBottomSheetState
 import androidx.compose.runtime.Composable
@@ -82,7 +84,7 @@ private fun UserMediaListWithFabViewContent(
     topBarSnapTo: suspend (Float) -> Unit = {},
     padding: PaddingValues = PaddingValues(),
 ) {
-    //val context = LocalContext.current
+    val snackbarHostState = remember { SnackbarHostState() }
     val scope = rememberCoroutineScope()
     val haptic = LocalHapticFeedback.current
 
@@ -140,7 +142,7 @@ private fun UserMediaListWithFabViewContent(
 
     LaunchedEffect(uiState.message) {
         if (uiState.message != null) {
-            //TODO context.showToast(uiState.message)
+            snackbarHostState.showSnackbar(uiState.message)
             event?.onMessageDisplayed()
         }
     }
@@ -158,6 +160,7 @@ private fun UserMediaListWithFabViewContent(
                 )
             }
         },
+        snackbarHost = { SnackbarHost(snackbarHostState) },
         contentWindowInsets = WindowInsets.systemBars
             .only(WindowInsetsSides.Horizontal)
     ) { childPadding ->

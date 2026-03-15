@@ -14,12 +14,14 @@ import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.ExperimentalMaterial3ExpressiveApi
 import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.SnackbarHostState
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
@@ -76,11 +78,12 @@ private fun ProfileViewContent(
     navActionManager: NavActionManager
 ) {
     val uriHandler = LocalUriHandler.current
+    val snackbarHostState = remember { SnackbarHostState() }
     val scrollState = rememberScrollState()
 
     LaunchedEffect(uiState.message) {
         if (uiState.message != null) {
-            //TODO context.showToast(uiState.message)
+            snackbarHostState.showSnackbar(uiState.message)
             event?.onMessageDisplayed()
         }
     }
@@ -88,6 +91,7 @@ private fun ProfileViewContent(
     DefaultScaffoldWithTopAppBar(
         title = stringResource(UiRes.string.title_profile),
         navigateBack = navActionManager::goBack,
+        snackbarHostState = snackbarHostState,
         isTopBarVisible = isCompactScreen,
     ) { padding ->
         Column(

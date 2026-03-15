@@ -5,6 +5,8 @@ import androidx.compose.foundation.layout.WindowInsets
 import androidx.compose.foundation.layout.systemBars
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Scaffold
+import androidx.compose.material3.SnackbarHost
+import androidx.compose.material3.SnackbarHostState
 import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.material3.rememberTopAppBarState
 import androidx.compose.runtime.Composable
@@ -17,6 +19,7 @@ fun DefaultScaffoldWithTopAppBar(
     title: String,
     navigateBack: () -> Unit,
     floatingActionButton: @Composable (() -> Unit) = {},
+    snackbarHostState: SnackbarHostState? = null,
     contentWindowInsets: WindowInsets = WindowInsets.systemBars,
     isTopBarVisible: Boolean = true,
     content: @Composable (PaddingValues) -> Unit
@@ -34,6 +37,11 @@ fun DefaultScaffoldWithTopAppBar(
                     scrollBehavior = topAppBarScrollBehavior,
                     navigateBack = navigateBack
                 )
+            }
+        },
+        snackbarHost = {
+            snackbarHostState?.let {
+                SnackbarHost(hostState = it)
             }
         },
         floatingActionButton = floatingActionButton,

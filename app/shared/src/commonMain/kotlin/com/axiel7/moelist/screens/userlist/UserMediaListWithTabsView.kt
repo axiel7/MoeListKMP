@@ -6,6 +6,9 @@ import androidx.compose.foundation.layout.asPaddingValues
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.systemBars
 import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.Scaffold
+import androidx.compose.material3.SnackbarHost
+import androidx.compose.material3.SnackbarHostState
 import androidx.compose.material3.rememberModalBottomSheetState
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
@@ -21,15 +24,14 @@ import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.axiel7.moelist.data.model.media.MediaType
 import com.axiel7.moelist.data.model.ui.TabRowItem
 import com.axiel7.moelist.screens.editmedia.EditMediaSheet
+import com.axiel7.moelist.screens.userlist.composables.SetScoreDialog
+import com.axiel7.moelist.ui.base.model.ListStatus.Companion.listStatusValues
 import com.axiel7.moelist.ui.base.navigation.NavActionManager
 import com.axiel7.moelist.ui.composables.LoadingDialog
 import com.axiel7.moelist.ui.composables.TabRowWithPager
-import com.axiel7.moelist.screens.userlist.composables.SetScoreDialog
-import com.axiel7.moelist.ui.base.model.ListStatus.Companion.listStatusValues
 import kotlinx.coroutines.launch
 import org.koin.compose.viewmodel.koinViewModel
 import org.koin.core.parameter.parametersOf
-import kotlin.collections.get
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -39,7 +41,7 @@ fun UserMediaListWithTabsView(
     navActionManager: NavActionManager,
     padding: PaddingValues,
 ) {
-    //val context = LocalContext.current
+    val snackbarHostState = remember { SnackbarHostState() }
     val scope = rememberCoroutineScope()
     val haptic = LocalHapticFeedback.current
     val tabRowItems = remember {
@@ -56,77 +58,82 @@ fun UserMediaListWithTabsView(
 
     val systemBarsPadding = WindowInsets.systemBars.asPaddingValues()
 
-    TabRowWithPager(
-        tabs = tabRowItems,
-        modifier = Modifier
-            .padding(
-                top = padding.calculateTopPadding(),
-            ),
-        beyondBoundsPageCount = -1,
-        isTabScrollable = true
+    Scaffold(
+        snackbarHost = { SnackbarHost(snackbarHostState) },
+        contentWindowInsets = WindowInsets(0, 0, 0, 0)
     ) {
-        val listStatus = tabRowItems[it].value
-        val viewModel: UserMediaListViewModel = koinViewModel(
-            key = listStatus.name,
-            parameters = { parametersOf(mediaType, listStatus) }
-        )
-        val uiState by viewModel.uiState.collectAsStateWithLifecycle()
-
-        if (uiState.openSetScoreDialog) {
-            SetScoreDialog(
-                onDismiss = { viewModel.toggleSetScoreDialog(false) },
-                onConfirm = viewModel::setScore
-            )
-        }
-
-        if (uiState.isLoadingRandom) {
-            LoadingDialog()
-        }
-
-        if (showEditSheet && uiState.mediaInfo != null) {
-            EditMediaSheet(
-                sheetState = editSheetState,
-                mediaInfo = uiState.mediaInfo!!,
-                myListStatus = uiState.myListStatus,
-                bottomPadding = systemBarsPadding.calculateBottomPadding(),
-                onEdited = { status, removed ->
-                    hideEditSheet()
-                    viewModel.onChangeItemMyListStatus(status, removed)
-                },
-                onDismissed = { hideEditSheet() }
-            )
-        }
-
-        LaunchedEffect(uiState.randomId) {
-            uiState.randomId?.let { id ->
-                navActionManager.toMediaDetails(uiState.mediaType, id)
-                viewModel.onRandomIdOpen()
-            }
-        }
-
-        LaunchedEffect(uiState.message) {
-            if (uiState.message != null) {
-                //TODO context.showToast(uiState.message.orEmpty())
-                viewModel.onMessageDisplayed()
-            }
-        }
-
-        if (uiState.listSort != null) {
-            UserMediaListView(
-                uiState = uiState,
-                event = viewModel,
-                navActionManager = navActionManager,
-                isCompactScreen = isCompactScreen,
-                contentPadding = PaddingValues(
-                    bottom = padding.calculateBottomPadding() +
-                            systemBarsPadding.calculateBottomPadding()
+        TabRowWithPager(
+            tabs = tabRowItems,
+            modifier = Modifier
+                .padding(
+                    top = padding.calculateTopPadding(),
                 ),
-                onShowEditSheet = { item ->
-                    haptic.performHapticFeedback(HapticFeedbackType.LongPress)
-                    viewModel.onItemSelected(item)
-                    showEditSheet = true
-                },
+            beyondBoundsPageCount = -1,
+            isTabScrollable = true
+        ) {
+            val listStatus = tabRowItems[it].value
+            val viewModel: UserMediaListViewModel = koinViewModel(
+                key = listStatus.name,
+                parameters = { parametersOf(mediaType, listStatus) }
             )
-        }
-    }//:Pager
+            val uiState by viewModel.uiState.collectAsStateWithLifecycle()
+
+            if (uiState.openSetScoreDialog) {
+                SetScoreDialog(
+                    onDismiss = { viewModel.toggleSetScoreDialog(false) },
+                    onConfirm = viewModel::setScore
+                )
+            }
+
+            if (uiState.isLoadingRandom) {
+                LoadingDialog()
+            }
+
+            if (showEditSheet && uiState.mediaInfo != null) {
+                EditMediaSheet(
+                    sheetState = editSheetState,
+                    mediaInfo = uiState.mediaInfo!!,
+                    myListStatus = uiState.myListStatus,
+                    bottomPadding = systemBarsPadding.calculateBottomPadding(),
+                    onEdited = { status, removed ->
+                        hideEditSheet()
+                        viewModel.onChangeItemMyListStatus(status, removed)
+                    },
+                    onDismissed = { hideEditSheet() }
+                )
+            }
+
+            LaunchedEffect(uiState.randomId) {
+                uiState.randomId?.let { id ->
+                    navActionManager.toMediaDetails(uiState.mediaType, id)
+                    viewModel.onRandomIdOpen()
+                }
+            }
+
+            LaunchedEffect(uiState.message) {
+                if (uiState.message != null) {
+                    snackbarHostState.showSnackbar(uiState.message.orEmpty())
+                    viewModel.onMessageDisplayed()
+                }
+            }
+
+            if (uiState.listSort != null) {
+                UserMediaListView(
+                    uiState = uiState,
+                    event = viewModel,
+                    navActionManager = navActionManager,
+                    isCompactScreen = isCompactScreen,
+                    contentPadding = PaddingValues(
+                        bottom = padding.calculateBottomPadding() +
+                                systemBarsPadding.calculateBottomPadding()
+                    ),
+                    onShowEditSheet = { item ->
+                        haptic.performHapticFeedback(HapticFeedbackType.LongPress)
+                        viewModel.onItemSelected(item)
+                        showEditSheet = true
+                    },
+                )
+            }
+        }//:Pager
+    }
 }

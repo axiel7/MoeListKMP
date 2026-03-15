@@ -6,6 +6,7 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.WindowInsets
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
@@ -24,6 +25,9 @@ import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material3.FilterChip
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Scaffold
+import androidx.compose.material3.SnackbarHost
+import androidx.compose.material3.SnackbarHostState
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextField
@@ -90,6 +94,8 @@ fun SearchHostView(
     val viewModel: SearchViewModel = koinViewModel(parameters = { parametersOf(arguments) })
     val uiState by viewModel.uiState.collectAsStateWithLifecycle()
 
+    val snackbarHostState = remember { SnackbarHostState() }
+
     var query by rememberSaveable(stateSaver = TextFieldValue.Saver) {
         mutableStateOf(TextFieldValue())
     }
@@ -102,51 +108,57 @@ fun SearchHostView(
         onStopOrDispose { }
     }
 
-    Column(
-        modifier = Modifier
-            .statusBarsPadding()
-            .padding(top = padding.calculateTopPadding())
-            .fillMaxWidth()
+    Scaffold(
+        snackbarHost = { SnackbarHost(snackbarHostState) },
+        contentWindowInsets = WindowInsets(0, 0, 0, 0)
     ) {
-        TextField(
-            value = query,
-            onValueChange = { query = it },
+        Column(
             modifier = Modifier
+                .statusBarsPadding()
+                .padding(top = padding.calculateTopPadding())
                 .fillMaxWidth()
-                .focusRequester(focusRequester),
-            placeholder = { Text(text = stringResource(UiRes.string.search)) },
-            leadingIcon = {
-                BackIconButton(onClick = navActionManager::goBack)
-            },
-            keyboardOptions = KeyboardOptions(imeAction = ImeAction.Search),
-            keyboardActions = KeyboardActions(
-                onSearch = {
-                    keyboardController?.hide()
-                    viewModel.search(query.text)
-                }
-            ),
-            singleLine = true,
-            colors = TextFieldDefaults.colors(
-                focusedContainerColor = Color.Transparent,
-                unfocusedContainerColor = Color.Transparent,
-                focusedIndicatorColor = MaterialTheme.colorScheme.outlineVariant,
-                unfocusedIndicatorColor = MaterialTheme.colorScheme.outlineVariant
-            )
-        )
-        SearchViewContent(
-            uiState = uiState,
-            event = viewModel,
-            query = query.text,
-            onQueryChange = {
-                query = TextFieldValue(
-                    text = it,
-                    selection = TextRange(it.length),
+        ) {
+            TextField(
+                value = query,
+                onValueChange = { query = it },
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .focusRequester(focusRequester),
+                placeholder = { Text(text = stringResource(UiRes.string.search)) },
+                leadingIcon = {
+                    BackIconButton(onClick = navActionManager::goBack)
+                },
+                keyboardOptions = KeyboardOptions(imeAction = ImeAction.Search),
+                keyboardActions = KeyboardActions(
+                    onSearch = {
+                        keyboardController?.hide()
+                        viewModel.search(query.text)
+                    }
+                ),
+                singleLine = true,
+                colors = TextFieldDefaults.colors(
+                    focusedContainerColor = Color.Transparent,
+                    unfocusedContainerColor = Color.Transparent,
+                    focusedIndicatorColor = MaterialTheme.colorScheme.outlineVariant,
+                    unfocusedIndicatorColor = MaterialTheme.colorScheme.outlineVariant
                 )
-            },
-            isCompactScreen = isCompactScreen,
-            navActionManager = navActionManager,
-            contentPadding = PaddingValues(bottom = padding.calculateBottomPadding()),
-        )
+            )
+            SearchViewContent(
+                uiState = uiState,
+                event = viewModel,
+                query = query.text,
+                onQueryChange = {
+                    query = TextFieldValue(
+                        text = it,
+                        selection = TextRange(it.length),
+                    )
+                },
+                isCompactScreen = isCompactScreen,
+                snackbarHostState = snackbarHostState,
+                navActionManager = navActionManager,
+                contentPadding = PaddingValues(bottom = padding.calculateBottomPadding()),
+            )
+        }
     }
 }
 
@@ -158,17 +170,17 @@ private fun SearchViewContent(
     query: String,
     onQueryChange: (String) -> Unit,
     isCompactScreen: Boolean,
+    snackbarHostState: SnackbarHostState,
     navActionManager: NavActionManager,
     contentPadding: PaddingValues = PaddingValues(),
 ) {
-    //val context = LocalContext.current
     val shouldShowPlaceholder = query.isNotBlank() && uiState.mediaList.isEmpty()
     val shouldShowSearchHistory = (query.isBlank() || !uiState.noResults)
             && uiState.mediaList.isEmpty() && !uiState.isLoading
 
     LaunchedEffect(uiState.message) {
         if (uiState.message != null) {
-            //TODO context.showToast(uiState.message)
+            snackbarHostState.showSnackbar(uiState.message)
             event?.onMessageDisplayed()
         }
     }
@@ -421,6 +433,7 @@ fun SearchPreview() {
                 query = "",
                 onQueryChange = {},
                 isCompactScreen = false,
+                snackbarHostState = SnackbarHostState(),
                 navActionManager = NavActionManager.rememberNavActionManager()
             )
         }

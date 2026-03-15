@@ -32,6 +32,8 @@ import androidx.compose.material3.IconButtonDefaults
 import androidx.compose.material3.LoadingIndicator
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
+import androidx.compose.material3.SnackbarHost
+import androidx.compose.material3.SnackbarHostState
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
@@ -174,8 +176,7 @@ private fun MediaDetailsContent(
     navActionManager: NavActionManager
 ) {
     val uriHandler = LocalUriHandler.current
-    val clipboard = LocalClipboard.current
-
+    val snackbarHostState = remember { SnackbarHostState() }
     val scrollState = rememberScrollState()
     val topAppBarScrollBehavior =
         TopAppBarDefaults.exitUntilCollapsedScrollBehavior(rememberTopAppBarState())
@@ -217,7 +218,7 @@ private fun MediaDetailsContent(
 
     if (uiState.message != null) {
         LaunchedEffect(uiState.message) {
-            //TODO context.showToast(uiState.message)
+            snackbarHostState.showSnackbar(uiState.message)
             event?.onMessageDisplayed()
         }
     }
@@ -232,6 +233,7 @@ private fun MediaDetailsContent(
                 scrollBehavior = topAppBarScrollBehavior,
             )
         },
+        snackbarHost = { SnackbarHost(snackbarHostState) },
         floatingActionButton = {
             if (isLoggedIn) {
                 ExtendedFloatingActionButton(

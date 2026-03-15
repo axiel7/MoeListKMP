@@ -2,11 +2,13 @@ package com.axiel7.moelist.screens.more.about
 
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.padding
+import androidx.compose.material3.SnackbarHostState
 import androidx.compose.material3.Surface
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableIntStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalUriHandler
@@ -32,18 +34,22 @@ import com.axiel7.moelist.ui.generated.resources.ic_moelist_logo
 import com.axiel7.moelist.ui.generated.resources.ic_round_group_24
 import com.axiel7.moelist.ui.generated.resources.version
 import com.axiel7.moelist.ui.theme.MoeListTheme
+import kotlinx.coroutines.launch
 import org.jetbrains.compose.resources.stringResource
 
 @Composable
 fun AboutView(
     navActionManager: NavActionManager
 ) {
+    val scope = rememberCoroutineScope()
+    val snackbarHostState = remember { SnackbarHostState() }
     val uriHandler = LocalUriHandler.current
     var versionClicks by remember { mutableIntStateOf(0) }
 
     DefaultScaffoldWithTopAppBar(
         title = stringResource(UiRes.string.about),
-        navigateBack = navActionManager::goBack
+        navigateBack = navActionManager::goBack,
+        snackbarHostState = snackbarHostState,
     ) {
         Column(
             modifier = Modifier.padding(it)
@@ -54,8 +60,10 @@ fun AboutView(
                 icon = UiRes.drawable.ic_moelist_logo,
                 onClick = {
                     if (versionClicks >= 7) {
-                        //TODO context.showToast("✧◝(⁰▿⁰)◜✧")
-                        versionClicks = 0
+                        scope.launch {
+                            versionClicks = 0
+                            snackbarHostState.showSnackbar("✧◝(⁰▿⁰)◜✧")
+                        }
                     } else versionClicks++
                 }
             )

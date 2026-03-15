@@ -13,6 +13,7 @@ import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.lazy.rememberLazyListState
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.SnackbarHostState
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -52,6 +53,7 @@ fun MediaRankingListView(
     arguments: Route.MediaRanking,
     rankingType: RankingType,
     isCompactScreen: Boolean,
+    snackbarHostState: SnackbarHostState,
     navActionManager: NavActionManager,
 ) {
     val viewModel: MediaRankingViewModel =
@@ -63,6 +65,7 @@ fun MediaRankingListView(
         event = viewModel,
         mediaType = arguments.mediaType,
         isCompactScreen = isCompactScreen,
+        snackbarHostState = snackbarHostState,
         navActionManager = navActionManager,
     )
 }
@@ -73,14 +76,14 @@ private fun MediaRankingListViewContent(
     event: MediaRankingEvent?,
     mediaType: MediaType,
     isCompactScreen: Boolean,
+    snackbarHostState: SnackbarHostState,
     navActionManager: NavActionManager,
 ) {
-    //val context = LocalContext.current
     val shouldShowPlaceholder = uiState.mediaList.isEmpty() && uiState.isLoading
 
     LaunchedEffect(uiState.message) {
         if (uiState.message != null) {
-            //TODO context.showToast(uiState.message)
+            snackbarHostState.showSnackbar(uiState.message)
             event?.onMessageDisplayed()
         }
     }
@@ -202,6 +205,7 @@ fun MediaRankingPreview() {
                 event = null,
                 mediaType = MediaType.ANIME,
                 isCompactScreen = true,
+                snackbarHostState = SnackbarHostState(),
                 navActionManager = NavActionManager.rememberNavActionManager()
             )
         }

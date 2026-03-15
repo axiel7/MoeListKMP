@@ -6,6 +6,7 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.only
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.systemBars
+import androidx.compose.material3.SnackbarHostState
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
@@ -30,6 +31,7 @@ fun MediaRankingView(
     isCompactScreen: Boolean,
     navActionManager: NavActionManager,
 ) {
+    val snackbarHostState = remember { SnackbarHostState() }
     val tabRowItems = remember {
         (if (arguments.mediaType == MediaType.ANIME) rankingAnimeValues else rankingMangaValues)
             .map {
@@ -57,6 +59,7 @@ fun MediaRankingView(
                 arguments = arguments,
                 rankingType = tabRowItems[it].value,
                 isCompactScreen = isCompactScreen,
+                snackbarHostState = snackbarHostState,
                 navActionManager = navActionManager,
             )
         }

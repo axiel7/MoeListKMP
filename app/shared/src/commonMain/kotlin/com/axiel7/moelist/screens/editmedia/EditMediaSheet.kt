@@ -13,6 +13,7 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
+import androidx.compose.material3.AlertDialog
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.ExperimentalMaterial3Api
@@ -80,6 +81,7 @@ import com.axiel7.moelist.ui.generated.resources.episodes
 import com.axiel7.moelist.ui.generated.resources.ic_outline_book_24
 import com.axiel7.moelist.ui.generated.resources.ic_round_details_star_24
 import com.axiel7.moelist.ui.generated.resources.notes
+import com.axiel7.moelist.ui.generated.resources.ok
 import com.axiel7.moelist.ui.generated.resources.play_circle_outline_24
 import com.axiel7.moelist.ui.generated.resources.priority_value
 import com.axiel7.moelist.ui.generated.resources.reread_value
@@ -149,7 +151,6 @@ private fun EditMediaSheetContent(
     onEdited: (BaseMyListStatus?, removed: Boolean) -> Unit,
     onDismissed: () -> Unit
 ) {
-    //val context = LocalContext.current
     val haptic = LocalHapticFeedback.current
     val statusValues = remember(uiState.mediaType) {
         listStatusValues(uiState.mediaType)
@@ -181,11 +182,16 @@ private fun EditMediaSheetContent(
         )
     }
 
-    LaunchedEffect(uiState.message) {
-        if (uiState.message != null) {
-            //TODO context.showToast(uiState.message)
-            event?.onMessageDisplayed()
-        }
+    if (uiState.message != null) {
+        AlertDialog(
+            onDismissRequest = { event?.onMessageDisplayed() },
+            confirmButton = {
+                TextButton(onClick = { event?.onMessageDisplayed() }) {
+                    Text(text = stringResource(UiRes.string.ok))
+                }
+            },
+            text = { Text(text = uiState.message) }
+        )
     }
 
     LaunchedEffect(uiState.updateSuccess) {
