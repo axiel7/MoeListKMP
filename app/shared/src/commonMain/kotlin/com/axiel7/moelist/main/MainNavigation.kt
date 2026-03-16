@@ -1,5 +1,6 @@
 package com.axiel7.moelist.main
 
+import androidx.compose.animation.AnimatedContentTransitionScope
 import androidx.compose.animation.ContentTransform
 import androidx.compose.animation.core.spring
 import androidx.compose.animation.core.tween
@@ -19,7 +20,9 @@ import androidx.lifecycle.viewmodel.navigation3.rememberViewModelStoreNavEntryDe
 import androidx.navigation3.runtime.NavKey
 import androidx.navigation3.runtime.entryProvider
 import androidx.navigation3.runtime.rememberSaveableStateHolderNavEntryDecorator
+import androidx.navigation3.scene.Scene
 import androidx.navigation3.ui.NavDisplay
+import androidx.navigationevent.NavigationEvent.SwipeEdge
 import com.axiel7.moelist.data.model.media.MediaType
 import com.axiel7.moelist.screens.calendar.CalendarView
 import com.axiel7.moelist.screens.details.MediaDetailsView
@@ -64,6 +67,9 @@ private val topNavigationTransitionSpec = NavDisplay.transitionSpec {
     )
 }
 
+expect fun <T : Any> defaultPredictivePopTransitionSpec():
+        AnimatedContentTransitionScope<Scene<T>>.(@SwipeEdge Int) -> ContentTransform
+
 @Composable
 fun MainNavigation(
     topLevelBackStack: TopLevelBackStack<NavKey>,
@@ -97,12 +103,7 @@ fun MainNavigation(
             (slideInHorizontally(initialOffsetX = { -it }) + fadeIn()) togetherWith
                     slideOutHorizontally(targetOffsetX = { it })
         },
-        predictivePopTransitionSpec = {
-            // Slide in from left when navigating back
-            (slideInHorizontally(initialOffsetX = { -it })
-                    + fadeIn(animationSpec = tween())) togetherWith
-                    (slideOutHorizontally(targetOffsetX = { it }))
-        },
+        predictivePopTransitionSpec = defaultPredictivePopTransitionSpec(),
         entryProvider = entryProvider {
             entry<Route.Tab.Home>(
                 metadata = topNavigationTransitionSpec
