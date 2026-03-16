@@ -7,6 +7,7 @@ import androidx.compose.material3.Surface
 import androidx.compose.material3.windowsizeclass.ExperimentalMaterial3WindowSizeClassApi
 import androidx.compose.material3.windowsizeclass.WindowWidthSizeClass
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.derivedStateOf
 import androidx.compose.runtime.getValue
@@ -26,6 +27,7 @@ import com.axiel7.moelist.data.model.ui.ThemeStyle
 import com.axiel7.moelist.main.MainEvent
 import com.axiel7.moelist.main.MainUiState
 import com.axiel7.moelist.main.MainView
+import com.axiel7.moelist.ui.base.BrowserHandler
 import com.axiel7.moelist.ui.base.model.BottomDestination
 import com.axiel7.moelist.ui.base.model.BottomDestination.Companion.isBottomDestination
 import com.axiel7.moelist.ui.base.model.BottomDestination.Companion.toBottomDestinationRoute
@@ -44,6 +46,7 @@ fun App(
     lastTabOpened: Int,
     dynamicColorSeed: Color? = null,
     onLocaleChange: ((AppLanguage) -> Unit),
+    browserHandler: BrowserHandler,
 ) {
     val uriHandler = LocalUriHandler.current
     val startKey = remember(lastTabOpened) {
@@ -94,28 +97,33 @@ fun App(
 
     LaunchedEffect(uiState.language) { onLocaleChange(uiState.language) }
 
-    MoeListTheme(
-        darkTheme = isDarkTheme,
-        dynamicColorSeed = dynamicColorSeed,
-        useBlackColors = uiState.useBlackColors,
-        paletteStyle = uiState.paletteStyle,
+
+    CompositionLocalProvider(
+        BrowserHandler.LocalBrowserHandler provides browserHandler
     ) {
-        val backgroundColor = MaterialTheme.colorScheme.background
-        Surface(
-            modifier = Modifier.fillMaxSize(),
-            color = backgroundColor
+        MoeListTheme(
+            darkTheme = isDarkTheme,
+            dynamicColorSeed = dynamicColorSeed,
+            useBlackColors = uiState.useBlackColors,
+            paletteStyle = uiState.paletteStyle,
         ) {
-            MainView(
-                isCompactScreen = isCompactScreen,
-                isLoggedIn = uiState.isLoggedIn,
-                useListTabs = uiState.useListTabs,
-                isBottomDestination = isBottomDestination,
-                topLevelBackStack = topLevelBackStack,
-                navActionManager = navActionManager,
-                saveLastTab = event::saveLastTab,
-                pinnedNavBar = uiState.pinnedNavBar,
-                profilePicture = uiState.profilePicture,
-            )
+            val backgroundColor = MaterialTheme.colorScheme.background
+            Surface(
+                modifier = Modifier.fillMaxSize(),
+                color = backgroundColor
+            ) {
+                MainView(
+                    isCompactScreen = isCompactScreen,
+                    isLoggedIn = uiState.isLoggedIn,
+                    useListTabs = uiState.useListTabs,
+                    isBottomDestination = isBottomDestination,
+                    topLevelBackStack = topLevelBackStack,
+                    navActionManager = navActionManager,
+                    saveLastTab = event::saveLastTab,
+                    pinnedNavBar = uiState.pinnedNavBar,
+                    profilePicture = uiState.profilePicture,
+                )
+            }
         }
     }
 }

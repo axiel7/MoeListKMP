@@ -10,6 +10,7 @@ import com.axiel7.moelist.data.local.createDataStore
 import com.axiel7.moelist.data.local.getDatabaseBuilder
 import com.axiel7.moelist.data.model.ui.AppLanguage
 import com.axiel7.moelist.main.MainViewModel
+import com.axiel7.moelist.ui.base.IosBrowserHandler
 import com.axiel7.moelist.ui.base.model.BottomDestination.Companion.toBottomDestinationIndex
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.runBlocking
@@ -63,6 +64,7 @@ fun MainViewController() = ComposeUIViewController {
                     "AppleLanguages"
                 )
             }
-        }
+        },
+        browserHandler = remember { IosBrowserHandler() }
     )
 }

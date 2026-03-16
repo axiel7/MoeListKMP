@@ -23,6 +23,7 @@ import androidx.lifecycle.withCreated
 import com.axiel7.moelist.data.model.ui.AppLanguage
 import com.axiel7.moelist.data.model.ui.ThemeStyle
 import com.axiel7.moelist.main.MainViewModel
+import com.axiel7.moelist.ui.base.AndroidBrowserHandler
 import com.axiel7.moelist.ui.base.model.BottomDestination.Companion.toBottomDestinationIndex
 import com.axiel7.moelist.ui.base.navigation.DeepLink
 import kotlinx.coroutines.flow.first
@@ -45,6 +46,7 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         installSplashScreen()
         (codeAuthFlowFactory as? AndroidCodeAuthFlowFactory)?.registerActivity(this)
+        val browserHandler = AndroidBrowserHandler(this)
 
         lifecycleScope.launch {
             lifecycle.withCreated {
@@ -72,6 +74,7 @@ class MainActivity : AppCompatActivity() {
                 windowWidthSizeClass = windowSizeClass.widthSizeClass,
                 lastTabOpened = lastTabOpened,
                 onLocaleChange = ::changeLocale,
+                browserHandler = browserHandler,
             )
 
             DisposableEffect(isDarkTheme) {

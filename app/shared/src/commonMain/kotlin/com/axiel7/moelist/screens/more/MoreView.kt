@@ -24,6 +24,10 @@ import androidx.compose.ui.unit.dp
 import androidx.lifecycle.compose.dropUnlessResumed
 import com.axiel7.moelist.data.utils.MAL_ANNOUNCEMENTS_URL
 import com.axiel7.moelist.data.utils.MAL_NEWS_URL
+import com.axiel7.moelist.screens.more.composables.FeedbackDialog
+import com.axiel7.moelist.screens.more.composables.LogOutDialog
+import com.axiel7.moelist.screens.more.composables.MoreItem
+import com.axiel7.moelist.ui.base.BrowserHandler
 import com.axiel7.moelist.ui.base.navigation.NavActionManager
 import com.axiel7.moelist.ui.composables.collapsable
 import com.axiel7.moelist.ui.generated.resources.UiRes
@@ -44,9 +48,6 @@ import com.axiel7.moelist.ui.generated.resources.mal_announcements
 import com.axiel7.moelist.ui.generated.resources.mal_announcements_summary
 import com.axiel7.moelist.ui.generated.resources.news_summary
 import com.axiel7.moelist.ui.generated.resources.settings
-import com.axiel7.moelist.screens.more.composables.FeedbackDialog
-import com.axiel7.moelist.screens.more.composables.LogOutDialog
-import com.axiel7.moelist.screens.more.composables.MoreItem
 import com.axiel7.moelist.ui.theme.MoeListTheme
 import org.jetbrains.compose.resources.painterResource
 import org.jetbrains.compose.resources.stringResource
@@ -88,6 +89,7 @@ private fun MoreViewContent(
     padding: PaddingValues = PaddingValues(),
 ) {
     val uriHandler = LocalUriHandler.current
+    val browserHandler = BrowserHandler.LocalBrowserHandler.current
     val scrollState = rememberScrollState()
 
     var openFeedbackDialog by remember { mutableStateOf(false) }
@@ -137,8 +139,7 @@ private fun MoreViewContent(
             subtitle = stringResource(UiRes.string.news_summary),
             icon = UiRes.drawable.ic_new_releases,
             onClick = {
-                //TODO context.openCustomTab(MAL_NEWS_URL)
-                uriHandler.openUri(MAL_NEWS_URL)
+                browserHandler.launchUrl(MAL_NEWS_URL)
             }
         )
 
@@ -147,8 +148,7 @@ private fun MoreViewContent(
             subtitle = stringResource(UiRes.string.mal_announcements_summary),
             icon = UiRes.drawable.ic_campaign,
             onClick = {
-                //TODO context.openCustomTab(MAL_ANNOUNCEMENTS_URL)
-                uriHandler.openUri(MAL_ANNOUNCEMENTS_URL)
+                browserHandler.launchUrl(MAL_ANNOUNCEMENTS_URL)
             }
         )
 

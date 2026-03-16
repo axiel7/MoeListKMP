@@ -11,6 +11,7 @@ import androidx.compose.ui.window.rememberWindowState
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.axiel7.moelist.data.model.ui.AppLanguage
 import com.axiel7.moelist.main.MainViewModel
+import com.axiel7.moelist.ui.base.JvmBrowserHandler
 import com.axiel7.moelist.ui.base.model.BottomDestination.Companion.toBottomDestinationIndex
 import com.axiel7.moelist.ui.generated.resources.UiRes
 import com.axiel7.moelist.ui.generated.resources.app_name
@@ -27,6 +28,8 @@ import java.util.Locale
 fun main() {
     val tokenStore = JvmKeyringTokenStore()
     initApp(tokenStore = tokenStore)
+
+    val browserHandler = JvmBrowserHandler()
 
     System.setProperty("apple.awt.application.appearance", "system")
 
@@ -64,7 +67,8 @@ fun main() {
                     val appLocale = if (it == AppLanguage.FOLLOW_SYSTEM) Locale.getDefault()
                     else Locale.forLanguageTag(it.value)
                     Locale.setDefault(appLocale)
-                }
+                },
+                browserHandler = browserHandler,
             )
         }
     }
