@@ -2,27 +2,16 @@ package com.axiel7.moelist.screens.details.composables
 
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.ExperimentalMaterial3ExpressiveApi
-import androidx.compose.material3.Icon
-import androidx.compose.material3.IconButton
-import androidx.compose.material3.IconButtonDefaults
 import androidx.compose.material3.TopAppBar
 import androidx.compose.material3.TopAppBarScrollBehavior
 import androidx.compose.runtime.Composable
-import androidx.compose.ui.platform.LocalInspectionMode
 import androidx.compose.ui.platform.LocalUriHandler
-import com.axiel7.moelist.data.model.anime.AnimeDetails
 import com.axiel7.moelist.data.model.media.MediaStatus
-import com.axiel7.moelist.data.utils.DateUtils.parseDate
+import com.axiel7.moelist.screens.details.MediaDetailsEvent
+import com.axiel7.moelist.screens.details.MediaDetailsUiState
 import com.axiel7.moelist.ui.composables.button.BackIconButton
 import com.axiel7.moelist.ui.composables.button.ShareButton
 import com.axiel7.moelist.ui.composables.button.ViewInBrowserButton
-import com.axiel7.moelist.screens.details.MediaDetailsEvent
-import com.axiel7.moelist.screens.details.MediaDetailsUiState
-import com.axiel7.moelist.ui.generated.resources.UiRes
-import com.axiel7.moelist.ui.generated.resources.round_notifications_active_24
-import com.axiel7.moelist.ui.generated.resources.round_notifications_off_24
-import kotlinx.datetime.LocalTime
-import org.jetbrains.compose.resources.painterResource
 
 @OptIn(ExperimentalMaterial3Api::class,
     ExperimentalMaterial3ExpressiveApi::class
@@ -35,8 +24,7 @@ fun MediaDetailsTopAppBar(
     navigateBack: () -> Unit
 ) {
     val uriHandler = LocalUriHandler.current
-    val isPreview = LocalInspectionMode.current
-    val savedForNotification = when (uiState.mediaDetails?.status) {
+    /*val savedForNotification = when (uiState.mediaDetails?.status) {
         MediaStatus.AIRING -> uiState.notification
         MediaStatus.NOT_AIRED -> uiState.startNotification
         else -> null
@@ -86,7 +74,7 @@ fun MediaDetailsTopAppBar(
     }
 
     //TODO
-    /*val notificationPermission = null
+    val notificationPermission = null
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU && !isPreview) {
         rememberPermissionState(
             permission = Manifest.permission.POST_NOTIFICATIONS,
@@ -100,7 +88,7 @@ fun MediaDetailsTopAppBar(
             BackIconButton(onClick = navigateBack)
         },
         actions = {
-            if (uiState.mediaDetails?.status == MediaStatus.AIRING
+            /*if (uiState.mediaDetails?.status == MediaStatus.AIRING
                 || uiState.mediaDetails?.status == MediaStatus.NOT_AIRED
             ) {
                 IconButton(
@@ -121,7 +109,7 @@ fun MediaDetailsTopAppBar(
                         contentDescription = "notification"
                     )
                 }
-            }
+            }*/
             ViewInBrowserButton(onClick = {
                 uiState.mediaDetails?.malUrl?.let { uriHandler.openUri(it) }
             })

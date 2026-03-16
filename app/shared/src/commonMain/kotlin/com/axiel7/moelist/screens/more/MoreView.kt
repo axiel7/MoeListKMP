@@ -43,8 +43,6 @@ import com.axiel7.moelist.ui.generated.resources.logout_summary
 import com.axiel7.moelist.ui.generated.resources.mal_announcements
 import com.axiel7.moelist.ui.generated.resources.mal_announcements_summary
 import com.axiel7.moelist.ui.generated.resources.news_summary
-import com.axiel7.moelist.ui.generated.resources.notifications
-import com.axiel7.moelist.ui.generated.resources.round_notifications_24
 import com.axiel7.moelist.ui.generated.resources.settings
 import com.axiel7.moelist.screens.more.composables.FeedbackDialog
 import com.axiel7.moelist.screens.more.composables.LogOutDialog
@@ -156,11 +154,12 @@ private fun MoreViewContent(
 
         HorizontalDivider()
 
-        MoreItem(
+        // TODO: notifications
+        /*MoreItem(
             title = stringResource(UiRes.string.notifications),
             icon = UiRes.drawable.round_notifications_24,
             onClick = dropUnlessResumed { navActionManager.toNotifications() }
-        )
+        )*/
 
         MoreItem(
             title = stringResource(UiRes.string.settings),
