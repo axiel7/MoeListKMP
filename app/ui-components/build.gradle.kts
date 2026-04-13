@@ -41,6 +41,7 @@ kotlin {
             api(libs.androidx.navigation3.ui)
             implementation(libs.androidx.lifecycle.runtime.compose)
             implementation(libs.androidx.lifecycle.viewmodel.compose)
+            implementation(libs.androidx.lifecycle.viewmodel.navigation3)
 
             api(libs.material.kolor)
             implementation(libs.placeholder.material3)

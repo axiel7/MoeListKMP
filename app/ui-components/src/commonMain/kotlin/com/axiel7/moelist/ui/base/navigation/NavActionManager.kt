@@ -3,29 +3,22 @@ package com.axiel7.moelist.ui.base.navigation
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.Immutable
 import androidx.compose.runtime.remember
-import androidx.navigation3.runtime.NavKey
-import androidx.navigation3.runtime.rememberNavBackStack
-import androidx.savedstate.serialization.SavedStateConfiguration
 import com.axiel7.moelist.data.model.media.MediaType
-import com.axiel7.moelist.ui.base.model.BottomDestination
-import kotlinx.serialization.ExperimentalSerializationApi
-import kotlinx.serialization.modules.SerializersModule
-import kotlinx.serialization.modules.polymorphic
 
 @Immutable
 class NavActionManager(
-    private val backStack: TopLevelBackStack<NavKey>
+    private val navigator: INavigator,
 ) {
     fun goBack() {
-        backStack.removeLast()
+        navigator.goBack()
     }
 
     fun toMediaRanking(mediaType: MediaType) {
-        backStack.add(Route.MediaRanking(mediaType))
+        navigator.navigate(Route.MediaRanking(mediaType))
     }
 
     fun toMediaDetails(mediaType: MediaType, id: Int) {
-        backStack.add(
+        navigator.navigate(
             Route.MediaDetails(
                 mediaType = mediaType,
                 mediaId = id,
@@ -34,67 +27,55 @@ class NavActionManager(
     }
 
     fun toCalendar() {
-        backStack.add(Route.Calendar)
+        navigator.navigate(Route.Calendar)
     }
 
     fun toSeasonChart() {
-        backStack.add(Route.SeasonChart)
+        navigator.navigate(Route.SeasonChart)
     }
 
     fun toRecommendations() {
-        backStack.add(Route.Recommendations)
+        navigator.navigate(Route.Recommendations)
     }
 
     fun toFullPoster(pictures: List<String>) {
-        backStack.add(Route.FullPoster(pictures))
+        navigator.navigate(Route.FullPoster(pictures))
     }
 
     fun toSettings() {
-        backStack.add(Route.Settings)
+        navigator.navigate(Route.Settings)
     }
 
     fun toListStyleSettings() {
-        backStack.add(Route.ListStyleSettings)
+        navigator.navigate(Route.ListStyleSettings)
     }
 
     fun toNotifications() {
-        backStack.add(Route.Notifications)
+        navigator.navigate(Route.Notifications)
     }
 
     fun toAbout() {
-        backStack.add(Route.About)
+        navigator.navigate(Route.About)
     }
 
     fun toCredits() {
-        backStack.add(Route.Credits)
+        navigator.navigate(Route.Credits)
     }
 
     fun toSearch(mediaType: MediaType) {
-        backStack.add(Route.Search(mediaType))
+        navigator.navigate(Route.Search(mediaType))
     }
 
     fun toProfile() {
-        backStack.add(Route.Profile)
+        navigator.navigate(Route.Profile)
     }
 
     companion object {
         @Composable
         fun rememberNavActionManager(
-            backStack: TopLevelBackStack<NavKey> = TopLevelBackStack(
-                startKey = BottomDestination.Home.route,
-                backStack = rememberNavBackStack(configuration = savedStateConfiguration)
-            )
+            navigator: INavigator = PreviewNavigator()
         ) = remember {
-            NavActionManager(backStack)
-        }
-
-        @OptIn(ExperimentalSerializationApi::class)
-        val savedStateConfiguration = SavedStateConfiguration {
-            serializersModule = SerializersModule {
-                polymorphic(NavKey::class) {
-                    subclassesOfSealed<Route>()
-                }
-            }
+            NavActionManager(navigator)
         }
     }
 }

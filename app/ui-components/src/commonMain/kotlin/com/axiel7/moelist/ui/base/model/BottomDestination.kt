@@ -27,7 +27,7 @@ import org.jetbrains.compose.resources.stringResource
 sealed class BottomDestination(
     val value: String,
     val index: Int,
-    val route: NavKey,
+    val route: Route,
     val title: StringResource,
     val icon: DrawableResource,
     val iconSelected: DrawableResource,
@@ -78,13 +78,15 @@ sealed class BottomDestination(
     )
 
     companion object {
+        val routes = setOf(Home.route, AnimeList.route, MangaList.route, Profile.route, More.route)
+
         val values = listOf(Home, AnimeList, MangaList, More)
 
         val railValues = listOf(Home, AnimeList, MangaList, Profile, More)
 
         fun String.toBottomDestinationIndex() = values.find { it.value == this }?.index
 
-        fun Int.toBottomDestinationRoute(): NavKey? = values.find { it.index == this }?.route
+        fun Int.toBottomDestinationRoute() = values.find { it.index == this }?.route
 
         fun NavKey.isBottomDestination() = values.any { it.route == this }
 

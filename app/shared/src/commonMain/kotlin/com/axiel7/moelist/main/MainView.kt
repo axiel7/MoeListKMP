@@ -25,12 +25,11 @@ import androidx.compose.ui.graphics.graphicsLayer
 import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.platform.LocalLayoutDirection
 import androidx.compose.ui.unit.dp
-import androidx.navigation3.runtime.NavKey
+import com.axiel7.moelist.ui.base.navigation.Navigator
 import com.axiel7.moelist.main.composables.MainBottomNavBar
 import com.axiel7.moelist.main.composables.MainNavigationRail
 import com.axiel7.moelist.main.composables.MainTopAppBar
 import com.axiel7.moelist.ui.base.navigation.NavActionManager
-import com.axiel7.moelist.ui.base.navigation.TopLevelBackStack
 import kotlinx.coroutines.launch
 
 @Composable
@@ -39,7 +38,7 @@ fun MainView(
     isLoggedIn: Boolean,
     useListTabs: Boolean,
     isBottomDestination: Boolean,
-    topLevelBackStack: TopLevelBackStack<NavKey>,
+    navigator: Navigator,
     navActionManager: NavActionManager,
     saveLastTab: (Int) -> Unit,
     pinnedNavBar: Boolean,
@@ -68,7 +67,7 @@ fun MainView(
         bottomBar = {
             if (isCompactScreen) {
                 MainBottomNavBar(
-                    topLevelBackStack = topLevelBackStack,
+                    navigator = navigator,
                     navActionManager = navActionManager,
                     isVisible = isBottomDestination || pinnedNavBar,
                     onItemSelected = saveLastTab,
@@ -90,12 +89,12 @@ fun MainView(
                     .padding(padding)
             ) {
                 MainNavigationRail(
-                    topLevelBackStack = topLevelBackStack,
+                    navigator = navigator,
                     onItemSelected = saveLastTab,
                     modifier = Modifier.safeDrawingPadding(),
                 )
                 MainNavigation(
-                    topLevelBackStack = topLevelBackStack,
+                    navigator = navigator,
                     navActionManager = navActionManager,
                     isLoggedIn = isLoggedIn,
                     isCompactScreen = false,
@@ -113,7 +112,7 @@ fun MainView(
                 topBarHeightPx = density.run { padding.calculateTopPadding().toPx() }
             }
             MainNavigation(
-                topLevelBackStack = topLevelBackStack,
+                navigator = navigator,
                 navActionManager = navActionManager,
                 isLoggedIn = isLoggedIn,
                 isCompactScreen = true,

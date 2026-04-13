@@ -12,18 +12,17 @@ import androidx.compose.material3.NavigationBarItem
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import androidx.navigation3.runtime.NavKey
+import com.axiel7.moelist.ui.base.navigation.Navigator
 import com.axiel7.moelist.data.model.media.MediaType
 import com.axiel7.moelist.ui.base.model.BottomDestination
 import com.axiel7.moelist.ui.base.model.BottomDestination.Companion.Icon
 import com.axiel7.moelist.ui.base.navigation.NavActionManager
-import com.axiel7.moelist.ui.base.navigation.TopLevelBackStack
 import org.jetbrains.compose.resources.stringResource
 
 @OptIn(ExperimentalAnimationApi::class)
 @Composable
 fun MainBottomNavBar(
-    topLevelBackStack: TopLevelBackStack<NavKey>,
+    navigator: Navigator,
     navActionManager: NavActionManager,
     isVisible: Boolean,
     onItemSelected: (Int) -> Unit,
@@ -39,7 +38,7 @@ fun MainBottomNavBar(
         if (isVisible) {
             NavigationBar {
                 BottomDestination.values.forEachIndexed { index, dest ->
-                    val isSelected = dest.route == topLevelBackStack.topLevelKey
+                    val isSelected = dest.route == navigator.state.topLevelRoute
                     NavigationBarItem(
                         icon = { dest.Icon(selected = isSelected) },
                         label = { Text(text = stringResource(dest.title)) },
@@ -63,7 +62,7 @@ fun MainBottomNavBar(
                                 showTopBar()
 
                                 onItemSelected(index)
-                                topLevelBackStack.addTopLevel(dest.route)
+                                navigator.navigate(dest.route)
                             }
                         }
                     )

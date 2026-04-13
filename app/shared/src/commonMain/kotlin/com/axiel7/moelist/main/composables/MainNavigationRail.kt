@@ -12,11 +12,10 @@ import androidx.compose.material3.NavigationRailItem
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import androidx.navigation3.runtime.NavKey
+import com.axiel7.moelist.ui.base.navigation.Navigator
 import com.axiel7.moelist.ui.base.model.BottomDestination
 import com.axiel7.moelist.ui.base.model.BottomDestination.Companion.Icon
 import com.axiel7.moelist.ui.base.navigation.Route
-import com.axiel7.moelist.ui.base.navigation.TopLevelBackStack
 import com.axiel7.moelist.ui.generated.resources.UiRes
 import com.axiel7.moelist.ui.generated.resources.ic_round_search_24
 import com.axiel7.moelist.ui.generated.resources.search
@@ -25,7 +24,7 @@ import org.jetbrains.compose.resources.stringResource
 
 @Composable
 fun MainNavigationRail(
-    topLevelBackStack: TopLevelBackStack<NavKey>,
+    navigator: Navigator,
     onItemSelected: (Int) -> Unit,
     modifier: Modifier = Modifier,
 ) {
@@ -35,7 +34,7 @@ fun MainNavigationRail(
             FloatingActionButton(
                 onClick = {
                     onItemSelected(-1)
-                    topLevelBackStack.addTopLevel(Route.Search())
+                    navigator.navigate(Route.Search())
                 }
             ) {
                 Icon(
@@ -52,12 +51,12 @@ fun MainNavigationRail(
             verticalArrangement = Arrangement.Bottom
         ) {
             BottomDestination.railValues.forEachIndexed { index, dest ->
-                val isSelected = dest.route == topLevelBackStack.topLevelKey
+                val isSelected = dest.route == navigator.state.topLevelRoute
                 NavigationRailItem(
                     selected = isSelected,
                     onClick = {
                         onItemSelected(index)
-                        topLevelBackStack.addTopLevel(dest.route)
+                        navigator.navigate(dest.route)
                     },
                     icon = { dest.Icon(selected = isSelected) },
                     label = { Text(text = stringResource(dest.title)) }

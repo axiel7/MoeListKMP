@@ -15,11 +15,11 @@ import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalUriHandler
-import androidx.navigation3.runtime.rememberNavBackStack
 import coil3.ImageLoader
 import coil3.compose.setSingletonImageLoaderFactory
 import coil3.memory.MemoryCache
 import coil3.request.crossfade
+import com.axiel7.moelist.ui.base.navigation.Navigator
 import com.axiel7.moelist.data.model.media.MediaType
 import com.axiel7.moelist.data.model.ui.AppLanguage
 import com.axiel7.moelist.data.model.ui.TabletMode
@@ -33,8 +33,7 @@ import com.axiel7.moelist.ui.base.model.BottomDestination.Companion.isBottomDest
 import com.axiel7.moelist.ui.base.model.BottomDestination.Companion.toBottomDestinationRoute
 import com.axiel7.moelist.ui.base.navigation.DeepLink
 import com.axiel7.moelist.ui.base.navigation.NavActionManager.Companion.rememberNavActionManager
-import com.axiel7.moelist.ui.base.navigation.NavActionManager.Companion.savedStateConfiguration
-import com.axiel7.moelist.ui.base.navigation.TopLevelBackStack
+import com.axiel7.moelist.ui.base.navigation.rememberNavigationState
 import com.axiel7.moelist.ui.theme.MoeListTheme
 
 @OptIn(ExperimentalMaterial3WindowSizeClassApi::class)
@@ -52,14 +51,12 @@ fun App(
     val startKey = remember(lastTabOpened) {
         lastTabOpened.toBottomDestinationRoute() ?: BottomDestination.Home.route
     }
-    val backStack = rememberNavBackStack(configuration = savedStateConfiguration, startKey)
-    val topLevelBackStack = remember { TopLevelBackStack(startKey, backStack) }
-    val navActionManager = rememberNavActionManager(topLevelBackStack)
+    val navigationState = rememberNavigationState(startKey, BottomDestination.routes)
+    val navigator = remember { Navigator(navigationState) }
     val isBottomDestination by remember {
-        derivedStateOf {
-            topLevelBackStack.backStack.lastOrNull()?.isBottomDestination() == true
-        }
+        derivedStateOf { navigationState.getCurrentRoute()?.isBottomDestination() == true }
     }
+    val navActionManager = rememberNavActionManager(navigator)
     val isCompactScreen = when (uiState.tabletMode) {
         TabletMode.AUTO -> windowWidthSizeClass == WindowWidthSizeClass.Compact
         TabletMode.ALWAYS -> false
@@ -117,7 +114,7 @@ fun App(
                     isLoggedIn = uiState.isLoggedIn,
                     useListTabs = uiState.useListTabs,
                     isBottomDestination = isBottomDestination,
-                    topLevelBackStack = topLevelBackStack,
+                    navigator = navigator,
                     navActionManager = navActionManager,
                     saveLastTab = event::saveLastTab,
                     pinnedNavBar = uiState.pinnedNavBar,
