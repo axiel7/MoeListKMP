@@ -51,6 +51,9 @@ kotlin {
             implementation(libs.compose.components.resources)
             implementation(libs.compose.ui.tooling.preview)
 
+            api(project.dependencies.platform(libs.koin.bom))
+            implementation(libs.koin.compose)
+            implementation(libs.koin.compose.viewmodel)
             api(libs.koin.compose.viewmodel.navigation)
 
             implementation(libs.kotlinx.datetime)
