@@ -18,6 +18,8 @@ import com.axiel7.moelist.data.model.manga.UserMangaList
 import com.axiel7.moelist.data.model.media.Character
 import com.axiel7.moelist.data.model.media.ListStatusDto
 import com.axiel7.moelist.data.model.media.MediaSort
+import com.axiel7.moelist.data.utils.MAL_API_URL
+import com.axiel7.moelist.data.utils.MAL_OAUTH2_URL
 import io.ktor.client.HttpClient
 import io.ktor.client.call.body
 import io.ktor.client.request.delete
@@ -32,11 +34,6 @@ import io.ktor.http.HttpMethod
 import io.ktor.http.Parameters
 
 class Api(private val client: HttpClient) {
-
-    companion object {
-        const val MAL_OAUTH2_URL = "https://myanimelist.net/v1/oauth2/"
-        const val MAL_API_URL = "https://api.myanimelist.net/v2/"
-    }
 
     // Login
 

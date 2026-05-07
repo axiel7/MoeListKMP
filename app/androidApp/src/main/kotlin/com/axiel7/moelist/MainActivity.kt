@@ -18,16 +18,15 @@ import androidx.compose.runtime.getValue
 import androidx.core.os.LocaleListCompat
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
-import androidx.lifecycle.lifecycleScope
-import androidx.lifecycle.withCreated
 import com.axiel7.moelist.data.model.ui.AppLanguage
 import com.axiel7.moelist.data.model.ui.ThemeStyle
+import com.axiel7.moelist.data.utils.MOELIST_OAUTH_STATE
+import com.axiel7.moelist.data.utils.MOELIST_PAGELINK
 import com.axiel7.moelist.main.MainViewModel
 import com.axiel7.moelist.ui.base.AndroidBrowserHandler
 import com.axiel7.moelist.ui.base.model.BottomDestination.Companion.toBottomDestinationIndex
 import com.axiel7.moelist.ui.base.navigation.DeepLink
 import kotlinx.coroutines.flow.first
-import kotlinx.coroutines.launch
 import kotlinx.coroutines.runBlocking
 import org.koin.android.ext.android.inject
 import org.koin.androidx.viewmodel.ext.android.viewModel
@@ -48,12 +47,8 @@ class MainActivity : AppCompatActivity() {
         (codeAuthFlowFactory as? AndroidCodeAuthFlowFactory)?.registerActivity(this)
         val browserHandler = AndroidBrowserHandler(this)
 
-        lifecycleScope.launch {
-            lifecycle.withCreated {
-                viewModel.continueAuthFlow()
-            }
-        }
-
+        viewModel.migrateLegacyData()
+        checkLoginIntent(intent)
         viewModel.setDeepLink(findDeepLink(intent))
 
         val lastTabOpened = findLastTabOpened()
@@ -94,7 +89,20 @@ class MainActivity : AppCompatActivity() {
 
     override fun onNewIntent(intent: Intent) {
         super.onNewIntent(intent)
+        checkLoginIntent(intent)
         viewModel.setDeepLink(findDeepLink(intent))
+    }
+
+    private fun checkLoginIntent(intent: Intent?) {
+        intent?.data?.let { data ->
+            if (data.toString().startsWith(MOELIST_PAGELINK)
+                && data.getQueryParameter("state") == MOELIST_OAUTH_STATE
+            ) {
+                data.getQueryParameter("code")?.let {
+                    viewModel.getAndSaveAccessTokens(it)
+                }
+            }
+        }
     }
 
     private fun findDeepLink(intent: Intent): DeepLink<*>? {
@@ -147,8 +155,9 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun changeLocale(language: AppLanguage) {
-        val appLocale = if (language == AppLanguage.FOLLOW_SYSTEM) LocaleListCompat.getEmptyLocaleList()
-        else LocaleListCompat.forLanguageTags(language.value)
+        val appLocale =
+            if (language == AppLanguage.FOLLOW_SYSTEM) LocaleListCompat.getEmptyLocaleList()
+            else LocaleListCompat.forLanguageTags(language.value)
         AppCompatDelegate.setApplicationLocales(appLocale)
     }
 }

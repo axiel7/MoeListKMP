@@ -15,6 +15,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import com.axiel7.moelist.ui.base.BrowserHandler
 import com.axiel7.moelist.ui.generated.resources.UiRes
 import com.axiel7.moelist.ui.generated.resources.login
 import com.axiel7.moelist.ui.generated.resources.please_login_to_use_this_feature
@@ -41,6 +42,7 @@ private fun LoginContent(
     event: LoginEvent? = null,
     modifier: Modifier = Modifier
 ) {
+    val browserHandler = BrowserHandler.LocalBrowserHandler.current
     Scaffold(
         modifier = modifier.fillMaxSize(),
     ) { padding ->
@@ -57,7 +59,7 @@ private fun LoginContent(
             )
 
             Button(
-                onClick = { event?.openLogin() },
+                onClick = { event?.openLogin(browserHandler) },
                 modifier = Modifier.padding(bottom = 24.dp),
                 shapes = ButtonDefaults.shapes(),
             ) {

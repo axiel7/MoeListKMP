@@ -6,6 +6,7 @@ import androidx.datastore.preferences.core.booleanPreferencesKey
 import androidx.datastore.preferences.core.edit
 import androidx.datastore.preferences.core.intPreferencesKey
 import androidx.datastore.preferences.core.stringPreferencesKey
+import com.axiel7.moelist.data.model.AccessToken
 import com.axiel7.moelist.data.model.media.ListStatusDto
 import com.axiel7.moelist.data.model.media.MediaSort
 import com.axiel7.moelist.data.model.media.TitleLanguage
@@ -19,15 +20,25 @@ import com.axiel7.moelist.data.utils.getValue
 import com.axiel7.moelist.data.utils.setValue
 import com.materialkolor.PaletteStyle
 import kotlinx.coroutines.flow.first
+import kotlinx.coroutines.flow.firstOrNull
 import kotlinx.coroutines.flow.map
 
 class DefaultPreferencesRepository(
     private val dataStore: DataStore<Preferences>
 ) {
-    suspend fun removeTokens() {
+    suspend fun getLegacyTokens(): AccessToken? {
+        return dataStore.getValue(LEGACY_ACCESS_TOKEN_KEY).firstOrNull()?.let { accessToken ->
+            AccessToken(
+                accessToken = accessToken,
+                refreshToken = dataStore.getValue(LEGACY_REFRESH_TOKEN_KEY).firstOrNull()
+            )
+        }
+    }
+
+    suspend fun removeLegacyTokens() {
         dataStore.edit {
-            it.remove(OLD_ACCESS_TOKEN_KEY)
-            it.remove(OLD_REFRESH_TOKEN_KEY)
+            it.remove(LEGACY_ACCESS_TOKEN_KEY)
+            it.remove(LEGACY_REFRESH_TOKEN_KEY)
         }
     }
 
@@ -245,8 +256,8 @@ class DefaultPreferencesRepository(
 
     companion object {
 
-        private val OLD_ACCESS_TOKEN_KEY = stringPreferencesKey("access_token")
-        private val OLD_REFRESH_TOKEN_KEY = stringPreferencesKey("refresh_token")
+        private val LEGACY_ACCESS_TOKEN_KEY = stringPreferencesKey("access_token")
+        private val LEGACY_REFRESH_TOKEN_KEY = stringPreferencesKey("refresh_token")
 
         private val NSFW_KEY = booleanPreferencesKey("nsfw")
         private val HIDE_SCORES_KEY = booleanPreferencesKey("hide_scores")

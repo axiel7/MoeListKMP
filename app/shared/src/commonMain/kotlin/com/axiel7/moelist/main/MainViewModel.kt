@@ -3,6 +3,7 @@ package com.axiel7.moelist.main
 import androidx.lifecycle.viewModelScope
 import com.axiel7.moelist.data.network.OAuthService
 import com.axiel7.moelist.data.repository.DefaultPreferencesRepository
+import com.axiel7.moelist.data.repository.LoginRepository
 import com.axiel7.moelist.ui.base.navigation.DeepLink
 import com.axiel7.moelist.ui.base.viewmodel.BaseViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -15,6 +16,7 @@ import org.publicvalue.multiplatform.oidc.ExperimentalOpenIdConnect
 @OptIn(ExperimentalOpenIdConnect::class)
 class MainViewModel(
     private val oAuthService: OAuthService,
+    private val loginRepository: LoginRepository,
     private val defaultPreferencesRepository: DefaultPreferencesRepository
 ) : BaseViewModel<MainUiState>(), MainEvent {
 
@@ -30,11 +32,21 @@ class MainViewModel(
         }
     }
 
-    fun continueAuthFlow() {
+    fun getAndSaveAccessTokens(code: String) {
         viewModelScope.launch {
-            if (oAuthService.canContinueLogin()) {
-                oAuthService.continueLogin()
+            loginRepository.getAccessToken(code).data?.let { accessToken ->
+                oAuthService.tokenStore.saveTokens(
+                    accessToken = accessToken.accessToken ?: return@launch,
+                    refreshToken = accessToken.refreshToken,
+                    idToken = null,
+                )
             }
+        }
+    }
+
+    fun migrateLegacyData() {
+        viewModelScope.launch {
+            loginRepository.migrateLegacyData()
         }
     }
 
