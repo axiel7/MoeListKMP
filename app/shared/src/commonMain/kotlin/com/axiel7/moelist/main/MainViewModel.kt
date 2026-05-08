@@ -15,7 +15,7 @@ import org.publicvalue.multiplatform.oidc.ExperimentalOpenIdConnect
 
 @OptIn(ExperimentalOpenIdConnect::class)
 class MainViewModel(
-    private val oAuthService: OAuthService,
+    oAuthService: OAuthService,
     private val loginRepository: LoginRepository,
     private val defaultPreferencesRepository: DefaultPreferencesRepository
 ) : BaseViewModel<MainUiState>(), MainEvent {
@@ -29,18 +29,6 @@ class MainViewModel(
     override fun saveLastTab(value: Int) {
         viewModelScope.launch {
             defaultPreferencesRepository.setLastTab(value)
-        }
-    }
-
-    fun getAndSaveAccessTokens(code: String) {
-        viewModelScope.launch {
-            loginRepository.getAccessToken(code).data?.let { accessToken ->
-                oAuthService.tokenStore.saveTokens(
-                    accessToken = accessToken.accessToken ?: return@launch,
-                    refreshToken = accessToken.refreshToken,
-                    idToken = null,
-                )
-            }
         }
     }
 

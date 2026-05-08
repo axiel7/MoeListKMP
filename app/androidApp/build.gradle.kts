@@ -33,7 +33,7 @@ android {
         versionCode = 1
         versionName = "1.0"
         addManifestPlaceholders(
-            mapOf("oidcRedirectScheme" to "moelist://moelist.page.link")
+            mapOf("oidcRedirectScheme" to "moelist")
         )
     }
 

@@ -1,7 +1,6 @@
 package com.axiel7.moelist.data.network
 
 import androidx.annotation.IntRange
-import com.axiel7.moelist.data.model.AccessToken
 import com.axiel7.moelist.data.model.Response
 import com.axiel7.moelist.data.model.User
 import com.axiel7.moelist.data.model.anime.AnimeDetails
@@ -19,14 +18,12 @@ import com.axiel7.moelist.data.model.media.Character
 import com.axiel7.moelist.data.model.media.ListStatusDto
 import com.axiel7.moelist.data.model.media.MediaSort
 import com.axiel7.moelist.data.utils.MAL_API_URL
-import com.axiel7.moelist.data.utils.MAL_OAUTH2_URL
 import io.ktor.client.HttpClient
 import io.ktor.client.call.body
 import io.ktor.client.request.delete
 import io.ktor.client.request.forms.FormDataContent
 import io.ktor.client.request.get
 import io.ktor.client.request.parameter
-import io.ktor.client.request.post
 import io.ktor.client.request.request
 import io.ktor.client.request.setBody
 import io.ktor.client.statement.HttpResponse
@@ -34,33 +31,6 @@ import io.ktor.http.HttpMethod
 import io.ktor.http.Parameters
 
 class Api(private val client: HttpClient) {
-
-    // Login
-
-    suspend fun getAccessToken(
-        clientId: String,
-        code: String,
-        codeVerifier: String,
-        grantType: String
-    ): AccessToken = client.post("${MAL_OAUTH2_URL}token") {
-        setBody(FormDataContent(Parameters.build {
-            append("client_id", clientId)
-            append("code", code)
-            append("code_verifier", codeVerifier)
-            append("grant_type", grantType)
-        }))
-    }.body()
-
-    suspend fun getAccessToken(
-        clientId: String,
-        refreshToken: String
-    ): AccessToken = client.post("${MAL_OAUTH2_URL}token") {
-        setBody(FormDataContent(Parameters.build {
-            append("client_id", clientId)
-            append("refresh_token", refreshToken)
-            append("grant_type", "refresh_token")
-        }))
-    }.body()
 
     // Anime
 
