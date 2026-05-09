@@ -43,6 +43,7 @@ import com.axiel7.moelist.screens.home.composables.HomeCard
 import com.axiel7.moelist.ui.base.model.ListStatus.Companion.toBo
 import com.axiel7.moelist.ui.base.navigation.NavActionManager
 import com.axiel7.moelist.ui.composables.HeaderHorizontalList
+import com.axiel7.moelist.ui.composables.PlatformHorizontalScrollbar
 import com.axiel7.moelist.ui.composables.collapsable
 import com.axiel7.moelist.ui.composables.media.MEDIA_ITEM_VERTICAL_HEIGHT
 import com.axiel7.moelist.ui.composables.media.MEDIA_POSTER_SMALL_HEIGHT
@@ -225,32 +226,36 @@ private fun HomeViewContent(
                     textAlign = TextAlign.Center
                 )
             }
-        } else LazyRow(
-            modifier = Modifier
-                .sizeIn(minHeight = MEDIA_POSTER_SMALL_HEIGHT.dp),
-            state = airingListState,
-            contentPadding = PaddingValues(horizontal = 8.dp),
-            flingBehavior = rememberSnapFlingBehavior(lazyListState = airingListState)
-        ) {
-            items(
-                items = uiState.todayAnimes,
-                key = { it.node.id },
-                contentType = { it.node }
+        } else {
+            LazyRow(
+                modifier = Modifier
+                    .sizeIn(minHeight = MEDIA_POSTER_SMALL_HEIGHT.dp),
+                state = airingListState,
+                contentPadding = PaddingValues(horizontal = 8.dp),
+                flingBehavior = rememberSnapFlingBehavior(lazyListState = airingListState)
             ) {
-                AiringAnimeHorizontalItem(
-                    item = it,
-                    preferredTitle = uiState.preferredTitle,
-                    hideScore = uiState.hideScore,
-                    onClick = dropUnlessResumed {
-                        navActionManager.toMediaDetails(MediaType.ANIME, it.node.id)
+                items(
+                    items = uiState.todayAnimes,
+                    key = { it.node.id },
+                    contentType = { it.node }
+                ) {
+                    AiringAnimeHorizontalItem(
+                        item = it,
+                        preferredTitle = uiState.preferredTitle,
+                        hideScore = uiState.hideScore,
+                        onClick = dropUnlessResumed {
+                            navActionManager.toMediaDetails(MediaType.ANIME, it.node.id)
+                        }
+                    )
+                }
+                if (uiState.isLoading) {
+                    items(5) {
+                        MediaItemDetailedPlaceholder()
                     }
-                )
-            }
-            if (uiState.isLoading) {
-                items(5) {
-                    MediaItemDetailedPlaceholder()
                 }
             }
+
+            PlatformHorizontalScrollbar(scrollState = airingListState)
         }
 
         // This Season
@@ -270,50 +275,54 @@ private fun HomeViewContent(
                     textAlign = TextAlign.Center
                 )
             }
-        } else LazyRow(
-            modifier = Modifier
-                .sizeIn(minHeight = MEDIA_ITEM_VERTICAL_HEIGHT.dp),
-            state = seasonListState,
-            contentPadding = PaddingValues(horizontal = 8.dp),
-            flingBehavior = rememberSnapFlingBehavior(lazyListState = seasonListState)
-        ) {
-            items(
-                items = uiState.seasonAnimes,
-                key = { it.node.id },
-                contentType = { it.node }
+        } else {
+            LazyRow(
+                modifier = Modifier
+                    .sizeIn(minHeight = MEDIA_ITEM_VERTICAL_HEIGHT.dp),
+                state = seasonListState,
+                contentPadding = PaddingValues(horizontal = 8.dp),
+                flingBehavior = rememberSnapFlingBehavior(lazyListState = seasonListState)
             ) {
-                MediaItemVertical(
-                    imageUrl = it.node.mainPicture?.large,
-                    title = it.node.title(uiState.preferredTitle),
-                    modifier = Modifier.padding(horizontal = 8.dp),
-                    badgeContent = it.node.myListStatus?.status?.toBo()?.let { status ->
-                        {
-                            Icon(
-                                painter = painterResource(status.icon),
-                                contentDescription = status.localized(),
-                                tint = MaterialTheme.colorScheme.onPrimaryContainer
-                            )
+                items(
+                    items = uiState.seasonAnimes,
+                    key = { it.node.id },
+                    contentType = { it.node }
+                ) {
+                    MediaItemVertical(
+                        imageUrl = it.node.mainPicture?.large,
+                        title = it.node.title(uiState.preferredTitle),
+                        modifier = Modifier.padding(horizontal = 8.dp),
+                        badgeContent = it.node.myListStatus?.status?.toBo()?.let { status ->
+                            {
+                                Icon(
+                                    painter = painterResource(status.icon),
+                                    contentDescription = status.localized(),
+                                    tint = MaterialTheme.colorScheme.onPrimaryContainer
+                                )
+                            }
+                        },
+                        subtitle = if (!uiState.hideScore) {
+                            {
+                                SmallScoreIndicator(
+                                    score = it.node.mean,
+                                    fontSize = 13.sp
+                                )
+                            }
+                        } else null,
+                        minLines = 2,
+                        onClick = dropUnlessResumed {
+                            navActionManager.toMediaDetails(MediaType.ANIME, it.node.id)
                         }
-                    },
-                    subtitle = if (!uiState.hideScore) {
-                        {
-                            SmallScoreIndicator(
-                                score = it.node.mean,
-                                fontSize = 13.sp
-                            )
-                        }
-                    } else null,
-                    minLines = 2,
-                    onClick = dropUnlessResumed {
-                        navActionManager.toMediaDetails(MediaType.ANIME, it.node.id)
+                    )
+                }
+                if (uiState.isLoading) {
+                    items(10) {
+                        MediaItemVerticalPlaceholder()
                     }
-                )
-            }
-            if (uiState.isLoading) {
-                items(10) {
-                    MediaItemVerticalPlaceholder()
                 }
             }
+
+            PlatformHorizontalScrollbar(scrollState = seasonListState)
         }
 
         //Recommended
@@ -345,41 +354,45 @@ private fun HomeViewContent(
                     textAlign = TextAlign.Center
                 )
             }
-        } else LazyRow(
-            modifier = Modifier
-                .sizeIn(minHeight = MEDIA_ITEM_VERTICAL_HEIGHT.dp),
-            state = recommendListState,
-            contentPadding = PaddingValues(horizontal = 8.dp),
-            flingBehavior = rememberSnapFlingBehavior(lazyListState = recommendListState)
-        ) {
-            items(
-                items = uiState.recommendedAnimes,
-                key = { it.node.id },
-                contentType = { it.node }
+        } else {
+            LazyRow(
+                modifier = Modifier
+                    .sizeIn(minHeight = MEDIA_ITEM_VERTICAL_HEIGHT.dp),
+                state = recommendListState,
+                contentPadding = PaddingValues(horizontal = 8.dp),
+                flingBehavior = rememberSnapFlingBehavior(lazyListState = recommendListState)
             ) {
-                MediaItemVertical(
-                    imageUrl = it.node.mainPicture?.large,
-                    title = it.node.title(uiState.preferredTitle),
-                    modifier = Modifier.padding(horizontal = 8.dp),
-                    subtitle = if (!uiState.hideScore) {
-                        {
-                            SmallScoreIndicator(
-                                score = it.node.mean,
-                                fontSize = 13.sp
-                            )
+                items(
+                    items = uiState.recommendedAnimes,
+                    key = { it.node.id },
+                    contentType = { it.node }
+                ) {
+                    MediaItemVertical(
+                        imageUrl = it.node.mainPicture?.large,
+                        title = it.node.title(uiState.preferredTitle),
+                        modifier = Modifier.padding(horizontal = 8.dp),
+                        subtitle = if (!uiState.hideScore) {
+                            {
+                                SmallScoreIndicator(
+                                    score = it.node.mean,
+                                    fontSize = 13.sp
+                                )
+                            }
+                        } else null,
+                        minLines = 2,
+                        onClick = dropUnlessResumed {
+                            navActionManager.toMediaDetails(MediaType.ANIME, it.node.id)
                         }
-                    } else null,
-                    minLines = 2,
-                    onClick = dropUnlessResumed {
-                        navActionManager.toMediaDetails(MediaType.ANIME, it.node.id)
+                    )
+                }
+                if (uiState.isLoading) {
+                    items(10) {
+                        MediaItemVerticalPlaceholder()
                     }
-                )
-            }
-            if (uiState.isLoading) {
-                items(10) {
-                    MediaItemVerticalPlaceholder()
                 }
             }
+
+            PlatformHorizontalScrollbar(scrollState = recommendListState)
         }
 
         Row(

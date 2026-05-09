@@ -17,6 +17,7 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.lazy.items
+import androidx.compose.foundation.lazy.rememberLazyListState
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.text.selection.SelectionContainer
 import androidx.compose.foundation.verticalScroll
@@ -82,6 +83,7 @@ import com.axiel7.moelist.ui.base.model.toStats
 import com.axiel7.moelist.ui.base.navigation.NavActionManager
 import com.axiel7.moelist.ui.base.navigation.Route
 import com.axiel7.moelist.ui.composables.InfoTitle
+import com.axiel7.moelist.ui.composables.PlatformHorizontalScrollbar
 import com.axiel7.moelist.ui.composables.TextIconHorizontal
 import com.axiel7.moelist.ui.composables.TextIconVertical
 import com.axiel7.moelist.ui.composables.button.CopyButton
@@ -546,8 +548,10 @@ private fun MediaDetailsContent(
 
                 InfoTitle(text = stringResource(UiRes.string.characters))
                 if (uiState.characters.isNotEmpty() || uiState.isLoadingCharacters) {
+                    val charactersListState = rememberLazyListState()
                     LazyRow(
                         modifier = Modifier.padding(top = 8.dp),
+                        state = charactersListState,
                         contentPadding = PaddingValues(horizontal = 16.dp)
                     ) {
                         items(
@@ -575,6 +579,7 @@ private fun MediaDetailsContent(
                             }
                         }
                     }
+                    PlatformHorizontalScrollbar(scrollState = charactersListState)
                 } else {
                     TextButton(
                         onClick = {
@@ -634,9 +639,11 @@ private fun MediaDetailsContent(
 
             //Related
             if (uiState.relatedAnime.isNotEmpty()) {
+                val relatedAnimeListState = rememberLazyListState()
                 InfoTitle(text = stringResource(UiRes.string.related_anime))
                 LazyRow(
                     modifier = Modifier.padding(top = 8.dp),
+                    state = relatedAnimeListState,
                     contentPadding = PaddingValues(horizontal = 16.dp)
                 ) {
                     items(uiState.relatedAnime) { item ->
@@ -658,11 +665,14 @@ private fun MediaDetailsContent(
                         )
                     }
                 }
+                PlatformHorizontalScrollbar(scrollState = relatedAnimeListState)
             }
             if (uiState.relatedManga.isNotEmpty()) {
+                val relatedMangaListState = rememberLazyListState()
                 InfoTitle(text = stringResource(UiRes.string.related_manga))
                 LazyRow(
                     modifier = Modifier.padding(top = 8.dp),
+                    state = relatedMangaListState,
                     contentPadding = PaddingValues(horizontal = 16.dp)
                 ) {
                     items(uiState.relatedManga) { item ->
@@ -684,13 +694,16 @@ private fun MediaDetailsContent(
                         )
                     }
                 }
+                PlatformHorizontalScrollbar(scrollState = relatedMangaListState)
             }
 
             //Recommendations
             if (uiState.recommendations.isNotEmpty()) {
+                val recommendationsListState = rememberLazyListState()
                 InfoTitle(text = stringResource(UiRes.string.recommendations))
                 LazyRow(
                     modifier = Modifier.padding(vertical = 8.dp),
+                    state = recommendationsListState,
                     contentPadding = PaddingValues(horizontal = 16.dp)
                 ) {
                     items(uiState.recommendations) { item ->
@@ -717,6 +730,7 @@ private fun MediaDetailsContent(
                         )
                     }
                 }
+                PlatformHorizontalScrollbar(scrollState = recommendationsListState)
             }
 
             (uiState.mediaDetails as? AnimeDetails)?.statistics?.status?.toStats()?.let { stats ->

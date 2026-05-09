@@ -47,6 +47,7 @@ import com.axiel7.moelist.ui.generated.resources.new_anime
 import com.axiel7.moelist.ui.generated.resources.sort_by
 import com.axiel7.moelist.screens.season.SeasonChartEvent
 import com.axiel7.moelist.screens.season.SeasonChartUiState
+import com.axiel7.moelist.ui.composables.PlatformHorizontalScrollbar
 import com.axiel7.moelist.ui.theme.MoeListTheme
 import org.jetbrains.compose.resources.painterResource
 import org.jetbrains.compose.resources.stringResource
@@ -152,6 +153,8 @@ fun SeasonChartFilterSheet(
                     )
                 }
             }
+
+            PlatformHorizontalScrollbar(scrollState = scrollState)
 
             Row(
                 modifier = Modifier

@@ -8,6 +8,7 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.lazy.items
+import androidx.compose.foundation.lazy.rememberLazyListState
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -19,6 +20,7 @@ import androidx.compose.ui.unit.dp
 import com.axiel7.moelist.data.model.base.LocalizableAndColorable
 import com.axiel7.moelist.data.utils.NumExtensions.format
 import com.axiel7.moelist.ui.base.model.Stat
+import com.axiel7.moelist.ui.composables.PlatformHorizontalScrollbar
 import com.axiel7.moelist.ui.composables.Rectangle
 import com.axiel7.moelist.ui.generated.resources.UiRes
 import com.axiel7.moelist.ui.generated.resources.total_entries
@@ -33,6 +35,7 @@ fun <T : LocalizableAndColorable> HorizontalStatsBar(
         stats.map { it.value }.sum()
     }
     val scope = rememberCoroutineScope()
+    val listState = rememberLazyListState()
 
     BoxWithConstraints(
         modifier = Modifier.fillMaxWidth()
@@ -40,6 +43,7 @@ fun <T : LocalizableAndColorable> HorizontalStatsBar(
         val maxWidth = maxWidth.value
         Column {
             LazyRow(
+                state = listState,
                 contentPadding = PaddingValues(8.dp)
             ) {
                 items(stats) {
@@ -53,6 +57,8 @@ fun <T : LocalizableAndColorable> HorizontalStatsBar(
                     )
                 }
             }
+
+            PlatformHorizontalScrollbar(scrollState = listState)
 
             Row {
                 stats.forEach {
