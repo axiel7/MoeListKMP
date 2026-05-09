@@ -9,8 +9,8 @@
 # create private.properties file with the client secret id for Xcode Cloud builds
 if [[ -n $MOELIST_CLIENT_SECRET_ID ]];
 then
-    touch private.properties
+    touch /Volumes/workspace/repository/private.properties
     echo """
     CLIENT_SECRET=${MOELIST_CLIENT_SECRET_ID}
-    """ > private.properties
+    """ > /Volumes/workspace/repository/private.properties
 fi
