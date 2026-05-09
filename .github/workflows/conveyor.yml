@@ -43,7 +43,7 @@ jobs:
       run: ./gradlew :app:desktopApp:jar
 
     - name: Run Conveyor     
-      uses: hydraulic-software/conveyor/actions/build@v17.0
+      uses: hydraulic-software/conveyor/actions/build@v22.0
       with:
         command: make copied-site
         signing_key: ${{ secrets.SIGNING_KEY }}
