@@ -48,6 +48,8 @@ jobs:
         command: make copied-site
         signing_key: ${{ secrets.SIGNING_KEY }}
         agree_to_license: 1
+      env:
+        GH_TOKEN: ${{ secrets.GH_TOKEN }}
 
     - name: Setup AppImage AppDir
       run: cp ./moelist.desktop ./output && mv ./output ./AppDir
