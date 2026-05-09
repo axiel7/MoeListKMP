@@ -1,18 +1,16 @@
 #!/bin/sh
 
 #  ci_pre_xcodebuild.sh
-#  AniHyou
+#  iosApp
 #
-#  Created by Axel Lopez on 26/07/2023.
-#  
+#  Created by Axel Lopez on 09/05/2026.
+#
 
-# create Config.xcconfig file with the client id for Xcode Cloud builds
-if [[ -n $ANILIST_CLIENT_ID ]];
+# create private.properties file with the client secret id for Xcode Cloud builds
+if [[ -n $MOELIST_CLIENT_SECRET_ID ]];
 then
-    cd ../AniHyou
-    touch Config.xcconfig
+    touch private.properties
     echo """
-    ANILIST_CLIENT_ID=${ANILIST_CLIENT_ID}
-    MAL_CLIENT_ID=${MAL_CLIENT_ID}
-    """ > Config.xcconfig
+    CLIENT_SECRET=${MOELIST_CLIENT_SECRET_ID}
+    """ > private.properties
 fi

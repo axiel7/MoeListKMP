@@ -29,6 +29,11 @@
 			path = iosApp;
 			sourceTree = "<group>";
 		};
+		480B50F72FAF379A003F72DF /* ci_scripts */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = ci_scripts;
+			sourceTree = "<group>";
+		};
 		7D577A011F1294B421E502C2 /* Configuration */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
 			path = Configuration;
@@ -58,6 +63,7 @@
 		CB53F9F433F6BD8529C3F761 = {
 			isa = PBXGroup;
 			children = (
+				480B50F72FAF379A003F72DF /* ci_scripts */,
 				7D577A011F1294B421E502C2 /* Configuration */,
 				1F6EBEA68273EABFEDB4191A /* iosApp */,
 				9C83ABF51D7CFA9524C90037 /* Products */,
@@ -82,6 +88,7 @@
 			);
 			fileSystemSynchronizedGroups = (
 				1F6EBEA68273EABFEDB4191A /* iosApp */,
+				480B50F72FAF379A003F72DF /* ci_scripts */,
 			);
 			name = iosApp;
 			packageProductDependencies = (
