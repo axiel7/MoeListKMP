@@ -19,3 +19,4 @@ captures
 node_modules/
 gradle/gradle-daemon-jvm.properties
 private.properties
+output

@@ -33,6 +33,8 @@ placeholder-material3 = "1.0.12"
 oidc = "0.16.5"
 java-keyring = "1.0.4"
 buildConfig = "6.0.9"
+conveyor = "2.0"
+conveyorControl = "1.1"
 
 [libraries]
 kotlin-test = { module = "org.jetbrains.kotlin:kotlin-test", version.ref = "kotlin" }
@@ -83,6 +85,7 @@ androidx-room-compiler = { module = "androidx.room:room-compiler", version.ref =
 oidc-appsupport = { module = "io.github.kalinjul.kotlin.multiplatform:oidc-appsupport", version.ref = "oidc" }
 oidc-ktor = { module = "io.github.kalinjul.kotlin.multiplatform:oidc-ktor", version.ref = "oidc" }
 java-keyring = { module = "com.github.javakeyring:java-keyring", version.ref = "java-keyring" }
+conveyor-control = { group = "dev.hydraulic.conveyor", name = "conveyor-control", version.ref = "conveyorControl" }
 
 [plugins]
 androidApplication = { id = "com.android.application", version.ref = "agp" }
@@ -97,3 +100,4 @@ kotlinSerialization = { id = "org.jetbrains.kotlin.plugin.serialization", versio
 ksp = { id = "com.google.devtools.ksp", version.ref = "ksp" }
 androidx-room = { id = "androidx.room", version.ref = "room" }
 buildConfig = { id = "com.github.gmazzo.buildconfig", version.ref = "buildConfig" }
+conveyor = { id = "dev.hydraulic.conveyor", version.ref = "conveyor" }
