@@ -102,7 +102,7 @@ enum class ListStatus(
     @Composable
     override fun primaryColor() = when (this) {
         WATCHING, READING -> if (isSystemInDarkTheme()) stat_current_dark else stat_current_light
-        PLAN_TO_WATCH, PLAN_TO_READ -> MaterialTheme.colorScheme.outline
+        PLAN_TO_WATCH, PLAN_TO_READ -> MaterialTheme.colorScheme.surfaceVariant
         COMPLETED -> if (isSystemInDarkTheme()) stat_completed_dark else stat_completed_light
         ON_HOLD -> if (isSystemInDarkTheme()) stat_on_hold_dark else stat_on_hold_light
         DROPPED -> if (isSystemInDarkTheme()) stat_dropped_dark else stat_dropped_light
@@ -111,7 +111,7 @@ enum class ListStatus(
     @Composable
     override fun onPrimaryColor() = when (this) {
         WATCHING, READING -> if (isSystemInDarkTheme()) stat_current_content_dark else stat_current_content_light
-        PLAN_TO_WATCH, PLAN_TO_READ -> if (isSystemInDarkTheme()) MaterialTheme.colorScheme.onSurface else MaterialTheme.colorScheme.inverseOnSurface
+        PLAN_TO_WATCH, PLAN_TO_READ -> MaterialTheme.colorScheme.onSurfaceVariant
         COMPLETED -> if (isSystemInDarkTheme()) stat_completed_content_dark else stat_completed_content_light
         ON_HOLD -> if (isSystemInDarkTheme()) stat_on_hold_content_dark else stat_on_hold_content_light
         DROPPED -> if (isSystemInDarkTheme()) stat_dropped_content_dark else stat_dropped_content_light
