@@ -40,7 +40,7 @@ jobs:
       run: chmod +x ./gradlew
 
     - name: Build .jar with Gradle Wrapper
-      run: ./gradlew :app:desktopApp:jvmJar
+      run: ./gradlew :app:desktopApp:jar
 
     - name: Run Conveyor     
       uses: hydraulic-software/conveyor/actions/build@v17.0
