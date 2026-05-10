@@ -1,4 +1,5 @@
 import org.jetbrains.compose.desktop.application.dsl.TargetFormat
+import java.util.Properties
 
 plugins {
     alias(libs.plugins.kotlinJvm)
@@ -7,7 +8,11 @@ plugins {
     alias(libs.plugins.conveyor)
 }
 
-version = "1.0"
+val versionProps = Properties().also {
+    it.load(project.rootProject.file("version.properties").reader())
+}
+
+version = versionProps.getProperty("name")
 
 kotlin {
     jvmToolchain {
@@ -38,7 +43,7 @@ compose.desktop {
         nativeDistributions {
             targetFormats(TargetFormat.Dmg, TargetFormat.Msi, TargetFormat.AppImage)
             packageName = "moelist"
-            packageVersion = "1.0.0"
+            packageVersion = versionProps.getProperty("name")
             description = "A Multiplatform MyAnimeList client"
             copyright = "© 2026 axiel7"
 

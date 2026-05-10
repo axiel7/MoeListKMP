@@ -1,4 +1,5 @@
 import org.jetbrains.kotlin.gradle.dsl.JvmTarget
+import java.util.Properties
 
 plugins {
    alias(libs.plugins.androidApplication)
@@ -22,6 +23,10 @@ dependencies {
     testImplementation(libs.junit)
 }
 
+val versionProps = Properties().also {
+    it.load(project.rootProject.file("version.properties").reader())
+}
+
 android {
     namespace = "com.axiel7.moelist"
     compileSdk = libs.versions.android.compileSdk.get().toInt()
@@ -30,8 +35,8 @@ android {
         applicationId = "com.axiel7.moelist"
         minSdk = libs.versions.android.minSdk.get().toInt()
         targetSdk = libs.versions.android.targetSdk.get().toInt()
-        versionCode = 1
-        versionName = "1.0"
+        versionCode = versionProps.getProperty("code").toInt()
+        versionName = versionProps.getProperty("name")
         addManifestPlaceholders(
             mapOf("oidcRedirectScheme" to "moelist")
         )
@@ -55,6 +60,14 @@ android {
             )
         }
     }
+    splits {
+        abi {
+            isEnable = true
+            reset()
+            include("armeabi-v7a", "arm64-v8a", "x86", "x86_64")
+            isUniversalApk = true
+        }
+    }
     packaging {
         resources {
             excludes += "/META-INF/{AL2.0,LGPL2.1}"
@@ -63,4 +76,8 @@ android {
     dependenciesInfo {
         includeInApk = false
     }
+}
+
+base {
+    archivesName = "anihyou-${versionProps.getProperty("name")}"
 }
