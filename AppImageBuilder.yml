@@ -3,21 +3,22 @@ version: 1
 script:
   - rm -rf AppDir || true
   - mv output AppDir
-  - mkdir -p AppDir/usr/share/icons/hicolor/128x128/apps/
-  - mv AppDir/lib/ AppDir/usr/
-  - cp AppDir/usr/app/icon-128.png AppDir/usr/share/icons/hicolor/128x128/apps/
+  - mkdir -p AppDir/usr/share/icons/hicolor/scalable/apps/
+  - mv AppDir/lib AppDir/usr
+  - cp AppDir/usr/lib/app/icon.svg AppDir/usr/share/icons/hicolor/scalable/apps/moelist.svg
 AppDir:
   path: ./AppDir
   app_info:
     id: com.axiel7.moelist
     name: MoeList
-    icon: icon
+    icon: moelist
     version: latest
     exec: bin/moelist
     exec_args: $@
   files:
     include:
-      - /lib64/ld-linux-x86-64.so.2
+      - usr/lib/runtime/lib/*
+      - usr/lib/runtime/lib/server/*.so
     exclude:
       - usr/share/man
       - usr/share/doc/*/README.*

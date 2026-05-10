@@ -2,7 +2,7 @@
 Version=1.0
 Type=Application
 Name=MoeList
-Icon=icon
+Icon=moelist
 Exec=bin/moelist
 Comment=Anime & Manga tracker
 Categories=Internet
