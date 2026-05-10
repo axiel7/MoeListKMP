@@ -2,7 +2,7 @@
 version: 1
 script:
   - rm -rf AppDir || true
-  - mv -r output AppDir
+  - mv output AppDir
   - mkdir -p AppDir/usr/share/icons/hicolor/128x128/apps/
   - mv AppDir/lib/ AppDir/usr/
   - cp AppDir/usr/app/icon-128.png AppDir/usr/share/icons/hicolor/128x128/apps/
