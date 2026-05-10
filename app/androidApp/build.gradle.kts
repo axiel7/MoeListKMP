@@ -79,5 +79,5 @@ android {
 }
 
 base {
-    archivesName = "anihyou-${versionProps.getProperty("name")}"
+    archivesName = "moelist-${versionProps.getProperty("name")}"
 }
