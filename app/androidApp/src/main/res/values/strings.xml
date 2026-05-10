@@ -1,7 +1,0 @@
-<resources>
-    <string name="app_name">MoeList</string>
-    <string name="title_home">Home</string>
-    <string name="title_anime_list">Anime</string>
-    <string name="title_manga_list">Manga</string>
-    <string name="airing">Airing</string>
-</resources>
