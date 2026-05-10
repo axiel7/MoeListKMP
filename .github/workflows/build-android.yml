@@ -45,7 +45,7 @@ jobs:
         run: chmod +x ./gradlew
 
       - name: Setup bundler
-        run: bundle install
+        run: gem install bundler && bundle install
 
       - name: Build Android release
         run: bundle exec fastlane release
