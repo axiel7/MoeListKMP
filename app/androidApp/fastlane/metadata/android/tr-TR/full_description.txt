@@ -1,0 +1,1 @@
+MoeList resmi olmayan MAL (MyAnimeList) istemcisidir. Uygulama ile Anime ve Mangaları takip edebilir, puanlayabilir, organize edebilir ve keşfedebilirsiniz.

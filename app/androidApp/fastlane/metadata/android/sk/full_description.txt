@@ -1,0 +1,1 @@
+MoeList je neoficiálny MAL klient (MyAnimeList), pomocou tejto aplikácie môžete jednoducho sledovať, hodnotiť, organizovať a objavovať nové Anime & Mangy.

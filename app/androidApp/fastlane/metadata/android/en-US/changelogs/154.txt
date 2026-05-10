@@ -1,0 +1,12 @@
+- UI redesign of the edit sheet
+- Show list status indicator in every list
+- Music streaming service chooser for op/ed
+- Media Details: sort status distribution
+- Media Details: show start year along with media format
+- Media Details/Calendar: show broadcast in local time
+- Main characters sorted by role (by @blackholeearth)
+- Settings: hide scores
+- Settings: pin the bottom nav bar
+- Settings: tablet mode
+- Italian translations
+- More improvements and bug fixes

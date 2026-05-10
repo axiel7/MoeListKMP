@@ -1,0 +1,1 @@
+MoeList is an unofficial MAL (MyAnimeList) client, with this app you can easily track, rate, organize and discover new Anime & Manga.
