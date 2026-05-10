@@ -51,8 +51,8 @@ jobs:
       env:
         GH_TOKEN: ${{ secrets.GH_TOKEN }}
 
-    - name: Setup AppImage AppDir
-      run: cp ./moelist.desktop ./output && mv ./output ./AppDir
+    - name: Set AppImage desktop entry
+      run: cp ./moelist.desktop ./output
 
     - name: Build AppImage
       uses: AppImageCrafters/build-appimage@master
