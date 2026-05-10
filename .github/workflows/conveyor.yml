@@ -42,10 +42,10 @@ jobs:
     - name: Build .jar with Gradle Wrapper
       run: ./gradlew :app:desktopApp:jar
 
-    - name: Run Conveyor     
+    - name: Make linux app  
       uses: hydraulic-software/conveyor/actions/build@v22.0
       with:
-        command: make copied-site
+        command: make linux-app
         signing_key: ${{ secrets.SIGNING_KEY }}
         agree_to_license: 1
       env:
@@ -61,9 +61,24 @@ jobs:
       env:
         UPDATE_INFO: gh-releases-zsync|AppImageCrafters|moelist|latest|*x86_64.AppImage.zsync
 
-    - name: Upload build artifacts
+    - name: Make windows app
+      uses: hydraulic-software/conveyor/actions/build@v22.0
+      with:
+        command: make windows-msix
+        signing_key: ${{ secrets.SIGNING_KEY }}
+        agree_to_license: 1
+      env:
+        GH_TOKEN: ${{ secrets.GH_TOKEN }}
+
+    - name: Upload linux artifacts
       uses: actions/upload-artifact@v6
       with:
-        name: Linux-AppImage-x86_64
+        name: MoeList-AppImage-x86_64
         path: ${{github.workspace}}/*.AppImage
+
+    - name: Upload windows artifacts
+      uses: actions/upload-artifact@v6
+      with:
+        name: MoeList-windows-x86_64
+        path: ${{github.workspace}}/output/*.msix
         
