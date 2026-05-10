@@ -44,8 +44,11 @@ jobs:
       - name: Make gradlew executable
         run: chmod +x ./gradlew
 
+      - name: Setup bundler
+        run: bundle install
+
       - name: Build Android release
-        run: fastlane release
+        run: bundle exec fastlane release
         env:
           KEYSTORE_FILE: ${{steps.android_keystore.outputs.filePath}}
           KEYSTORE_PASSWORD: ${{secrets.KEYSTORE_PASSWORD}}
