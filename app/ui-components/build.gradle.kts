@@ -9,6 +9,7 @@ plugins {
     alias(libs.plugins.composeCompiler)
     alias(libs.plugins.kotlinMultiplatform)
     alias(libs.plugins.kotlinSerialization)
+    alias(libs.plugins.flatpakGradleGenerator)
 }
 
 kotlin {
@@ -29,8 +30,9 @@ kotlin {
 
     sourceSets {
         commonMain.dependencies {
-            implementation(projects.core.resources)
-            implementation(projects.core.data)
+            implementation(project(":core:resources"))
+            implementation(project(":core:data"))
+
             implementation(libs.compose.runtime)
             implementation(libs.compose.foundation)
             implementation(libs.compose.material3)
@@ -78,4 +80,18 @@ kotlin {
 // Android-based preview support
 dependencies {
     androidRuntimeClasspath(libs.compose.ui.tooling)
+}
+
+tasks.flatpakGradleGenerator {
+    outputFile = project.file("../desktopApp/packaging/flatpak/flatpak-sources-ui.json")
+    downloadDirectory.set("./offline-repository")
+    excludeConfigurations.set(
+        listOf(
+            "testCompileClasspath",
+            "testRuntimeClasspath",
+            "androidCompileClasspath",
+            "androidMainLintChecksClasspath",
+            "androidRuntimeClasspath"
+        )
+    )
 }

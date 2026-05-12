@@ -20,3 +20,5 @@ node_modules/
 gradle/gradle-daemon-jvm.properties
 private.properties
 output
+dependencies
+gradle-cache

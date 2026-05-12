@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<component type="desktop-application">
+    <id>com.axiel7.moelist</id>
+    <metadata_license>CC0-1.0</metadata_license>
+    <project_license>GPL-3.0</project_license>
+    <name>MoeList</name>
+    <summary>Another unofficial Android MAL client</summary>
+    <description>
+        <p>MoeList is an unofficial MAL (MyAnimeList) client, with this app you can easily track, rate, organize and discover new Anime &amp; Manga.</p>
+    </description>
+
+    <launchable type="desktop-id">moelist.desktop</launchable>
+
+    <screenshots>
+        <screenshot type="default">
+            <caption>Discover new Anime and Manga!</caption>
+            <image>https://github.com/axiel7/MoeListKMP/blob/main/app/desktopApp/packaging/flatpak/1_home.png?raw=true</image>
+        </screenshot>
+        <screenshot>
+            <caption>Track your progress with your personal list.</caption>
+            <image>https://github.com/axiel7/MoeListKMP/blob/main/app/desktopApp/packaging/flatpak/2_list.png?raw=true</image>
+        </screenshot>
+        <screenshot>
+            <caption>Search information about your favorites series.</caption>
+            <image>https://github.com/axiel7/MoeListKMP/blob/main/app/desktopApp/packaging/flatpak/3_details.png?raw=true</image>
+        </screenshot>
+        <screenshot>
+            <caption>View your profile with detailed statistics!</caption>
+            <image>https://github.com/axiel7/MoeListKMP/blob/main/app/desktopApp/packaging/flatpak/4_profile.png?raw=true</image>
+        </screenshot>
+    </screenshots>
+
+    <url type="bugtracker">https://github.com/axiel7/MoeListKMP/issues</url>
+    <url type="homepage">https://moelist.net</url>
+    <url type="donation">https://ko-fi.com/axiel7</url>
+    <url type="translate">https://crowdin.com/project/moelist</url>
+    <url type="contribute">https://github.com/axiel7/MoeListKMP</url>
+    <url type="vcs-browser">https://github.com/axiel7/MoeListKMP</url>
+
+    <developer id="com.axiel7">
+        <name>axiel7</name>
+    </developer>
+
+    <content_rating type="oars-1.1">
+        <content_attribute id="violence-cartoon">moderate</content_attribute>
+        <content_attribute id="violence-fantasy">moderate</content_attribute>
+        <content_attribute id="drugs-alcohol">mild</content_attribute>
+        <content_attribute id="drugs-tobacco">mild</content_attribute>
+        <content_attribute id="sex-nudity">mild</content_attribute>
+        <content_attribute id="sex-themes">moderate</content_attribute>
+        <content_attribute id="language-profanity">mild</content_attribute>
+        <content_attribute id="language-humor">mild</content_attribute>
+    </content_rating>
+
+    <releases>
+        <release version="4.0.0" date="2026-05-11">
+            <description>
+                <p>Initial release</p>
+            </description>
+        </release>
+    </releases>
+
+    <categories>
+        <category>Network</category>
+    </categories>
+
+    <keywords>
+        <keyword>Anime</keyword>
+        <keyword>Manga</keyword>
+        <keyword>MyAnimeList</keyword>
+        <keyword>tracker</keyword>
+    </keywords>
+</component>

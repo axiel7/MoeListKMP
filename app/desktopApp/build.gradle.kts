@@ -6,6 +6,7 @@ plugins {
     alias(libs.plugins.composeMultiplatform)
     alias(libs.plugins.composeCompiler)
     alias(libs.plugins.conveyor)
+    alias(libs.plugins.flatpakGradleGenerator)
 }
 
 val versionProps = Properties().also {
@@ -17,7 +18,6 @@ version = versionProps.getProperty("name")
 kotlin {
     jvmToolchain {
         languageVersion.set(JavaLanguageVersion.of(21))
-        vendor.set(JvmVendorSpec.JETBRAINS)
     }
     dependencies {
         implementation(projects.app.shared)
@@ -59,7 +59,7 @@ compose.desktop {
                 iconFile.set(project.file("icons/icon.png"))
             }
 
-            modules("jdk.unsupported")
+            modules("java.instrument", "java.management", "java.scripting", "jdk.security.auth", "jdk.unsupported")
 
             buildTypes.release.proguard {
                 configurationFiles.from(project.file("proguard-rules.pro"))
@@ -71,4 +71,10 @@ compose.desktop {
 
 compose.resources {
     packageOfResClass = "com.axiel7.moelist.generated.resources.desktop"
+}
+
+tasks.flatpakGradleGenerator {
+    outputFile = project.file("packaging/flatpak/flatpak-sources-app.json")
+    downloadDirectory.set("./offline-repository")
+    excludeConfigurations.set(listOf("testCompileClasspath", "testRuntimeClasspath"))
 }

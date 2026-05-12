@@ -8,6 +8,7 @@ plugins {
     alias(libs.plugins.composeMultiplatform)
     alias(libs.plugins.composeCompiler)
     alias(libs.plugins.kotlinMultiplatform)
+    alias(libs.plugins.flatpakGradleGenerator)
 }
 
 kotlin {
@@ -45,4 +46,18 @@ compose.resources {
     publicResClass = true
     nameOfResClass = "UiRes"
     packageOfResClass = "com.axiel7.moelist.ui.generated.resources"
+}
+
+tasks.flatpakGradleGenerator {
+    outputFile = project.file("../../app/desktopApp/packaging/flatpak/flatpak-sources-resources.json")
+    downloadDirectory.set("./offline-repository")
+    excludeConfigurations.set(
+        listOf(
+            "testCompileClasspath",
+            "testRuntimeClasspath",
+            "androidCompileClasspath",
+            "androidMainLintChecksClasspath",
+            "androidRuntimeClasspath"
+        )
+    )
 }

@@ -12,6 +12,7 @@ plugins {
     alias(libs.plugins.ksp)
     alias(libs.plugins.androidx.room)
     alias(libs.plugins.buildConfig)
+    alias(libs.plugins.flatpakGradleGenerator)
 }
 
 val privateProps = Properties().also {
@@ -105,4 +106,18 @@ buildConfig {
     sourceSets.named("jvmMain") {
         buildConfigField("CLIENT_SECRET", privateProps.getProperty("CLIENT_SECRET"))
     }
+}
+
+tasks.flatpakGradleGenerator {
+    outputFile = project.file("../../app/desktopApp/packaging/flatpak/flatpak-sources-data.json")
+    downloadDirectory.set("./offline-repository")
+    excludeConfigurations.set(
+        listOf(
+            "testCompileClasspath",
+            "testRuntimeClasspath",
+            "androidCompileClasspath",
+            "androidMainLintChecksClasspath",
+            "androidRuntimeClasspath"
+        )
+    )
 }

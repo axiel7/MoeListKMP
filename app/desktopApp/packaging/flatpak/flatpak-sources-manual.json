@@ -1,0 +1,163 @@
+[
+  {
+    "type": "file",
+    "url": "https://repo1.maven.org/maven2/org/jetbrains/intellij/deps/kotlinx/kotlinx-coroutines-core-jvm/1.8.0-intellij-14/kotlinx-coroutines-core-jvm-1.8.0-intellij-14.jar",
+    "sha512": "107c3b45de84e4b34bc0a636bac86739fccbbe924f54b1d4819fae925f38dca5942608a32d48e685072c1d8e30c38b8789c36c3757388dccdcbe906fa9680043",
+    "dest": "./offline-repository/org/jetbrains/intellij/deps/kotlinx/kotlinx-coroutines-core-jvm/1.8.0-intellij-14",
+    "dest-filename": "kotlinx-coroutines-core-jvm-1.8.0-intellij-14.jar"
+  },
+  {
+    "type": "file",
+    "url": "https://repo1.maven.org/maven2/org/jetbrains/intellij/deps/kotlinx/kotlinx-coroutines-core-jvm/1.8.0-intellij-14/kotlinx-coroutines-core-jvm-1.8.0-intellij-14.pom",
+    "sha512": "8b7e589c44a80c789c888bb74096a1a9a4af330b69394966f7685dbd29e7285452700e3bb86b68c6b975a686dd592493b64a8eeb3529fd5f4861a6387adf9eaa",
+    "dest": "./offline-repository/org/jetbrains/intellij/deps/kotlinx/kotlinx-coroutines-core-jvm/1.8.0-intellij-14",
+    "dest-filename": "kotlinx-coroutines-core-jvm-1.8.0-intellij-14.pom"
+  },
+  {
+    "type": "file",
+    "url": "https://repo1.maven.org/maven2/org/jetbrains/intellij/deps/kotlinx/kotlinx-coroutines-bom/1.8.0-intellij-14/kotlinx-coroutines-bom-1.8.0-intellij-14.pom",
+    "sha512": "5e9e884c94fb9b8209d246c2d14ccaaac79b3e560fe5ed8a54a44d9e64cb067e12451fe2016bf3a312d01e489407c2848989c089392eeae41fc3cff319c0ce07",
+    "dest": "./offline-repository/org/jetbrains/intellij/deps/kotlinx/kotlinx-coroutines-bom/1.8.0-intellij-14",
+    "dest-filename": "kotlinx-coroutines-bom-1.8.0-intellij-14.pom"
+  },
+  {
+    "type": "file",
+    "url": "https://repo1.maven.org/maven2/com/google/devtools/ksp/symbol-processing-aa-embeddable/2.3.6/symbol-processing-aa-embeddable-2.3.6.jar",
+    "sha512": "643b0d8cf171bafe861c71cc9e5a21e28bd5d750acbf48f3debc6b8ba60a2abc67190b167c9c0637c0dfc4cc24124b128ecdef85a1f7e45765b2d23182799881",
+    "dest": "./offline-repository/com/google/devtools/ksp/symbol-processing-aa-embeddable/2.3.6",
+    "dest-filename": "symbol-processing-aa-embeddable-2.3.6.jar"
+  },
+  {
+    "type": "file",
+    "url": "https://repo1.maven.org/maven2/com/google/devtools/ksp/symbol-processing-aa-embeddable/2.3.6/symbol-processing-aa-embeddable-2.3.6.pom",
+    "sha512": "082073baec2ee2e79bfd8b8ddf95446283b3b91031462896a1906313835f5a698602485705a24dc1a7ea2eebe8eedfcc4d88569ed977bc75a5658b39a9cd958a",
+    "dest": "./offline-repository/com/google/devtools/ksp/symbol-processing-aa-embeddable/2.3.6",
+    "dest-filename": "symbol-processing-aa-embeddable-2.3.6.pom"
+  },
+  {
+    "type": "file",
+    "url": "https://repo1.maven.org/maven2/com/guardsquare/proguard-gradle/7.7.0/proguard-gradle-7.7.0.jar",
+    "sha512": "67068226381917152fa8ada4a5201bf647a2a42ecf666095c888e05c93c29c3d021fc5817c6817eece5a0363cb30cc8a3ee713e480a1211fd30ce68862da1715",
+    "dest": "./offline-repository/com/guardsquare/proguard-gradle/7.7.0",
+    "dest-filename": "proguard-gradle-7.7.0.jar"
+  },
+  {
+    "type": "file",
+    "url": "https://repo1.maven.org/maven2/com/guardsquare/proguard-gradle/7.7.0/proguard-gradle-7.7.0.pom",
+    "sha512": "55cf5845c767e0d382b9a7fe46a535955f55cc88e3b94653a4094d53a92799b2dbcceb47409e4c49e18485f6b46e19f780605695d0a63d658be5e61de2c47c1e",
+    "dest": "./offline-repository/com/guardsquare/proguard-gradle/7.7.0",
+    "dest-filename": "proguard-gradle-7.7.0.pom"
+  },
+  {
+    "type": "file",
+    "url": "https://repo1.maven.org/maven2/com/guardsquare/proguard-base/7.7.0/proguard-base-7.7.0.jar",
+    "sha512": "8d4dffc91c7710101e7b08becca484c10396a680918aea68a84929f77f037d58e717174f306a48421d051eb1559c2e40d77751b8efe7bc13472d32769f99c705",
+    "dest": "./offline-repository/com/guardsquare/proguard-base/7.7.0",
+    "dest-filename": "proguard-base-7.7.0.jar"
+  },
+  {
+    "type": "file",
+    "url": "https://repo1.maven.org/maven2/com/guardsquare/proguard-base/7.7.0/proguard-base-7.7.0.pom",
+    "sha512": "1264cedc829c98aab8e7bb8afb0623b37cedd8fc37534a05c2c2fee0a04fb76f0aa80129d405864578235d5bec9f886f84a1a455cbf2de8ed6edf5fd19abe686",
+    "dest": "./offline-repository/com/guardsquare/proguard-base/7.7.0",
+    "dest-filename": "proguard-base-7.7.0.pom"
+  },
+  {
+    "type": "file",
+    "url": "https://repo1.maven.org/maven2/org/jetbrains/kotlin/kotlin-stdlib/2.1.0/kotlin-stdlib-2.1.0.jar",
+    "sha512": "185049d31e826b71a2f135e19e3e8fbb22bc30032bfa015f16f0e27f40961fb0f6b1867090c6c898513f491ed03f014a8e15c07adab80aa7a5719e98da7846a5",
+    "dest": "./offline-repository/org/jetbrains/kotlin/kotlin-stdlib/2.1.0",
+    "dest-filename": "kotlin-stdlib-2.1.0.jar"
+  },
+  {
+    "type": "file",
+    "url": "https://repo1.maven.org/maven2/org/jetbrains/kotlin/kotlin-stdlib/2.1.0/kotlin-stdlib-2.1.0.pom",
+    "sha512": "3e89f8e956c481b2a16e7789aa90a90d03077cc92cc69c17143c827e49b7da2e96ad88a2edefbfad02559d8e9070e0087ccc3182ff341395a0d8c120f992b949",
+    "dest": "./offline-repository/org/jetbrains/kotlin/kotlin-stdlib/2.1.0",
+    "dest-filename": "kotlin-stdlib-2.1.0.pom"
+  },
+  {
+    "type": "file",
+    "url": "https://repo1.maven.org/maven2/com/github/zafarkhaja/java-semver/0.10.2/java-semver-0.10.2.jar",
+    "sha512": "0094bc768dad12dc0a7722e4deaaed5521fb76a929828b79cee5fe8e6dbf3eb7a90073f42bec6e33f39698daf9dd27e8f7fa90a4deec91278b8d12fa3899bcce",
+    "dest": "./offline-repository/com/github/zafarkhaja/java-semver/0.10.2",
+    "dest-filename": "java-semver-0.10.2.jar"
+  },
+  {
+    "type": "file",
+    "url": "https://repo1.maven.org/maven2/com/github/zafarkhaja/java-semver/0.10.2/java-semver-0.10.2.pom",
+    "sha512": "183ce72d3a100f65cf28ba62ea575bdce916289d4a685404b23e01df8c189b907fc51e6536407309cede1fbe8c7f2e9e8c9c9ec5534f4b05d8cd1dc0e9fae757",
+    "dest": "./offline-repository/com/github/zafarkhaja/java-semver/0.10.2",
+    "dest-filename": "java-semver-0.10.2.pom"
+  },
+  {
+    "type": "file",
+    "url": "https://repo1.maven.org/maven2/com/guardsquare/proguard-core/9.1.10/proguard-core-9.1.10.jar",
+    "sha512": "45b3e9170e56b7beebb81e74160292556a2d6adb22f315287a288cccfa56868ca59d82a8eb0960c26fec369fd37971b761f3655a1b8ad38b77d6b66a776c8fc0",
+    "dest": "./offline-repository/com/guardsquare/proguard-core/9.1.10",
+    "dest-filename": "proguard-core-9.1.10.jar"
+  },
+  {
+    "type": "file",
+    "url": "https://repo1.maven.org/maven2/com/guardsquare/proguard-core/9.1.10/proguard-core-9.1.10.pom",
+    "sha512": "e196fb5943e12b4b46de53c61608f1aa82075bdf0c6357cbab03c9c3754e0b09b889f09614aa8c35c83b5dc7eb372db6a52dcda7c490e289262260e37d099c5b",
+    "dest": "./offline-repository/com/guardsquare/proguard-core/9.1.10",
+    "dest-filename": "proguard-core-9.1.10.pom"
+  },
+  {
+    "type": "file",
+    "url": "https://repo1.maven.org/maven2/org/apache/logging/log4j/log4j-api/2.24.2/log4j-api-2.24.2.jar",
+    "sha512": "9665821c14c582dddd0ed181f8d49da3e25857eec11328e0d8978757f1cd2360ae60cf103a4b26b1ad5be47cf0857863a7a3c432a0f71f9eef14f64e8754f35c",
+    "dest": "./offline-repository/org/apache/logging/log4j/log4j-api/2.24.2",
+    "dest-filename": "log4j-api-2.24.2.jar"
+  },
+  {
+    "type": "file",
+    "url": "https://repo1.maven.org/maven2/org/apache/logging/log4j/log4j-api/2.24.2/log4j-api-2.24.2.pom",
+    "sha512": "e74ccf9239be37a42f400e3f7c350bcc41922c5ef4d348a1d546dbf04dc9f34dfa3070cce8c52a098a8423cd1684a58d96449fd9feaf5e472d6f35e7a2f97fcf",
+    "dest": "./offline-repository/org/apache/logging/log4j/log4j-api/2.24.2",
+    "dest-filename": "log4j-api-2.24.2.pom"
+  },
+  {
+    "type": "file",
+    "url": "https://repo1.maven.org/maven2/org/apache/logging/log4j/log4j-core/2.24.2/log4j-core-2.24.2.jar",
+    "sha512": "9a8ab3921a8285d500c3e6ce78254803cd785a18fb196951b2161a2a773043317e7c7a30fcf171948e861c952ff1d14a3baf66e1eba7f3393eb956f1069ac677",
+    "dest": "./offline-repository/org/apache/logging/log4j/log4j-core/2.24.2",
+    "dest-filename": "log4j-core-2.24.2.jar"
+  },
+  {
+    "type": "file",
+    "url": "https://repo1.maven.org/maven2/org/apache/logging/log4j/log4j-core/2.24.2/log4j-core-2.24.2.pom",
+    "sha512": "e77abb0f675fd1e1bc838ff084740690ebeb346fbd077ff75dcb0e85f010a539639f8288789e334a66d9e08dce26f34e4f3d67df3d0c31294051343b109cf6b7",
+    "dest": "./offline-repository/org/apache/logging/log4j/log4j-core/2.24.2",
+    "dest-filename": "log4j-core-2.24.2.pom"
+  },
+  {
+    "type": "file",
+    "url": "https://repo1.maven.org/maven2/org/json/json/20231013/json-20231013.jar",
+    "sha512": "a5cdd1ed984448d6538746429f2d1a0ec8f64f93af0e84870ce898a9f07a81d11bf27d2ee081471975772efc8a0d3d5e05541197a532066e9edb09ad032d31a3",
+    "dest": "./offline-repository/org/json/json/20231013",
+    "dest-filename": "json-20231013.jar"
+  },
+  {
+    "type": "file",
+    "url": "https://repo1.maven.org/maven2/org/json/json/20231013/json-20231013.pom",
+    "sha512": "ac5ca3626107bb4e5328934501b2b4a021560423f4d4296f4c1a2dce0cf1d74afae98ba8d2c5be47d07e7b12bc76d28d385178a30681198dd1743e240751384b",
+    "dest": "./offline-repository/org/json/json/20231013",
+    "dest-filename": "json-20231013.pom"
+  },
+  {
+    "type": "file",
+    "url": "https://repo1.maven.org/maven2/com/google/errorprone/error_prone_annotations/2.27.0/error_prone_annotations-2.27.0.jar",
+    "sha512": "479f3c5e25a7ccd90adf70a9b1a71bae18205681ce966618b2ba28aea1b10c087b10ca7172e7b34384901b5e8d2dd009f1cdcbcd2a01be55082d276245de0a35",
+    "dest": "./offline-repository/com/google/errorprone/error_prone_annotations/2.27.0",
+    "dest-filename": "error_prone_annotations-2.27.0.jar"
+  },
+  {
+    "type": "file",
+    "url": "https://repo1.maven.org/maven2/com/google/errorprone/error_prone_annotations/2.27.0/error_prone_annotations-2.27.0.pom",
+    "sha512": "874edb27edf4ad32332f591bb594908afbd5fe01f420b91eb392e9577c4d0648fa7aedbb927a9349eefd483ee41688e0079c64ffada6187ce3627203b842c6d8",
+    "dest": "./offline-repository/com/google/errorprone/error_prone_annotations/2.27.0",
+    "dest-filename": "error_prone_annotations-2.27.0.pom"
+  }
+]

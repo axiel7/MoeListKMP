@@ -35,6 +35,7 @@ java-keyring = "1.0.4"
 buildConfig = "6.0.9"
 conveyor = "2.0"
 conveyorControl = "1.1"
+flatpakGradleGenerator = "1.8.0"
 
 [libraries]
 kotlin-test = { module = "org.jetbrains.kotlin:kotlin-test", version.ref = "kotlin" }
@@ -101,3 +102,4 @@ ksp = { id = "com.google.devtools.ksp", version.ref = "ksp" }
 androidx-room = { id = "androidx.room", version.ref = "room" }
 buildConfig = { id = "com.github.gmazzo.buildconfig", version.ref = "buildConfig" }
 conveyor = { id = "dev.hydraulic.conveyor", version.ref = "conveyor" }
+flatpakGradleGenerator = { id = "io.github.jwharm.flatpak-gradle-generator", version.ref = "flatpakGradleGenerator" }
