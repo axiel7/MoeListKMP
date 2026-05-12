@@ -4,7 +4,8 @@ script:
   - rm -rf AppDir || true
   - mv output AppDir
   - mkdir -p AppDir/usr/share/icons/hicolor/scalable/apps/
-  - mv AppDir/lib AppDir/usr
+  - mv AppDir/bin AppDir/usr/
+  - mv AppDir/lib AppDir/usr/
   - cp AppDir/usr/lib/app/icon.svg AppDir/usr/share/icons/hicolor/scalable/apps/moelist.svg
 AppDir:
   path: ./AppDir
@@ -13,12 +14,17 @@ AppDir:
     name: MoeList
     icon: moelist
     version: latest
-    exec: bin/moelist
+    exec: usr/bin/moelist
     exec_args: $@
+  runtime:
+    env:
+      # Ensure the JVM shared libraries are found by the launcher
+      LD_LIBRARY_PATH: '${APPDIR}/usr/lib/runtime/lib/server:${APPDIR}/usr/lib/runtime/lib:${LD_LIBRARY_PATH}'
   files:
     include:
-      - usr/lib/runtime/lib/*
-      - usr/lib/runtime/lib/server/*.so
+      - usr/bin/moelist
+      - usr/lib/**
+      - usr/share/**
     exclude:
       - usr/share/man
       - usr/share/doc/*/README.*
