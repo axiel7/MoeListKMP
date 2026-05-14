@@ -62,7 +62,7 @@ jobs:
       uses: actions/upload-artifact@v6
       with:
         name: MoeList-linux-x86_64
-        path: ${{github.workspace}}/*.AppImage
+        path: ${{github.workspace}}/MoeList-*.AppImage
 
     - name: Make windows app
       uses: hydraulic-software/conveyor/actions/build@v22.0
