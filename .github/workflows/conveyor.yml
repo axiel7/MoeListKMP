@@ -45,17 +45,23 @@ jobs:
     - name: Make linux app  
       uses: hydraulic-software/conveyor/actions/build@v22.0
       with:
-        command: make linux-tarball
+        command: make linux-app
         signing_key: ${{ secrets.SIGNING_KEY }}
         agree_to_license: 1
       env:
         GH_TOKEN: ${{ secrets.GH_TOKEN }}
 
+    - name: Make AppImage
+      run: |
+        ./setup_AppDir.sh
+        wget https://github.com/AppImage/appimagetool/releases/download/continuous/appimagetool-x86_64.AppImage
+        ./appimagetool-x86_64.AppImage AppDir
+
     - name: Upload linux artifacts
       uses: actions/upload-artifact@v6
       with:
         name: MoeList-linux-x86_64
-        path: ${{github.workspace}}/output/*.tar.gz
+        path: ${{github.workspace}}/*.AppImage
 
     - name: Make windows app
       uses: hydraulic-software/conveyor/actions/build@v22.0
