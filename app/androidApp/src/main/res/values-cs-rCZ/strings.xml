@@ -1,0 +1,9 @@
+<resources>
+    <string name="title_home">Domů</string>
+    <string name="title_anime_list">Anime</string>
+    <string name="title_manga_list">Manga</string>
+    <string name="airing">Ve Vysílání</string>
+    <string name="refresh">Obnovit</string>
+    <string name="unknown">Neznámo</string>
+    <string name="nothing_today">Dneska nic\n( ≧Д≦)</string>
+</resources>

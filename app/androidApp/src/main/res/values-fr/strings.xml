@@ -1,0 +1,9 @@
+<resources>
+    <string name="title_home">Accueil</string>
+    <string name="title_anime_list">Animé</string>
+    <string name="title_manga_list">Manga</string>
+    <string name="airing">Diffusion en cours</string>
+    <string name="refresh">Actualiser</string>
+    <string name="unknown">Inconnue</string>
+    <string name="nothing_today">Rien pour aujourd\'hui\n( ≧Д≦)</string>
+</resources>

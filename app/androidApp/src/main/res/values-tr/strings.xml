@@ -1,0 +1,9 @@
+<resources>
+    <string name="title_home">Ana Sayfa</string>
+    <string name="title_anime_list">Anime</string>
+    <string name="title_manga_list">Manga</string>
+    <string name="airing">Yayınlanıyor</string>
+    <string name="refresh">Yenile</string>
+    <string name="unknown">Bilinmiyor</string>
+    <string name="nothing_today">Bugün bir şey yok\n( ≧Д≦)</string>
+</resources>

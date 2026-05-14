@@ -1,0 +1,9 @@
+<resources>
+    <string name="title_home">首頁</string>
+    <string name="title_anime_list">動畫</string>
+    <string name="title_manga_list">漫畫</string>
+    <string name="airing">正在播出</string>
+    <string name="refresh">重新整理</string>
+    <string name="unknown">未知</string>
+    <string name="nothing_today">今天什麼都沒有\n( ≧Д≦)</string>
+</resources>

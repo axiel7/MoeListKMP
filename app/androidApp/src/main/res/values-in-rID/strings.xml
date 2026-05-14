@@ -1,0 +1,9 @@
+<resources>
+    <string name="title_home">Beranda</string>
+    <string name="title_anime_list">Anime</string>
+    <string name="title_manga_list">Manga</string>
+    <string name="airing">Ditayangkan</string>
+    <string name="refresh">Memperbarui</string>
+    <string name="unknown">Tak diketahui</string>
+    <string name="nothing_today">Hari ini tidak ada\n( ≧Д≦)</string>
+</resources>

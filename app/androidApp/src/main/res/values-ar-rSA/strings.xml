@@ -1,0 +1,9 @@
+<resources>
+    <string name="title_home">الصفحة الرئيسية</string>
+    <string name="title_anime_list">الأنمي</string>
+    <string name="title_manga_list">المانجا</string>
+    <string name="airing">يبث</string>
+    <string name="refresh">تحديث</string>
+    <string name="unknown">غير معروف</string>
+    <string name="nothing_today">لا شيء اليوم \n( ≧Д≦)</string>
+</resources>

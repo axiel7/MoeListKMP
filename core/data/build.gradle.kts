@@ -46,6 +46,7 @@ kotlin {
 
             implementation(libs.kotlinx.coroutines.core)
             implementation(libs.kotlinx.datetime)
+            implementation(libs.kotlinx.datetime.names)
 
             implementation(libs.compose.runtime)
             implementation(libs.compose.components.resources)

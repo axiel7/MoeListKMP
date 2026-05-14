@@ -1,0 +1,9 @@
+<resources>
+    <string name="title_home">ホーム</string>
+    <string name="title_anime_list">アニメ</string>
+    <string name="title_manga_list">マンガ</string>
+    <string name="airing">配信中</string>
+    <string name="refresh">更新する</string>
+    <string name="unknown">不明</string>
+    <string name="nothing_today">今日は何もありません\n( ≧Д≦)</string>
+</resources>

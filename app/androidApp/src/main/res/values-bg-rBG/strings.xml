@@ -1,0 +1,7 @@
+<resources>
+    <string name="title_home">Начало</string>
+    <string name="title_anime_list">Аниме</string>
+    <string name="title_manga_list">Манга</string>
+    <string name="airing">Поветряване</string>
+    <string name="nothing_today">Нищо днес\n(≧Д≦)</string>
+</resources>

@@ -1,7 +1,10 @@
 <resources>
-    <string name="app_name">MoeList</string>
+    <string name="app_name" translatable="false">MoeList</string>
     <string name="title_home">Home</string>
     <string name="title_anime_list">Anime</string>
     <string name="title_manga_list">Manga</string>
     <string name="airing">Airing</string>
+    <string name="refresh">Refresh</string>
+    <string name="unknown">Unknown</string>
+    <string name="nothing_today">Nothing today\n( ≧Д≦)</string>
 </resources>

@@ -11,12 +11,13 @@ import com.axiel7.moelist.ui.generated.resources.ago
 import com.axiel7.moelist.ui.generated.resources.aired_ago
 import com.axiel7.moelist.ui.generated.resources.airing_in
 import com.axiel7.moelist.ui.generated.resources.unknown
+import io.github.adrcotfas.datetime.names.FormatStyle
+import io.github.adrcotfas.datetime.names.format
 import kotlinx.datetime.DayOfWeek
 import kotlinx.datetime.LocalDateTime
 import kotlinx.datetime.LocalTime
 import kotlinx.datetime.TimeZone
 import kotlinx.datetime.format
-import kotlinx.datetime.format.DayOfWeekNames
 import kotlinx.datetime.format.Padding
 import kotlinx.datetime.format.char
 import kotlinx.datetime.toInstant
@@ -35,15 +36,6 @@ data class Broadcast(
     val startTime: String? = null
 ) {
 
-    // Custom formatters for kotlinx-datetime (since java.time formatters are JVM-only)
-    private val timeTextFormat = LocalDateTime.Format {
-        dayOfWeek(DayOfWeekNames.ENGLISH_ABBREVIATED)
-        char(' ')
-        hour(Padding.ZERO)
-        char(':')
-        minute(Padding.ZERO)
-    }
-
     private val localTimeFormat = LocalTime.Format {
         hour(Padding.ZERO)
         char(':')
@@ -54,7 +46,10 @@ data class Broadcast(
     fun timeText(isAiring: Boolean) = buildString {
         val firstText = when {
             dayOfTheWeek != null && startTime != null -> {
-                dateTimeUntilNextBroadcast()?.format(timeTextFormat)
+                dateTimeUntilNextBroadcast()?.format(
+                    dateStyle = FormatStyle.MEDIUM,
+                    timeStyle = FormatStyle.SHORT
+                )
             }
             dayOfTheWeek != null -> dayOfTheWeek.localized()
             startTime != null -> "$startTime (JST)"
@@ -97,10 +92,11 @@ data class Broadcast(
         else stringResource(UiRes.string.ago, remaining.absoluteValue.secondsToLegibleText())
     } else ""
 
-    // Note: If you need specialized patterns like "EE, d MMM HH:mm" across KMP,
-    // it's recommended to implement a platform-specific expectation or use a helper.
     fun nextAiringDayFormatted() = runCatching {
-        dateTimeUntilNextBroadcast()?.toString() // Fallback to ISO or custom format
+        dateTimeUntilNextBroadcast()?.format(
+            dateStyle = FormatStyle.MEDIUM,
+            timeStyle = FormatStyle.SHORT
+        )
     }.getOrNull()
 
     private fun remaining() =

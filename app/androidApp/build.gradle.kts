@@ -18,9 +18,13 @@ dependencies {
     implementation(libs.androidx.activity.compose)
     implementation(libs.androidx.core.splashscreen)
     implementation(libs.androidx.navigation3.ui)
+    implementation(libs.androidx.glance.appwidget)
+
     debugImplementation(libs.compose.ui.tooling)
 
     testImplementation(libs.junit)
+
+    coreLibraryDesugaring(libs.desugar.jdk.libs)
 }
 
 val versionProps = Properties().also {
@@ -75,6 +79,9 @@ android {
     }
     dependenciesInfo {
         includeInApk = false
+    }
+    compileOptions {
+        isCoreLibraryDesugaringEnabled = true
     }
 }
 
