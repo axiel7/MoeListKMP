@@ -26,7 +26,8 @@ fun initApp() = initApp(
     tokenStore = IosKeychainTokenStore(),
     codeAuthFlowFactory = IosCodeAuthFlowFactory(),
     databaseBuilder = getDatabaseBuilder(),
-    createDataStore = { createDataStore(it) }
+    createDataStore = { createDataStore(it) },
+    extraModules = listOf(workerModule, iosModule, iosViewModelModule)
 )
 
 @OptIn(ExperimentalMaterial3WindowSizeClassApi::class)
