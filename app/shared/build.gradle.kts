@@ -74,15 +74,19 @@ kotlin {
         commonTest.dependencies {
             implementation(libs.kotlin.test)
         }
-        val nonAndroidMain by creating {
+        val mobileMain by creating {
             dependsOn(commonMain.get())
         }
-        configure(listOf(iosMain, jvmMain)) {
-            get().dependsOn(nonAndroidMain)
+        mobileMain.dependencies {
+            api(libs.kmpworkmanager)
+        }
+        configure(listOf(iosMain, androidMain)) {
+            get().dependsOn(mobileMain)
         }
         androidMain.dependencies {
             implementation(libs.androidx.core.ktx)
             implementation(libs.androidx.preference)
+            implementation(libs.accompanist.permissions)
         }
         iosMain.dependencies {
             implementation(libs.kotlinx.coroutines.core)

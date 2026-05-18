@@ -21,3 +21,13 @@
 #-renamesourcefileattribute SourceFile
 
 -keep class * extends androidx.room.RoomDatabase { <init>(); }
+
+# Keep WorkManager classes
+-keep class androidx.work.** { *; }
+-keep class dev.brewkits.kmpworkmanager.sample.background.** { *; }
+
+# Keep Koin classes
+-keep class org.koin.** { *; }
+
+# Keep Kotlin coroutines
+-keepclassmembernames class kotlinx.** { *; }

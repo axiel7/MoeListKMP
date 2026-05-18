@@ -4,6 +4,8 @@ import androidx.datastore.core.DataStore
 import androidx.datastore.preferences.core.Preferences
 import androidx.lifecycle.viewModelScope
 import com.axiel7.moelist.ui.base.viewmodel.BaseViewModel
+import com.axiel7.moelist.worker.NotificationWorkerManager
+import dev.brewkits.kmpworkmanager.background.domain.BackgroundTaskScheduler
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
@@ -12,20 +14,21 @@ import kotlinx.coroutines.launch
 
 class NotificationsViewModel(
     dataStore: DataStore<Preferences>,
-    //TODO private val notificationWorkerManager: NotificationWorkerManager,
+    private val notificationWorkerManager: NotificationWorkerManager,
+    private val scheduler: BackgroundTaskScheduler,
 ) : BaseViewModel<NotificationsUiState>(), NotificationsEvent {
 
     override val mutableUiState = MutableStateFlow(NotificationsUiState())
 
     override fun removeNotification(animeId: Int) {
         viewModelScope.launch {
-            //notificationWorkerManager.removeAiringAnimeNotification(animeId)
+            notificationWorkerManager.removeAiringAnimeNotification(animeId, scheduler)
         }
     }
 
     override fun removeAllNotifications() {
         viewModelScope.launch {
-            //notificationWorkerManager.removeAllNotifications()
+            notificationWorkerManager.removeAllNotifications(scheduler)
         }
     }
 

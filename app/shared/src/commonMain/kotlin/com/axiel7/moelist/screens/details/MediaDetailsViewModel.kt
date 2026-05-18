@@ -9,7 +9,6 @@ import com.axiel7.moelist.data.model.manga.MyMangaListStatus
 import com.axiel7.moelist.data.model.media.BaseMediaNode
 import com.axiel7.moelist.data.model.media.BaseMyListStatus
 import com.axiel7.moelist.data.model.media.MediaType
-import com.axiel7.moelist.data.model.media.WeekDay
 import com.axiel7.moelist.data.repository.AnimeRepository
 import com.axiel7.moelist.data.repository.DefaultPreferencesRepository
 import com.axiel7.moelist.data.repository.MangaRepository
@@ -23,8 +22,6 @@ import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
-import kotlinx.datetime.LocalDate
-import kotlinx.datetime.LocalTime
 
 @Suppress("UNCHECKED_CAST")
 class MediaDetailsViewModel(
@@ -32,7 +29,6 @@ class MediaDetailsViewModel(
     defaultPreferencesRepository: DefaultPreferencesRepository,
     private val animeRepository: AnimeRepository,
     private val mangaRepository: MangaRepository,
-    //private val notificationWorkerManager: NotificationWorkerManager,
 ) : BaseViewModel<MediaDetailsUiState>(), MediaDetailsEvent {
     private val mediaType = arguments.mediaType
     private val mediaId = arguments.mediaId
@@ -92,39 +88,6 @@ class MediaDetailsViewModel(
         }
     }
 
-    override fun scheduleAiringAnimeNotification(
-        title: String,
-        animeId: Int,
-        weekDay: WeekDay,
-        jpHour: LocalTime
-    ) {
-        viewModelScope.launch {
-            //TODO
-            /*notificationWorkerManager.scheduleAiringAnimeNotification(
-                title,
-                animeId,
-                weekDay,
-                jpHour
-            )*/
-        }
-    }
-
-    override fun scheduleAnimeStartNotification(
-        title: String,
-        animeId: Int,
-        startDate: LocalDate,
-    ) {
-        viewModelScope.launch {
-            //notificationWorkerManager.scheduleAnimeStartNotification(title, animeId, startDate)
-        }
-    }
-
-    override fun removeAiringAnimeNotification(animeId: Int) {
-        viewModelScope.launch {
-            //notificationWorkerManager.removeAiringAnimeNotification(animeId)
-        }
-    }
-
     init {
         viewModelScope.launch(Dispatchers.IO) {
             setLoading(true)
@@ -174,17 +137,5 @@ class MediaDetailsViewModel(
                 mutableUiState.update { it.copy(hideScore = value) }
             }
             .launchIn(viewModelScope)
-
-        /*notificationWorkerManager.getNotification(mediaId)
-            .onEach { notification ->
-                mutableUiState.update { it.copy(notification = notification) }
-            }
-            .launchIn(viewModelScope)
-
-        notificationWorkerManager.getStartNotification(mediaId)
-            .onEach { startNotification ->
-                mutableUiState.update { it.copy(startNotification = startNotification) }
-            }
-            .launchIn(viewModelScope)*/
     }
 }

@@ -23,6 +23,7 @@ import kotlinx.datetime.plus
 import kotlinx.datetime.toLocalDateTime
 import org.jetbrains.compose.resources.pluralStringResource
 import org.jetbrains.compose.resources.stringResource
+import kotlin.time.Clock
 import kotlin.time.Instant
 
 object DateUtils {
@@ -51,6 +52,8 @@ object DateUtils {
         char(':')
         minute()
     }
+
+    fun now() = Clock.System.now().toLocalDateTime(TimeZone.currentSystemDefault())
 
     /**
      * @return the date in LocalDate, null if fails

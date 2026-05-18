@@ -53,7 +53,6 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.input.nestedscroll.nestedScroll
-import androidx.compose.ui.platform.LocalClipboard
 import androidx.compose.ui.platform.LocalUriHandler
 import androidx.compose.ui.text.AnnotatedString
 import androidx.compose.ui.text.font.FontWeight
@@ -74,9 +73,9 @@ import com.axiel7.moelist.data.utils.NumExtensions.format
 import com.axiel7.moelist.data.utils.StringExtensions.toStringOrNull
 import com.axiel7.moelist.data.utils.UNKNOWN_CHAR
 import com.axiel7.moelist.screens.details.composables.AnimeThemeItem
-import com.axiel7.moelist.screens.details.composables.MediaDetailsTopAppBar
 import com.axiel7.moelist.screens.details.composables.MediaInfoView
 import com.axiel7.moelist.screens.details.composables.MusicStreamingSheet
+import com.axiel7.moelist.screens.details.topbar.MediaDetailsTopAppBar
 import com.axiel7.moelist.screens.editmedia.EditMediaSheet
 import com.axiel7.moelist.ui.base.model.ListStatus.Companion.toBo
 import com.axiel7.moelist.ui.base.model.toStats
@@ -229,10 +228,10 @@ private fun MediaDetailsContent(
         modifier = Modifier.nestedScroll(topAppBarScrollBehavior.nestedScrollConnection),
         topBar = {
             MediaDetailsTopAppBar(
-                uiState = uiState,
-                event = event,
-                navigateBack = dropUnlessResumed { navActionManager.goBack() },
+                mediaDetails = uiState.mediaDetails,
                 scrollBehavior = topAppBarScrollBehavior,
+                snackbarHostState = snackbarHostState,
+                navigateBack = dropUnlessResumed { navActionManager.goBack() },
             )
         },
         snackbarHost = { SnackbarHost(snackbarHostState) },

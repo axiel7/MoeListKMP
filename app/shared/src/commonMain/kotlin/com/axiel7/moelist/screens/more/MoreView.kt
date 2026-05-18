@@ -24,6 +24,7 @@ import androidx.compose.ui.unit.dp
 import androidx.lifecycle.compose.dropUnlessResumed
 import com.axiel7.moelist.data.utils.MAL_ANNOUNCEMENTS_URL
 import com.axiel7.moelist.data.utils.MAL_NEWS_URL
+import com.axiel7.moelist.getPlatform
 import com.axiel7.moelist.screens.more.composables.FeedbackDialog
 import com.axiel7.moelist.screens.more.composables.LogOutDialog
 import com.axiel7.moelist.screens.more.composables.MoreItem
@@ -47,6 +48,8 @@ import com.axiel7.moelist.ui.generated.resources.logout_summary
 import com.axiel7.moelist.ui.generated.resources.mal_announcements
 import com.axiel7.moelist.ui.generated.resources.mal_announcements_summary
 import com.axiel7.moelist.ui.generated.resources.news_summary
+import com.axiel7.moelist.ui.generated.resources.notifications
+import com.axiel7.moelist.ui.generated.resources.round_notifications_24
 import com.axiel7.moelist.ui.generated.resources.settings
 import com.axiel7.moelist.ui.theme.MoeListTheme
 import org.jetbrains.compose.resources.painterResource
@@ -154,12 +157,13 @@ private fun MoreViewContent(
 
         HorizontalDivider()
 
-        // TODO: notifications
-        /*MoreItem(
-            title = stringResource(UiRes.string.notifications),
-            icon = UiRes.drawable.round_notifications_24,
-            onClick = dropUnlessResumed { navActionManager.toNotifications() }
-        )*/
+        if (getPlatform().supportsNotifications) {
+            MoreItem(
+                title = stringResource(UiRes.string.notifications),
+                icon = UiRes.drawable.round_notifications_24,
+                onClick = dropUnlessResumed { navActionManager.toNotifications() }
+            )
+        }
 
         MoreItem(
             title = stringResource(UiRes.string.settings),

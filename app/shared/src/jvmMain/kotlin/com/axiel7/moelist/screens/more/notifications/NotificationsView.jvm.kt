@@ -4,4 +4,4 @@ import androidx.compose.runtime.Composable
 import com.axiel7.moelist.ui.base.navigation.NavActionManager
 
 @Composable
-expect fun NotificationsView(navActionManager: NavActionManager)
+actual fun NotificationsView(navActionManager: NavActionManager) {}

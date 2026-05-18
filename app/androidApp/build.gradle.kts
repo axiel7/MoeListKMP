@@ -19,6 +19,7 @@ dependencies {
     implementation(libs.androidx.core.splashscreen)
     implementation(libs.androidx.navigation3.ui)
     implementation(libs.androidx.glance.appwidget)
+    implementation(libs.kmpworkmanager)
 
     debugImplementation(libs.compose.ui.tooling)
 

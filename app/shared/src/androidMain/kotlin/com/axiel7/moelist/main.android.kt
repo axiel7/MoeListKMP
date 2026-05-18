@@ -16,4 +16,5 @@ fun initApp(
     codeAuthFlowFactory = codeAuthFlowFactory,
     databaseBuilder = getDatabaseBuilder(context),
     createDataStore = { createDataStore(context, it) },
+    extraModules = listOf(workerModule, androidViewModelModule)
 )

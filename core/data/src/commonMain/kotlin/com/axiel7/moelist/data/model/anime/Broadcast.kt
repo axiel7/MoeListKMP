@@ -107,9 +107,7 @@ data class Broadcast(
 
     private fun dateTimeUntilNextBroadcast(): LocalDateTime? =
         if (startTime != null && dayOfTheWeek != null) {
-            val now =
-                Clock.System.now().toLocalDateTime(TimeZone.currentSystemDefault())
-            val airingDay = now.date.getNextDayOfWeek(DayOfWeek(dayOfTheWeek.ordinal + 1))
+            val airingDay = DateUtils.now().date.getNextDayOfWeek(DayOfWeek(dayOfTheWeek.ordinal + 1))
             val airingTime = LocalTime.parse(startTime)
 
             val localDateTime = LocalDateTime(airingDay, airingTime)

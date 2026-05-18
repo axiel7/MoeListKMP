@@ -38,6 +38,8 @@ conveyorControl = "1.1"
 glance = "1.1.1"
 kotlinx-datetime-names = "0.1.1"
 desugarJdk = "2.1.5"
+kmpWorkManager = "2.4.3"
+accompanist = "0.37.3"
 
 [libraries]
 kotlin-test = { module = "org.jetbrains.kotlin:kotlin-test", version.ref = "kotlin" }
@@ -92,6 +94,8 @@ conveyor-control = { group = "dev.hydraulic.conveyor", name = "conveyor-control"
 androidx-glance-appwidget = { group = "androidx.glance", name = "glance-appwidget", version.ref = "glance" }
 kotlinx-datetime-names = { module = "io.github.adrcotfas:kotlinx-datetime-names", version.ref = "kotlinx-datetime-names" }
 desugar_jdk_libs = { group = "com.android.tools", name = "desugar_jdk_libs", version.ref = "desugarJdk" }
+kmpworkmanager = { module = "dev.brewkits:kmpworkmanager", version.ref = "kmpWorkManager" }
+accompanist-permissions = { group = "com.google.accompanist", name = "accompanist-permissions", version.ref = "accompanist" }
 
 [plugins]
 androidApplication = { id = "com.android.application", version.ref = "agp" }

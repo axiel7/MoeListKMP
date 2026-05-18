@@ -14,6 +14,8 @@
         </intent>
     </queries>
 
+    <uses-sdk tools:overrideLibrary="dev.brewkits.kmpworkmanager" />
+
     <application
         android:name=".MoeListApplication"
         android:allowBackup="true"
@@ -84,7 +86,6 @@
                 android:name="android.appwidget.provider"
                 android:resource="@xml/airing_widget_info" />
         </receiver>
-        <!-- TODO
         <provider
             android:name="androidx.startup.InitializationProvider"
             android:authorities="${applicationId}.androidx-startup"
@@ -92,9 +93,8 @@
             tools:node="merge">
             <meta-data
                 android:name="androidx.work.WorkManagerInitializer"
-                android:value="androidx.startup"
-                tools:node="remove" />
-        </provider>-->
+                android:value="androidx.startup" />
+        </provider>
     </application>
 
 </manifest>
