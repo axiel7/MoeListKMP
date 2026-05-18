@@ -1,6 +1,7 @@
 package com.axiel7.moelist.data.model.media
 
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.Stable
 import androidx.compose.ui.text.SpanStyle
 import androidx.compose.ui.text.buildAnnotatedString
 import androidx.compose.ui.text.font.FontWeight
@@ -21,6 +22,7 @@ import com.axiel7.moelist.ui.generated.resources.unknown
 import org.jetbrains.compose.resources.pluralStringResource
 import org.jetbrains.compose.resources.stringResource
 
+@Stable
 abstract class BaseMediaDetails : BaseResponse {
     abstract val id: Int
     abstract val title: String?
