@@ -22,12 +22,14 @@ import dev.brewkits.kmpworkmanager.background.domain.AndroidWorker
 import dev.brewkits.kmpworkmanager.background.domain.WorkerEnvironment
 import dev.brewkits.kmpworkmanager.background.domain.WorkerResult
 import kotlinx.serialization.json.Json
+import org.koin.core.component.KoinComponent
+import org.koin.core.component.inject
 
-class NotificationWorker(
-    private val context: Context,
-    private val animeRepository: AnimeRepository,
-    private val notificationWorkerManager: NotificationWorkerManager,
-) : AndroidWorker {
+class NotificationWorker : AndroidWorker, KoinComponent {
+
+    private val context: Context by inject()
+    private val animeRepository: AnimeRepository by inject()
+    private val notificationWorkerManager: NotificationWorkerManager by inject()
 
     override suspend fun doWork(input: String?, env: WorkerEnvironment): WorkerResult {
         if (env.isCancelled() || input == null) return WorkerResult.Success()

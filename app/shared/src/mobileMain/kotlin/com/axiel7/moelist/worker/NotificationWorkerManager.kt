@@ -56,7 +56,7 @@ class NotificationWorkerManager(
                     intervalMs = ONE_WEEK_MS,
                     initialDelayMs = delay.inWholeMilliseconds,
                 ),
-                workerClassName = CLASS_NAME,
+                workerClassName = NOTIFICATION_CLASS_NAME,
                 constraints = Constraints(requiresNetwork = true),
                 inputJson = inputJson
             )
@@ -101,7 +101,7 @@ class NotificationWorkerManager(
             .enqueue(
                 id = "notification_start_$animeId",
                 trigger = TaskTrigger.OneTime(delay.inWholeMilliseconds),
-                workerClassName = CLASS_NAME,
+                workerClassName = NOTIFICATION_CLASS_NAME,
                 constraints = Constraints(requiresNetwork = true),
                 inputJson = inputJson
             )
@@ -129,7 +129,7 @@ class NotificationWorkerManager(
     }
 
     companion object {
-        const val CLASS_NAME = "NotificationWorker"
+        const val NOTIFICATION_CLASS_NAME = "NotificationWorker"
 
         const val ONE_WEEK_MS = 604_800_000L
     }
