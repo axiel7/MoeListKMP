@@ -12,24 +12,22 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalUriHandler
 import androidx.compose.ui.text.intl.Locale
 import androidx.compose.ui.tooling.preview.Preview
-import com.axiel7.moelist.data.utils.GENERAL_HELP_CREDIT_URL
 import com.axiel7.moelist.data.utils.LOGO_CREDIT_URL
 import com.axiel7.moelist.data.utils.LOGO_NEW_CREDIT_URL
 import com.axiel7.moelist.data.utils.WEBSITE_CREDIT_URL
 import com.axiel7.moelist.screens.more.composables.MoreItem
+import com.axiel7.moelist.screens.more.settings.SettingsTitle
 import com.axiel7.moelist.ui.base.navigation.NavActionManager
 import com.axiel7.moelist.ui.composables.DefaultScaffoldWithTopAppBar
 import com.axiel7.moelist.ui.generated.resources.UiRes
 import com.axiel7.moelist.ui.generated.resources.api_help
 import com.axiel7.moelist.ui.generated.resources.contributors
 import com.axiel7.moelist.ui.generated.resources.credits
-import com.axiel7.moelist.ui.generated.resources.general_help
 import com.axiel7.moelist.ui.generated.resources.logo_design
 import com.axiel7.moelist.ui.generated.resources.new_logo_design
 import com.axiel7.moelist.ui.generated.resources.support
 import com.axiel7.moelist.ui.generated.resources.translations
 import com.axiel7.moelist.ui.generated.resources.website
-import com.axiel7.moelist.screens.more.settings.SettingsTitle
 import com.axiel7.moelist.ui.theme.MoeListTheme
 import org.jetbrains.compose.resources.stringResource
 
@@ -91,11 +89,6 @@ fun CreditsView(
                 title = stringResource(UiRes.string.website),
                 subtitle = "@MaximilianGT500",
                 onClick = { uriHandler.openUri(WEBSITE_CREDIT_URL) }
-            )
-            MoreItem(
-                title = stringResource(UiRes.string.general_help),
-                subtitle = "@Jeluchu",
-                onClick = { uriHandler.openUri(GENERAL_HELP_CREDIT_URL) }
             )
             MoreItem(
                 title = stringResource(UiRes.string.api_help),
