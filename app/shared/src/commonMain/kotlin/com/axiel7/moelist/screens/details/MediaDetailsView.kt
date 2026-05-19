@@ -86,6 +86,7 @@ import com.axiel7.moelist.ui.composables.PlatformHorizontalScrollbar
 import com.axiel7.moelist.ui.composables.TextIconHorizontal
 import com.axiel7.moelist.ui.composables.TextIconVertical
 import com.axiel7.moelist.ui.composables.button.CopyButton
+import com.axiel7.moelist.ui.composables.button.MoreLessButton
 import com.axiel7.moelist.ui.composables.defaultPlaceholder
 import com.axiel7.moelist.ui.composables.media.MEDIA_POSTER_BIG_HEIGHT
 import com.axiel7.moelist.ui.composables.media.MEDIA_POSTER_BIG_WIDTH
@@ -148,6 +149,8 @@ import org.jetbrains.compose.resources.painterResource
 import org.jetbrains.compose.resources.stringResource
 import org.koin.compose.viewmodel.koinViewModel
 import org.koin.core.parameter.parametersOf
+
+const val THEMES_LIMIT = 5
 
 @Composable
 fun MediaDetailsView(
@@ -594,24 +597,28 @@ private fun MediaDetailsContent(
             }
 
             //Themes
-            var showMusicSheet by remember { mutableStateOf(false) }
-            var selectedSong by remember { mutableStateOf<String?>(null) }
-
-            if (showMusicSheet && selectedSong != null) {
-                MusicStreamingSheet(
-                    songTitle = selectedSong.orEmpty(),
-                    bottomPadding = WindowInsets.navigationBars.asPaddingValues()
-                        .calculateBottomPadding(),
-                    onDismiss = {
-                        showMusicSheet = false
-                        selectedSong = null
-                    }
-                )
-            }
             if (uiState.mediaDetails is AnimeDetails) {
+                var isOpeningsExpanded by remember { mutableStateOf(false) }
+                var isEndingsExpanded by remember { mutableStateOf(false) }
+                var showMusicSheet by remember { mutableStateOf(false) }
+                var selectedSong by remember { mutableStateOf<String?>(null) }
+
+                if (showMusicSheet && selectedSong != null) {
+                    MusicStreamingSheet(
+                        songTitle = selectedSong.orEmpty(),
+                        bottomPadding = WindowInsets.navigationBars.asPaddingValues()
+                            .calculateBottomPadding(),
+                        onDismiss = {
+                            showMusicSheet = false
+                            selectedSong = null
+                        }
+                    )
+                }
+
                 uiState.mediaDetails.openingThemes?.let { themes ->
+                    val limit = if (isOpeningsExpanded) themes.size else THEMES_LIMIT
                     InfoTitle(text = stringResource(UiRes.string.opening))
-                    themes.forEach { theme ->
+                    themes.take(limit).forEach { theme ->
                         AnimeThemeItem(
                             text = theme.text,
                             onClick = {
@@ -620,17 +627,32 @@ private fun MediaDetailsContent(
                             }
                         )
                     }
+                    if (themes.size > THEMES_LIMIT) {
+                        MoreLessButton(
+                            isExpanded = isOpeningsExpanded,
+                            onClick = { isOpeningsExpanded = !isOpeningsExpanded },
+                            modifier = Modifier.padding(horizontal = 16.dp),
+                        )
+                    }
                 }
 
                 uiState.mediaDetails.endingThemes?.let { themes ->
+                    val limit = if (isEndingsExpanded) themes.size else THEMES_LIMIT
                     InfoTitle(text = stringResource(UiRes.string.ending))
-                    themes.forEach { theme ->
+                    themes.take(limit).forEach { theme ->
                         AnimeThemeItem(
                             text = theme.text,
                             onClick = {
                                 selectedSong = theme.text
                                 showMusicSheet = true
                             }
+                        )
+                    }
+                    if (themes.size > THEMES_LIMIT) {
+                        MoreLessButton(
+                            isExpanded = isOpeningsExpanded,
+                            onClick = { isOpeningsExpanded = !isOpeningsExpanded },
+                            modifier = Modifier.padding(horizontal = 16.dp),
                         )
                     }
                 }

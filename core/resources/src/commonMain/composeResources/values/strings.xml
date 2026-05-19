@@ -389,4 +389,6 @@
     <string name="tablet_mode">Tablet mode</string>
     <string name="refresh">Refresh</string>
     <string name="color_palette">Color palette</string>
+    <string name="show_less">Less</string>
+    <string name="show_more">More</string>
 </resources>
