@@ -84,7 +84,7 @@ class SeasonChartViewModel(
                         sort = uiState.sort,
                         startSeason = uiState.season,
                         isNew = uiState.isNew,
-                        limit = 25,
+                        limit = 50,
                         fields = AnimeRepository.SEASONAL_FIELDS,
                         page = uiState.nextPage,
                     )

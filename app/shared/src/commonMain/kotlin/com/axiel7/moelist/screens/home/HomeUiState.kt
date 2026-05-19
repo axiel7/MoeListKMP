@@ -4,11 +4,14 @@ import androidx.compose.runtime.Immutable
 import com.axiel7.moelist.data.model.anime.AnimeList
 import com.axiel7.moelist.data.model.anime.AnimeRanking
 import com.axiel7.moelist.data.model.anime.AnimeSeasonal
+import com.axiel7.moelist.data.model.anime.StartSeason
 import com.axiel7.moelist.data.model.media.TitleLanguage
+import com.axiel7.moelist.data.utils.SeasonCalendar
 import com.axiel7.moelist.ui.base.state.UiState
 
 @Immutable
 data class HomeUiState(
+    val currentSeason: StartSeason = SeasonCalendar.currentStartSeason,
     val todayAnimes: List<AnimeRanking> = emptyList(),
     val seasonAnimes: List<AnimeSeasonal> = emptyList(),
     val recommendedAnimes: List<AnimeList> = emptyList(),

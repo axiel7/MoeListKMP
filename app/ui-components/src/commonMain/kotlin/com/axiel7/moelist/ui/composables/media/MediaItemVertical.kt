@@ -107,8 +107,7 @@ fun MediaItemVerticalPlaceholder(
             .size(
                 width = (MEDIA_POSTER_SMALL_WIDTH + 8).dp,
                 height = MEDIA_ITEM_VERTICAL_HEIGHT.dp
-            )
-            .padding(end = 8.dp),
+            ),
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
         Box(

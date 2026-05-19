@@ -141,7 +141,9 @@ private fun CalendarContent(
                 }
                 if (uiState.isLoading) {
                     items(10) {
-                        MediaItemVerticalPlaceholder()
+                        MediaItemVerticalPlaceholder(
+                            modifier = Modifier.padding(horizontal = 8.dp)
+                        )
                     }
                 }
             }

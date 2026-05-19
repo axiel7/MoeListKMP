@@ -7,6 +7,7 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.RowScope
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
@@ -66,7 +67,6 @@ import com.axiel7.moelist.ui.generated.resources.please_login_to_use_this_featur
 import com.axiel7.moelist.ui.generated.resources.random
 import com.axiel7.moelist.ui.generated.resources.recommendations
 import com.axiel7.moelist.ui.generated.resources.seasonal_chart
-import com.axiel7.moelist.ui.generated.resources.this_season
 import com.axiel7.moelist.ui.generated.resources.today
 import com.axiel7.moelist.ui.theme.MoeListTheme
 import org.jetbrains.compose.resources.painterResource
@@ -258,9 +258,11 @@ private fun HomeViewContent(
             PlatformHorizontalScrollbar(scrollState = airingListState)
         }
 
+        Spacer(modifier = Modifier.height(4.dp))
+
         // This Season
         HeaderHorizontalList(
-            text = stringResource(UiRes.string.this_season),
+            text = uiState.currentSeason.seasonYearText(),
             onClick = dropUnlessResumed { navActionManager.toSeasonChart() }
         )
         if (!uiState.isLoading && uiState.seasonAnimes.isEmpty()) {
@@ -317,7 +319,9 @@ private fun HomeViewContent(
                 }
                 if (uiState.isLoading) {
                     items(10) {
-                        MediaItemVerticalPlaceholder()
+                        MediaItemVerticalPlaceholder(
+                            modifier = Modifier.padding(horizontal = 8.dp)
+                        )
                     }
                 }
             }

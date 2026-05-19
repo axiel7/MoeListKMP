@@ -61,12 +61,12 @@ class HomeViewModel(
     }
 
     private suspend fun getSeasonAnimes() {
-        val currentStartSeason = SeasonCalendar.currentStartSeason
         val result = animeRepository.getSeasonalAnimes(
-            sort = MediaSort.SCORE,
-            startSeason = currentStartSeason,
-            limit = 25,
-            fields = "alternative_titles{en,ja},mean,my_list_status{status}",
+            sort = MediaSort.ANIME_NUM_USERS,
+            startSeason = uiState.value.currentSeason,
+            isNew = true,
+            limit = 50,
+            fields = "alternative_titles{en,ja},mean,start_season,my_list_status{status}",
         )
         result.data?.let { data -> mutableUiState.update { it.copy(seasonAnimes = data) } }
             ?: showMessage(result.message ?: result.error)
