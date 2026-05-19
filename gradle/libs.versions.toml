@@ -38,7 +38,7 @@ conveyorControl = "1.1"
 glance = "1.1.1"
 kotlinx-datetime-names = "0.1.1"
 desugarJdk = "2.1.5"
-kmpWorkManager = "2.4.3"
+kmpWorkManager = "2.5.0"
 accompanist = "0.37.3"
 
 [libraries]

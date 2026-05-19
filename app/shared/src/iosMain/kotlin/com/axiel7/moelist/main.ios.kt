@@ -9,6 +9,8 @@ import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.axiel7.moelist.data.local.createDataStore
 import com.axiel7.moelist.data.local.getDatabaseBuilder
 import com.axiel7.moelist.data.model.ui.AppLanguage
+import com.axiel7.moelist.di.iosModule
+import com.axiel7.moelist.di.iosViewModelModule
 import com.axiel7.moelist.main.MainViewModel
 import com.axiel7.moelist.ui.base.IosBrowserHandler
 import com.axiel7.moelist.ui.base.model.BottomDestination.Companion.toBottomDestinationIndex

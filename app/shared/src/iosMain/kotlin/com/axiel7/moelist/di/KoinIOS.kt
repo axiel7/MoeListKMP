@@ -1,0 +1,44 @@
+package com.axiel7.moelist.di
+
+import dev.brewkits.kmpworkmanager.background.data.ChainExecutor
+import dev.brewkits.kmpworkmanager.background.data.DynamicTaskDispatcher
+import dev.brewkits.kmpworkmanager.background.data.SingleTaskExecutor
+import dev.brewkits.kmpworkmanager.background.domain.BackgroundTaskScheduler
+import org.koin.core.component.KoinComponent
+import org.koin.core.component.inject
+import kotlin.getValue
+
+/**
+ * A helper class that inherits from KoinComponent to allow easy access
+ * to dependencies injected via Koin from the Swift/Objective-C side of the iOS application.
+ */
+class KoinIOS : KoinComponent {
+    // Inject the BackgroundTaskScheduler dependency
+    private val scheduler: BackgroundTaskScheduler by inject()
+    // Inject the ChainExecutor dependency
+    private val chainExecutor: ChainExecutor by inject()
+    // Inject the SingleTaskExecutor dependency
+    private val singleTaskExecutor: SingleTaskExecutor by inject()
+    // Inject the DynamicTaskDispatcher dependency
+    private val dynamicTaskDispatcher: DynamicTaskDispatcher by inject()
+
+    /**
+     * Provides access to the injected BackgroundTaskScheduler instance.
+     */
+    fun getScheduler(): BackgroundTaskScheduler = scheduler
+
+    /**
+     * Provides access to the injected ChainExecutor instance.
+     */
+    fun getChainExecutor(): ChainExecutor = chainExecutor
+
+    /**
+     * Provides access to the injected SingleTaskExecutor instance.
+     */
+    fun getSingleTaskExecutor(): SingleTaskExecutor = singleTaskExecutor
+
+    /**
+     * Provides access to the injected DynamicTaskDispatcher instance.
+     */
+    fun getDynamicTaskDispatcher(): DynamicTaskDispatcher = dynamicTaskDispatcher
+}

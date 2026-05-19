@@ -1,21 +1,15 @@
 package com.axiel7.moelist.worker
 
-import com.axiel7.moelist.data.repository.AnimeRepository
 import dev.brewkits.kmpworkmanager.background.data.IosWorker
 import dev.brewkits.kmpworkmanager.background.data.IosWorkerFactory
-import dev.brewkits.kmpworkmanager.background.domain.BackgroundTaskScheduler
 import dev.brewkits.kmpworkmanager.utils.Logger
 
-class DefaultWorkerFactory(
-    private val scheduler: BackgroundTaskScheduler,
-    private val animeRepository: AnimeRepository,
-    private val notificationWorkerManager: NotificationWorkerManager,
-) : IosWorkerFactory {
+class DefaultWorkerFactory : IosWorkerFactory {
     override fun createWorker(workerClassName: String): IosWorker? {
         return when (workerClassName) {
-            "NotificationWorker" -> NotificationWorker(scheduler, animeRepository, notificationWorkerManager)
+            NotificationWorkerManager.NOTIFICATION_CLASS_NAME -> NotificationWorker()
             else -> {
-                Logger.e("FACTORY", "Unknown worker: $workerClassName")
+                Logger.e("KMP_BG_TASK_IOS", "Unknown worker class name: $workerClassName")
                 null
             }
         }

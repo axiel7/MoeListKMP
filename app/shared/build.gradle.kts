@@ -31,6 +31,9 @@ kotlin {
             baseName = "shared"
             isStatic = true
             binaryOption("bundleId", "com.axiel7.moelist.shared")
+            linkerOpts.add("-framework")
+            linkerOpts.add("UserNotifications")
+            export(libs.kmpworkmanager)
         }
     }
     
