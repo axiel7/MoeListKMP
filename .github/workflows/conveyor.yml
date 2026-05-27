@@ -61,7 +61,7 @@ jobs:
     - name: Upload linux AppImage artifacts
       uses: actions/upload-artifact@v6
       with:
-        name: MoeList-linux-x86_64
+        name: MoeList-AppImage-x86_64
         path: ${{github.workspace}}/MoeList-*.AppImage
 
     - name: Make and publish conveyor release
