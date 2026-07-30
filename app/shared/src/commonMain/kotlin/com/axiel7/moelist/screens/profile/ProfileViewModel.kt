@@ -75,55 +75,6 @@ class ProfileViewModel(
                         isLoadingManga = user.name != null,
                     )
                 }
-
-                // get manga stats from jikan api because the official api has not implemented it
-                user.name?.let { username ->
-                    // convert the username to lowercase because a bug in the jikan api
-                    val jikanUserStats = withContext(Dispatchers.IO) {
-                        userRepository.getUserStats(username.lowercase())
-                    }
-
-                    jikanUserStats.data?.manga?.let { stats ->
-                        val tempMangaStatList = mutableListOf<Stat<ListStatus>>()
-                        tempMangaStatList.add(
-                            Stat(
-                                type = ListStatus.READING,
-                                value = stats.current.toFloat()
-                            )
-                        )
-                        tempMangaStatList.add(
-                            Stat(
-                                type = ListStatus.COMPLETED,
-                                value = stats.completed.toFloat()
-                            )
-                        )
-                        tempMangaStatList.add(
-                            Stat(
-                                type = ListStatus.ON_HOLD,
-                                value = stats.onHold.toFloat()
-                            )
-                        )
-                        tempMangaStatList.add(
-                            Stat(
-                                type = ListStatus.DROPPED,
-                                value = stats.dropped.toFloat()
-                            )
-                        )
-                        tempMangaStatList.add(
-                            Stat(
-                                type = ListStatus.PLAN_TO_READ,
-                                value = stats.planned.toFloat()
-                            )
-                        )
-                        mutableUiState.update {
-                            it.copy(
-                                mangaStats = tempMangaStatList,
-                                userMangaStats = stats,
-                                isLoadingManga = false
-                            )
-                        }
-                    }
-                }
             }
         }
     }

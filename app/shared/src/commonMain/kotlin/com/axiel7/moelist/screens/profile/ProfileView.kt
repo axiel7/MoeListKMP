@@ -182,12 +182,12 @@ private fun ProfileViewContent(
 
             HorizontalDivider(modifier = Modifier.padding(vertical = 16.dp))
 
-            UserStatsView(
+            /*UserStatsView(
                 uiState = uiState,
                 mediaType = MediaType.MANGA,
             )
 
-            HorizontalDivider(modifier = Modifier.padding(vertical = 16.dp))
+            HorizontalDivider(modifier = Modifier.padding(vertical = 16.dp))*/
 
             TextButton(
                 onClick = { uriHandler.openUri(MAL_PROFILE_URL + uiState.user?.name) },
