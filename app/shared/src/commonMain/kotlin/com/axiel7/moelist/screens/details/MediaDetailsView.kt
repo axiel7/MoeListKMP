@@ -87,6 +87,7 @@ import com.axiel7.moelist.ui.composables.TextIconHorizontal
 import com.axiel7.moelist.ui.composables.TextIconVertical
 import com.axiel7.moelist.ui.composables.button.CopyButton
 import com.axiel7.moelist.ui.composables.button.MoreLessButton
+import com.axiel7.moelist.ui.composables.button.TranslateButton
 import com.axiel7.moelist.ui.composables.defaultPlaceholder
 import com.axiel7.moelist.ui.composables.media.MEDIA_POSTER_BIG_HEIGHT
 import com.axiel7.moelist.ui.composables.media.MEDIA_POSTER_BIG_WIDTH
@@ -103,7 +104,6 @@ import com.axiel7.moelist.ui.generated.resources.edit
 import com.axiel7.moelist.ui.generated.resources.end_date
 import com.axiel7.moelist.ui.generated.resources.ending
 import com.axiel7.moelist.ui.generated.resources.english
-import com.axiel7.moelist.ui.generated.resources.ic_outline_translate_24
 import com.axiel7.moelist.ui.generated.resources.ic_round_add_24
 import com.axiel7.moelist.ui.generated.resources.ic_round_bar_chart_24
 import com.axiel7.moelist.ui.generated.resources.ic_round_book_24
@@ -381,17 +381,9 @@ private fun MediaDetailsContent(
                     verticalAlignment = Alignment.CenterVertically
                 ) {
                     if (!isCurrentLanguageEn) {
-                        IconButton(
-                            onClick = {
-                                //TODO uiState.mediaDetails?.synopsis?.let { context.openTranslator(it) }
-                            },
-                            shapes = IconButtonDefaults.shapes()
-                        ) {
-                            Icon(
-                                painter = painterResource(UiRes.drawable.ic_outline_translate_24),
-                                contentDescription = stringResource(UiRes.string.translate)
-                            )
-                        }
+                        TranslateButton(
+                            textToTranslate = uiState.mediaDetails?.synopsis.orEmpty()
+                        )
                     } else Spacer(modifier = Modifier.size(48.dp))
 
                     IconButton(

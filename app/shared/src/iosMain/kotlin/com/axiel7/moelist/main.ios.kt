@@ -2,6 +2,7 @@ package com.axiel7.moelist
 
 import androidx.compose.material3.windowsizeclass.ExperimentalMaterial3WindowSizeClassApi
 import androidx.compose.material3.windowsizeclass.calculateWindowSizeClass
+import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.remember
 import androidx.compose.ui.window.ComposeUIViewController
@@ -14,6 +15,8 @@ import com.axiel7.moelist.di.iosViewModelModule
 import com.axiel7.moelist.main.MainViewModel
 import com.axiel7.moelist.ui.base.IosBrowserHandler
 import com.axiel7.moelist.ui.base.model.BottomDestination.Companion.toBottomDestinationIndex
+import com.axiel7.moelist.ui.composables.button.LocalTranslationBridge
+import com.axiel7.moelist.ui.composables.button.TranslationBridge
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.runBlocking
 import org.koin.compose.viewmodel.koinViewModel
@@ -34,7 +37,9 @@ fun initApp() = initApp(
 
 @OptIn(ExperimentalMaterial3WindowSizeClassApi::class)
 @Suppress("unused") // Called from Swift
-fun MainViewController() = ComposeUIViewController {
+fun MainViewController(
+    translationBridge: TranslationBridge
+) = ComposeUIViewController {
     val viewModel = koinViewModel<MainViewModel>()
     val windowSizeClass = calculateWindowSizeClass()
     val uiState by viewModel.uiState.collectAsStateWithLifecycle()
@@ -53,21 +58,23 @@ fun MainViewController() = ComposeUIViewController {
 
     val lastTabOpened = remember { findLastTabOpened() }
 
-    App(
-        uiState = uiState,
-        event = viewModel,
-        windowWidthSizeClass = windowSizeClass.widthSizeClass,
-        lastTabOpened = lastTabOpened,
-        onLocaleChange = {
-            if (it == AppLanguage.FOLLOW_SYSTEM) {
-                NSUserDefaults.standardUserDefaults.removeObjectForKey("AppleLanguages")
-            } else {
-                NSUserDefaults.standardUserDefaults.setObject(
-                    arrayListOf(it.value),
-                    "AppleLanguages"
-                )
-            }
-        },
-        browserHandler = remember { IosBrowserHandler() }
-    )
+    CompositionLocalProvider(LocalTranslationBridge provides translationBridge) {
+        App(
+            uiState = uiState,
+            event = viewModel,
+            windowWidthSizeClass = windowSizeClass.widthSizeClass,
+            lastTabOpened = lastTabOpened,
+            onLocaleChange = {
+                if (it == AppLanguage.FOLLOW_SYSTEM) {
+                    NSUserDefaults.standardUserDefaults.removeObjectForKey("AppleLanguages")
+                } else {
+                    NSUserDefaults.standardUserDefaults.setObject(
+                        arrayListOf(it.value),
+                        "AppleLanguages"
+                    )
+                }
+            },
+            browserHandler = remember { IosBrowserHandler() }
+        )
+    }
 }

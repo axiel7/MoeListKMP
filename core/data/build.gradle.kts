@@ -65,6 +65,7 @@ kotlin {
             implementation(libs.ktor.client.okhttp)
             implementation(libs.kotlinx.coroutines.android)
             implementation(libs.commons.text)
+            implementation(libs.androidx.core.ktx)
         }
         jvmMain.dependencies {
             api(libs.ktor.client.okhttp)
