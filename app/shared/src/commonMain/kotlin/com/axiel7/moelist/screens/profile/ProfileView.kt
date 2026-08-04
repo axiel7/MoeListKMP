@@ -10,9 +10,11 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.verticalScroll
+import androidx.compose.material3.AlertDialog
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.ExperimentalMaterial3ExpressiveApi
 import androidx.compose.material3.HorizontalDivider
+import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.SnackbarHostState
 import androidx.compose.material3.Surface
@@ -21,7 +23,9 @@ import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
@@ -42,10 +46,13 @@ import com.axiel7.moelist.ui.composables.PlatformImage
 import com.axiel7.moelist.ui.composables.TextIconHorizontal
 import com.axiel7.moelist.ui.composables.defaultPlaceholder
 import com.axiel7.moelist.ui.generated.resources.UiRes
+import com.axiel7.moelist.ui.generated.resources.ic_info
 import com.axiel7.moelist.ui.generated.resources.ic_round_access_time_24
 import com.axiel7.moelist.ui.generated.resources.ic_round_account_circle_24
 import com.axiel7.moelist.ui.generated.resources.ic_round_cake_24
 import com.axiel7.moelist.ui.generated.resources.ic_round_location_on_24
+import com.axiel7.moelist.ui.generated.resources.manga_stats
+import com.axiel7.moelist.ui.generated.resources.ok
 import com.axiel7.moelist.ui.generated.resources.title_profile
 import com.axiel7.moelist.ui.generated.resources.view_profile_mal
 import com.axiel7.moelist.ui.theme.MoeListTheme
@@ -80,6 +87,24 @@ private fun ProfileViewContent(
     val uriHandler = LocalUriHandler.current
     val snackbarHostState = remember { SnackbarHostState() }
     val scrollState = rememberScrollState()
+    var showMangaStatsDialog by remember { mutableStateOf(false) }
+
+    if (showMangaStatsDialog) {
+        AlertDialog(
+            onDismissRequest = { showMangaStatsDialog = false },
+            confirmButton = {
+                TextButton(onClick = { showMangaStatsDialog = false }) {
+                    Text(text = stringResource(UiRes.string.ok))
+                }
+            },
+            text = {
+                Text(
+                    text = "Manga stats are not available due to Jikan (Unofficial MAL API) shutting down. " +
+                            "There is nothing I can do at this moment to fix it, sorry :("
+                )
+            },
+        )
+    }
 
     LaunchedEffect(uiState.message) {
         if (uiState.message != null) {
@@ -182,12 +207,18 @@ private fun ProfileViewContent(
 
             HorizontalDivider(modifier = Modifier.padding(vertical = 16.dp))
 
-            /*UserStatsView(
-                uiState = uiState,
-                mediaType = MediaType.MANGA,
-            )
+            TextButton(onClick = { showMangaStatsDialog = true }) {
+                Icon(
+                    painter = painterResource(UiRes.drawable.ic_info),
+                    contentDescription = null,
+                    modifier = Modifier
+                        .padding(horizontal = 4.dp)
+                        .size(20.dp)
+                )
+                Text(text = stringResource(UiRes.string.manga_stats))
+            }
 
-            HorizontalDivider(modifier = Modifier.padding(vertical = 16.dp))*/
+            HorizontalDivider(modifier = Modifier.padding(vertical = 16.dp))
 
             TextButton(
                 onClick = { uriHandler.openUri(MAL_PROFILE_URL + uiState.user?.name) },
