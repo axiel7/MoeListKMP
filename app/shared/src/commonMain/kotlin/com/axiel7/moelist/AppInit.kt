@@ -17,7 +17,9 @@ import com.axiel7.moelist.data.repository.MangaRepository
 import com.axiel7.moelist.data.repository.SearchHistoryRepository
 import com.axiel7.moelist.data.repository.UserRepository
 import com.axiel7.moelist.data.utils.DEFAULT_DATA_STORE
+import com.axiel7.moelist.data.utils.DEFAULT_DATA_STORE_FILE
 import com.axiel7.moelist.data.utils.NOTIFICATIONS_DATA_STORE
+import com.axiel7.moelist.data.utils.NOTIFICATIONS_DATA_STORE_FILE
 import com.axiel7.moelist.main.MainViewModel
 import com.axiel7.moelist.screens.calendar.CalendarViewModel
 import com.axiel7.moelist.screens.details.MediaDetailsViewModel
@@ -60,8 +62,8 @@ fun initApp(
     }
 
     val dataStoreModule = module {
-        single(named(DEFAULT_DATA_STORE)) { createDataStore(DEFAULT_DATA_STORE) }
-        single(named(NOTIFICATIONS_DATA_STORE)) { createDataStore(NOTIFICATIONS_DATA_STORE) }
+        single(named(DEFAULT_DATA_STORE)) { createDataStore(DEFAULT_DATA_STORE_FILE) }
+        single(named(NOTIFICATIONS_DATA_STORE)) { createDataStore(NOTIFICATIONS_DATA_STORE_FILE) }
     }
 
     val networkModule = module {

@@ -1,7 +1,10 @@
 package com.axiel7.moelist.data.utils
 
-const val DEFAULT_DATA_STORE = "default.preferences_pb"
-const val NOTIFICATIONS_DATA_STORE = "notifications.preferences_pb"
+const val DEFAULT_DATA_STORE = "default"
+const val NOTIFICATIONS_DATA_STORE = "notifications"
+
+expect val DEFAULT_DATA_STORE_FILE: String
+expect val NOTIFICATIONS_DATA_STORE_FILE: String
 
 //Urls
 expect val CLIENT_ID: String
