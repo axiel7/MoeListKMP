@@ -1,8 +1,10 @@
 package com.axiel7.moelist.screens.userlist.composables
 
+import androidx.compose.foundation.layout.size
 import androidx.compose.material3.Icon
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.unit.dp
 import com.axiel7.moelist.data.model.media.MediaSort
 import com.axiel7.moelist.data.model.media.MediaType
 import com.axiel7.moelist.ui.composables.ChipWithMenu
@@ -32,7 +34,8 @@ fun SortChip(
         leadingIcon = {
             Icon(
                 painter = painterResource(UiRes.drawable.ic_round_sort_24),
-                contentDescription = stringResource(UiRes.string.sort_by)
+                contentDescription = stringResource(UiRes.string.sort_by),
+                modifier = Modifier.size(20.dp),
             )
         },
         valueString = { it.localized() }

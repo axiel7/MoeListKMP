@@ -10,6 +10,7 @@ import androidx.compose.foundation.layout.WindowInsets
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.statusBarsPadding
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyColumn
@@ -201,7 +202,8 @@ private fun SearchViewContent(
                         if (uiState.mediaType == it) {
                             Icon(
                                 painter = painterResource(UiRes.drawable.round_check_24),
-                                contentDescription = "check"
+                                contentDescription = "check",
+                                modifier = Modifier.size(20.dp),
                             )
                         }
                     }
@@ -220,7 +222,8 @@ private fun SearchViewContent(
                     Icon(
                         painter = painterResource(status.icon),
                         contentDescription = status.localized(),
-                        tint = MaterialTheme.colorScheme.onPrimaryContainer
+                        tint = MaterialTheme.colorScheme.onPrimaryContainer,
+                        modifier = Modifier.size(20.dp),
                     )
                 }
             },

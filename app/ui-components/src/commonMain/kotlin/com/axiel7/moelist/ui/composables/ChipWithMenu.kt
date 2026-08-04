@@ -2,13 +2,13 @@ package com.axiel7.moelist.ui.composables
 
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.requiredSizeIn
+import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.wrapContentSize
 import androidx.compose.material3.AssistChip
 import androidx.compose.material3.DropdownMenu
 import androidx.compose.material3.DropdownMenuItem
 import androidx.compose.material3.ExperimentalMaterial3ExpressiveApi
 import androidx.compose.material3.Icon
-import androidx.compose.material3.MenuDefaults
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
@@ -20,7 +20,8 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.platform.LocalWindowInfo
 import androidx.compose.ui.tooling.preview.Preview
-import androidx.compose.ui.util.fastForEachIndexed
+import androidx.compose.ui.unit.dp
+import androidx.compose.ui.util.fastForEach
 import com.axiel7.moelist.ui.generated.resources.UiRes
 import com.axiel7.moelist.ui.generated.resources.round_check_24
 import com.axiel7.moelist.ui.generated.resources.sort_by
@@ -61,7 +62,7 @@ fun <T> ChipWithMenu(
             onDismissRequest = { menuOpened = false },
             modifier = Modifier.requiredSizeIn(maxHeight = windowHeight / 2)
         ) {
-            values.fastForEachIndexed { index, item ->
+            values.fastForEach {  item ->
                 val checked = selectedValue == item
                 DropdownMenuItem(
                     onClick = {
@@ -73,13 +74,15 @@ fun <T> ChipWithMenu(
                         if (checked) {
                             Icon(
                                 painter = painterResource(UiRes.drawable.round_check_24),
-                                contentDescription = null
+                                contentDescription = null,
+                                modifier = Modifier.size(20.dp),
                             )
                         } else {
                             valueIcon(item)?.let { iconRes ->
                                 Icon(
                                     painter = painterResource(iconRes),
-                                    contentDescription = null
+                                    contentDescription = null,
+                                    modifier = Modifier.size(20.dp),
                                 )
                             }
                         }
