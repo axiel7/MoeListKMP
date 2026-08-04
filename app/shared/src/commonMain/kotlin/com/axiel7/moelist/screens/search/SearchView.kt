@@ -69,6 +69,7 @@ import com.axiel7.moelist.ui.base.navigation.NavActionManager
 import com.axiel7.moelist.ui.base.navigation.Route
 import com.axiel7.moelist.ui.composables.button.BackIconButton
 import com.axiel7.moelist.ui.composables.OnBottomReached
+import com.axiel7.moelist.ui.composables.TextIconHorizontal
 import com.axiel7.moelist.ui.composables.media.MediaItemDetailed
 import com.axiel7.moelist.ui.composables.media.MediaItemDetailedPlaceholder
 import com.axiel7.moelist.ui.generated.resources.UiRes
@@ -249,14 +250,9 @@ private fun SearchViewContent(
             },
             subtitle3 = {
                 if (!uiState.hideScore) {
-                    Icon(
-                        painter = painterResource(UiRes.drawable.ic_round_details_star_24),
-                        contentDescription = "star",
-                        modifier = Modifier.padding(end = 4.dp),
-                        tint = MaterialTheme.colorScheme.onSurfaceVariant
-                    )
-                    Text(
+                    TextIconHorizontal(
                         text = item.node.mean.toStringPositiveValueOrUnknown(),
+                        icon = UiRes.drawable.ic_round_details_star_24,
                         color = MaterialTheme.colorScheme.onSurfaceVariant
                     )
                 }

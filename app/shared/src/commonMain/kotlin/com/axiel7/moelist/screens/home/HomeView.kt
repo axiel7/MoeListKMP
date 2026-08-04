@@ -299,6 +299,7 @@ private fun HomeViewContent(
                                 Icon(
                                     painter = painterResource(status.icon),
                                     contentDescription = status.localized(),
+                                    modifier = Modifier.size(20.dp),
                                     tint = MaterialTheme.colorScheme.onPrimaryContainer
                                 )
                             }
@@ -307,7 +308,6 @@ private fun HomeViewContent(
                             {
                                 SmallScoreIndicator(
                                     score = it.node.mean,
-                                    fontSize = 13.sp
                                 )
                             }
                         } else null,
@@ -379,7 +379,6 @@ private fun HomeViewContent(
                             {
                                 SmallScoreIndicator(
                                     score = it.node.mean,
-                                    fontSize = 13.sp
                                 )
                             }
                         } else null,

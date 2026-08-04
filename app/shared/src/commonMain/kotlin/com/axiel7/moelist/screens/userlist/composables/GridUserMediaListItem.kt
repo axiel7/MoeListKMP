@@ -99,7 +99,8 @@ fun GridUserMediaListItem(
                             end = 2.dp,
                             bottom = 4.dp
                         ),
-                        color = MaterialTheme.colorScheme.onPrimaryContainer
+                        color = MaterialTheme.colorScheme.onPrimaryContainer,
+                        style = MaterialTheme.typography.bodyMedium,
                     )
                     Icon(
                         painter = painterResource(UiRes.drawable.ic_round_star_16),
@@ -112,9 +113,8 @@ fun GridUserMediaListItem(
                     Row(
                         modifier = Modifier
                             .shadow(8.dp)
-                            .fillMaxWidth()
                             .align(Alignment.TopCenter)
-                            .clip(RoundedCornerShape(bottomStart = 8.dp, bottomEnd = 8.dp))
+                            .clip(RoundedCornerShape(12.dp))
                             .background(MaterialTheme.colorScheme.surfaceVariant),
                         horizontalArrangement = Arrangement.Center,
                         verticalAlignment = Alignment.CenterVertically
@@ -130,7 +130,7 @@ fun GridUserMediaListItem(
                         Text(
                             text = broadcast?.airingInShortString() ?: stringResource(UiRes.string.airing),
                             modifier = Modifier.padding(end = 8.dp),
-                            fontSize = 15.sp,
+                            style = MaterialTheme.typography.labelLarge,
                             color = MaterialTheme.colorScheme.onSurfaceVariant,
                             maxLines = 1,
                             overflow = TextOverflow.Ellipsis
@@ -142,9 +142,8 @@ fun GridUserMediaListItem(
             Text(
                 text = item.node.title(preferredTitle),
                 modifier = Modifier.padding(start = 8.dp, top = 4.dp, end = 8.dp),
-                fontSize = 16.sp,
                 textAlign = TextAlign.Center,
-                lineHeight = 18.sp,
+                style = MaterialTheme.typography.bodyMedium,
                 overflow = TextOverflow.Ellipsis,
                 maxLines = 2,
                 minLines = 2,
@@ -158,8 +157,8 @@ fun GridUserMediaListItem(
                     text = "${item.userProgress() ?: 0}/${
                         item.totalProgress().toStringPositiveValueOrUnknown()
                     }",
-                    fontSize = 16.sp,
-                    lineHeight = 19.sp,
+                    style = MaterialTheme.typography.bodyMedium,
+                    lineHeight = 12.sp
                 )
                 if ((item as? UserMangaList)?.listStatus?.isUsingVolumeProgress() == true) {
                     Icon(

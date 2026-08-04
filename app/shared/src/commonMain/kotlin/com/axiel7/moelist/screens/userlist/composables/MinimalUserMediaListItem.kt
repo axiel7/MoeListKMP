@@ -83,8 +83,7 @@ fun MinimalUserMediaListItem(
                 Text(
                     text = item.node.title(preferredTitle),
                     color = MaterialTheme.colorScheme.onSurface,
-                    fontSize = 16.sp,
-                    lineHeight = 19.sp,
+                    style = MaterialTheme.typography.bodyLarge,
                     overflow = TextOverflow.Ellipsis,
                     maxLines = if (isAiring) 1 else 2
                 )
@@ -93,8 +92,7 @@ fun MinimalUserMediaListItem(
                     Text(
                         text = broadcast?.airingInString() ?: stringResource(UiRes.string.airing),
                         color = MaterialTheme.colorScheme.primary,
-                        fontSize = 16.sp,
-                        lineHeight = 19.sp,
+                        style = MaterialTheme.typography.bodyMedium,
                     )
                 }
 
@@ -110,8 +108,7 @@ fun MinimalUserMediaListItem(
                             text = "${item.userProgress() ?: 0}/${
                                 item.totalProgress().toStringPositiveValueOrUnknown()
                             }",
-                            fontSize = 16.sp,
-                            lineHeight = 19.sp,
+                            style = MaterialTheme.typography.bodyLarge,
                         )
                         if ((item as? UserMangaList)?.listStatus?.isUsingVolumeProgress() == true) {
                             Icon(
@@ -151,7 +148,7 @@ fun MinimalUserMediaListItem(
                                 else "${item.listStatus?.score}",
                                 modifier = Modifier.padding(start = 8.dp, end = 2.dp),
                                 color = MaterialTheme.colorScheme.secondary,
-                                fontSize = 16.sp,
+                                style = MaterialTheme.typography.bodyMedium,
                             )
                             Icon(
                                 painter = painterResource(UiRes.drawable.ic_round_star_16),

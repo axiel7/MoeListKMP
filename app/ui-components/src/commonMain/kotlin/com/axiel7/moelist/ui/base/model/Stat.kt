@@ -12,23 +12,23 @@ data class Stat<T : LocalizableAndColorable>(
         val exampleStats = listOf(
             Stat(
                 type = ListStatus.WATCHING,
-                value = 12f,
+                value = 114682f,
             ),
             Stat(
                 type = ListStatus.COMPLETED,
-                value = 120f,
+                value = 39f,
             ),
             Stat(
                 type = ListStatus.ON_HOLD,
-                value = 5f,
+                value = 3049f,
             ),
             Stat(
                 type = ListStatus.DROPPED,
-                value = 3f,
+                value = 1084f,
             ),
             Stat(
                 type = ListStatus.PLAN_TO_WATCH,
-                value = 30f,
+                value = 79278f,
             ),
         )
     }

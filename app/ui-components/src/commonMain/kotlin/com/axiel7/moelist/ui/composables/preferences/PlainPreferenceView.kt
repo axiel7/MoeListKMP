@@ -66,14 +66,15 @@ fun PlainPreferenceView(
             ) {
                 Text(
                     text = title,
-                    color = if (enabled) titleTint else titleTint.copy(alpha = 0.38f)
+                    color = if (enabled) titleTint else titleTint.copy(alpha = 0.38f),
+                    style = MaterialTheme.typography.bodyLarge,
                 )
 
                 if (subtitle != null) {
                     Text(
                         text = subtitle,
                         color = MaterialTheme.colorScheme.onSurfaceVariant,
-                        fontSize = 13.sp
+                        style = MaterialTheme.typography.bodyMedium,
                     )
                 }
             }//: Column

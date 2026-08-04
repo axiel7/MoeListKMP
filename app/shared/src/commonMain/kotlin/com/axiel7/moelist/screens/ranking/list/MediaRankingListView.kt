@@ -113,7 +113,7 @@ private fun MediaRankingListViewContent(
                     text = buildString {
                         append(item.node.mediaFormat?.localized())
                         if (item.node.totalDuration().toStringPositiveValueOrNull() != null) {
-                            append(" (${item.node.durationText()})")
+                            append(" · ${item.node.durationText()}")
                         }
                     },
                     color = MaterialTheme.colorScheme.onSurfaceVariant

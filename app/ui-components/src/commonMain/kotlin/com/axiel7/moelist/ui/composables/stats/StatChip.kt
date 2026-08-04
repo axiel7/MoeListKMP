@@ -49,7 +49,7 @@ fun <T : LocalizableAndColorable> StatChip(
         ElevatedAssistChip(
             onClick = { scope.launch { tooltipState.show() } },
             label = { Text(text = stat.type.localized()) },
-            modifier = Modifier.padding(horizontal = 8.dp),
+            modifier = Modifier.padding(end = 8.dp),
             leadingIcon = {
                 Text(
                     text = stat.value.format() ?: stat.value.toString(),

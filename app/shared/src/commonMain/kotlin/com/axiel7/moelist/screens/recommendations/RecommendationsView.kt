@@ -102,7 +102,6 @@ private fun RecommendationsViewContent(
                             {
                                 SmallScoreIndicator(
                                     score = item.node.mean,
-                                    fontSize = 13.sp
                                 )
                             }
                         } else null,

@@ -107,7 +107,8 @@ fun CompactUserMediaListItem(
                             end = 2.dp,
                             bottom = 4.dp
                         ),
-                        color = MaterialTheme.colorScheme.onPrimaryContainer
+                        color = MaterialTheme.colorScheme.onPrimaryContainer,
+                        style = MaterialTheme.typography.bodyMedium
                     )
                     Icon(
                         painter = painterResource(UiRes.drawable.ic_round_star_16),
@@ -127,8 +128,7 @@ fun CompactUserMediaListItem(
                     modifier = Modifier
                         .padding(start = 16.dp, end = 16.dp, top = 8.dp),
                     color = MaterialTheme.colorScheme.onSurface,
-                    fontSize = 16.sp,
-                    lineHeight = 19.sp,
+                    style = MaterialTheme.typography.bodyLarge,
                     overflow = TextOverflow.Ellipsis,
                     maxLines = if (isAiring) 1 else 2
                 )
@@ -138,8 +138,7 @@ fun CompactUserMediaListItem(
                         text = broadcast?.airingInString() ?: stringResource(UiRes.string.airing),
                         modifier = Modifier.padding(horizontal = 16.dp),
                         color = MaterialTheme.colorScheme.primary,
-                        fontSize = 16.sp,
-                        lineHeight = 19.sp,
+                        style = MaterialTheme.typography.bodyMedium,
                     )
                 }
 
@@ -157,8 +156,7 @@ fun CompactUserMediaListItem(
                             text = "${item.userProgress() ?: 0}/${
                                 item.totalProgress().toStringPositiveValueOrUnknown()
                             }",
-                            fontSize = 16.sp,
-                            lineHeight = 19.sp,
+                            style = MaterialTheme.typography.bodyLarge,
                         )
                         if ((item as? UserMangaList)?.listStatus?.isUsingVolumeProgress() == true) {
                             Icon(

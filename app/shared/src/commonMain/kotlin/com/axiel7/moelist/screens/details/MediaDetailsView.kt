@@ -241,26 +241,28 @@ private fun MediaDetailsContent(
         floatingActionButton = {
             if (isLoggedIn) {
                 ExtendedFloatingActionButton(
+                    text = {
+                        Text(
+                            text = if (uiState.isNewEntry) stringResource(UiRes.string.add)
+                            else uiState.mediaDetails?.myListStatus?.status?.toBo()?.localized()
+                                ?: stringResource(UiRes.string.edit),
+                        )
+                    },
+                    icon = {
+                        Icon(
+                            painter = painterResource(
+                                if (uiState.isNewEntry) UiRes.drawable.ic_round_add_24
+                                else UiRes.drawable.ic_round_edit_24
+                            ),
+                            contentDescription = "edit"
+                        )
+                    },
                     onClick = {
                         if (uiState.mediaDetails != null) {
                             showSheet = true
                         }
-                    }
-                ) {
-                    Icon(
-                        painter = painterResource(
-                            if (uiState.isNewEntry) UiRes.drawable.ic_round_add_24
-                            else UiRes.drawable.ic_round_edit_24
-                        ),
-                        contentDescription = "edit"
-                    )
-                    Text(
-                        text = if (uiState.isNewEntry) stringResource(UiRes.string.add)
-                        else uiState.mediaDetails?.myListStatus?.status?.toBo()?.localized()
-                            ?: stringResource(UiRes.string.edit),
-                        modifier = Modifier.padding(start = 16.dp, end = 8.dp)
-                    )
-                }
+                    },
+                )
             }
         }
     ) { padding ->
@@ -293,8 +295,7 @@ private fun MediaDetailsContent(
                             modifier = Modifier
                                 .padding(end = 8.dp, bottom = 8.dp)
                                 .defaultPlaceholder(visible = uiState.isLoading),
-                            fontSize = 22.sp,
-                            fontWeight = FontWeight.SemiBold
+                            style = MaterialTheme.typography.titleLarge
                         )
                     }
                     TextIconHorizontal(
@@ -368,7 +369,7 @@ private fun MediaDetailsContent(
                             .clickable { isSynopsisExpanded = !isSynopsisExpanded }
                             .animateContentSize()
                             .defaultPlaceholder(visible = uiState.isLoading),
-                        lineHeight = 20.sp,
+                        style = MaterialTheme.typography.bodyLarge,
                         overflow = TextOverflow.Ellipsis,
                         maxLines = maxLinesSynopsis
                     )
@@ -559,8 +560,8 @@ private fun MediaDetailsContent(
                                 subtitle = {
                                     Text(
                                         text = item.role?.localized().orEmpty(),
-                                        color = MaterialTheme.colorScheme.outline,
-                                        fontSize = 13.sp
+                                        color = MaterialTheme.colorScheme.onSurfaceVariant,
+                                        style = MaterialTheme.typography.labelSmall,
                                     )
                                 },
                                 minLines = 2,
@@ -667,9 +668,8 @@ private fun MediaDetailsContent(
                             subtitle = {
                                 Text(
                                     text = item.relationType.localized(),
-                                    color = MaterialTheme.colorScheme.outline,
-                                    fontSize = 13.sp,
-                                    lineHeight = 14.sp
+                                    color = MaterialTheme.colorScheme.onSurfaceVariant,
+                                    style = MaterialTheme.typography.labelSmall,
                                 )
                             },
                             onClick = dropUnlessResumed {
@@ -696,9 +696,8 @@ private fun MediaDetailsContent(
                             subtitle = {
                                 Text(
                                     text = item.relationType.localized(),
-                                    color = MaterialTheme.colorScheme.outline,
-                                    fontSize = 13.sp,
-                                    lineHeight = 14.sp
+                                    color = MaterialTheme.colorScheme.onSurfaceVariant,
+                                    style = MaterialTheme.typography.labelSmall,
                                 )
                             },
                             onClick = dropUnlessResumed {
@@ -728,8 +727,8 @@ private fun MediaDetailsContent(
                                 TextIconHorizontal(
                                     text = item.numRecommendations.format() ?: UNKNOWN_CHAR,
                                     icon = UiRes.drawable.ic_round_thumbs_up_down_16,
-                                    color = MaterialTheme.colorScheme.outline,
-                                    fontSize = 13.sp,
+                                    color = MaterialTheme.colorScheme.onSurfaceVariant,
+                                    style = MaterialTheme.typography.labelSmall,
                                     iconSize = 20.dp,
                                 )
                             },
@@ -762,9 +761,12 @@ fun MediaDetailsPreview() {
     MoeListTheme {
         Surface {
             MediaDetailsContent(
-                uiState = MediaDetailsUiState(),
+                uiState = MediaDetailsUiState(
+                    mediaDetails = AnimeDetails.sample,
+                    isLoading = false,
+                ),
                 event = null,
-                isLoggedIn = false,
+                isLoggedIn = true,
                 navActionManager = NavActionManager.rememberNavActionManager()
             )
         }

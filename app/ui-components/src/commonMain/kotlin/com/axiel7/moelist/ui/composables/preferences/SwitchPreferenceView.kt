@@ -69,15 +69,15 @@ fun SwitchPreferenceView(
             ) {
                 Text(
                     text = title,
-                    color = MaterialTheme.colorScheme.onSurface
+                    color = MaterialTheme.colorScheme.onSurface,
+                    style = MaterialTheme.typography.bodyLarge,
                 )
 
                 if (subtitle != null) {
                     Text(
                         text = subtitle,
                         color = MaterialTheme.colorScheme.onSurfaceVariant,
-                        fontSize = 13.sp,
-                        lineHeight = 14.sp
+                        style = MaterialTheme.typography.bodyMedium,
                     )
                 }
             }//: Column

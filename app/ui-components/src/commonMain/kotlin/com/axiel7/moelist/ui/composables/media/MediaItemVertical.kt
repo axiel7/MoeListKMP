@@ -85,9 +85,7 @@ fun MediaItemVertical(
             modifier = Modifier
                 .width(MEDIA_POSTER_SMALL_WIDTH.dp)
                 .padding(top = 8.dp, bottom = 2.dp),
-            color = MaterialTheme.colorScheme.onSurfaceVariant,
-            fontSize = 15.sp,
-            lineHeight = 18.sp,
+            style = MaterialTheme.typography.bodyMedium,
             overflow = TextOverflow.Ellipsis,
             maxLines = 2,
             minLines = minLines
@@ -124,7 +122,7 @@ fun MediaItemVerticalPlaceholder(
             modifier = Modifier
                 .padding(top = 8.dp)
                 .defaultPlaceholder(visible = true),
-            fontSize = 15.sp,
+            style = MaterialTheme.typography.bodyMedium,
             overflow = TextOverflow.Ellipsis,
             maxLines = 2
         )
@@ -143,13 +141,13 @@ fun MediaItemVerticalPreview() {
                     Icon(
                         painter = painterResource(UiRes.drawable.check_circle_outline_24),
                         contentDescription = null,
+                        modifier = Modifier.size(20.dp),
                         tint = MaterialTheme.colorScheme.onPrimaryContainer
                     )
                 },
                 subtitle = {
                     SmallScoreIndicator(
                         score = 8.34f,
-                        fontSize = 13.sp
                     )
                 },
                 onClick = {}

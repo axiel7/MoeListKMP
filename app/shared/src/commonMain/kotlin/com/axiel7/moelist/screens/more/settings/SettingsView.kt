@@ -244,8 +244,7 @@ fun SettingsTitle(text: String) {
         modifier = Modifier
             .padding(start = 72.dp, top = 16.dp, end = 16.dp, bottom = 8.dp),
         color = MaterialTheme.colorScheme.secondary,
-        fontSize = 13.sp,
-        fontWeight = FontWeight.SemiBold
+        style = MaterialTheme.typography.labelLarge
     )
 }
 

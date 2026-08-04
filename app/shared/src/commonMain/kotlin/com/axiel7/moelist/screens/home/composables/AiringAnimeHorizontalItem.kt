@@ -77,7 +77,7 @@ fun AiringAnimeHorizontalItem(
         ) {
             Text(
                 text = item.node.title(preferredTitle),
-                fontSize = 18.sp,
+                style = MaterialTheme.typography.bodyLarge,
                 overflow = TextOverflow.Ellipsis,
                 maxLines = 2,
                 modifier = Modifier.padding(bottom = 4.dp)
@@ -85,6 +85,7 @@ fun AiringAnimeHorizontalItem(
             Text(
                 text = item.node.broadcast?.airingInString().orEmpty(),
                 color = MaterialTheme.colorScheme.onSurfaceVariant,
+                style = MaterialTheme.typography.bodyMedium,
                 modifier = Modifier.padding(bottom = 8.dp)
             )
 

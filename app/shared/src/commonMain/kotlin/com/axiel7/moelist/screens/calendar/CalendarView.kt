@@ -12,6 +12,7 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.navigationBars
 import androidx.compose.foundation.layout.only
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.systemBars
 import androidx.compose.foundation.lazy.grid.GridCells
 import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
@@ -122,6 +123,7 @@ private fun CalendarContent(
                                     Icon(
                                         painter = painterResource(status.icon),
                                         contentDescription = status.localized(),
+                                        modifier = Modifier.size(20.dp),
                                         tint = MaterialTheme.colorScheme.onPrimaryContainer
                                     )
                                 }
@@ -129,7 +131,8 @@ private fun CalendarContent(
                             subtitle = {
                                 Text(
                                     text = item.node.broadcast?.localStartTime() ?: "??",
-                                    color = MaterialTheme.colorScheme.outline
+                                    color = MaterialTheme.colorScheme.onSurfaceVariant,
+                                    style = MaterialTheme.typography.labelMedium,
                                 )
                             },
                             minLines = 2,

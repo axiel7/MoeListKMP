@@ -24,7 +24,6 @@ import org.jetbrains.compose.resources.stringResource
 fun SmallScoreIndicator(
     score: Float?,
     modifier: Modifier = Modifier,
-    fontSize: TextUnit = 14.sp,
 ) {
     Row(
         modifier = modifier,
@@ -33,13 +32,13 @@ fun SmallScoreIndicator(
         Icon(
             painter = painterResource(UiRes.drawable.ic_round_star_16),
             contentDescription = stringResource(UiRes.string.mean_score),
-            tint = MaterialTheme.colorScheme.outline
+            tint = MaterialTheme.colorScheme.onSurfaceVariant
         )
         Text(
             text = score.toStringPositiveValueOrUnknown(),
             modifier = Modifier.padding(horizontal = 4.dp),
-            color = MaterialTheme.colorScheme.outline,
-            fontSize = fontSize
+            color = MaterialTheme.colorScheme.onSurfaceVariant,
+            style = MaterialTheme.typography.labelMedium
         )
     }
 }

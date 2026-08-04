@@ -76,13 +76,14 @@ fun <T> ListPreferenceView(
         ) {
             Text(
                 text = title,
-                color = MaterialTheme.colorScheme.onSurface
+                color = MaterialTheme.colorScheme.onSurface,
+                style = MaterialTheme.typography.bodyLarge,
             )
 
             Text(
                 text = value?.let { labelForValue(it) }.orEmpty(),
                 color = MaterialTheme.colorScheme.onSurfaceVariant,
-                fontSize = 13.sp
+                style = MaterialTheme.typography.bodyMedium,
             )
         }
     }

@@ -14,6 +14,7 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Card
 import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.ProvideTextStyle
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -93,23 +94,25 @@ fun MediaItemDetailed(
                 Text(
                     text = title,
                     color = MaterialTheme.colorScheme.onSurface,
-                    fontSize = 17.sp,
+                    style = MaterialTheme.typography.bodyLarge,
                     overflow = TextOverflow.Ellipsis,
                     maxLines = 1
                 )
 
-                Row(
-                    verticalAlignment = Alignment.CenterVertically,
-                    content = subtitle1
-                )
-                Row(
-                    verticalAlignment = Alignment.CenterVertically,
-                    content = subtitle2
-                )
-                Row(
-                    verticalAlignment = Alignment.CenterVertically,
-                    content = subtitle3
-                )
+                ProvideTextStyle(MaterialTheme.typography.labelLarge) {
+                    Row(
+                        verticalAlignment = Alignment.CenterVertically,
+                        content = subtitle1
+                    )
+                    Row(
+                        verticalAlignment = Alignment.CenterVertically,
+                        content = subtitle2
+                    )
+                    Row(
+                        verticalAlignment = Alignment.CenterVertically,
+                        content = subtitle3
+                    )
+                }
             }
         }
     }
@@ -182,7 +185,8 @@ fun MediaItemDetailedPreview() {
                 TextIconHorizontal(
                     text = "8.61",
                     icon = UiRes.drawable.ic_round_details_star_24,
-                    color = MaterialTheme.colorScheme.onSurfaceVariant
+                    color = MaterialTheme.colorScheme.onSurfaceVariant,
+                    style = MaterialTheme.typography.labelLarge
                 )
             },
             onClick = { }

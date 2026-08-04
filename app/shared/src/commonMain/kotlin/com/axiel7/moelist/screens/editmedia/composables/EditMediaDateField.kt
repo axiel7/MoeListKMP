@@ -83,7 +83,7 @@ fun EditMediaDateField(
                     Text(
                         text = dateLocalized,
                         color = MaterialTheme.colorScheme.primary,
-                        fontSize = 13.sp
+                        style = MaterialTheme.typography.bodyMedium,
                     )
                 }
             }//: Column

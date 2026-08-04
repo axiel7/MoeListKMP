@@ -29,11 +29,15 @@ fun MediaInfoView(
         Text(
             text = title,
             modifier = Modifier.weight(1f),
-            color = MaterialTheme.colorScheme.onSurfaceVariant
+            color = MaterialTheme.colorScheme.onSurfaceVariant,
+            style = MaterialTheme.typography.bodyMedium,
         )
         Column(modifier = Modifier.weight(1.4f)) {
             SelectionContainer {
-                Text(text = info ?: stringResource(UiRes.string.unknown))
+                Text(
+                    text = info ?: stringResource(UiRes.string.unknown),
+                    style = MaterialTheme.typography.bodyMedium,
+                )
             }
         }
     }

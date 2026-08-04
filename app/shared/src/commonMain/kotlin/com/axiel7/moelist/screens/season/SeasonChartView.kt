@@ -11,6 +11,7 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.navigationBars
 import androidx.compose.foundation.layout.only
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.systemBars
 import androidx.compose.foundation.lazy.grid.GridCells
 import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
@@ -159,6 +160,7 @@ private fun SeasonChartViewContent(
                                 Icon(
                                     painter = painterResource(status.icon),
                                     contentDescription = status.localized(),
+                                    modifier = Modifier.size(20.dp),
                                     tint = MaterialTheme.colorScheme.onPrimaryContainer
                                 )
                             }
@@ -167,7 +169,6 @@ private fun SeasonChartViewContent(
                             {
                                 SmallScoreIndicator(
                                     score = item.node.mean,
-                                    fontSize = 13.sp
                                 )
                             }
                         } else null,
@@ -176,8 +177,7 @@ private fun SeasonChartViewContent(
                                 TextIconHorizontal(
                                     text = users,
                                     icon = UiRes.drawable.ic_round_group_24,
-                                    color = MaterialTheme.colorScheme.outline,
-                                    fontSize = 13.sp,
+                                    style = MaterialTheme.typography.labelMedium,
                                     iconSize = 16.dp
                                 )
                             }

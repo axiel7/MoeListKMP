@@ -114,7 +114,8 @@ fun StandardUserMediaListItem(
                             end = 2.dp,
                             bottom = 4.dp
                         ),
-                        color = MaterialTheme.colorScheme.onPrimaryContainer
+                        color = MaterialTheme.colorScheme.onPrimaryContainer,
+                        style = MaterialTheme.typography.bodyMedium,
                     )
                     Icon(
                         painter = painterResource(UiRes.drawable.ic_round_star_16),
@@ -136,8 +137,7 @@ fun StandardUserMediaListItem(
                         modifier = Modifier
                             .padding(horizontal = 16.dp, vertical = 8.dp),
                         color = MaterialTheme.colorScheme.onSurface,
-                        fontSize = 17.sp,
-                        lineHeight = 22.sp,
+                        style = MaterialTheme.typography.bodyLarge,
                         overflow = TextOverflow.Ellipsis,
                         maxLines = 2
                     )
@@ -147,7 +147,8 @@ fun StandardUserMediaListItem(
                         else item.node.mediaFormat?.localized().orEmpty(),
                         modifier = Modifier.padding(horizontal = 16.dp),
                         color = if (isAiring) MaterialTheme.colorScheme.primary
-                        else MaterialTheme.colorScheme.onSurfaceVariant
+                        else MaterialTheme.colorScheme.onSurfaceVariant,
+                        style = MaterialTheme.typography.bodyMedium
                     )
                 }//:Column
 
@@ -164,6 +165,7 @@ fun StandardUserMediaListItem(
                         ) {
                             Text(
                                 text = "${userProgress ?: 0}/${totalProgress.toStringPositiveValueOrUnknown()}",
+                                style = MaterialTheme.typography.bodyLarge
                             )
                             if ((item as? UserMangaList)?.listStatus?.isUsingVolumeProgress() == true) {
                                 Icon(
