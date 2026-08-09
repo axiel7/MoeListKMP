@@ -183,7 +183,7 @@ private fun MediaDetailsContent(
     val snackbarHostState = remember { SnackbarHostState() }
     val scrollState = rememberScrollState()
     val topAppBarScrollBehavior =
-        TopAppBarDefaults.exitUntilCollapsedScrollBehavior(rememberTopAppBarState())
+        TopAppBarDefaults.enterAlwaysScrollBehavior(rememberTopAppBarState())
     val scope = rememberCoroutineScope()
 
     val sheetState = rememberModalBottomSheetState()

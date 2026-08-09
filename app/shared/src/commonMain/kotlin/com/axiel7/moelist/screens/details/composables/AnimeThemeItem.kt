@@ -17,7 +17,7 @@ fun AnimeThemeItem(text: String, onClick: () -> Unit) {
         text = text,
         modifier = Modifier
             .clickable(onClick = onClick)
-            .padding(horizontal = 16.dp, vertical = 4.dp),
+            .padding(horizontal = 16.dp, vertical = 8.dp),
         color = MaterialTheme.colorScheme.primary,
         style = MaterialTheme.typography.bodyMedium,
         overflow = TextOverflow.Ellipsis,
