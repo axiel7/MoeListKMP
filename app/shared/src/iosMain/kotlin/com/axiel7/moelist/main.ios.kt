@@ -64,6 +64,7 @@ fun MainViewController(
             event = viewModel,
             windowWidthSizeClass = windowSizeClass.widthSizeClass,
             lastTabOpened = lastTabOpened,
+            dynamicColorSeed = uiState.customAppColor.takeIf { uiState.useCustomAppColor },
             onLocaleChange = {
                 if (it == AppLanguage.FOLLOW_SYSTEM) {
                     NSUserDefaults.standardUserDefaults.removeObjectForKey("AppleLanguages")

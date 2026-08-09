@@ -391,4 +391,6 @@
     <string name="color_palette">Color palette</string>
     <string name="show_less">Less</string>
     <string name="show_more">More</string>
+    <string name="custom_app_color">Custom app color</string>
+    <string name="color">Color</string>
 </resources>

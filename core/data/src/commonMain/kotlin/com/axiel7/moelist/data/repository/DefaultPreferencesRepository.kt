@@ -1,5 +1,6 @@
 package com.axiel7.moelist.data.repository
 
+import androidx.compose.ui.graphics.Color
 import androidx.datastore.core.DataStore
 import androidx.datastore.preferences.core.Preferences
 import androidx.datastore.preferences.core.booleanPreferencesKey
@@ -63,6 +64,18 @@ class DefaultPreferencesRepository(
         .map { ThemeStyle.valueOfOrNull(it) ?: ThemeStyle.FOLLOW_SYSTEM }
     suspend fun setTheme(value: ThemeStyle) {
         dataStore.setValue(THEME_KEY, value.name)
+    }
+
+    val useCustomAppColor = dataStore.getValue(USE_CUSTOM_APP_COLOR_KEY, false)
+    suspend fun setUseCustomAppColor(value: Boolean) {
+        dataStore.setValue(USE_CUSTOM_APP_COLOR_KEY, value)
+    }
+
+    val customAppColor = dataStore.getValue(APP_COLOR_KEY).map { value ->
+        value?.let { Color(it) }
+    }
+    suspend fun setCustomAppColor(value: Int) {
+        dataStore.setValue(APP_COLOR_KEY, value)
     }
 
     val useBlackColors = dataStore.getValue(USE_BLACK_COLORS_KEY, false)
@@ -263,6 +276,8 @@ class DefaultPreferencesRepository(
         private val HIDE_SCORES_KEY = booleanPreferencesKey("hide_scores")
         private val LANG_KEY = stringPreferencesKey("lang")
         private val THEME_KEY = stringPreferencesKey("theme")
+        private val USE_CUSTOM_APP_COLOR_KEY = booleanPreferencesKey("use_custom_app_color")
+        private val APP_COLOR_KEY = intPreferencesKey("app_color")
         private val USE_BLACK_COLORS_KEY = booleanPreferencesKey("use_black_colors")
         private val PALETTE_STYLE_KEY = stringPreferencesKey("palette_style")
         private val LAST_TAB_KEY = intPreferencesKey("last_tab")

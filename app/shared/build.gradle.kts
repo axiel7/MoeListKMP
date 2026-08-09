@@ -73,6 +73,8 @@ kotlin {
             implementation(libs.androidx.room.runtime)
 
             api(libs.oidc.appsupport)
+
+            implementation(libs.compose.colorpicker)
         }
         commonTest.dependencies {
             implementation(libs.kotlin.test)

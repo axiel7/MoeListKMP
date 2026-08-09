@@ -1,19 +1,34 @@
 package com.axiel7.moelist.screens.more.settings
 
+import androidx.compose.foundation.background
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.shape.CircleShape
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.verticalScroll
+import androidx.compose.material3.AlertDialog
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
+import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.draw.clip
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import androidx.compose.ui.unit.sp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.lifecycle.compose.dropUnlessResumed
 import com.axiel7.moelist.data.model.media.TitleLanguage
@@ -32,8 +47,12 @@ import com.axiel7.moelist.ui.composables.preferences.SwitchPreferenceView
 import com.axiel7.moelist.ui.generated.resources.UiRes
 import com.axiel7.moelist.ui.generated.resources.always_load_characters
 import com.axiel7.moelist.ui.generated.resources.black_theme_variant
+import com.axiel7.moelist.ui.generated.resources.cancel
+import com.axiel7.moelist.ui.generated.resources.color
 import com.axiel7.moelist.ui.generated.resources.color_palette
+import com.axiel7.moelist.ui.generated.resources.colors_24
 import com.axiel7.moelist.ui.generated.resources.content
+import com.axiel7.moelist.ui.generated.resources.custom_app_color
 import com.axiel7.moelist.ui.generated.resources.default_section
 import com.axiel7.moelist.ui.generated.resources.display
 import com.axiel7.moelist.ui.generated.resources.enable_list_tabs
@@ -50,6 +69,7 @@ import com.axiel7.moelist.ui.generated.resources.language
 import com.axiel7.moelist.ui.generated.resources.list_style
 import com.axiel7.moelist.ui.generated.resources.no_adult_content_24
 import com.axiel7.moelist.ui.generated.resources.nsfw_summary
+import com.axiel7.moelist.ui.generated.resources.ok
 import com.axiel7.moelist.ui.generated.resources.pinned_navigation_bar
 import com.axiel7.moelist.ui.generated.resources.random_button_on_list
 import com.axiel7.moelist.ui.generated.resources.round_format_list_bulleted_24
@@ -63,7 +83,11 @@ import com.axiel7.moelist.ui.generated.resources.theme
 import com.axiel7.moelist.ui.generated.resources.title_language
 import com.axiel7.moelist.ui.generated.resources.use_separated_list_styles
 import com.axiel7.moelist.ui.theme.MoeListTheme
+import com.github.skydoves.colorpicker.compose.BrightnessSlider
+import com.github.skydoves.colorpicker.compose.HsvColorPicker
+import com.github.skydoves.colorpicker.compose.rememberColorPickerController
 import com.materialkolor.PaletteStyle
+import com.materialkolor.ktx.toHex
 import org.jetbrains.compose.resources.stringResource
 import org.koin.compose.viewmodel.koinViewModel
 
@@ -87,7 +111,16 @@ private fun SettingsViewContent(
     event: SettingsEvent?,
     navActionManager: NavActionManager
 ) {
-    //val context = LocalContext.current
+    var showColorPicker by remember { mutableStateOf(false) }
+
+    if (showColorPicker) {
+        ColorPickerDialog(
+            title = stringResource(UiRes.string.custom_app_color),
+            initialColor = uiState.customAppColor ?: MaterialTheme.colorScheme.primary,
+            onDismissRequest = { showColorPicker = false },
+            onColorSelected = { event?.setCustomAppColor(it) }
+        )
+    }
 
     DefaultScaffoldWithTopAppBar(
         title = stringResource(UiRes.string.settings),
@@ -116,6 +149,21 @@ private fun SettingsViewContent(
                 icon = UiRes.drawable.format_paint_24,
                 onValueChange = { event?.setPaletteStyle(it) }
             )
+
+            SwitchPreferenceView(
+                title = stringResource(UiRes.string.custom_app_color),
+                value = uiState.useCustomAppColor,
+                onValueChange = { event?.setUseCustomAppColor(it) }
+            )
+
+            if (uiState.useCustomAppColor) {
+                PlainPreferenceView(
+                    title = stringResource(UiRes.string.color),
+                    subtitle = uiState.customAppColor?.toHex(),
+                    icon = UiRes.drawable.colors_24,
+                    onClick = { showColorPicker = true }
+                )
+            }
 
             SwitchPreferenceView(
                 title = stringResource(UiRes.string.black_theme_variant),
@@ -245,6 +293,78 @@ fun SettingsTitle(text: String) {
             .padding(start = 72.dp, top = 16.dp, end = 16.dp, bottom = 8.dp),
         color = MaterialTheme.colorScheme.secondary,
         style = MaterialTheme.typography.labelLarge
+    )
+}
+
+@Composable
+fun ColorPickerDialog(
+    title: String,
+    initialColor: Color = Color.White,
+    onDismissRequest: () -> Unit,
+    onColorSelected: (Color) -> Unit,
+) {
+    val controller = rememberColorPickerController()
+
+    LaunchedEffect(initialColor) {
+        controller.selectByColor(initialColor, fromUser = false)
+    }
+
+    AlertDialog(
+        onDismissRequest = onDismissRequest,
+        title = { Text(text = title) },
+        text = {
+            Column(
+                horizontalAlignment = Alignment.CenterHorizontally
+            ) {
+                Spacer(modifier = Modifier.height(16.dp))
+
+                HsvColorPicker(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .height(300.dp)
+                        .padding(10.dp),
+                    controller = controller,
+                    initialColor = initialColor,
+                    onColorChanged = {}
+                )
+
+                Spacer(modifier = Modifier.height(16.dp))
+
+                BrightnessSlider(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .height(35.dp)
+                        .clip(RoundedCornerShape(8.dp)),
+                    controller = controller,
+                )
+
+                Spacer(modifier = Modifier.height(16.dp))
+
+                // color preview
+                Box(
+                    modifier = Modifier
+                        .size(60.dp)
+                        .clip(CircleShape)
+                        .background(controller.selectedColor.value)
+                        .align(Alignment.CenterHorizontally)
+                )
+            }
+        },
+        confirmButton = {
+            TextButton(
+                onClick = {
+                    onColorSelected(controller.selectedColor.value)
+                    onDismissRequest()
+                }
+            ) {
+                Text(text = stringResource(UiRes.string.ok))
+            }
+        },
+        dismissButton = {
+            TextButton(onClick = onDismissRequest) {
+                Text(text = stringResource(UiRes.string.cancel))
+            }
+        }
     )
 }
 

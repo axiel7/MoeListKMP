@@ -1,6 +1,7 @@
 package com.axiel7.moelist.screens.more.settings
 
 import androidx.compose.runtime.Stable
+import androidx.compose.ui.graphics.Color
 import com.axiel7.moelist.data.model.media.TitleLanguage
 import com.axiel7.moelist.data.model.ui.AppLanguage
 import com.axiel7.moelist.data.model.ui.ItemsPerRow
@@ -15,6 +16,8 @@ import com.materialkolor.PaletteStyle
 interface SettingsEvent : UiEvent {
     fun setLanguage(value: AppLanguage)
     fun setTheme(value: ThemeStyle)
+    fun setUseCustomAppColor(value: Boolean)
+    fun setCustomAppColor(value: Color)
     fun setUseBlackColors(value: Boolean)
     fun setPaletteStyle(value: PaletteStyle)
     fun setShowNsfw(value: Boolean)

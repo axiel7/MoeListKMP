@@ -56,11 +56,18 @@ class MainActivity : AppCompatActivity() {
             else uiState.theme == ThemeStyle.DARK
             val windowSizeClass = calculateWindowSizeClass(this)
 
+            val appColor = when {
+                uiState.useCustomAppColor -> uiState.customAppColor
+                Build.VERSION.SDK_INT >= Build.VERSION_CODES.S -> if (isDarkTheme) {
+                    dynamicDarkColorScheme(this).primary
+                } else {
+                    dynamicLightColorScheme(this).primary
+                }
+                else -> null
+            }
+
             App(
-                dynamicColorSeed = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
-                    if (isDarkTheme) dynamicDarkColorScheme(this).primary
-                    else dynamicLightColorScheme(this).primary
-                } else null,
+                dynamicColorSeed = appColor,
                 uiState = uiState,
                 event = viewModel,
                 windowWidthSizeClass = windowSizeClass.widthSizeClass,

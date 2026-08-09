@@ -62,6 +62,7 @@ fun main() {
                 uiState = uiState,
                 event = viewModel,
                 lastTabOpened = lastTabOpened,
+                dynamicColorSeed = uiState.customAppColor.takeIf { uiState.useCustomAppColor },
                 windowWidthSizeClass = windowSizeClass.widthSizeClass,
                 onLocaleChange = {
                     val appLocale = if (it == AppLanguage.FOLLOW_SYSTEM) Locale.getDefault()

@@ -40,6 +40,7 @@ kotlinx-datetime-names = "0.1.2"
 desugarJdk = "2.1.5"
 kmpWorkManager = "3.2.0"
 accompanist = "0.37.3"
+colorpicker = "1.2.0"
 
 [libraries]
 kotlin-test = { module = "org.jetbrains.kotlin:kotlin-test", version.ref = "kotlin" }
@@ -96,6 +97,7 @@ kotlinx-datetime-names = { module = "io.github.adrcotfas:kotlinx-datetime-names"
 desugar_jdk_libs = { group = "com.android.tools", name = "desugar_jdk_libs", version.ref = "desugarJdk" }
 kmpworkmanager = { module = "dev.brewkits:kmpworkmanager", version.ref = "kmpWorkManager" }
 accompanist-permissions = { group = "com.google.accompanist", name = "accompanist-permissions", version.ref = "accompanist" }
+compose-colorpicker = { module = "com.github.skydoves:colorpicker-compose", version.ref = "colorpicker" }
 
 [plugins]
 androidApplication = { id = "com.android.application", version.ref = "agp" }

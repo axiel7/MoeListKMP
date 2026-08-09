@@ -1,6 +1,7 @@
 package com.axiel7.moelist.screens.more.settings
 
 import androidx.compose.runtime.Stable
+import androidx.compose.ui.graphics.Color
 import com.axiel7.moelist.data.model.media.TitleLanguage
 import com.axiel7.moelist.data.model.ui.AppLanguage
 import com.axiel7.moelist.data.model.ui.ItemsPerRow
@@ -15,6 +16,8 @@ import com.materialkolor.PaletteStyle
 data class SettingsUiState(
     val language: AppLanguage = AppLanguage.FOLLOW_SYSTEM,
     val theme: ThemeStyle = ThemeStyle.FOLLOW_SYSTEM,
+    val useCustomAppColor: Boolean = false,
+    val customAppColor: Color? = null,
     val useBlackColors: Boolean = false,
     val paletteStyle: PaletteStyle = PaletteStyle.Expressive,
     val showNsfw: Boolean = false,

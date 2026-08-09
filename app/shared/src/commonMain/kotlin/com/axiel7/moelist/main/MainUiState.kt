@@ -1,6 +1,7 @@
 package com.axiel7.moelist.main
 
 import androidx.compose.runtime.Stable
+import androidx.compose.ui.graphics.Color
 import com.axiel7.moelist.data.model.ui.AppLanguage
 import com.axiel7.moelist.data.model.ui.TabletMode
 import com.axiel7.moelist.data.model.ui.ThemeStyle
@@ -12,6 +13,8 @@ import com.materialkolor.PaletteStyle
 data class MainUiState(
     val deepLink: DeepLink<*>? = null,
     val theme: ThemeStyle = ThemeStyle.FOLLOW_SYSTEM,
+    val customAppColor: Color? = null,
+    val useCustomAppColor: Boolean = false,
     val useBlackColors: Boolean = false,
     val paletteStyle: PaletteStyle = PaletteStyle.Expressive,
     val isLoggedIn: Boolean = false,

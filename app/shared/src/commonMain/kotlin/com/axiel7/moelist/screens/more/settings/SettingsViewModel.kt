@@ -1,5 +1,7 @@
 package com.axiel7.moelist.screens.more.settings
 
+import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.toArgb
 import androidx.lifecycle.viewModelScope
 import com.axiel7.moelist.data.model.media.TitleLanguage
 import com.axiel7.moelist.data.model.ui.AppLanguage
@@ -36,6 +38,18 @@ class SettingsViewModel(
     override fun setTheme(value: ThemeStyle) {
         viewModelScope.launch {
             defaultPreferencesRepository.setTheme(value)
+        }
+    }
+
+    override fun setUseCustomAppColor(value: Boolean) {
+        viewModelScope.launch {
+            defaultPreferencesRepository.setUseCustomAppColor(value)
+        }
+    }
+
+    override fun setCustomAppColor(value: Color) {
+        viewModelScope.launch {
+            defaultPreferencesRepository.setCustomAppColor(value.toArgb())
         }
     }
 
@@ -133,6 +147,18 @@ class SettingsViewModel(
         defaultPreferencesRepository.theme
             .onEach { value ->
                 mutableUiState.update { it.copy(theme = value) }
+            }
+            .launchIn(viewModelScope)
+
+        defaultPreferencesRepository.useCustomAppColor
+            .onEach { value ->
+                mutableUiState.update { it.copy(useCustomAppColor = value) }
+            }
+            .launchIn(viewModelScope)
+
+        defaultPreferencesRepository.customAppColor
+            .onEach { value ->
+                mutableUiState.update { it.copy(customAppColor = value) }
             }
             .launchIn(viewModelScope)
 

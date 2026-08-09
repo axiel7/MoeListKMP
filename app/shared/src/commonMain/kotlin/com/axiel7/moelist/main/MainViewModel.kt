@@ -61,6 +61,18 @@ class MainViewModel(
             }
             .launchIn(viewModelScope)
 
+        defaultPreferencesRepository.customAppColor
+            .onEach { value ->
+                mutableUiState.update { it.copy(customAppColor = value) }
+            }
+            .launchIn(viewModelScope)
+
+        defaultPreferencesRepository.useCustomAppColor
+            .onEach { value ->
+                mutableUiState.update { it.copy(useCustomAppColor = value) }
+            }
+            .launchIn(viewModelScope)
+
         defaultPreferencesRepository.useBlackColors
             .onEach { value ->
                 mutableUiState.update { it.copy(useBlackColors = value) }
