@@ -7,7 +7,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import com.axiel7.moelist.data.model.media.MediaSort
 import com.axiel7.moelist.data.model.media.MediaType
-import com.axiel7.moelist.ui.composables.ChipWithMenu
+import com.axiel7.moelist.ui.composables.chip.ChipWithMenu
 import com.axiel7.moelist.ui.generated.resources.UiRes
 import com.axiel7.moelist.ui.generated.resources.ic_round_sort_24
 import com.axiel7.moelist.ui.generated.resources.sort_by

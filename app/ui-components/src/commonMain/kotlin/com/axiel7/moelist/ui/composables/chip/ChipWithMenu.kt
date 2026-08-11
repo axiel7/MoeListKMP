@@ -1,4 +1,4 @@
-package com.axiel7.moelist.ui.composables
+package com.axiel7.moelist.ui.composables.chip
 
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.requiredSizeIn

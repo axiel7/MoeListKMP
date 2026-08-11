@@ -9,6 +9,7 @@ import com.axiel7.moelist.ui.base.event.PagedUiEvent
 interface SearchEvent : PagedUiEvent {
     fun search(query: String)
     fun onChangeMediaType(value: MediaType)
+    fun onMyListChanged(value: Boolean?)
     fun onSaveSearchHistory(query: String)
     fun onRemoveSearchHistory(item: SearchHistory)
 }

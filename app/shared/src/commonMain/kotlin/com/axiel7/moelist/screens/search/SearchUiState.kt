@@ -13,7 +13,9 @@ import com.axiel7.moelist.ui.base.state.PagedUiState
 data class SearchUiState(
     val query: String = "",
     val mediaType: MediaType = MediaType.ANIME,
-    val mediaList: SnapshotStateList<BaseMediaList> = mutableStateListOf(),
+    val onMyList: Boolean? = null,
+    val mediaList: List<BaseMediaList> = emptyList(),
+    val filteredList: SnapshotStateList<BaseMediaList> = mutableStateListOf(),
     val hideScore: Boolean = false,
     val preferredTitle: TitleLanguage = TitleLanguage.ROMAJI,
     val searchHistoryList: List<SearchHistory> = emptyList(),

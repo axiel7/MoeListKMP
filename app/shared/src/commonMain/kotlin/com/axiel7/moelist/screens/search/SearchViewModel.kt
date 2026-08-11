@@ -2,6 +2,7 @@ package com.axiel7.moelist.screens.search
 
 import androidx.lifecycle.viewModelScope
 import com.axiel7.moelist.data.model.SearchHistory
+import com.axiel7.moelist.data.model.media.BaseMediaList
 import com.axiel7.moelist.data.model.media.MediaType
 import com.axiel7.moelist.data.repository.AnimeRepository
 import com.axiel7.moelist.data.repository.DefaultPreferencesRepository
@@ -17,6 +18,7 @@ import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
+import kotlin.collections.filter
 
 class SearchViewModel(
     arguments: Route.Search,
@@ -57,6 +59,11 @@ class SearchViewModel(
         }
     }
 
+    override fun onMyListChanged(value: Boolean?) {
+        mutableUiState.update { it.copy(onMyList = value) }
+        applyFilters()
+    }
+
     override fun onSaveSearchHistory(query: String) {
         viewModelScope.launch {
             searchHistoryRepository.addItem(query)
@@ -66,6 +73,23 @@ class SearchViewModel(
     override fun onRemoveSearchHistory(item: SearchHistory) {
         viewModelScope.launch {
             searchHistoryRepository.deleteItem(item)
+        }
+    }
+
+    private fun applyFilters() {
+        uiState.value.run {
+            val filterPredicate: (BaseMediaList) -> Boolean = when (onMyList) {
+                true -> { { it.node.myListStatus != null } }
+                false -> { { it.node.myListStatus == null } }
+                null -> { { true } }
+            }
+
+            val list = mediaList.filter(filterPredicate)
+
+            filteredList.clear()
+            filteredList.addAll(list)
+
+            mutableUiState.update { it.copy(noResults = list.isEmpty()) }
         }
     }
 
@@ -97,18 +121,17 @@ class SearchViewModel(
                     }
 
                     if (result.data != null) {
-                        if (uiState.performSearch) uiState.mediaList.clear()
-                        uiState.mediaList.addAll(result.data.orEmpty())
-
                         mutableUiState.update {
                             it.copy(
+                                mediaList = result.data.orEmpty(),
                                 performSearch = false,
                                 noResults = result.data.isNullOrEmpty(),
                                 loadMore = false,
-                                nextPage = result.paging?.next,
+                                //nextPage = result.paging?.next,
                                 isLoading = false
                             )
                         }
+                        applyFilters()
                     } else {
                         mutableUiState.update {
                             it.copy(

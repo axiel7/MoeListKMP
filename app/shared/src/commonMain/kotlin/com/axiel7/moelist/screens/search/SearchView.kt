@@ -2,6 +2,7 @@ package com.axiel7.moelist.screens.search
 
 import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.combinedClickable
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
@@ -71,12 +72,14 @@ import com.axiel7.moelist.ui.base.navigation.Route
 import com.axiel7.moelist.ui.composables.button.BackIconButton
 import com.axiel7.moelist.ui.composables.OnBottomReached
 import com.axiel7.moelist.ui.composables.TextIconHorizontal
+import com.axiel7.moelist.ui.composables.chip.TriFilterChip
 import com.axiel7.moelist.ui.composables.media.MediaItemDetailed
 import com.axiel7.moelist.ui.composables.media.MediaItemDetailedPlaceholder
 import com.axiel7.moelist.ui.generated.resources.UiRes
 import com.axiel7.moelist.ui.generated.resources.ic_history_24
 import com.axiel7.moelist.ui.generated.resources.ic_round_details_star_24
 import com.axiel7.moelist.ui.generated.resources.no_results
+import com.axiel7.moelist.ui.generated.resources.on_my_list
 import com.axiel7.moelist.ui.generated.resources.round_check_24
 import com.axiel7.moelist.ui.generated.resources.search
 import com.axiel7.moelist.ui.generated.resources.unknown
@@ -176,9 +179,9 @@ private fun SearchViewContent(
     navActionManager: NavActionManager,
     contentPadding: PaddingValues = PaddingValues(),
 ) {
-    val shouldShowPlaceholder = query.isNotBlank() && uiState.mediaList.isEmpty()
+    val shouldShowPlaceholder = query.isNotBlank() && uiState.filteredList.isEmpty()
     val shouldShowSearchHistory = (query.isBlank() || !uiState.noResults)
-            && uiState.mediaList.isEmpty() && !uiState.isLoading
+            && uiState.filteredList.isEmpty() && !uiState.isLoading
 
     LaunchedEffect(uiState.message) {
         if (uiState.message != null) {
@@ -189,7 +192,10 @@ private fun SearchViewContent(
 
     @Composable
     fun FilterRow() {
-        Row {
+        Row(
+            modifier = Modifier.padding(horizontal = 8.dp),
+            horizontalArrangement = Arrangement.spacedBy(8.dp)
+        ) {
             MediaType.entries.forEach {
                 FilterChip(
                     selected = uiState.mediaType == it,
@@ -197,7 +203,6 @@ private fun SearchViewContent(
                         event?.onChangeMediaType(it)
                     },
                     label = { Text(text = it.localized()) },
-                    modifier = Modifier.padding(start = 8.dp),
                     leadingIcon = {
                         if (uiState.mediaType == it) {
                             Icon(
@@ -209,6 +214,11 @@ private fun SearchViewContent(
                     }
                 )
             }
+            TriFilterChip(
+                text = stringResource(UiRes.string.on_my_list),
+                value = uiState.onMyList,
+                onValueChanged = { event?.onMyListChanged(it) },
+            )
         }
     }
 
@@ -352,7 +362,7 @@ private fun SearchViewContent(
                 }
             }
             items(
-                items = uiState.mediaList,
+                items = uiState.filteredList,
                 contentType = { it.node }
             ) {
                 ItemView(item = it)
@@ -401,7 +411,7 @@ private fun SearchViewContent(
                 }
             }
             items(
-                items = uiState.mediaList,
+                items = uiState.filteredList,
                 contentType = { it.node }
             ) {
                 ItemView(item = it)
