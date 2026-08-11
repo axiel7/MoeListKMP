@@ -12,10 +12,15 @@ import com.axiel7.moelist.data.model.media.MediaSort
 import com.axiel7.moelist.data.model.media.RankingType
 import com.axiel7.moelist.data.network.Api
 import io.ktor.http.HttpStatusCode
+import kotlinx.coroutines.CoroutineDispatcher
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.IO
+import kotlinx.coroutines.withContext
 
 class MangaRepository(
     private val api: Api,
-    private val defaultPreferencesRepository: DefaultPreferencesRepository
+    private val defaultPreferencesRepository: DefaultPreferencesRepository,
+    private val dispatcher: CoroutineDispatcher = Dispatchers.IO,
 ) {
 
     companion object {
@@ -39,8 +44,8 @@ class MangaRepository(
 
     suspend fun getMangaDetails(
         mangaId: Int
-    ): MangaDetails? {
-        return try {
+    ): MangaDetails? = withContext(dispatcher) {
+        return@withContext try {
             api.getMangaDetails(mangaId, MANGA_DETAILS_FIELDS)
         } catch (_: Exception) {
             null
@@ -51,8 +56,8 @@ class MangaRepository(
         status: ListStatusDto,
         sort: MediaSort,
         page: String? = null
-    ): Response<List<UserMangaList>> {
-        return try {
+    ): Response<List<UserMangaList>> = withContext(dispatcher) {
+        return@withContext try {
             if (page == null) api.getUserMangaList(
                 status = status,
                 sort = sort,
@@ -80,8 +85,8 @@ class MangaRepository(
         @IntRange(0, 2) priority: Int? = null,
         tags: String? = null,
         comments: String? = null,
-    ): MyMangaListStatus? {
-        return try {
+    ): MyMangaListStatus? = withContext(dispatcher) {
+        return@withContext try {
             api.updateUserMangaList(
                 mangaId,
                 status,
@@ -104,10 +109,10 @@ class MangaRepository(
 
     suspend fun deleteMangaEntry(
         mangaId: Int
-    ): Boolean {
-        return try {
+    ): Boolean = withContext(dispatcher) {
+        return@withContext try {
             val result = api.deleteMangaEntry(mangaId)
-            return result.status == HttpStatusCode.OK
+            return@withContext result.status == HttpStatusCode.OK
         } catch (_: Exception) {
             false
         }
@@ -118,8 +123,8 @@ class MangaRepository(
         limit: Int,
         offset: Int? = null,
         page: String? = null
-    ): Response<List<MangaList>> {
-        return try {
+    ): Response<List<MangaList>> = withContext(dispatcher) {
+        return@withContext try {
             if (page == null) api.getMangaList(
                 query = query,
                 limit = limit,
@@ -137,8 +142,8 @@ class MangaRepository(
         rankingType: RankingType,
         limit: Int,
         page: String? = null
-    ): Response<List<MangaRanking>> {
-        return try {
+    ): Response<List<MangaRanking>> = withContext(dispatcher) {
+        return@withContext try {
             if (page == null) api.getMangaRanking(
                 rankingType = rankingType.serialName,
                 limit = limit,
@@ -155,8 +160,8 @@ class MangaRepository(
         status: ListStatusDto,
         prefetchedList: List<UserMangaList> = emptyList(),
         page: String? = null
-    ): Response<List<Int>> {
-        return try {
+    ): Response<List<Int>> = withContext(dispatcher) {
+        return@withContext try {
             val result = if (page == null) api.getUserMangaList(
                 status = status,
                 sort = MediaSort.UPDATED,
@@ -165,7 +170,7 @@ class MangaRepository(
                 fields = "id",
             ) else api.getUserMangaList(page)
             result.error?.let {
-                return Response(error = result.error, message = result.message)
+                return@withContext Response(error = result.error, message = result.message)
             }
             if (result.paging?.next != null) {
                 getMangaIdsOfUserList(
@@ -173,7 +178,7 @@ class MangaRepository(
                     prefetchedList = prefetchedList.plus(result.data.orEmpty()),
                     page = result.paging.next
                 )
-            } else return Response(
+            } else return@withContext Response(
                 data = prefetchedList.plus(result.data.orEmpty()).map { it.node.id }
             )
         } catch (e: Exception) {

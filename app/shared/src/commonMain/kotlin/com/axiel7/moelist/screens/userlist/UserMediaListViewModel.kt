@@ -19,9 +19,7 @@ import com.axiel7.moelist.ui.base.model.ListStatus
 import com.axiel7.moelist.ui.base.model.ListStatus.Companion.toBo
 import com.axiel7.moelist.ui.base.model.ListStatus.Companion.toDto
 import com.axiel7.moelist.ui.base.viewmodel.BaseViewModel
-import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.ExperimentalCoroutinesApi
-import kotlinx.coroutines.IO
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.flow.combine
@@ -93,7 +91,7 @@ class UserMediaListViewModel(
     }
 
     override fun onChangeItemMyListStatus(value: BaseMyListStatus?, removed: Boolean) {
-        viewModelScope.launch(Dispatchers.IO) {
+        viewModelScope.launch {
             mutableUiState.value.run {
                 if (selectedItem != null) {
                     val foundIndex = mediaList.indexOfFirst { it.node.id == selectedItem.node.id }
@@ -137,7 +135,7 @@ class UserMediaListViewModel(
 
     override fun onUpdateProgress(item: BaseUserMediaList<out BaseMediaNode>) {
         mutableUiState.update { it.copy(selectedItem = item) }
-        viewModelScope.launch(Dispatchers.IO) {
+        viewModelScope.launch {
             setLoading(true)
             val nowDate = Clock.System.now().toLocalDateTime(TimeZone.currentSystemDefault()).date.toString()
             var newStatus: ListStatus? = null
@@ -225,7 +223,7 @@ class UserMediaListViewModel(
     }
 
     override fun setScore(score: Int) {
-        viewModelScope.launch(Dispatchers.IO) {
+        viewModelScope.launch {
             setLoading(true)
             mutableUiState.value.run {
                 if (selectedItem == null) return@launch
@@ -252,7 +250,7 @@ class UserMediaListViewModel(
     }
 
     override fun getRandomIdOfList() {
-        viewModelScope.launch(Dispatchers.IO) {
+        viewModelScope.launch {
             mutableUiState.run {
                 emit(value.copy(isLoadingRandom = true))
                 val result = if (value.mediaType == MediaType.ANIME) {
@@ -347,7 +345,7 @@ class UserMediaListViewModel(
             .launchIn(viewModelScope)
 
         // list loading and pagination
-        viewModelScope.launch(Dispatchers.IO) {
+        viewModelScope.launch {
             mutableUiState
                 .distinctUntilChanged { old, new ->
                     old.loadMore == new.loadMore

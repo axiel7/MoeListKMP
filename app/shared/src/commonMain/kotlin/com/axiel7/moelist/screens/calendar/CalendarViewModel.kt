@@ -5,8 +5,6 @@ import com.axiel7.moelist.data.model.anime.AnimeRanking
 import com.axiel7.moelist.data.repository.AnimeRepository
 import com.axiel7.moelist.data.repository.DefaultPreferencesRepository
 import com.axiel7.moelist.ui.base.viewmodel.BaseViewModel
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.IO
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
@@ -46,7 +44,7 @@ class CalendarViewModel(
     }
 
     init {
-        viewModelScope.launch(Dispatchers.IO) {
+        viewModelScope.launch {
             val result = animeRepository.getWeeklyAnime()
 
             if (result.wasError) {

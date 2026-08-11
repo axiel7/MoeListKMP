@@ -8,8 +8,6 @@ import com.axiel7.moelist.data.model.media.MediaSort
 import com.axiel7.moelist.data.repository.AnimeRepository
 import com.axiel7.moelist.data.repository.DefaultPreferencesRepository
 import com.axiel7.moelist.ui.base.viewmodel.BaseViewModel
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.IO
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.flow.distinctUntilChanged
@@ -69,7 +67,7 @@ class SeasonChartViewModel(
     }
 
     init {
-        viewModelScope.launch(Dispatchers.IO) {
+        viewModelScope.launch {
             mutableUiState
                 .distinctUntilChanged { old, new ->
                     old.loadMore == new.loadMore

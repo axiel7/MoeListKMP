@@ -9,8 +9,6 @@ import com.axiel7.moelist.data.repository.AnimeRepository
 import com.axiel7.moelist.data.repository.DefaultPreferencesRepository
 import com.axiel7.moelist.data.utils.SeasonCalendar
 import com.axiel7.moelist.ui.base.viewmodel.BaseViewModel
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.IO
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
@@ -25,7 +23,7 @@ class HomeViewModel(
     override val mutableUiState = MutableStateFlow(HomeUiState())
 
     override fun initRequestChain(isLoggedIn: Boolean) {
-        viewModelScope.launch(Dispatchers.IO) {
+        viewModelScope.launch {
             mutableUiState.update { it.copy(isLoading = true) }
             mutableUiState.value.run {
                 if (todayAnimes.isEmpty()) getTodayAiringAnimes()

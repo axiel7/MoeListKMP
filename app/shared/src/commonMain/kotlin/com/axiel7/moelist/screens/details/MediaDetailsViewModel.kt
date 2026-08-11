@@ -14,8 +14,6 @@ import com.axiel7.moelist.data.repository.DefaultPreferencesRepository
 import com.axiel7.moelist.data.repository.MangaRepository
 import com.axiel7.moelist.ui.base.navigation.Route
 import com.axiel7.moelist.ui.base.viewmodel.BaseViewModel
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.IO
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.flow.launchIn
@@ -60,7 +58,7 @@ class MediaDetailsViewModel(
     }
 
     override fun getCharacters() {
-        viewModelScope.launch(Dispatchers.IO) {
+        viewModelScope.launch {
             mutableUiState.update { it.copy(isLoadingCharacters = true) }
 
             val result = animeRepository.getAnimeCharacters(
@@ -89,7 +87,7 @@ class MediaDetailsViewModel(
     }
 
     init {
-        viewModelScope.launch(Dispatchers.IO) {
+        viewModelScope.launch {
             setLoading(true)
             val mediaDetails = if (mediaType == MediaType.ANIME) {
                 animeRepository.getAnimeDetails(mediaId)

@@ -8,8 +8,6 @@ import com.axiel7.moelist.data.repository.DefaultPreferencesRepository
 import com.axiel7.moelist.data.repository.MangaRepository
 import com.axiel7.moelist.ui.base.navigation.Route
 import com.axiel7.moelist.ui.base.viewmodel.BaseViewModel
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.IO
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.flow.distinctUntilChanged
@@ -37,7 +35,7 @@ class MediaRankingViewModel(
     }
 
     init {
-        viewModelScope.launch(Dispatchers.IO) {
+        viewModelScope.launch {
             mutableUiState
                 .distinctUntilChanged { old, new ->
                     old.loadMore == new.loadMore

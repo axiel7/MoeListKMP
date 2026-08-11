@@ -13,14 +13,11 @@ import com.axiel7.moelist.ui.base.model.ListStatus
 import com.axiel7.moelist.ui.base.model.ListStatus.Companion.toBo
 import com.axiel7.moelist.ui.base.model.ListStatus.Companion.toDto
 import com.axiel7.moelist.ui.base.viewmodel.BaseViewModel
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.IO
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 import kotlinx.datetime.LocalDate
 import kotlinx.datetime.TimeZone
-import kotlinx.datetime.format
 import kotlinx.datetime.toLocalDateTime
 import kotlin.time.Clock
 
@@ -199,7 +196,7 @@ class EditMediaViewModel(
     }
 
     override fun updateListItem() {
-        viewModelScope.launch(Dispatchers.IO) {
+        viewModelScope.launch {
             mutableUiState.value.run {
                 if (mediaInfo == null) return@launch
                 setLoading(true)
@@ -288,7 +285,7 @@ class EditMediaViewModel(
     }
 
     override fun deleteEntry() {
-        viewModelScope.launch(Dispatchers.IO) {
+        viewModelScope.launch {
             val mediaId = mutableUiState.value.mediaInfo?.id ?: return@launch
             setLoading(true)
             val result = if (mutableUiState.value.mediaType == MediaType.ANIME) {

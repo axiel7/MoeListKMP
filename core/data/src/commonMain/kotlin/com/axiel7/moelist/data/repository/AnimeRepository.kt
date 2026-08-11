@@ -17,10 +17,15 @@ import com.axiel7.moelist.data.model.media.MediaStatus
 import com.axiel7.moelist.data.model.media.RankingType
 import com.axiel7.moelist.data.network.Api
 import io.ktor.http.HttpStatusCode
+import kotlinx.coroutines.CoroutineDispatcher
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.IO
+import kotlinx.coroutines.withContext
 
 class AnimeRepository(
     private val api: Api,
-    private val defaultPreferencesRepository: DefaultPreferencesRepository
+    private val defaultPreferencesRepository: DefaultPreferencesRepository,
+    private val dispatcher: CoroutineDispatcher = Dispatchers.IO,
 ) {
 
     companion object {
@@ -63,8 +68,8 @@ class AnimeRepository(
         limit: Int,
         fields: String?,
         page: String? = null,
-    ): Response<List<AnimeSeasonal>> {
-        return try {
+    ): Response<List<AnimeSeasonal>> = withContext(dispatcher) {
+        return@withContext try {
             val result = if (page == null) api.getSeasonalAnime(
                 sort = sort,
                 year = startSeason.year,
@@ -74,7 +79,7 @@ class AnimeRepository(
                 fields = fields,
             )
             else api.getSeasonalAnime(page)
-            return if (isNew != null) {
+            return@withContext if (isNew != null) {
                 result.copy(
                     // filter for new or continuing anime
                     data = result.data?.filter {
@@ -93,15 +98,15 @@ class AnimeRepository(
     suspend fun getRecommendedAnimes(
         limit: Int,
         page: String? = null
-    ): Response<List<AnimeList>> {
-        return try {
+    ): Response<List<AnimeList>> = withContext(dispatcher) {
+        return@withContext try {
             val result = if (page == null) api.getAnimeRecommendations(
                 limit = limit,
                 nsfw = defaultPreferencesRepository.nsfwInt(),
                 fields = RECOMMENDED_FIELDS
             )
             else api.getAnimeRecommendations(page)
-            return result
+            return@withContext result
         } catch (e: Exception) {
             Response(message = e.message)
         }
@@ -109,8 +114,8 @@ class AnimeRepository(
 
     suspend fun getAnimeDetails(
         animeId: Int
-    ): AnimeDetails? {
-        return try {
+    ): AnimeDetails? = withContext(dispatcher) {
+        return@withContext try {
             api.getAnimeDetails(animeId, ANIME_DETAILS_FIELDS)
         } catch (_: Exception) {
             null
@@ -121,8 +126,8 @@ class AnimeRepository(
         status: ListStatusDto,
         sort: MediaSort,
         page: String? = null,
-    ): Response<List<UserAnimeList>> {
-        return try {
+    ): Response<List<UserAnimeList>> = withContext(dispatcher) {
+        return@withContext try {
             val result = if (page == null) api.getUserAnimeList(
                 status = status,
                 sort = sort,
@@ -131,7 +136,7 @@ class AnimeRepository(
                 fields = USER_ANIME_LIST_FIELDS
             )
             else api.getUserAnimeList(page)
-            return result
+            return@withContext result
         } catch (e: Exception) {
             Response(message = e.message)
         }
@@ -150,8 +155,8 @@ class AnimeRepository(
         @IntRange(0, 2) priority: Int? = null,
         tags: String? = null,
         comments: String? = null,
-    ): MyAnimeListStatus? {
-        return try {
+    ): MyAnimeListStatus? = withContext(dispatcher) {
+        return@withContext try {
             api.updateUserAnimeList(
                 animeId,
                 status,
@@ -173,10 +178,10 @@ class AnimeRepository(
 
     suspend fun deleteAnimeEntry(
         animeId: Int
-    ): Boolean {
-        return try {
+    ): Boolean = withContext(dispatcher) {
+        return@withContext try {
             val result = api.deleteAnimeEntry(animeId)
-            return result.status == HttpStatusCode.OK
+            return@withContext result.status == HttpStatusCode.OK
         } catch (_: Exception) {
             false
         }
@@ -187,8 +192,8 @@ class AnimeRepository(
         limit: Int,
         offset: Int? = null,
         page: String? = null,
-    ): Response<List<AnimeList>> {
-        return try {
+    ): Response<List<AnimeList>> = withContext(dispatcher) {
+        return@withContext try {
             val result = if (page == null) api.getAnimeList(
                 query = query,
                 limit = limit,
@@ -197,7 +202,7 @@ class AnimeRepository(
                 fields = SEARCH_FIELDS,
             )
             else api.getAnimeList(page)
-            return result
+            return@withContext result
         } catch (e: Exception) {
             Response(message = e.message)
         }
@@ -209,8 +214,8 @@ class AnimeRepository(
         limit: Int,
         fields: String?,
         page: String? = null
-    ): Response<List<AnimeRanking>> {
-        return try {
+    ): Response<List<AnimeRanking>> = withContext(dispatcher) {
+        return@withContext try {
             val result =
                 if (page == null) api.getAnimeRanking(
                     rankingType = rankingType.serialName,
@@ -219,7 +224,7 @@ class AnimeRepository(
                     fields = fields,
                 )
                 else api.getAnimeRanking(page)
-            return result
+            return@withContext result
         } catch (e: Exception) {
             Response(message = e.message)
         }
@@ -227,13 +232,13 @@ class AnimeRepository(
 
     suspend fun getWeeklyAnime(
         fields: String? = CALENDAR_FIELDS
-    ): Response<List<MutableList<AnimeRanking>>> {
+    ): Response<List<MutableList<AnimeRanking>>> = withContext(dispatcher) {
         val rankResponse = getAnimeRanking(
             rankingType = RankingType.AIRING,
             limit = 300,
             fields = fields
         )
-        return if (rankResponse.isSuccess) {
+        return@withContext if (rankResponse.isSuccess) {
             val tempWeekArray = listOf<MutableList<AnimeRanking>>(
                 mutableListOf(),//0: MONDAY
                 mutableListOf(),//1: TUESDAY
@@ -246,10 +251,10 @@ class AnimeRepository(
             rankResponse.data
                 ?.sortedBy { it.node.broadcast?.secondsUntilNextBroadcast() }
                 ?.forEach { anime ->
-                anime.node.broadcast?.localDayOfTheWeek()?.let { day ->
-                    tempWeekArray[day.ordinal].add(anime)
+                    anime.node.broadcast?.localDayOfTheWeek()?.let { day ->
+                        tempWeekArray[day.ordinal].add(anime)
+                    }
                 }
-            }
 
             Response(data = tempWeekArray)
         } else {
@@ -262,8 +267,8 @@ class AnimeRepository(
 
     suspend fun getAnimeAiringStatus(
         animeId: Int
-    ): AnimeDetails? {
-        return try {
+    ): AnimeDetails? = withContext(dispatcher) {
+        return@withContext try {
             api.getAnimeDetails(animeId, fields = "id,status")
         } catch (_: Exception) {
             null
@@ -275,8 +280,8 @@ class AnimeRepository(
         limit: Int?,
         offset: Int?,
         page: String? = null
-    ): Response<List<Character>> {
-        return try {
+    ): Response<List<Character>> = withContext(dispatcher) {
+        return@withContext try {
             val result = if (page == null) api.getAnimeCharacters(
                 animeId = animeId,
                 limit = limit,
@@ -284,15 +289,15 @@ class AnimeRepository(
                 fields = CHARACTERS_FIELDS,
             )
             else api.getAnimeCharacters(page)
-            return result
+            return@withContext result
         } catch (e: Exception) {
             Response(message = e.message)
         }
     }
 
     // widget
-    suspend fun getAiringAnimeOnList(): List<AnimeNode>? {
-        return try {
+    suspend fun getAiringAnimeOnList(): List<AnimeNode>? = withContext(dispatcher) {
+        return@withContext try {
             val result: Response<List<UserAnimeList>> = api.getUserAnimeList(
                 status = ListStatusDto.WATCHING,
                 sort = MediaSort.ANIME_START_DATE,
@@ -312,8 +317,8 @@ class AnimeRepository(
         status: ListStatusDto,
         prefetchedList: List<UserAnimeList> = emptyList(),
         page: String? = null
-    ): Response<List<Int>> {
-        return try {
+    ): Response<List<Int>> = withContext(dispatcher) {
+        return@withContext try {
             val result = if (page == null) api.getUserAnimeList(
                 status = status,
                 sort = MediaSort.UPDATED,
@@ -322,7 +327,7 @@ class AnimeRepository(
                 fields = "id",
             ) else api.getUserAnimeList(page)
             result.error?.let {
-                return Response(error = result.error, message = result.message)
+                return@withContext Response(error = result.error, message = result.message)
             }
             if (result.paging?.next != null) {
                 getAnimeIdsOfUserList(
@@ -330,7 +335,7 @@ class AnimeRepository(
                     prefetchedList = prefetchedList.plus(result.data.orEmpty()),
                     page = result.paging.next
                 )
-            } else return Response(
+            } else return@withContext Response(
                 data = prefetchedList.plus(result.data.orEmpty()).map { it.node.id }
             )
         } catch (e: Exception) {

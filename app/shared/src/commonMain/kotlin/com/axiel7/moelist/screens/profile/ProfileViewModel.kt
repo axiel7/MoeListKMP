@@ -6,12 +6,9 @@ import com.axiel7.moelist.data.repository.UserRepository
 import com.axiel7.moelist.ui.base.model.ListStatus
 import com.axiel7.moelist.ui.base.model.Stat
 import com.axiel7.moelist.ui.base.viewmodel.BaseViewModel
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.IO
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
-import kotlinx.coroutines.withContext
 
 class ProfileViewModel(
     private val userRepository: UserRepository,
@@ -23,7 +20,7 @@ class ProfileViewModel(
     init {
         viewModelScope.launch {
             setLoading(true)
-            val user = withContext(Dispatchers.IO) { userRepository.getMyUser() }
+            val user = userRepository.getMyUser()
 
             if (user == null || user.message != null) {
                 showMessage(user?.message)

@@ -8,6 +8,7 @@ import androidx.room.TypeConverters
 import androidx.sqlite.driver.bundled.BundledSQLiteDriver
 import com.axiel7.moelist.data.local.searchhistory.SearchHistoryDao
 import com.axiel7.moelist.data.local.searchhistory.SearchHistoryEntity
+import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.IO
 
@@ -30,10 +31,11 @@ expect object AppDatabaseConstructor : RoomDatabaseConstructor<MoeListDatabase> 
 }
 
 fun getRoomDatabase(
-    builder: RoomDatabase.Builder<MoeListDatabase>
+    builder: RoomDatabase.Builder<MoeListDatabase>,
+    dispatcher: CoroutineDispatcher = Dispatchers.IO,
 ): MoeListDatabase {
     return builder
         .setDriver(BundledSQLiteDriver())
-        .setQueryCoroutineContext(Dispatchers.IO)
+        .setQueryCoroutineContext(dispatcher)
         .build()
 }

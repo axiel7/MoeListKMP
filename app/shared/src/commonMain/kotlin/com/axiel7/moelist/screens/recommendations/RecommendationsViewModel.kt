@@ -4,8 +4,6 @@ import androidx.lifecycle.viewModelScope
 import com.axiel7.moelist.data.repository.AnimeRepository
 import com.axiel7.moelist.data.repository.DefaultPreferencesRepository
 import com.axiel7.moelist.ui.base.viewmodel.BaseViewModel
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.IO
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.flow.distinctUntilChangedBy
@@ -29,7 +27,7 @@ class RecommendationsViewModel(
     }
 
     init {
-        viewModelScope.launch(Dispatchers.IO) {
+        viewModelScope.launch {
             mutableUiState
                 .distinctUntilChangedBy { it.loadMore }
                 .filter { it.loadMore }

@@ -76,10 +76,10 @@ fun initApp(
 
     val repositoryModule = module {
         single { DefaultPreferencesRepository(get(named(DEFAULT_DATA_STORE))) }
-        singleOf(::AnimeRepository)
-        singleOf(::MangaRepository)
+        single { AnimeRepository(get(), get()) }
+        single { MangaRepository(get(), get()) }
         singleOf(::LoginRepository)
-        singleOf(::UserRepository)
+        single { UserRepository(get(), get()) }
     }
 
     val viewModelModule = module {
