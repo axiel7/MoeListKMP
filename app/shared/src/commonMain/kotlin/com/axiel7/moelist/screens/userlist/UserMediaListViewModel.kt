@@ -267,7 +267,7 @@ class UserMediaListViewModel(
                 if (!result.data.isNullOrEmpty()) {
                     emit(
                         value.copy(
-                            randomId = result.data!!.random(),
+                            randomId = result.data?.random(),
                             isLoadingRandom = false,
                         )
                     )

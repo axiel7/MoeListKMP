@@ -33,7 +33,7 @@ fun EditMediaDatePicker(
         confirmButton = {
             TextButton(
                 onClick = {
-                    onDateSelected(datePickerState.selectedDateMillis!!)
+                    datePickerState.selectedDateMillis?.let(onDateSelected)
                 },
                 enabled = dateConfirmEnabled,
                 shapes = ButtonDefaults.shapes(),

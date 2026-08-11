@@ -47,7 +47,7 @@ class HomeViewModel(
             for (anime in result.data) {
                 if (anime.node.broadcast != null
                     && !tempList.contains(anime)
-                    && anime.node.broadcast!!.dayOfTheWeek == SeasonCalendar.currentJapanWeekday
+                    && anime.node.broadcast?.dayOfTheWeek == SeasonCalendar.currentJapanWeekday
                     && anime.node.status == MediaStatus.AIRING
                 ) {
                     tempList.add(anime)
