@@ -6,6 +6,7 @@ import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.calculateEndPadding
 import androidx.compose.foundation.layout.calculateStartPadding
+import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
@@ -50,6 +51,7 @@ import com.axiel7.moelist.screens.userlist.composables.StandardUserMediaListItem
 import com.axiel7.moelist.screens.userlist.composables.StandardUserMediaListItemPlaceholder
 import com.axiel7.moelist.ui.base.navigation.NavActionManager
 import com.axiel7.moelist.ui.composables.OnBottomReached
+import com.axiel7.moelist.ui.composables.PlatformVerticalScrollbar
 import com.axiel7.moelist.ui.composables.collapsable
 import com.axiel7.moelist.ui.composables.media.MEDIA_POSTER_MEDIUM_WIDTH
 
@@ -231,6 +233,10 @@ fun UserMediaListView(
                     }
                 }
             }
+            PlatformVerticalScrollbar(
+                scrollState = listState,
+                modifier = Modifier.align(Alignment.CenterEnd).fillMaxHeight(),
+            )
         } else if (isCompactScreen) {
             val listState = rememberLazyListState()
             listState.OnBottomReached(buffer = 3) {
@@ -313,15 +319,22 @@ fun UserMediaListView(
                     }
                 }
             }//:LazyColumn
+            PlatformVerticalScrollbar(
+                scrollState = listState,
+                modifier = Modifier.align(Alignment.CenterEnd).fillMaxHeight(),
+            )
         } else { // tablet ui
+            val listState = rememberLazyGridState()
+            val padding = PaddingValues(
+                start = contentPadding.calculateStartPadding(layoutDirection),
+                top = contentPadding.calculateTopPadding() + 8.dp,
+                end = contentPadding.calculateEndPadding(layoutDirection),
+                bottom = contentPadding.calculateBottomPadding() + 8.dp
+            )
             LazyVerticalGrid(
                 columns = GridCells.Fixed(2),
-                contentPadding = PaddingValues(
-                    start = contentPadding.calculateStartPadding(layoutDirection),
-                    top = contentPadding.calculateTopPadding() + 8.dp,
-                    end = contentPadding.calculateEndPadding(layoutDirection),
-                    bottom = contentPadding.calculateBottomPadding() + 8.dp
-                ),
+                state = listState,
+                contentPadding = padding,
             ) {
                 item(
                     span = { GridItemSpan(maxLineSpan) }
@@ -397,6 +410,13 @@ fun UserMediaListView(
                     }
                 }
             }
+            PlatformVerticalScrollbar(
+                scrollState = listState,
+                modifier = Modifier
+                    .align(Alignment.CenterEnd)
+                    .fillMaxHeight()
+                    .padding(padding),
+            )
         }
     }//:Box
 }
