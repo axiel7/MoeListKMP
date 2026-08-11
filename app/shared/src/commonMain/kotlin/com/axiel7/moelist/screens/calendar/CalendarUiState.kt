@@ -7,6 +7,7 @@ import com.axiel7.moelist.ui.base.state.UiState
 
 @Immutable
 data class CalendarUiState(
+    val allAnime: List<List<AnimeRanking>> = emptyList(),
     val mondayAnime: List<AnimeRanking> = emptyList(),
     val tuesdayAnime: List<AnimeRanking> = emptyList(),
     val wednesdayAnime: List<AnimeRanking> = emptyList(),
@@ -15,6 +16,7 @@ data class CalendarUiState(
     val saturdayAnime: List<AnimeRanking> = emptyList(),
     val sundayAnime: List<AnimeRanking> = emptyList(),
     val preferredTitle: TitleLanguage = TitleLanguage.ROMAJI,
+    val onMyList: Boolean? = null,
     override val isLoading: Boolean = false,
     override val message: String? = null,
 ) : UiState() {

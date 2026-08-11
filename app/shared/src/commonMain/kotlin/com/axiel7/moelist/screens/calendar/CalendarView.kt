@@ -14,10 +14,16 @@ import androidx.compose.foundation.layout.only
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.systemBars
+import androidx.compose.foundation.layout.wrapContentSize
 import androidx.compose.foundation.lazy.grid.GridCells
 import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
 import androidx.compose.foundation.lazy.grid.items
+import androidx.compose.material3.DropdownMenu
+import androidx.compose.material3.DropdownMenuItem
+import androidx.compose.material3.ExperimentalMaterial3ExpressiveApi
 import androidx.compose.material3.Icon
+import androidx.compose.material3.IconButton
+import androidx.compose.material3.IconButtonDefaults
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.SnackbarHostState
 import androidx.compose.material3.Surface
@@ -25,7 +31,9 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
@@ -44,6 +52,11 @@ import com.axiel7.moelist.ui.composables.media.MediaItemVertical
 import com.axiel7.moelist.ui.composables.media.MediaItemVerticalPlaceholder
 import com.axiel7.moelist.ui.generated.resources.UiRes
 import com.axiel7.moelist.ui.generated.resources.calendar
+import com.axiel7.moelist.ui.generated.resources.more_vert_24
+import com.axiel7.moelist.ui.generated.resources.on_my_list
+import com.axiel7.moelist.ui.generated.resources.round_check_24
+import com.axiel7.moelist.ui.generated.resources.round_close_24
+import com.axiel7.moelist.ui.generated.resources.show_more
 import com.axiel7.moelist.ui.theme.MoeListTheme
 import org.jetbrains.compose.resources.painterResource
 import org.jetbrains.compose.resources.stringResource
@@ -81,6 +94,12 @@ private fun CalendarContent(
     DefaultScaffoldWithTopAppBar(
         title = stringResource(UiRes.string.calendar),
         navigateBack = dropUnlessResumed { navActionManager.goBack() },
+        actions = {
+            AppBarActions(
+                onMyList = uiState.onMyList,
+                onMyListChanged = { event?.onMyListChanged(it) },
+            )
+        },
         snackbarHostState = snackbarHostState,
         contentWindowInsets = WindowInsets.systemBars
             .only(WindowInsetsSides.Horizontal)
@@ -150,8 +169,61 @@ private fun CalendarContent(
                     }
                 }
             }
-        }//:Column
-    }//:Scaffold
+        }
+    }
+}
+
+@OptIn(ExperimentalMaterial3ExpressiveApi::class)
+@Composable
+private fun AppBarActions(
+    onMyList: Boolean?,
+    onMyListChanged: (Boolean?) -> Unit,
+    modifier: Modifier = Modifier
+) {
+    var menuOpened by remember { mutableStateOf(false) }
+    Box(
+        modifier = modifier
+            .wrapContentSize(Alignment.TopStart)
+    ) {
+        IconButton(
+            onClick = { menuOpened = !menuOpened },
+            shapes = IconButtonDefaults.shapes(),
+        ) {
+            Icon(
+                painter = painterResource(UiRes.drawable.more_vert_24),
+                contentDescription = stringResource(UiRes.string.show_more),
+            )
+        }
+        DropdownMenu(
+            expanded = menuOpened,
+            onDismissRequest = { menuOpened = false },
+        ) {
+            DropdownMenuItem(
+                text = { Text(text = stringResource(UiRes.string.on_my_list)) },
+                onClick = {
+                    onMyListChanged(
+                        when (onMyList) {
+                            null -> true
+                            true -> false
+                            false -> null
+                        }
+                    )
+                    menuOpened = false
+                },
+                leadingIcon = {
+                    if (onMyList != null) {
+                        Icon(
+                            painter = painterResource(
+                                if (onMyList) UiRes.drawable.round_check_24 else UiRes.drawable.round_close_24
+                            ),
+                            contentDescription = null,
+                            modifier = Modifier.size(20.dp),
+                        )
+                    }
+                },
+            )
+        }
+    }
 }
 
 @Preview

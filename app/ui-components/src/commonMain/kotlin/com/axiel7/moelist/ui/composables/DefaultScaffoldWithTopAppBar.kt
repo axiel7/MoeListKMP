@@ -1,6 +1,7 @@
 package com.axiel7.moelist.ui.composables
 
 import androidx.compose.foundation.layout.PaddingValues
+import androidx.compose.foundation.layout.RowScope
 import androidx.compose.foundation.layout.WindowInsets
 import androidx.compose.foundation.layout.systemBars
 import androidx.compose.material3.ExperimentalMaterial3Api
@@ -18,6 +19,7 @@ import androidx.compose.ui.input.nestedscroll.nestedScroll
 fun DefaultScaffoldWithTopAppBar(
     title: String,
     navigateBack: () -> Unit,
+    actions: @Composable (RowScope.() -> Unit) = {},
     floatingActionButton: @Composable (() -> Unit) = {},
     snackbarHostState: SnackbarHostState? = null,
     contentWindowInsets: WindowInsets = WindowInsets.systemBars,
@@ -34,6 +36,7 @@ fun DefaultScaffoldWithTopAppBar(
             if (isTopBarVisible) {
                 DefaultTopAppBar(
                     title = title,
+                    actions = actions,
                     scrollBehavior = topAppBarScrollBehavior,
                     navigateBack = navigateBack
                 )

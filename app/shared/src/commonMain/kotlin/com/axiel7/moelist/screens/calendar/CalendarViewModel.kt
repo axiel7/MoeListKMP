@@ -1,6 +1,7 @@
 package com.axiel7.moelist.screens.calendar
 
 import androidx.lifecycle.viewModelScope
+import com.axiel7.moelist.data.model.anime.AnimeRanking
 import com.axiel7.moelist.data.repository.AnimeRepository
 import com.axiel7.moelist.data.repository.DefaultPreferencesRepository
 import com.axiel7.moelist.ui.base.viewmodel.BaseViewModel
@@ -19,6 +20,31 @@ class CalendarViewModel(
 
     override val mutableUiState = MutableStateFlow(CalendarUiState(isLoading = true))
 
+    override fun onMyListChanged(value: Boolean?) {
+        viewModelScope.launch {
+            val filterPredicate: (AnimeRanking) -> Boolean = when (value) {
+                true -> { { it.node.myListStatus != null } }
+
+                false -> { { it.node.myListStatus == null } }
+
+                null -> { { true } }
+            }
+
+            mutableUiState.update {
+                it.copy(
+                    mondayAnime = it.allAnime[0].filter(filterPredicate),
+                    tuesdayAnime = it.allAnime[1].filter(filterPredicate),
+                    wednesdayAnime = it.allAnime[2].filter(filterPredicate),
+                    thursdayAnime = it.allAnime[3].filter(filterPredicate),
+                    fridayAnime = it.allAnime[4].filter(filterPredicate),
+                    saturdayAnime = it.allAnime[5].filter(filterPredicate),
+                    sundayAnime = it.allAnime[6].filter(filterPredicate),
+                    onMyList = value,
+                )
+            }
+        }
+    }
+
     init {
         viewModelScope.launch(Dispatchers.IO) {
             val result = animeRepository.getWeeklyAnime()
@@ -27,8 +53,9 @@ class CalendarViewModel(
                 showMessage(result.message)
             }
             result.data?.let { data ->
-                mutableUiState.update {
-                    it.copy(
+                mutableUiState.update { uiState ->
+                    uiState.copy(
+                        allAnime = data,
                         mondayAnime = data[0],
                         tuesdayAnime = data[1],
                         wednesdayAnime = data[2],

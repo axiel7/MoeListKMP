@@ -393,4 +393,5 @@
     <string name="show_more">More</string>
     <string name="custom_app_color">Custom app color</string>
     <string name="color">Color</string>
+    <string name="on_my_list">On my list</string>
 </resources>

@@ -227,14 +227,14 @@ class AnimeRepository(
 
     suspend fun getWeeklyAnime(
         fields: String? = CALENDAR_FIELDS
-    ): Response<Array<MutableList<AnimeRanking>>> {
+    ): Response<List<MutableList<AnimeRanking>>> {
         val rankResponse = getAnimeRanking(
             rankingType = RankingType.AIRING,
             limit = 300,
             fields = fields
         )
         return if (rankResponse.isSuccess) {
-            val tempWeekArray = arrayOf<MutableList<AnimeRanking>>(
+            val tempWeekArray = listOf<MutableList<AnimeRanking>>(
                 mutableListOf(),//0: MONDAY
                 mutableListOf(),//1: TUESDAY
                 mutableListOf(),//2: WEDNESDAY
