@@ -14,6 +14,7 @@ import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.AlertDialog
 import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
@@ -83,6 +84,7 @@ import com.axiel7.moelist.ui.generated.resources.theme
 import com.axiel7.moelist.ui.generated.resources.title_language
 import com.axiel7.moelist.ui.generated.resources.use_separated_list_styles
 import com.axiel7.moelist.ui.theme.MoeListTheme
+import com.axiel7.moelist.ui.utils.ColorUtils.colorFromHex
 import com.github.skydoves.colorpicker.compose.BrightnessSlider
 import com.github.skydoves.colorpicker.compose.HsvColorPicker
 import com.github.skydoves.colorpicker.compose.rememberColorPickerController
@@ -304,9 +306,14 @@ fun ColorPickerDialog(
     onColorSelected: (Color) -> Unit,
 ) {
     val controller = rememberColorPickerController()
+    var textFieldValue by remember { mutableStateOf("") }
 
     LaunchedEffect(initialColor) {
         controller.selectByColor(initialColor, fromUser = false)
+    }
+
+    LaunchedEffect(controller.selectedColor.value) {
+        textFieldValue = controller.selectedColor.value.toHex(includePrefix = false)
     }
 
     AlertDialog(
@@ -347,6 +354,28 @@ fun ColorPickerDialog(
                         .clip(CircleShape)
                         .background(controller.selectedColor.value)
                         .align(Alignment.CenterHorizontally)
+                )
+
+                Spacer(modifier = Modifier.height(16.dp))
+
+                OutlinedTextField(
+                    value = textFieldValue,
+                    onValueChange = { value ->
+                        // support for the user to paste a color with the # prefix
+                        val maxLength = if (value.startsWith("#")) 7 else 6
+                        if (value.length <= maxLength) {
+                            textFieldValue = value
+                            if (value.length == maxLength) {
+                                val prefix = if (value.startsWith("#")) "" else "#"
+                                colorFromHex("$prefix$value")?.let { color ->
+                                    controller.selectByColor(color, true)
+                                }
+                            }
+                        }
+                    },
+                    label = { Text(text = "HEX") },
+                    prefix = { Text(text = "#") },
+                    singleLine = true,
                 )
             }
         },
