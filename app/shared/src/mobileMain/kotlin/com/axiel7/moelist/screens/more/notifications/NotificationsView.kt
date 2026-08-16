@@ -6,6 +6,7 @@ import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.plus
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.material3.AlertDialog
@@ -107,9 +108,8 @@ private fun NotificationsViewContent(
     ) { padding ->
         LazyColumn(
             modifier = Modifier
-                .padding(padding)
                 .fillMaxWidth(),
-            contentPadding = PaddingValues(8.dp)
+            contentPadding = PaddingValues(8.dp) + padding
         ) {
             items(
                 items = uiState.notifications?.asMap()?.keys?.toTypedArray().orEmpty()
@@ -130,7 +130,9 @@ private fun NotificationsViewContent(
                 ) {
                     Text(
                         text = (uiState.notifications?.get(key) as? String).orEmpty(),
-                        modifier = Modifier.padding(horizontal = 8.dp)
+                        modifier = Modifier
+                            .padding(horizontal = 8.dp)
+                            .weight(1f)
                     )
                     IconButton(
                         onClick = {
