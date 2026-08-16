@@ -18,6 +18,7 @@ import androidx.compose.runtime.getValue
 import androidx.core.os.LocaleListCompat
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
+import com.axiel7.moelist.ExternalLinkManager.openLink
 import com.axiel7.moelist.data.model.ui.AppLanguage
 import com.axiel7.moelist.data.model.ui.ThemeStyle
 import com.axiel7.moelist.main.MainViewModel
@@ -46,7 +47,7 @@ class MainActivity : AppCompatActivity() {
         val browserHandler = AndroidBrowserHandler(this)
 
         viewModel.migrateLegacyData()
-        viewModel.setDeepLink(findDeepLink(intent))
+        findDeepLink(intent)?.let(viewModel::setDeepLink)
 
         val lastTabOpened = findLastTabOpened()
 
@@ -93,7 +94,7 @@ class MainActivity : AppCompatActivity() {
 
     override fun onNewIntent(intent: Intent) {
         super.onNewIntent(intent)
-        viewModel.setDeepLink(findDeepLink(intent))
+        findDeepLink(intent)?.let(viewModel::setDeepLink)
     }
 
     private fun findDeepLink(intent: Intent): DeepLink<*>? {
@@ -121,9 +122,8 @@ class MainActivity : AppCompatActivity() {
                 }
             } == false
             if (!isMainDetails) {
-                return intent.dataString?.let {
-                    DeepLink(type = DeepLink.Type.EXTERNAL, data = it)
-                }
+                intent.dataString?.let { openLink(it) }
+                return null
             }
 
             val mediaType = intent.data?.pathSegments?.getOrNull(0)?.uppercase()

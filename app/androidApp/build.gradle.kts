@@ -72,6 +72,9 @@ android {
             )
         }
     }
+    buildFeatures {
+        buildConfig = true
+    }
     splits {
         abi {
             isEnable = true
