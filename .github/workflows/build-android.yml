@@ -39,7 +39,7 @@ jobs:
         run: sed -i -e '/isEnable/s/true/false/' app/androidApp/build.gradle.kts
 
       - name: Set MAL Client Secret ID
-        run: touch private.properties && echo 'CLIENT_SECRET="${{secrets.CLIENT_SECRET}}"' > private.properties
+        run: touch private.properties && echo 'CLIENT_SECRET=""' > private.properties
 
       - name: Make gradlew executable
         run: chmod +x ./gradlew
