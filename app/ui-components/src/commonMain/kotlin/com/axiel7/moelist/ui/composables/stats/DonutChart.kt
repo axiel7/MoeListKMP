@@ -22,6 +22,7 @@ import com.axiel7.moelist.data.model.base.LocalizableAndColorable
 import com.axiel7.moelist.ui.base.model.Stat
 import com.axiel7.moelist.ui.theme.MoeListTheme
 import com.materialkolor.ktx.harmonize
+import kotlinx.collections.immutable.ImmutableList
 import kotlin.math.min
 
 private const val chartDegrees = 340f // circle shape with spacing
@@ -36,7 +37,7 @@ private const val startAngle = 100f // start drawing clockwise
 @Composable
 fun <T : LocalizableAndColorable> DonutChart(
     modifier: Modifier = Modifier,
-    stats: List<Stat<T>>,
+    stats: ImmutableList<Stat<T>>,
     centerContent: @Composable () -> Unit = {},
 ) {
     val totalSum = remember(stats) {

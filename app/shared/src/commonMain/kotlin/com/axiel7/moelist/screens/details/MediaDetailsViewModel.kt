@@ -14,6 +14,7 @@ import com.axiel7.moelist.data.repository.DefaultPreferencesRepository
 import com.axiel7.moelist.data.repository.MangaRepository
 import com.axiel7.moelist.ui.base.navigation.Route
 import com.axiel7.moelist.ui.base.viewmodel.BaseViewModel
+import kotlinx.collections.immutable.toImmutableList
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.flow.launchIn
@@ -111,7 +112,7 @@ class MediaDetailsViewModel(
                         relatedAnime = mediaDetails.relatedAnime.orEmpty(),
                         relatedManga = mediaDetails.relatedManga.orEmpty(),
                         recommendations = recommendations,
-                        picturesUrls = picturesUrls,
+                        picturesUrls = picturesUrls.toImmutableList(),
                         isLoading = false
                     )
                 }

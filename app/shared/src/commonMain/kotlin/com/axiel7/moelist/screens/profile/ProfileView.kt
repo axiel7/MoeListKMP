@@ -55,6 +55,7 @@ import com.axiel7.moelist.ui.generated.resources.ok
 import com.axiel7.moelist.ui.generated.resources.title_profile
 import com.axiel7.moelist.ui.generated.resources.view_profile_mal
 import com.axiel7.moelist.ui.theme.MoeListTheme
+import kotlinx.collections.immutable.persistentListOf
 import org.jetbrains.compose.resources.painterResource
 import org.jetbrains.compose.resources.stringResource
 import org.koin.compose.viewmodel.koinViewModel
@@ -150,7 +151,7 @@ private fun ProfileViewContent(
                             .size(100.dp)
                             .clickable(onClick = dropUnlessResumed {
                                 navActionManager.toFullPoster(
-                                    listOf(uiState.profilePictureUrl)
+                                    persistentListOf(uiState.profilePictureUrl)
                                 )
                             })
                     )

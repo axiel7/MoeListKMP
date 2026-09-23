@@ -9,7 +9,7 @@ import androidx.annotation.RequiresApi
 import androidx.compose.material3.ExperimentalMaterial3ExpressiveApi
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
-import androidx.compose.material3.IconButtonShapes
+import androidx.compose.material3.IconButtonDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.platform.LocalContext
 import androidx.core.net.toUri
@@ -25,13 +25,12 @@ import org.jetbrains.compose.resources.stringResource
 @Composable
 actual fun ShareButton(
     url: String,
-    shapes: IconButtonShapes,
     contentDescription: String
 ) {
     val context = LocalContext.current
     IconButton(
         onClick = { context.shareLink(url) },
-        shapes = shapes
+        shapes = IconButtonDefaults.shapes()
     ) {
         Icon(
             painter = painterResource(UiRes.drawable.round_share_24),

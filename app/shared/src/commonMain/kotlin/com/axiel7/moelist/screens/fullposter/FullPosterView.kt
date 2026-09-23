@@ -33,12 +33,14 @@ import com.axiel7.moelist.ui.composables.button.BackIconButton
 import com.axiel7.moelist.ui.composables.PlatformImage
 import com.axiel7.moelist.ui.composables.button.ViewInBrowserButton
 import com.axiel7.moelist.ui.theme.MoeListTheme
+import kotlinx.collections.immutable.ImmutableList
+import kotlinx.collections.immutable.persistentListOf
 import kotlinx.coroutines.launch
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun FullPosterView(
-    pictures: List<String>,
+    pictures: ImmutableList<String>,
     navActionManager: NavActionManager,
 ) {
     val uriHandler = LocalUriHandler.current
@@ -121,7 +123,7 @@ fun FullPosterPreview() {
     MoeListTheme {
         Surface {
             FullPosterView(
-                pictures = listOf("", ""),
+                pictures = persistentListOf("", ""),
                 navActionManager = NavActionManager.rememberNavActionManager()
             )
         }

@@ -1,5 +1,6 @@
 package com.axiel7.moelist.data.model.ui
 
+import androidx.compose.runtime.Stable
 import com.axiel7.moelist.ui.generated.resources.UiRes
 import com.axiel7.moelist.ui.generated.resources.default_setting
 import com.axiel7.moelist.ui.generated.resources.eight
@@ -12,7 +13,9 @@ import com.axiel7.moelist.ui.generated.resources.six
 import com.axiel7.moelist.ui.generated.resources.ten
 import com.axiel7.moelist.ui.generated.resources.three
 import com.axiel7.moelist.ui.generated.resources.two
+import kotlinx.collections.immutable.toImmutableMap
 
+@Stable
 enum class ItemsPerRow(val value: Int) {
     DEFAULT(0),
     ONE(1),
@@ -44,6 +47,6 @@ enum class ItemsPerRow(val value: Int) {
     companion object {
         fun valueOf(value: Int) = entries.find { it.value == value }
 
-        val entriesLocalized = entries.associateWith { it.stringRes }
+        val entriesLocalized = entries.associateWith { it.stringRes }.toImmutableMap()
     }
 }

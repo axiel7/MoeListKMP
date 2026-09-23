@@ -3,6 +3,7 @@ package com.axiel7.moelist.ui.base.model
 import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.Stable
 import com.axiel7.moelist.data.model.base.LocalizableAndColorable
 import com.axiel7.moelist.data.model.media.ListStatusDto
 import com.axiel7.moelist.data.model.media.MediaType
@@ -40,6 +41,7 @@ import kotlinx.serialization.Serializable
 import org.jetbrains.compose.resources.DrawableResource
 import org.jetbrains.compose.resources.stringResource
 
+@Stable
 @Serializable
 enum class ListStatus(
     val icon: DrawableResource

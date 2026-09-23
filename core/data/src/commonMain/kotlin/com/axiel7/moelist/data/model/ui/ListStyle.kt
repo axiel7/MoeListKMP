@@ -1,14 +1,17 @@
 package com.axiel7.moelist.data.model.ui
 
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.Stable
 import com.axiel7.moelist.data.model.base.Localizable
 import com.axiel7.moelist.ui.generated.resources.UiRes
 import com.axiel7.moelist.ui.generated.resources.list_mode_compact
 import com.axiel7.moelist.ui.generated.resources.list_mode_grid
 import com.axiel7.moelist.ui.generated.resources.list_mode_minimal
 import com.axiel7.moelist.ui.generated.resources.list_mode_standard
+import kotlinx.collections.immutable.toImmutableMap
 import org.jetbrains.compose.resources.stringResource
 
+@Stable
 enum class ListStyle : Localizable {
     STANDARD,
     COMPACT,
@@ -33,6 +36,6 @@ enum class ListStyle : Localizable {
             null
         }
 
-        val entriesLocalized = entries.associateWith { it.stringRes }
+        val entriesLocalized = entries.associateWith { it.stringRes }.toImmutableMap()
     }
 }

@@ -29,11 +29,12 @@ import com.axiel7.moelist.ui.composables.Rectangle
 import com.axiel7.moelist.ui.generated.resources.UiRes
 import com.axiel7.moelist.ui.generated.resources.total_entries
 import com.axiel7.moelist.ui.theme.MoeListTheme
+import kotlinx.collections.immutable.ImmutableList
 import org.jetbrains.compose.resources.stringResource
 
 @Composable
 fun <T : LocalizableAndColorable> HorizontalStatsBar(
-    stats: List<Stat<T>>,
+    stats: ImmutableList<Stat<T>>,
     horizontalPadding: Dp = 8.dp,
 ) {
     val totalValue = remember(stats) {

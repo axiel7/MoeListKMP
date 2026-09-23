@@ -1,6 +1,7 @@
 package com.axiel7.moelist.ui.base.model
 
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.Stable
 import androidx.navigation3.runtime.NavKey
 import com.axiel7.moelist.data.model.media.MediaType
 import com.axiel7.moelist.ui.base.navigation.Route
@@ -24,6 +25,7 @@ import org.jetbrains.compose.resources.StringResource
 import org.jetbrains.compose.resources.painterResource
 import org.jetbrains.compose.resources.stringResource
 
+@Stable
 sealed class BottomDestination(
     val value: String,
     val index: Int,

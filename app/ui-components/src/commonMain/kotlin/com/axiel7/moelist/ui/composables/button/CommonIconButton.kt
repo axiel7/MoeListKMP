@@ -48,7 +48,6 @@ fun ViewInBrowserButton(
 @Composable
 expect fun ShareButton(
     url: String,
-    shapes: IconButtonShapes = IconButtonDefaults.shapes(),
     contentDescription: String = stringResource(UiRes.string.share)
 )
 

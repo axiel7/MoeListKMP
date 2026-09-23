@@ -1,6 +1,7 @@
 package com.axiel7.moelist.data.model.anime
 
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.Stable
 import com.axiel7.moelist.data.model.base.Localizable
 import com.axiel7.moelist.ui.generated.resources.UiRes
 import com.axiel7.moelist.ui.generated.resources.fall
@@ -16,6 +17,7 @@ import kotlinx.serialization.Serializable
 import org.jetbrains.compose.resources.DrawableResource
 import org.jetbrains.compose.resources.stringResource
 
+@Stable
 @Serializable
 enum class Season(
     val value: String,

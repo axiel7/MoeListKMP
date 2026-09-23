@@ -4,6 +4,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.Immutable
 import androidx.compose.runtime.remember
 import com.axiel7.moelist.data.model.media.MediaType
+import kotlinx.collections.immutable.ImmutableList
 
 @Immutable
 class NavActionManager(
@@ -38,7 +39,7 @@ class NavActionManager(
         navigator.navigate(Route.Recommendations)
     }
 
-    fun toFullPoster(pictures: List<String>) {
+    fun toFullPoster(pictures: ImmutableList<String>) {
         navigator.navigate(Route.FullPoster(pictures))
     }
 

@@ -49,6 +49,7 @@ import com.axiel7.moelist.screens.season.SeasonChartEvent
 import com.axiel7.moelist.screens.season.SeasonChartUiState
 import com.axiel7.moelist.ui.composables.PlatformHorizontalScrollbar
 import com.axiel7.moelist.ui.theme.MoeListTheme
+import kotlinx.collections.immutable.persistentListOf
 import org.jetbrains.compose.resources.painterResource
 import org.jetbrains.compose.resources.stringResource
 
@@ -165,7 +166,7 @@ fun SeasonChartFilterSheet(
             ) {
                 ChipWithMenu(
                     title = uiState.sort.localized(),
-                    values = listOf(MediaSort.ANIME_NUM_USERS, MediaSort.ANIME_SCORE, MediaSort.ANIME_START_DATE),
+                    values = persistentListOf(MediaSort.ANIME_NUM_USERS, MediaSort.ANIME_SCORE, MediaSort.ANIME_START_DATE),
                     selectedValue = uiState.sort,
                     onValueSelected = { value ->
                         if (value != null) event?.onChangeSort(value)

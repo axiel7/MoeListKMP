@@ -6,13 +6,15 @@ import com.axiel7.moelist.data.model.UserStats
 import com.axiel7.moelist.ui.base.model.ListStatus
 import com.axiel7.moelist.ui.base.model.Stat
 import com.axiel7.moelist.ui.base.state.UiState
+import kotlinx.collections.immutable.ImmutableList
+import kotlinx.collections.immutable.persistentListOf
 
 @Immutable
 data class ProfileUiState(
     val user: User? = null,
     val profilePictureUrl: String? = null,
-    val animeStats: List<Stat<ListStatus>> = emptyList(),
-    val mangaStats: List<Stat<ListStatus>> = emptyList(),
+    val animeStats: ImmutableList<Stat<ListStatus>> = persistentListOf(),
+    val mangaStats: ImmutableList<Stat<ListStatus>> = persistentListOf(),
     val userMangaStats: UserStats.MangaStats? = null,
     val isLoadingManga: Boolean = true,
     override val isLoading: Boolean = true,

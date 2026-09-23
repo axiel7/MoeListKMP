@@ -60,6 +60,7 @@ kotlin {
             api(libs.koin.compose.viewmodel.navigation)
 
             implementation(libs.kotlinx.datetime)
+            implementation(libs.kotlinx.collections.immutable)
 
             api(libs.androidx.lifecycle.runtime.compose)
             api(libs.androidx.navigation3.ui)
@@ -104,6 +105,10 @@ kotlin {
     }
 
     jvmToolchain(21)
+
+    composeCompiler {
+        stabilityConfigurationFiles.add(rootProject.layout.projectDirectory.file("stability_config.conf"))
+    }
 }
 
 // Android-based preview support

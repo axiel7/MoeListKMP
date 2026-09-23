@@ -3,6 +3,7 @@ package com.axiel7.moelist.ui.base.navigation
 import androidx.compose.runtime.Stable
 import androidx.navigation3.runtime.NavKey
 import com.axiel7.moelist.data.model.media.MediaType
+import kotlinx.collections.immutable.ImmutableList
 import kotlinx.serialization.Serializable
 
 @Serializable
@@ -52,7 +53,7 @@ sealed interface Route : NavKey {
     ) : Route
 
     @Serializable
-    data class FullPoster(val pictures: List<String>) : Route
+    data class FullPoster(val pictures: ImmutableList<String>) : Route
 
     @Serializable
     data object Settings : Route

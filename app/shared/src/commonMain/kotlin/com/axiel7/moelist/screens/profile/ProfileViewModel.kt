@@ -6,6 +6,7 @@ import com.axiel7.moelist.data.repository.UserRepository
 import com.axiel7.moelist.ui.base.model.ListStatus
 import com.axiel7.moelist.ui.base.model.Stat
 import com.axiel7.moelist.ui.base.viewmodel.BaseViewModel
+import kotlinx.collections.immutable.toImmutableList
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
@@ -67,7 +68,7 @@ class ProfileViewModel(
                     it.copy(
                         user = user,
                         profilePictureUrl = user.picture,
-                        animeStats = tempAnimeStatList,
+                        animeStats = tempAnimeStatList.toImmutableList(),
                         isLoading = false,
                         isLoadingManga = user.name != null,
                     )

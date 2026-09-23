@@ -29,6 +29,7 @@ import com.axiel7.moelist.ui.base.model.ListStatus.Companion.listStatusValues
 import com.axiel7.moelist.ui.base.navigation.NavActionManager
 import com.axiel7.moelist.ui.composables.LoadingDialog
 import com.axiel7.moelist.ui.composables.TabRowWithPager
+import kotlinx.collections.immutable.toImmutableList
 import kotlinx.coroutines.launch
 import org.koin.compose.viewmodel.koinViewModel
 import org.koin.core.parameter.parametersOf
@@ -48,7 +49,7 @@ fun UserMediaListWithTabsView(
         listStatusValues(mediaType)
             .map {
                 TabRowItem(value = it, title = it.stringRes)
-            }.toTypedArray()
+            }.toImmutableList()
     }
     val editSheetState = rememberModalBottomSheetState()
     var showEditSheet by remember { mutableStateOf(false) }

@@ -1,7 +1,6 @@
 package com.axiel7.moelist.ui.composables.button
 
 import androidx.compose.material3.ExperimentalMaterial3ExpressiveApi
-import androidx.compose.material3.IconButtonShapes
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.ExperimentalComposeUiApi
 import androidx.compose.ui.platform.ClipEntry
@@ -12,7 +11,6 @@ import java.awt.datatransfer.StringSelection
 @Composable
 actual fun ShareButton(
     url: String,
-    shapes: IconButtonShapes,
     contentDescription: String
 ) {
     CopyButton(

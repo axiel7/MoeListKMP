@@ -47,6 +47,7 @@ kotlin {
             implementation(libs.placeholder.material3)
 
             implementation(libs.kotlinx.serialization.core)
+            implementation(libs.kotlinx.collections.immutable)
         }
 
         val nonAndroidMain by creating {

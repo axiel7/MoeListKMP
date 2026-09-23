@@ -1,8 +1,10 @@
 package com.axiel7.moelist.ui.base.model
 
 import com.axiel7.moelist.data.model.media.StatisticsStatus
+import kotlinx.collections.immutable.persistentListOf
+import kotlinx.collections.immutable.toImmutableList
 
-fun StatisticsStatus.toStats() = listOf(
+fun StatisticsStatus.toStats() = persistentListOf(
     Stat(
         type = ListStatus.WATCHING,
         value = watching.toFloatOrNull() ?: 0f
@@ -23,4 +25,4 @@ fun StatisticsStatus.toStats() = listOf(
         type = ListStatus.PLAN_TO_WATCH,
         value = planToWatch.toFloatOrNull() ?: 0f
     )
-).sortedByDescending { it.value }
+).sortedByDescending { it.value }.toImmutableList()

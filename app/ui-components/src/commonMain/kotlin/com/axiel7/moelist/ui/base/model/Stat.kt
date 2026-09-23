@@ -2,6 +2,7 @@ package com.axiel7.moelist.ui.base.model
 
 import androidx.compose.runtime.Stable
 import com.axiel7.moelist.data.model.base.LocalizableAndColorable
+import kotlinx.collections.immutable.persistentListOf
 
 @Stable
 data class Stat<T : LocalizableAndColorable>(
@@ -9,7 +10,7 @@ data class Stat<T : LocalizableAndColorable>(
     val value: Float,
 ) {
     companion object {
-        val exampleStats = listOf(
+        val exampleStats = persistentListOf(
             Stat(
                 type = ListStatus.WATCHING,
                 value = 114682f,

@@ -12,6 +12,8 @@ import com.axiel7.moelist.data.model.media.BaseMyListStatus
 import com.axiel7.moelist.data.model.media.Character
 import com.axiel7.moelist.data.model.media.TitleLanguage
 import com.axiel7.moelist.ui.base.state.UiState
+import kotlinx.collections.immutable.ImmutableList
+import kotlinx.collections.immutable.persistentListOf
 
 @Immutable
 data class MediaDetailsUiState(
@@ -20,7 +22,7 @@ data class MediaDetailsUiState(
     val relatedAnime: List<RelatedAnime> = emptyList(),
     val relatedManga: List<RelatedManga> = emptyList(),
     val recommendations: List<Recommendations<BaseMediaNode>> = emptyList(),
-    val picturesUrls: List<String> = emptyList(),
+    val picturesUrls: ImmutableList<String> = persistentListOf(),
     val characters: List<Character> = emptyList(),
     val isLoadingCharacters: Boolean = false,
     val notification: String? = null,

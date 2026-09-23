@@ -11,6 +11,7 @@ import com.axiel7.moelist.ui.generated.resources.sunday
 import com.axiel7.moelist.ui.generated.resources.thursday
 import com.axiel7.moelist.ui.generated.resources.tuesday
 import com.axiel7.moelist.ui.generated.resources.wednesday
+import kotlinx.collections.immutable.toImmutableList
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 import org.jetbrains.compose.resources.stringResource
@@ -54,6 +55,6 @@ enum class WeekDay : Localizable {
 
     companion object {
         val tabRowItems =
-            entries.map { TabRowItem(value = it, title = it.stringRes) }.toTypedArray()
+            entries.map { TabRowItem(value = it, title = it.stringRes) }.toImmutableList()
     }
 }

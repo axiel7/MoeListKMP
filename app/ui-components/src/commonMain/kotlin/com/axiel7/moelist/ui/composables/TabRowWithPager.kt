@@ -19,6 +19,7 @@ import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import com.axiel7.moelist.data.model.ui.TabRowItem
+import kotlinx.collections.immutable.ImmutableList
 import kotlinx.coroutines.launch
 import org.jetbrains.compose.resources.painterResource
 import org.jetbrains.compose.resources.stringResource
@@ -26,7 +27,7 @@ import org.jetbrains.compose.resources.stringResource
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun <T> TabRowWithPager(
-    tabs: Array<TabRowItem<T>>,
+    tabs: ImmutableList<TabRowItem<T>>,
     modifier: Modifier = Modifier,
     initialPage: Int = 0,
     beyondBoundsPageCount: Int = 0,

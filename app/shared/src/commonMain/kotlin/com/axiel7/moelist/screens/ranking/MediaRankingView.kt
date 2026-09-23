@@ -22,6 +22,7 @@ import com.axiel7.moelist.screens.ranking.list.MediaRankingListView
 import com.axiel7.moelist.ui.generated.resources.UiRes
 import com.axiel7.moelist.ui.generated.resources.anime_ranking
 import com.axiel7.moelist.ui.generated.resources.manga_ranking
+import kotlinx.collections.immutable.toImmutableList
 import org.jetbrains.compose.resources.stringResource
 import kotlin.collections.get
 
@@ -36,7 +37,7 @@ fun MediaRankingView(
         (if (arguments.mediaType == MediaType.ANIME) rankingAnimeValues else rankingMangaValues)
             .map {
                 TabRowItem(value = it, title = it.stringRes)
-            }.toTypedArray()
+            }.toImmutableList()
     }
 
     DefaultScaffoldWithTopAppBar(

@@ -1,5 +1,6 @@
 package com.axiel7.moelist.data.model.ui
 
+import androidx.compose.runtime.Stable
 import com.axiel7.moelist.ui.generated.resources.UiRes
 import com.axiel7.moelist.ui.generated.resources.arabic_native
 import com.axiel7.moelist.ui.generated.resources.brazilian_native
@@ -21,7 +22,9 @@ import com.axiel7.moelist.ui.generated.resources.spanish_native
 import com.axiel7.moelist.ui.generated.resources.theme_system
 import com.axiel7.moelist.ui.generated.resources.turkish_native
 import com.axiel7.moelist.ui.generated.resources.ukrainian_native
+import kotlinx.collections.immutable.toImmutableMap
 
+@Stable
 enum class AppLanguage(val value: String) {
     FOLLOW_SYSTEM("follow_system"),
     ENGLISH("en"),
@@ -71,6 +74,6 @@ enum class AppLanguage(val value: String) {
     companion object {
         fun valueOf(isoTag: String) = entries.find { it.value == isoTag }
 
-        val entriesLocalized = entries.associateWith { it.stringResNative }
+        val entriesLocalized = entries.associateWith { it.stringResNative }.toImmutableMap()
     }
 }

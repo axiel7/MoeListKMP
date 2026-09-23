@@ -1,10 +1,13 @@
 package com.axiel7.moelist.data.model.media
 
+import androidx.compose.runtime.Stable
 import com.axiel7.moelist.ui.generated.resources.UiRes
 import com.axiel7.moelist.ui.generated.resources.english
 import com.axiel7.moelist.ui.generated.resources.japanese
 import com.axiel7.moelist.ui.generated.resources.romaji
+import kotlinx.collections.immutable.toImmutableMap
 
+@Stable
 enum class TitleLanguage {
     ROMAJI, ENGLISH, JAPANESE;
 
@@ -16,6 +19,6 @@ enum class TitleLanguage {
         }
 
     companion object {
-        val entriesLocalized = entries.associateWith { it.stringRes }
+        val entriesLocalized = entries.associateWith { it.stringRes }.toImmutableMap()
     }
 }

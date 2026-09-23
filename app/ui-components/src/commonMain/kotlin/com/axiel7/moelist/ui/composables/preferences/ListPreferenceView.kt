@@ -31,6 +31,9 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.axiel7.moelist.ui.generated.resources.UiRes
 import com.axiel7.moelist.ui.generated.resources.ok
+import kotlinx.collections.immutable.ImmutableList
+import kotlinx.collections.immutable.ImmutableMap
+import kotlinx.collections.immutable.toImmutableList
 import org.jetbrains.compose.resources.DrawableResource
 import org.jetbrains.compose.resources.StringResource
 import org.jetbrains.compose.resources.painterResource
@@ -40,7 +43,7 @@ import org.jetbrains.compose.resources.stringResource
 @Composable
 fun <T> ListPreferenceView(
     title: String,
-    values: List<T>,
+    values: ImmutableList<T>,
     labelForValue: @Composable (T) -> String,
     value: T,
     modifier: Modifier = Modifier,
@@ -132,7 +135,7 @@ fun <T> ListPreferenceView(
 @Composable
 fun <T> ListPreferenceView(
     title: String,
-    entriesValues: Map<T, StringResource>,
+    entriesValues: ImmutableMap<T, StringResource>,
     modifier: Modifier = Modifier,
     value: T,
     icon: DrawableResource? = null,
@@ -140,7 +143,9 @@ fun <T> ListPreferenceView(
 ) {
     ListPreferenceView(
         title = title,
-        values =  remember(entriesValues) { entriesValues.entries.map { it.key } },
+        values = remember(entriesValues) {
+            entriesValues.entries.map { it.key }.toImmutableList()
+        },
         labelForValue = { value ->
             entriesValues[value]?.let { stringResource(it) }.orEmpty()
         },

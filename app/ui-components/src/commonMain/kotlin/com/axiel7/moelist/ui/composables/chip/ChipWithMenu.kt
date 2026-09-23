@@ -26,6 +26,8 @@ import com.axiel7.moelist.ui.generated.resources.UiRes
 import com.axiel7.moelist.ui.generated.resources.round_check_24
 import com.axiel7.moelist.ui.generated.resources.sort_by
 import com.axiel7.moelist.ui.theme.MoeListTheme
+import kotlinx.collections.immutable.ImmutableList
+import kotlinx.collections.immutable.persistentListOf
 import org.jetbrains.compose.resources.DrawableResource
 import org.jetbrains.compose.resources.painterResource
 import org.jetbrains.compose.resources.stringResource
@@ -34,7 +36,7 @@ import org.jetbrains.compose.resources.stringResource
 @Composable
 fun <T> ChipWithMenu(
     title: String,
-    values: List<T>,
+    values: ImmutableList<T>,
     selectedValue: T?,
     onValueSelected: (T?) -> Unit,
     modifier: Modifier = Modifier,
@@ -99,7 +101,7 @@ private fun ChipWithMenuPreview() {
     MoeListTheme {
         ChipWithMenu(
             title = stringResource(UiRes.string.sort_by),
-            values = listOf("Title", "Score"),
+            values = persistentListOf("Title", "Score"),
             selectedValue = null,
             onValueSelected = {},
         )

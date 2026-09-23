@@ -1,10 +1,13 @@
 package com.axiel7.moelist.data.model.ui
 
+import androidx.compose.runtime.Stable
 import com.axiel7.moelist.ui.generated.resources.UiRes
 import com.axiel7.moelist.ui.generated.resources.theme_dark
 import com.axiel7.moelist.ui.generated.resources.theme_light
 import com.axiel7.moelist.ui.generated.resources.theme_system
+import kotlinx.collections.immutable.toImmutableMap
 
+@Stable
 enum class ThemeStyle {
     FOLLOW_SYSTEM, LIGHT, DARK;
 
@@ -22,6 +25,6 @@ enum class ThemeStyle {
             null
         }
 
-        val entriesLocalized = entries.associateWith { it.stringRes }
+        val entriesLocalized = entries.associateWith { it.stringRes }.toImmutableMap()
     }
 }

@@ -3,7 +3,7 @@ package com.axiel7.moelist.ui.composables.button
 import androidx.compose.material3.ExperimentalMaterial3ExpressiveApi
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
-import androidx.compose.material3.IconButtonShapes
+import androidx.compose.material3.IconButtonDefaults
 import androidx.compose.runtime.Composable
 import com.axiel7.moelist.ui.generated.resources.UiRes
 import com.axiel7.moelist.ui.generated.resources.ios_share_24
@@ -17,12 +17,11 @@ import platform.UIKit.popoverPresentationController
 @Composable
 actual fun ShareButton(
     url: String,
-    shapes: IconButtonShapes,
     contentDescription: String
 ) {
     IconButton(
         onClick = { shareLink(url) },
-        shapes = shapes
+        shapes = IconButtonDefaults.shapes()
     ) {
         Icon(
             painter = painterResource(UiRes.drawable.ios_share_24),
