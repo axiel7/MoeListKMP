@@ -43,7 +43,7 @@ class MainViewModel(
     }
 
     init {
-        oAuthService.tokenStore.accessTokenFlow
+        oAuthService.tokenStore.tokenResponseFlow
             .onEach { value ->
                 mutableUiState.update { it.copy(isLoggedIn = value != null) }
             }

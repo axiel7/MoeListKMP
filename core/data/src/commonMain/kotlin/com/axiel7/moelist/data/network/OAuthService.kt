@@ -9,7 +9,6 @@ import org.publicvalue.multiplatform.oidc.OpenIdConnectClient
 import org.publicvalue.multiplatform.oidc.flows.CodeAuthFlowFactory
 import org.publicvalue.multiplatform.oidc.tokenstore.TokenRefreshHandler
 import org.publicvalue.multiplatform.oidc.tokenstore.TokenStore
-import org.publicvalue.multiplatform.oidc.tokenstore.saveTokens
 import org.publicvalue.multiplatform.oidc.types.CodeChallengeMethod
 
 @OptIn(ExperimentalOpenIdConnect::class)
@@ -48,8 +47,6 @@ class OAuthService(
     }
 
     suspend fun logOut() {
-        tokenStore.removeAccessToken()
-        tokenStore.removeRefreshToken()
-        tokenStore.removeIdToken()
+        tokenStore.removeTokens()
     }
 }
