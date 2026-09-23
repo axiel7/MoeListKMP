@@ -212,7 +212,6 @@ class SettingsViewModel(
             .launchIn(viewModelScope)
 
         defaultPreferencesRepository.tabletMode
-            .filterNotNull()
             .onEach { value ->
                 mutableUiState.update { it.copy(tabletMode = value) }
             }

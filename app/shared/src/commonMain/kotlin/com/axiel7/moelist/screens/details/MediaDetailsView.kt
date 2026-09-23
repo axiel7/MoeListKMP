@@ -55,12 +55,10 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.input.nestedscroll.nestedScroll
 import androidx.compose.ui.platform.LocalUriHandler
 import androidx.compose.ui.text.AnnotatedString
-import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.intl.Locale
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import androidx.compose.ui.unit.sp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.lifecycle.compose.dropUnlessResumed
 import com.axiel7.moelist.data.model.anime.AnimeDetails
@@ -140,7 +138,6 @@ import com.axiel7.moelist.ui.generated.resources.status_distribution
 import com.axiel7.moelist.ui.generated.resources.studios
 import com.axiel7.moelist.ui.generated.resources.synonyms
 import com.axiel7.moelist.ui.generated.resources.top_ranked
-import com.axiel7.moelist.ui.generated.resources.translate
 import com.axiel7.moelist.ui.generated.resources.users_scores
 import com.axiel7.moelist.ui.generated.resources.view_characters
 import com.axiel7.moelist.ui.theme.MoeListTheme

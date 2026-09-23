@@ -77,8 +77,8 @@ class MediaDetailsViewModel(
                     )
                 }
             } else {
-                mutableUiState.update {
-                    it.copy(
+                mutableUiState.update { uiState ->
+                    uiState.copy(
                         characters = result.data.orEmpty().sortedBy { it.role },
                         isLoadingCharacters = false
                     )

@@ -14,17 +14,16 @@ import com.axiel7.moelist.data.model.media.MediaType
 import com.axiel7.moelist.data.model.media.RankingType.Companion.rankingAnimeValues
 import com.axiel7.moelist.data.model.media.RankingType.Companion.rankingMangaValues
 import com.axiel7.moelist.data.model.ui.TabRowItem
+import com.axiel7.moelist.screens.ranking.list.MediaRankingListView
 import com.axiel7.moelist.ui.base.navigation.NavActionManager
 import com.axiel7.moelist.ui.base.navigation.Route
 import com.axiel7.moelist.ui.composables.DefaultScaffoldWithTopAppBar
 import com.axiel7.moelist.ui.composables.TabRowWithPager
-import com.axiel7.moelist.screens.ranking.list.MediaRankingListView
 import com.axiel7.moelist.ui.generated.resources.UiRes
 import com.axiel7.moelist.ui.generated.resources.anime_ranking
 import com.axiel7.moelist.ui.generated.resources.manga_ranking
 import kotlinx.collections.immutable.toImmutableList
 import org.jetbrains.compose.resources.stringResource
-import kotlin.collections.get
 
 @Composable
 fun MediaRankingView(

@@ -50,7 +50,7 @@ kotlin {
             implementation(libs.kotlinx.collections.immutable)
         }
 
-        val nonAndroidMain by creating {
+        val nonAndroidMain = create("nonAndroidMain") {
             dependsOn(commonMain.get())
         }
         configure(listOf(iosMain, jvmMain)) {

@@ -80,7 +80,7 @@ kotlin {
         commonTest.dependencies {
             implementation(libs.kotlin.test)
         }
-        val mobileMain by creating {
+        val mobileMain = create("mobileMain") {
             dependsOn(commonMain.get())
         }
         mobileMain.dependencies {

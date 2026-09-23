@@ -207,7 +207,7 @@ fun SeasonChartFilterSheetPreview() {
                 event = null,
                 onApply = {},
                 onDismiss = {},
-                sheetState = rememberModalBottomSheetState(),
+                sheetState = rememberModalBottomSheetState()
             )
         }
     }
