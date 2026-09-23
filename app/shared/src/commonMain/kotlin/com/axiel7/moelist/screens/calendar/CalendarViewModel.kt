@@ -30,13 +30,13 @@ class CalendarViewModel(
 
             mutableUiState.update {
                 it.copy(
-                    mondayAnime = it.allAnime[0].filter(filterPredicate),
-                    tuesdayAnime = it.allAnime[1].filter(filterPredicate),
-                    wednesdayAnime = it.allAnime[2].filter(filterPredicate),
-                    thursdayAnime = it.allAnime[3].filter(filterPredicate),
-                    fridayAnime = it.allAnime[4].filter(filterPredicate),
-                    saturdayAnime = it.allAnime[5].filter(filterPredicate),
-                    sundayAnime = it.allAnime[6].filter(filterPredicate),
+                    mondayAnime = it.allAnime.getOrNull(0)?.filter(filterPredicate).orEmpty(),
+                    tuesdayAnime = it.allAnime.getOrNull(1)?.filter(filterPredicate).orEmpty(),
+                    wednesdayAnime = it.allAnime.getOrNull(2)?.filter(filterPredicate).orEmpty(),
+                    thursdayAnime = it.allAnime.getOrNull(3)?.filter(filterPredicate).orEmpty(),
+                    fridayAnime = it.allAnime.getOrNull(4)?.filter(filterPredicate).orEmpty(),
+                    saturdayAnime = it.allAnime.getOrNull(5)?.filter(filterPredicate).orEmpty(),
+                    sundayAnime = it.allAnime.getOrNull(6)?.filter(filterPredicate).orEmpty(),
                     onMyList = value,
                 )
             }
