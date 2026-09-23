@@ -16,7 +16,7 @@ data class MainUiState(
     val customAppColor: Color? = null,
     val useCustomAppColor: Boolean = false,
     val useBlackColors: Boolean = false,
-    val paletteStyle: PaletteStyle = PaletteStyle.Expressive,
+    val paletteStyle: PaletteStyle = PaletteStyle.TonalSpot,
     val isLoggedIn: Boolean = false,
     val useListTabs: Boolean = false,
     val profilePicture: String? = null,

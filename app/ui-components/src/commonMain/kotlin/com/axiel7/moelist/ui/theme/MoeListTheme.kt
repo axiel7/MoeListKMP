@@ -16,7 +16,7 @@ fun MoeListTheme(
     darkTheme: Boolean = isSystemInDarkTheme(),
     dynamicColorSeed: Color? = null,
     useBlackColors: Boolean = false,
-    paletteStyle: PaletteStyle = PaletteStyle.Expressive,
+    paletteStyle: PaletteStyle = PaletteStyle.TonalSpot,
     content: @Composable () -> Unit,
 ) {
     val colorScheme = remember(dynamicColorSeed, darkTheme, useBlackColors, paletteStyle) {

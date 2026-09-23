@@ -83,7 +83,7 @@ class DefaultPreferencesRepository(
         dataStore.setValue(USE_BLACK_COLORS_KEY, value)
     }
 
-    val paletteStyle = dataStore.getValue(PALETTE_STYLE_KEY, PaletteStyle.Expressive.name)
+    val paletteStyle = dataStore.getValue(PALETTE_STYLE_KEY, PaletteStyle.TonalSpot.name)
         .map { PaletteStyle.valueOf(it) }
 
     suspend fun setPaletteStyle(value: PaletteStyle) {
