@@ -236,7 +236,6 @@ private fun HomeViewContent(
             ) {
                 items(
                     items = uiState.todayAnimes,
-                    key = { it.node.id },
                     contentType = { it.node }
                 ) {
                     AiringAnimeHorizontalItem(
@@ -287,7 +286,6 @@ private fun HomeViewContent(
             ) {
                 items(
                     items = uiState.seasonAnimes,
-                    key = { it.node.id },
                     contentType = { it.node }
                 ) {
                     MediaItemVertical(
@@ -368,7 +366,6 @@ private fun HomeViewContent(
             ) {
                 items(
                     items = uiState.recommendedAnimes,
-                    key = { it.node.id },
                     contentType = { it.node }
                 ) {
                     MediaItemVertical(

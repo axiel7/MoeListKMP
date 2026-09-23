@@ -88,7 +88,6 @@ private fun RecommendationsViewContent(
         ) {
             items(
                 items = uiState.animes,
-                key = { it.node.id },
                 contentType = { it.node }
             ) { item ->
                 Box(

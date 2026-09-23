@@ -160,7 +160,6 @@ private fun MediaRankingListViewContent(
         ) {
             items(
                 items = uiState.mediaList,
-                key = { it.node.id },
                 contentType = { it.node }
             ) { item ->
                 ItemView(item = item)
@@ -185,7 +184,6 @@ private fun MediaRankingListViewContent(
         ) {
             items(
                 items = uiState.mediaList,
-                key = { it.node.id },
                 contentType = { it.node }
             ) { item ->
                 ItemView(item = item)

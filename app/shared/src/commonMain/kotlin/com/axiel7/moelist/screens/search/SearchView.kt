@@ -345,7 +345,6 @@ private fun SearchViewContent(
             if (shouldShowSearchHistory) {
                 items(
                     items = uiState.searchHistoryList,
-                    key = { "search_history_${it.keyword}" },
                     span = { GridItemSpan(maxLineSpan) },
                 ) { item ->
                     SearchHistoryItem(
@@ -395,7 +394,6 @@ private fun SearchViewContent(
             if (shouldShowSearchHistory) {
                 items(
                     items = uiState.searchHistoryList,
-                    key = { "search_history_${it.keyword}" },
                 ) { item ->
                     SearchHistoryItem(
                         item = item,
