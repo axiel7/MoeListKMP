@@ -48,7 +48,7 @@ fun ListStatusFab(
                 checked = expanded,
                 onCheckedChange = { expanded = !expanded },
             ) {
-                val icon by remember {
+                val icon by remember(status) {
                     derivedStateOf {
                         if (checkedProgress > 0.5f) UiRes.drawable.round_close_24 else status.icon
                     }
