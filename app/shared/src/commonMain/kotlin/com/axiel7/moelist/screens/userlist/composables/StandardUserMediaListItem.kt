@@ -15,6 +15,7 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.heightIn
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.Card
@@ -83,7 +84,7 @@ fun StandardUserMediaListItem(
             .combinedClickable(onLongClick = onLongClick, onClick = onClick),
     ) {
         Row(
-            modifier = Modifier.height(IntrinsicSize.Max),
+            modifier = Modifier.height(IntrinsicSize.Min),
             verticalAlignment = Alignment.CenterVertically
         ) {
             Box(
@@ -93,10 +94,8 @@ fun StandardUserMediaListItem(
                     url = item.node.mainPicture?.large,
                     showShadow = false,
                     modifier = Modifier
-                        .size(
-                            width = MEDIA_POSTER_SMALL_WIDTH.dp,
-                            height = MEDIA_POSTER_SMALL_HEIGHT.dp
-                        )
+                        .width(MEDIA_POSTER_SMALL_WIDTH.dp)
+                        .fillMaxHeight()
                 )
 
                 Row(
