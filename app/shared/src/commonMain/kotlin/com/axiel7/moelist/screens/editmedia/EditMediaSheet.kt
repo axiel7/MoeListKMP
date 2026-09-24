@@ -202,6 +202,7 @@ private fun EditMediaSheetContent(
     }
 
     ModalBottomSheet(
+        modifier = Modifier.imePadding(),
         sheetState = sheetState,
         onDismissRequest = onDismissed,
         contentWindowInsets = { WindowInsets(0, 0, 0, 0) },
