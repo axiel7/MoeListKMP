@@ -26,7 +26,6 @@ object StringExtensions {
         .replaceFirst(Regex("#?\\w+:"), "") // theme number
         .replace(Regex("\\(ep.*\\)"), "") // episodes
         .trim()
-        .urlEncode()
 }
 
 expect fun String.unescapeHtml(): String?

@@ -23,6 +23,7 @@ import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import com.axiel7.moelist.data.model.base.Localizable
 import com.axiel7.moelist.data.utils.StringExtensions.buildQueryFromThemeText
+import com.axiel7.moelist.data.utils.StringExtensions.urlEncode
 import com.axiel7.moelist.ui.generated.resources.UiRes
 import com.axiel7.moelist.ui.generated.resources.apple_music
 import com.axiel7.moelist.ui.generated.resources.deezer
@@ -83,9 +84,11 @@ fun MusicStreamingSheet(
                     modifier = Modifier
                         .fillMaxWidth()
                         .clickable {
-                            uriHandler.openUri(
-                                service.searchUrl + songTitle.buildQueryFromThemeText()
-                            )
+                            runCatching {
+                                uriHandler.openUri(
+                                    (service.searchUrl + songTitle.buildQueryFromThemeText()).urlEncode()
+                                )
+                            }
                             onDismiss()
                         }
                         .padding(16.dp),
