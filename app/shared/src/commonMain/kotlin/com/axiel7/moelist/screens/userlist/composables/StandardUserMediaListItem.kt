@@ -49,6 +49,7 @@ import com.axiel7.moelist.ui.composables.defaultPlaceholder
 import com.axiel7.moelist.ui.composables.media.MEDIA_POSTER_SMALL_HEIGHT
 import com.axiel7.moelist.ui.composables.media.MEDIA_POSTER_SMALL_WIDTH
 import com.axiel7.moelist.ui.composables.media.MediaPoster
+import com.axiel7.moelist.ui.composables.secondaryClick
 import com.axiel7.moelist.ui.generated.resources.UiRes
 import com.axiel7.moelist.ui.generated.resources.airing
 import com.axiel7.moelist.ui.generated.resources.ic_round_star_16
@@ -81,7 +82,8 @@ fun StandardUserMediaListItem(
         modifier = Modifier
             .fillMaxWidth()
             .padding(start = 16.dp, end = 16.dp, top = 8.dp, bottom = 8.dp)
-            .combinedClickable(onLongClick = onLongClick, onClick = onClick),
+            .combinedClickable(onLongClick = onLongClick, onClick = onClick)
+            .secondaryClick(onLongClick),
     ) {
         Row(
             modifier = Modifier.height(IntrinsicSize.Min),

@@ -36,6 +36,7 @@ import com.axiel7.moelist.data.utils.NumExtensions.toStringPositiveValueOrUnknow
 import com.axiel7.moelist.data.utils.UNKNOWN_CHAR
 import com.axiel7.moelist.ui.base.model.ListStatus
 import com.axiel7.moelist.ui.composables.defaultPlaceholder
+import com.axiel7.moelist.ui.composables.secondaryClick
 import com.axiel7.moelist.ui.generated.resources.UiRes
 import com.axiel7.moelist.ui.generated.resources.airing
 import com.axiel7.moelist.ui.generated.resources.ic_round_star_16
@@ -66,7 +67,8 @@ fun MinimalUserMediaListItem(
         modifier = Modifier
             .fillMaxWidth()
             .padding(start = 16.dp, end = 16.dp, top = 8.dp, bottom = 4.dp)
-            .combinedClickable(onLongClick = onLongClick, onClick = onClick),
+            .combinedClickable(onLongClick = onLongClick, onClick = onClick)
+            .secondaryClick(onLongClick),
     ) {
         Row(
             modifier = Modifier

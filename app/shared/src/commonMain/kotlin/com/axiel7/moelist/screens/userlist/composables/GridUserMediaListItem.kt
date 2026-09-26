@@ -43,6 +43,7 @@ import com.axiel7.moelist.ui.composables.defaultPlaceholder
 import com.axiel7.moelist.ui.composables.media.MEDIA_POSTER_MEDIUM_HEIGHT
 import com.axiel7.moelist.ui.composables.media.MEDIA_POSTER_MEDIUM_WIDTH
 import com.axiel7.moelist.ui.composables.media.MediaPoster
+import com.axiel7.moelist.ui.composables.secondaryClick
 import com.axiel7.moelist.ui.generated.resources.UiRes
 import com.axiel7.moelist.ui.generated.resources.airing
 import com.axiel7.moelist.ui.generated.resources.ic_round_rss_feed_24
@@ -66,7 +67,8 @@ fun GridUserMediaListItem(
     Card(
         modifier = Modifier
             .fillMaxWidth()
-            .combinedClickable(onLongClick = onLongClick, onClick = onClick),
+            .combinedClickable(onLongClick = onLongClick, onClick = onClick)
+            .secondaryClick(onLongClick),
     ) {
         Column(
             modifier = Modifier

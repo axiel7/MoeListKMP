@@ -57,6 +57,13 @@ kotlin {
             get().dependsOn(nonAndroidMain)
         }
 
+        val mobileMain = create("mobileMain") {
+            dependsOn(commonMain.get())
+        }
+        configure(listOf(androidMain, iosMain)) {
+            get().dependsOn(mobileMain)
+        }
+
         androidMain.dependencies {
             implementation(libs.ktor.client.okhttp)
             implementation(libs.androidx.browser)
