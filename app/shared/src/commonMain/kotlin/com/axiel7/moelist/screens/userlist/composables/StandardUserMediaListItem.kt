@@ -88,14 +88,15 @@ fun StandardUserMediaListItem(
             verticalAlignment = Alignment.CenterVertically
         ) {
             Box(
+                modifier = Modifier
+                    .width(MEDIA_POSTER_SMALL_WIDTH.dp)
+                    .fillMaxHeight(),
                 contentAlignment = Alignment.BottomStart
             ) {
                 MediaPoster(
                     url = item.node.mainPicture?.large,
                     showShadow = false,
-                    modifier = Modifier
-                        .width(MEDIA_POSTER_SMALL_WIDTH.dp)
-                        .fillMaxHeight()
+                    modifier = Modifier.matchParentSize()
                 )
 
                 Row(
