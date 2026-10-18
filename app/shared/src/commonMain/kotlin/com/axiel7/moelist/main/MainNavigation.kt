@@ -46,6 +46,7 @@ import com.axiel7.moelist.ui.base.navigation.Route
 import com.axiel7.moelist.ui.composables.DefaultScaffoldWithTopAppBar
 import com.axiel7.moelist.ui.generated.resources.UiRes
 import com.axiel7.moelist.ui.generated.resources.title_profile
+import kotlinx.collections.immutable.toImmutableList
 import org.jetbrains.compose.resources.stringResource
 
 private val topNavigationTransitionSpec = NavDisplay.transitionSpec {
@@ -240,7 +241,7 @@ fun MainNavigation(
             },
         ) {
             FullPosterView(
-                pictures = it.pictures,
+                pictures = it.pictures.toImmutableList(),
                 navActionManager = navActionManager
             )
         }

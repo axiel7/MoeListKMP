@@ -53,7 +53,7 @@ sealed interface Route : NavKey {
     ) : Route
 
     @Serializable
-    data class FullPoster(val pictures: ImmutableList<String>) : Route
+    data class FullPoster(val pictures: List<String>) : Route
 
     @Serializable
     data object Settings : Route

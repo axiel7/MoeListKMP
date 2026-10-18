@@ -39,7 +39,7 @@ class NavActionManager(
         navigator.navigate(Route.Recommendations)
     }
 
-    fun toFullPoster(pictures: ImmutableList<String>) {
+    fun toFullPoster(pictures: List<String>) {
         navigator.navigate(Route.FullPoster(pictures))
     }
 
