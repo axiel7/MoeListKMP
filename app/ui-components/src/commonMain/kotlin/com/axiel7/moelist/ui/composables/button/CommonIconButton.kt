@@ -1,10 +1,8 @@
 package com.axiel7.moelist.ui.composables.button
 
-import androidx.compose.material3.ExperimentalMaterial3ExpressiveApi
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.IconButtonDefaults
-import androidx.compose.material3.IconButtonShapes
 import androidx.compose.runtime.Composable
 import androidx.lifecycle.compose.dropUnlessResumed
 import com.axiel7.moelist.ui.generated.resources.UiRes
@@ -15,7 +13,6 @@ import com.axiel7.moelist.ui.generated.resources.view_on_mal
 import org.jetbrains.compose.resources.painterResource
 import org.jetbrains.compose.resources.stringResource
 
-@OptIn(ExperimentalMaterial3ExpressiveApi::class)
 @Composable
 fun BackIconButton(
     onClick: () -> Unit
@@ -28,7 +25,6 @@ fun BackIconButton(
     }
 }
 
-@OptIn(ExperimentalMaterial3ExpressiveApi::class)
 @Composable
 fun ViewInBrowserButton(
     onClick: () -> Unit
@@ -44,7 +40,6 @@ fun ViewInBrowserButton(
     }
 }
 
-@OptIn(ExperimentalMaterial3ExpressiveApi::class)
 @Composable
 expect fun ShareButton(
     url: String,

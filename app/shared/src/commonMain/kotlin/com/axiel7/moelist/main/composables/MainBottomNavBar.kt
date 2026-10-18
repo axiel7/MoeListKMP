@@ -1,7 +1,6 @@
 package com.axiel7.moelist.main.composables
 
 import androidx.compose.animation.AnimatedContent
-import androidx.compose.animation.ExperimentalAnimationApi
 import androidx.compose.animation.slideInVertically
 import androidx.compose.animation.slideOutVertically
 import androidx.compose.animation.togetherWith
@@ -12,14 +11,13 @@ import androidx.compose.material3.NavigationBarItem
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import com.axiel7.moelist.ui.base.navigation.Navigator
 import com.axiel7.moelist.data.model.media.MediaType
 import com.axiel7.moelist.ui.base.model.BottomDestination
 import com.axiel7.moelist.ui.base.model.BottomDestination.Companion.Icon
 import com.axiel7.moelist.ui.base.navigation.NavActionManager
+import com.axiel7.moelist.ui.base.navigation.Navigator
 import org.jetbrains.compose.resources.stringResource
 
-@OptIn(ExperimentalAnimationApi::class)
 @Composable
 fun MainBottomNavBar(
     navigator: Navigator,

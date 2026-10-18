@@ -1,7 +1,6 @@
 package com.axiel7.moelist.screens.details.topbar
 
 import androidx.compose.material3.ExperimentalMaterial3Api
-import androidx.compose.material3.ExperimentalMaterial3ExpressiveApi
 import androidx.compose.material3.SnackbarHostState
 import androidx.compose.material3.TopAppBar
 import androidx.compose.material3.TopAppBarScrollBehavior
@@ -12,7 +11,7 @@ import com.axiel7.moelist.ui.composables.button.BackIconButton
 import com.axiel7.moelist.ui.composables.button.ShareButton
 import com.axiel7.moelist.ui.composables.button.ViewInBrowserButton
 
-@OptIn(ExperimentalMaterial3Api::class, ExperimentalMaterial3ExpressiveApi::class)
+@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 actual fun MediaDetailsTopAppBar(
     mediaDetails: BaseMediaDetails?,

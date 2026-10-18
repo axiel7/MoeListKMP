@@ -34,7 +34,6 @@ import org.koin.compose.viewmodel.koinViewModel
 
 @OptIn(
     ExperimentalMaterial3Api::class,
-    ExperimentalMaterial3ExpressiveApi::class,
     ExperimentalPermissionsApi::class
 )
 @Composable

@@ -14,7 +14,6 @@ import androidx.compose.material3.AssistChip
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.ExperimentalMaterial3Api
-import androidx.compose.material3.ExperimentalMaterial3ExpressiveApi
 import androidx.compose.material3.FilterChip
 import androidx.compose.material3.Icon
 import androidx.compose.material3.ModalBottomSheet
@@ -36,8 +35,11 @@ import androidx.compose.ui.unit.dp
 import com.axiel7.moelist.data.model.anime.Season
 import com.axiel7.moelist.data.model.anime.SeasonType
 import com.axiel7.moelist.data.model.media.MediaSort
-import com.axiel7.moelist.ui.composables.chip.ChipWithMenu
+import com.axiel7.moelist.screens.season.SeasonChartEvent
+import com.axiel7.moelist.screens.season.SeasonChartUiState
+import com.axiel7.moelist.ui.composables.PlatformHorizontalScrollbar
 import com.axiel7.moelist.ui.composables.button.SelectableIconToggleButton
+import com.axiel7.moelist.ui.composables.chip.ChipWithMenu
 import com.axiel7.moelist.ui.generated.resources.UiRes
 import com.axiel7.moelist.ui.generated.resources.apply
 import com.axiel7.moelist.ui.generated.resources.cancel
@@ -45,15 +47,12 @@ import com.axiel7.moelist.ui.generated.resources.continuing_anime
 import com.axiel7.moelist.ui.generated.resources.ic_round_sort_24
 import com.axiel7.moelist.ui.generated.resources.new_anime
 import com.axiel7.moelist.ui.generated.resources.sort_by
-import com.axiel7.moelist.screens.season.SeasonChartEvent
-import com.axiel7.moelist.screens.season.SeasonChartUiState
-import com.axiel7.moelist.ui.composables.PlatformHorizontalScrollbar
 import com.axiel7.moelist.ui.theme.MoeListTheme
 import kotlinx.collections.immutable.persistentListOf
 import org.jetbrains.compose.resources.painterResource
 import org.jetbrains.compose.resources.stringResource
 
-@OptIn(ExperimentalMaterial3Api::class, ExperimentalMaterial3ExpressiveApi::class)
+@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun SeasonChartFilterSheet(
     uiState: SeasonChartUiState,
