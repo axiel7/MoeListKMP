@@ -2,6 +2,7 @@ package com.axiel7.moelist.screens.editmedia.composables
 
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.padding
+import androidx.compose.material3.ExperimentalMaterial3ExpressiveApi
 import androidx.compose.material3.FilledTonalIconButton
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButtonDefaults
@@ -23,6 +24,7 @@ import org.jetbrains.compose.resources.DrawableResource
 import org.jetbrains.compose.resources.painterResource
 import org.jetbrains.compose.resources.stringResource
 
+@OptIn(ExperimentalMaterial3ExpressiveApi::class)
 @Composable
 fun EditMediaValueRow(
     label: String,

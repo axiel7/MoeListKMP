@@ -3,6 +3,7 @@ package com.axiel7.moelist.ui.composables.stats
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.AssistChipDefaults
 import androidx.compose.material3.ElevatedAssistChip
+import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.PlainTooltip
 import androidx.compose.material3.Text
@@ -21,6 +22,7 @@ import com.materialkolor.ktx.harmonize
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.launch
 
+@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun <T : LocalizableAndColorable> StatChip(
     stat: Stat<T>,

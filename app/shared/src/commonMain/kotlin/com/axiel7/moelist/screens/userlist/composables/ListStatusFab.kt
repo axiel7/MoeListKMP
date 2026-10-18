@@ -1,5 +1,6 @@
 package com.axiel7.moelist.screens.userlist.composables
 
+import androidx.compose.material3.ExperimentalMaterial3ExpressiveApi
 import androidx.compose.material3.FloatingActionButtonMenu
 import androidx.compose.material3.FloatingActionButtonMenuItem
 import androidx.compose.material3.Icon
@@ -22,6 +23,7 @@ import com.axiel7.moelist.ui.generated.resources.UiRes
 import com.axiel7.moelist.ui.generated.resources.round_close_24
 import org.jetbrains.compose.resources.painterResource
 
+@OptIn(ExperimentalMaterial3ExpressiveApi::class)
 @Composable
 fun ListStatusFab(
     mediaType: MediaType,

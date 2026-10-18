@@ -173,6 +173,7 @@ private fun CalendarContent(
     }
 }
 
+@OptIn(ExperimentalMaterial3ExpressiveApi::class)
 @Composable
 private fun AppBarActions(
     onMyList: Boolean?,

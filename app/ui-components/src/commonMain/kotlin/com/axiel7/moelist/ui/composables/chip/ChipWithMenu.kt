@@ -7,6 +7,7 @@ import androidx.compose.foundation.layout.wrapContentSize
 import androidx.compose.material3.AssistChip
 import androidx.compose.material3.DropdownMenu
 import androidx.compose.material3.DropdownMenuItem
+import androidx.compose.material3.ExperimentalMaterial3ExpressiveApi
 import androidx.compose.material3.Icon
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -31,6 +32,7 @@ import org.jetbrains.compose.resources.DrawableResource
 import org.jetbrains.compose.resources.painterResource
 import org.jetbrains.compose.resources.stringResource
 
+@OptIn(ExperimentalMaterial3ExpressiveApi::class)
 @Composable
 fun <T> ChipWithMenu(
     title: String,

@@ -1,5 +1,6 @@
 package com.axiel7.moelist.screens.userlist.composables
 
+import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.background
 import androidx.compose.foundation.combinedClickable
 import androidx.compose.foundation.layout.Arrangement
@@ -53,6 +54,7 @@ import com.axiel7.moelist.ui.theme.MoeListTheme
 import org.jetbrains.compose.resources.painterResource
 import org.jetbrains.compose.resources.stringResource
 
+@OptIn(ExperimentalFoundationApi::class)
 @Composable
 fun GridUserMediaListItem(
     item: BaseUserMediaList<out BaseMediaNode>,

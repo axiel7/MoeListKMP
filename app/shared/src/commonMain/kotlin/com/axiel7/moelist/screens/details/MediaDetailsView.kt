@@ -166,7 +166,9 @@ fun MediaDetailsView(
     )
 }
 
-@OptIn(ExperimentalMaterial3Api::class, ExperimentalMaterial3ExpressiveApi::class)
+@OptIn(ExperimentalMaterial3Api::class, ExperimentalFoundationApi::class,
+    ExperimentalMaterial3ExpressiveApi::class
+)
 @Composable
 private fun MediaDetailsContent(
     uiState: MediaDetailsUiState,

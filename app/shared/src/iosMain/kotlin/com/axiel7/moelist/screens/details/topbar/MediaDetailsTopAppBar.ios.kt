@@ -1,5 +1,7 @@
 package com.axiel7.moelist.screens.details.topbar
 
+import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.ExperimentalMaterial3ExpressiveApi
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.IconButtonDefaults
@@ -28,6 +30,7 @@ import platform.UserNotifications.UNAuthorizationOptionBadge
 import platform.UserNotifications.UNAuthorizationOptionSound
 import platform.UserNotifications.UNUserNotificationCenter
 
+@OptIn(ExperimentalMaterial3Api::class, ExperimentalMaterial3ExpressiveApi::class)
 @Composable
 actual fun MediaDetailsTopAppBar(
     mediaDetails: BaseMediaDetails?,
@@ -71,6 +74,7 @@ actual fun MediaDetailsTopAppBar(
     )
 }
 
+@OptIn(ExperimentalMaterial3Api::class, ExperimentalMaterial3ExpressiveApi::class)
 @Composable
 private fun MediaDetailsTopAppBarContent(
     mediaDetails: BaseMediaDetails?,

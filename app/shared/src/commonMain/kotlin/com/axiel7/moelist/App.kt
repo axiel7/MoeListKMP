@@ -4,6 +4,7 @@ import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
+import androidx.compose.material3.windowsizeclass.ExperimentalMaterial3WindowSizeClassApi
 import androidx.compose.material3.windowsizeclass.WindowWidthSizeClass
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.CompositionLocalProvider
@@ -18,6 +19,7 @@ import coil3.ImageLoader
 import coil3.compose.setSingletonImageLoaderFactory
 import coil3.memory.MemoryCache
 import coil3.request.crossfade
+import com.axiel7.moelist.ui.base.navigation.Navigator
 import com.axiel7.moelist.data.model.media.MediaType
 import com.axiel7.moelist.data.model.ui.AppLanguage
 import com.axiel7.moelist.data.model.ui.TabletMode
@@ -31,10 +33,10 @@ import com.axiel7.moelist.ui.base.model.BottomDestination.Companion.isBottomDest
 import com.axiel7.moelist.ui.base.model.BottomDestination.Companion.toBottomDestinationRoute
 import com.axiel7.moelist.ui.base.navigation.DeepLink
 import com.axiel7.moelist.ui.base.navigation.NavActionManager.Companion.rememberNavActionManager
-import com.axiel7.moelist.ui.base.navigation.Navigator
 import com.axiel7.moelist.ui.base.navigation.rememberNavigationState
 import com.axiel7.moelist.ui.theme.MoeListTheme
 
+@OptIn(ExperimentalMaterial3WindowSizeClassApi::class)
 @Composable
 fun App(
     uiState: MainUiState,
