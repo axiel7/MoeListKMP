@@ -13,9 +13,11 @@ import androidx.compose.material3.TopAppBarScrollBehavior
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalInspectionMode
 import androidx.compose.ui.platform.LocalUriHandler
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
+import com.axiel7.moelist.ContextUtils.openLink
 import com.axiel7.moelist.data.model.media.BaseMediaDetails
 import com.axiel7.moelist.data.model.media.MediaStatus
 import com.axiel7.moelist.ui.base.BrowserHandler
@@ -107,7 +109,7 @@ private fun MediaDetailsTopAppBarContent(
     navigateBack: () -> Unit,
     onClickNotification: (Boolean) -> Unit,
 ) {
-    val browserHandler = BrowserHandler.LocalBrowserHandler.current
+    val context = LocalContext.current
 
     TopAppBar(
         title = { },
@@ -139,7 +141,7 @@ private fun MediaDetailsTopAppBarContent(
                 }
             }
             ViewInBrowserButton(
-                onClick = { mediaDetails?.malUrl?.let { browserHandler.launchUrl(it) } }
+                onClick = { mediaDetails?.malUrl?.let { context.openLink(it) } }
             )
 
             ShareButton(url = mediaDetails?.malUrl.orEmpty())
