@@ -85,7 +85,8 @@ fun App(
                     navActionManager.toMediaDetails(MediaType.MANGA, deepLink.data as Int)
                 }
 
-                DeepLink.Type.EXTERNAL -> { uriHandler.openUri(deepLink.data as String) }
+                DeepLink.Type.EXTERNAL -> {
+                    runCatching { uriHandler.openUri(deepLink.data as String) } }
             }
         }
     }

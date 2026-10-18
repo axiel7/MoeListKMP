@@ -56,7 +56,7 @@ fun FullPosterView(
                     ViewInBrowserButton(
                         onClick = {
                             pictures.getOrNull(pagerState.currentPage)?.let { url ->
-                                uriHandler.openUri(url)
+                                runCatching { uriHandler.openUri(url) }
                             }
                         }
                     )

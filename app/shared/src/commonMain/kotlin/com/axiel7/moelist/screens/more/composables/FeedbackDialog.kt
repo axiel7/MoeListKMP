@@ -37,12 +37,12 @@ fun FeedbackDialog(
                 MoreItem(
                     title = stringResource(UiRes.string.github),
                     icon = UiRes.drawable.ic_github,
-                    onClick = { uriHandler.openUri(GITHUB_ISSUES_URL) }
+                    onClick = { runCatching { uriHandler.openUri(GITHUB_ISSUES_URL) } }
                 )
                 MoreItem(
                     title = stringResource(UiRes.string.discord),
                     icon = UiRes.drawable.ic_discord,
-                    onClick = { uriHandler.openUri(DISCORD_SERVER_URL) }
+                    onClick = { runCatching { uriHandler.openUri(DISCORD_SERVER_URL) } }
                 )
             }
         }

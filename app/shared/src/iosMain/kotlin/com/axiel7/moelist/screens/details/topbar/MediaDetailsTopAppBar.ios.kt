@@ -111,9 +111,11 @@ private fun MediaDetailsTopAppBarContent(
                     )
                 }
             }
-            ViewInBrowserButton(onClick = {
-                mediaDetails?.malUrl?.let { uriHandler.openUri(it) }
-            })
+            ViewInBrowserButton(
+                onClick = {
+                    mediaDetails?.malUrl?.let { runCatching { uriHandler.openUri(it) } }
+                }
+            )
 
             ShareButton(url = mediaDetails?.malUrl.orEmpty())
         },

@@ -560,7 +560,9 @@ private fun MediaDetailsContent(
                                     )
                                 },
                                 minLines = 2,
-                                onClick = { uriHandler.openUri(CHARACTER_URL + item.node.id) }
+                                onClick = {
+                                    runCatching { uriHandler.openUri(CHARACTER_URL + item.node.id) }
+                                }
                             )
                         }
                         if (uiState.isLoadingCharacters) {

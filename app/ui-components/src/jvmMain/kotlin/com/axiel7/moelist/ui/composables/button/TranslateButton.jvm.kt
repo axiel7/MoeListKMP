@@ -27,12 +27,14 @@ actual fun TranslateButton(
     val currentLanguage = remember { Locale.current.toLanguageTag() }
     IconButton(
         onClick = {
-            uriHandler.openUri(
-                buildGoogleTranslateUri(
-                    text = textToTranslate,
-                    targetLanguage = currentLanguage
+            runCatching {
+                uriHandler.openUri(
+                    buildGoogleTranslateUri(
+                        text = textToTranslate,
+                        targetLanguage = currentLanguage
+                    )
                 )
-            )
+            }
         },
         shapes = IconButtonDefaults.shapes(),
         modifier = modifier,

@@ -78,17 +78,17 @@ fun CreditsView(
             MoreItem(
                 title = stringResource(UiRes.string.logo_design),
                 subtitle = "@danielvd_art",
-                onClick = { uriHandler.openUri(LOGO_CREDIT_URL) }
+                onClick = { runCatching { uriHandler.openUri(LOGO_CREDIT_URL) } }
             )
             MoreItem(
                 title = stringResource(UiRes.string.new_logo_design),
                 subtitle = "@WSTxda",
-                onClick = { uriHandler.openUri(LOGO_NEW_CREDIT_URL) }
+                onClick = { runCatching { uriHandler.openUri(LOGO_NEW_CREDIT_URL) } }
             )
             MoreItem(
                 title = stringResource(UiRes.string.website),
                 subtitle = "@MaximilianGT500",
-                onClick = { uriHandler.openUri(WEBSITE_CREDIT_URL) }
+                onClick = { runCatching { uriHandler.openUri(WEBSITE_CREDIT_URL) } }
             )
             MoreItem(
                 title = stringResource(UiRes.string.api_help),
@@ -100,7 +100,7 @@ fun CreditsView(
             contributorsCredits.forEach { (username, link) ->
                 MoreItem(
                     title = username,
-                    onClick = { uriHandler.openUri(link) }
+                    onClick = { runCatching { uriHandler.openUri(link) } }
                 )
             }
             HorizontalDivider()

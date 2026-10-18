@@ -71,13 +71,13 @@ fun AboutView(
                 title = stringResource(UiRes.string.discord),
                 subtitle = stringResource(UiRes.string.discord_summary),
                 icon = UiRes.drawable.ic_discord,
-                onClick = { uriHandler.openUri(DISCORD_SERVER_URL) }
+                onClick = { runCatching { uriHandler.openUri(DISCORD_SERVER_URL) } }
             )
             MoreItem(
                 title = stringResource(UiRes.string.github),
                 subtitle = stringResource(UiRes.string.github_summary),
                 icon = UiRes.drawable.ic_github,
-                onClick = { uriHandler.openUri(GITHUB_REPO_URL) }
+                onClick = { runCatching { uriHandler.openUri(GITHUB_REPO_URL) } }
             )
             MoreItem(
                 title = stringResource(UiRes.string.credits),

@@ -218,7 +218,9 @@ private fun ProfileViewContent(
             HorizontalDivider(modifier = Modifier.padding(vertical = 16.dp))
 
             TextButton(
-                onClick = { uriHandler.openUri(MAL_PROFILE_URL + uiState.user?.name) },
+                onClick = {
+                    runCatching { uriHandler.openUri(MAL_PROFILE_URL + uiState.user?.name) }
+                },
                 modifier = Modifier.padding(bottom = 16.dp),
                 shapes = ButtonDefaults.shapes(),
             ) {
