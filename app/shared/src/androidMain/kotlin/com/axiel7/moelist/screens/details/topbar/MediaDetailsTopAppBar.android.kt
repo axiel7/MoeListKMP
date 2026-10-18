@@ -18,6 +18,7 @@ import androidx.compose.ui.platform.LocalUriHandler
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.axiel7.moelist.data.model.media.BaseMediaDetails
 import com.axiel7.moelist.data.model.media.MediaStatus
+import com.axiel7.moelist.ui.base.BrowserHandler
 import com.axiel7.moelist.ui.composables.button.BackIconButton
 import com.axiel7.moelist.ui.composables.button.ShareButton
 import com.axiel7.moelist.ui.composables.button.ViewInBrowserButton
@@ -105,7 +106,7 @@ private fun MediaDetailsTopAppBarContent(
     navigateBack: () -> Unit,
     onClickNotification: (Boolean) -> Unit,
 ) {
-    val uriHandler = LocalUriHandler.current
+    val browserHandler = BrowserHandler.LocalBrowserHandler.current
 
     TopAppBar(
         title = { },
@@ -136,9 +137,9 @@ private fun MediaDetailsTopAppBarContent(
                     )
                 }
             }
-            ViewInBrowserButton(onClick = {
-                mediaDetails?.malUrl?.let { uriHandler.openUri(it) }
-            })
+            ViewInBrowserButton(
+                onClick = { mediaDetails?.malUrl?.let { browserHandler.launchUrl(it) } }
+            )
 
             ShareButton(url = mediaDetails?.malUrl.orEmpty())
         },

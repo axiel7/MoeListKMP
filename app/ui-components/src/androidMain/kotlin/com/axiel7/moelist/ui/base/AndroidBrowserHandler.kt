@@ -23,6 +23,12 @@ class AndroidBrowserHandler(
                     } catch (e: Exception) {
                         Toast.makeText(context, e.localizedMessage.orEmpty(), Toast.LENGTH_SHORT).show()
                     }
+                } catch (_: SecurityException) {
+                    try {
+                        context.startActivity(Intent(Intent.ACTION_VIEW, url.toUri()))
+                    } catch (e: Exception) {
+                        Toast.makeText(context, e.localizedMessage.orEmpty(), Toast.LENGTH_SHORT).show()
+                    }
                 }
             }
     }
