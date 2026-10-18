@@ -17,7 +17,7 @@ version = versionProps.getProperty("name")
 kotlin {
     jvmToolchain {
         languageVersion.set(JavaLanguageVersion.of(21))
-        vendor.set(JvmVendorSpec.JETBRAINS)
+        vendor.set(JvmVendorSpec.ORACLE)
     }
     dependencies {
         implementation(projects.app.shared)
