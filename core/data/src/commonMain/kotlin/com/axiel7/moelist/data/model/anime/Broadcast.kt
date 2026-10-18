@@ -24,6 +24,7 @@ import kotlinx.datetime.toInstant
 import kotlinx.datetime.toLocalDateTime
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
+import okio.ArrayIndexOutOfBoundsException
 import org.jetbrains.compose.resources.stringResource
 import kotlin.math.absoluteValue
 import kotlin.time.Clock
@@ -46,10 +47,16 @@ data class Broadcast(
     fun timeText(isAiring: Boolean) = buildString {
         val firstText = when {
             dayOfTheWeek != null && startTime != null -> {
-                dateTimeUntilNextBroadcast()?.format(
-                    dateStyle = FormatStyle.MEDIUM,
-                    timeStyle = FormatStyle.SHORT
-                )
+                val dateTime = dateTimeUntilNextBroadcast()
+                try {
+                    dateTime?.format(
+                        dateStyle = FormatStyle.MEDIUM,
+                        timeStyle = FormatStyle.SHORT
+                    )
+                } catch (_: IndexOutOfBoundsException) {
+                    listOfNotNull(dateTime?.year, dateTime?.month, dateTime?.day)
+                        .joinToString("-")
+                }
             }
             dayOfTheWeek != null -> dayOfTheWeek.localized()
             startTime != null -> "$startTime (JST)"
