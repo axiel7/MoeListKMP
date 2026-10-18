@@ -77,7 +77,7 @@ fun CreditsView(
             SettingsTitle(text = stringResource(UiRes.string.support))
             MoreItem(
                 title = stringResource(UiRes.string.logo_design),
-                subtitle = "@danielvd_art",
+                subtitle = "@danycony_",
                 onClick = { runCatching { uriHandler.openUri(LOGO_CREDIT_URL) } }
             )
             MoreItem(
